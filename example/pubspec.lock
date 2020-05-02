@@ -91,7 +91,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.5.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -108,7 +108,7 @@ packages:
       name: google_fonts
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.0"
+    version: "1.0.0"
   http:
     dependency: transitive
     description:
