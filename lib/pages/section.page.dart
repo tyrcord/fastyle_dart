@@ -11,6 +11,7 @@ class FastSectionPage extends StatelessWidget {
   final String titleText;
   final EdgeInsets contentPadding;
   final Widget child;
+  final Widget footer;
   final Widget leading;
   final List<Widget> actions;
   final bool isViewScrollable;
@@ -18,7 +19,8 @@ class FastSectionPage extends StatelessWidget {
   FastSectionPage({
     Key key,
     this.child,
-    this.contentPadding = _kContentPadding,
+    this.footer,
+    this.contentPadding,
     this.titleText,
     this.actions,
     this.leading,
@@ -58,10 +60,7 @@ class FastSectionPage extends StatelessWidget {
   }
 
   Widget _buildFixedContent() {
-    Widget content = Padding(
-      padding: contentPadding,
-      child: child,
-    );
+    Widget content = _buildContent();
 
     if (!isViewScrollable) {
       content = Expanded(
@@ -79,15 +78,41 @@ class FastSectionPage extends StatelessWidget {
             margin: _kMargin,
           ),
         content,
+        if (!isViewScrollable && footer != null) _buildFooter(),
       ],
     );
   }
 
-  ListView _builScrollableContent() {
-    return ListView(
-      children: <Widget>[
-        _buildFixedContent(),
+  CustomScrollView _builScrollableContent() {
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: _buildFixedContent(),
+        ),
+        if (footer != null)
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: _buildFooter(),
+          ),
       ],
+    );
+  }
+
+  Widget _buildContent() {
+    final padding = contentPadding ?? _kContentPadding;
+
+    return Padding(
+      padding: footer == null ? padding : padding.copyWith(bottom: 0.0),
+      child: child,
+    );
+  }
+
+  Widget _buildFooter() {
+    final padding = contentPadding ?? _kContentPadding;
+
+    return Padding(
+      padding: padding.copyWith(top: 0.0),
+      child: footer,
     );
   }
 }
