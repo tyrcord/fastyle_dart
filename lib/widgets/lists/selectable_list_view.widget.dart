@@ -1,17 +1,18 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-class FastSelectableListView extends StatefulWidget {
-  final ValueChanged<FastItem> onSelectionChanged;
-  final List<FastItem> items;
-  final FastItem selection;
+class FastSelectableListView<T extends FastItem> extends StatefulWidget {
+  final ValueChanged<T> onSelectionChanged;
+  final List<T> items;
+  final T selection;
   final List<FastCategory> categories;
   final bool shouldGroupByCategory;
   final bool isEnabled;
   final bool isViewScrollable;
   final bool showItemDivider;
   final bool shouldSortItems;
-  final FastListItemBuilder listItemBuilder;
+  final FastListItemBuilder<T> listItemBuilder;
+  final EdgeInsets itemContentPadding;
 
   FastSelectableListView({
     Key key,
@@ -25,14 +26,16 @@ class FastSelectableListView extends StatefulWidget {
     this.shouldSortItems = true,
     this.showItemDivider = false,
     this.listItemBuilder,
+    this.itemContentPadding,
   }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _FastSelectableListViewState();
+  State<StatefulWidget> createState() => _FastSelectableListViewState<T>();
 }
 
-class _FastSelectableListViewState extends State<FastSelectableListView> {
-  FastItem _selection;
+class _FastSelectableListViewState<T extends FastItem>
+    extends State<FastSelectableListView<T>> {
+  T _selection;
 
   @override
   void initState() {
@@ -43,7 +46,7 @@ class _FastSelectableListViewState extends State<FastSelectableListView> {
   @override
   Widget build(BuildContext context) {
     return FastListViewLayout(
-      listItemBuilder: _buildListeTitle,
+      listItemBuilder: _buildListItems,
       items: widget.items,
       isViewScrollable: widget.isViewScrollable,
       showItemDivider: widget.showItemDivider,
@@ -53,7 +56,7 @@ class _FastSelectableListViewState extends State<FastSelectableListView> {
     );
   }
 
-  Widget _buildListeTitle(BuildContext context, FastItem option, int index) {
+  Widget _buildListItems(BuildContext context, T option, int index) {
     if (widget.listItemBuilder != null) {
       return widget.listItemBuilder(context, option, index);
     }
@@ -61,19 +64,20 @@ class _FastSelectableListViewState extends State<FastSelectableListView> {
     return _buildSelectableListItem(option);
   }
 
-  Widget _buildSelectableListItem(FastItem option) {
+  Widget _buildSelectableListItem(T option) {
     return FastSelectableListItem(
+      contentPadding: widget.itemContentPadding,
       item: option,
       onTap: () {
         if (widget.isEnabled && option.isEnabled) {
           _onSelectionChange(option);
         }
       },
-      isSelected: option == _selection,
+      isSelected: option.value == _selection?.value,
     );
   }
 
-  void _onSelectionChange(FastItem option) {
+  void _onSelectionChange(T option) {
     if (option != _selection) {
       setState(() {
         _selection = option;

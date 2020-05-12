@@ -11,6 +11,7 @@ class FastNavigationListItem extends StatelessWidget {
   final Widget trailing;
   final bool isEnabled;
   final bool isDense;
+  final EdgeInsets contentPadding;
 
   FastNavigationListItem({
     Key key,
@@ -21,11 +22,13 @@ class FastNavigationListItem extends StatelessWidget {
     this.trailing = _kDefaultTrailing,
     this.isEnabled = true,
     this.isDense = true,
+    this.contentPadding,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FastListItemLayout(
+      contentPadding: contentPadding,
       titleText: titleText,
       onTap: onTap,
       descriptionText: descriptionText,

@@ -10,6 +10,7 @@ class FastListItemLayout extends StatelessWidget {
   final bool isEnabled;
   final bool isDense;
   final FastListTileDescriptor descriptor;
+  final EdgeInsets contentPadding;
 
   FastListItemLayout({
     Key key,
@@ -21,6 +22,7 @@ class FastListItemLayout extends StatelessWidget {
     this.isEnabled = true,
     this.isDense,
     this.descriptor,
+    this.contentPadding,
   }) : super(key: key);
 
   @override
@@ -28,6 +30,7 @@ class FastListItemLayout extends StatelessWidget {
     return ThemeHelper.getListTitleTheme(
       context: context,
       child: ListTile(
+        contentPadding: contentPadding,
         dense: isDense ?? descriptor?.isDense ?? true,
         enabled: isEnabled,
         leading: leading ?? descriptor?.leading,

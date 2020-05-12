@@ -2,13 +2,14 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:fastyle_dart/models/models.dart';
 import 'package:flutter/material.dart';
 
-class FastSelectableListItem extends StatelessWidget {
-  final FastItem item;
+class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
+  final T item;
   final VoidCallback onTap;
   final bool isSelected;
   final bool isDense;
   final Widget trailing;
   final Widget leading;
+  final EdgeInsets contentPadding;
 
   FastSelectableListItem({
     Key key,
@@ -18,6 +19,7 @@ class FastSelectableListItem extends StatelessWidget {
     this.trailing,
     this.leading,
     this.isDense = true,
+    this.contentPadding,
   }) : super(key: key);
 
   @override
@@ -30,6 +32,7 @@ class FastSelectableListItem extends StatelessWidget {
         );
 
     return FastListItemLayout(
+      contentPadding: contentPadding,
       titleText: item.label,
       onTap: onTap,
       descriptionText: item.description,
