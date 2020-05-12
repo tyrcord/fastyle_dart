@@ -1,6 +1,8 @@
 import 'package:diacritic/diacritic.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:tbloc_dart/core/base/base.dart';
 
 const _kIconSize = 28.0;
 
@@ -40,18 +42,30 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
 
   @override
   Widget build(BuildContext context) {
+    final themeBloc = BlocProvider.of<FastThemeBloc>(context);
+    final brightness = themeBloc.currentState.brightness;
+    final SystemUiOverlayStyle overlayStyle = brightness == Brightness.dark
+        ? SystemUiOverlayStyle.light
+        : SystemUiOverlayStyle.dark;
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
         ),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              _buildSearchAppBar(context),
-              _buildContent(context),
-            ],
+        child: Semantics(
+          container: true,
+          child: AnnotatedRegion<SystemUiOverlayStyle>(
+            value: overlayStyle,
+            child: SafeArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  _buildSearchAppBar(context),
+                  _buildContent(context),
+                ],
+              ),
+            ),
           ),
         ),
       ),

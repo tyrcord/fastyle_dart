@@ -31,6 +31,7 @@ class FastSectionPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        brightness: themeBloc.currentState.brightness,
         leading: leading,
         iconTheme: IconThemeData(
           color: themeBloc.currentState.brightness == Brightness.light
