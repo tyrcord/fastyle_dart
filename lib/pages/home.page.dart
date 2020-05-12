@@ -93,12 +93,20 @@ class _FastHomePageState extends State<FastHomePage> {
   void _onAfterLayout(Duration duration) {
     final leadingContext = _leadingKey.currentContext;
     final subtitleContext = _subtitleKey.currentContext;
-    final RenderBox leadingRenderBox = leadingContext.findRenderObject();
-    final RenderBox subtitleRenderBox = subtitleContext.findRenderObject();
+    RenderBox leadingRenderBox;
+    RenderBox subtitleRenderBox;
+
+    if (widget.leading != null) {
+      leadingRenderBox = leadingContext.findRenderObject();
+    }
+
+    if (widget.subtitleText != null) {
+      subtitleRenderBox = subtitleContext.findRenderObject();
+    }
 
     setState(() {
-      _leadingSize = leadingRenderBox.size;
-      _subtitleSize = subtitleRenderBox.size;
+      _leadingSize = leadingRenderBox?.size ?? null;
+      _subtitleSize = subtitleRenderBox?.size ?? null;
       _setTitlePadding();
     });
   }
@@ -143,19 +151,22 @@ class _FastHomePageState extends State<FastHomePage> {
           text: widget.titleText,
           textColor: _textColor,
         ),
-        background: Container(
-          alignment: Alignment.bottomLeft,
-          margin: const EdgeInsets.only(bottom: _kHeaderPadding),
-          padding: const EdgeInsets.symmetric(horizontal: _kHeaderPadding),
-          child: Opacity(
-            opacity: _subtitleOpacity,
-            child: FastBody(
-              key: _subtitleKey,
-              text: widget.subtitleText,
-              textColor: _textColor,
-            ),
-          ),
-        ),
+        background: widget.subtitleText != null
+            ? Container(
+                alignment: Alignment.bottomLeft,
+                margin: const EdgeInsets.only(bottom: _kHeaderPadding),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: _kHeaderPadding),
+                child: Opacity(
+                  opacity: _subtitleOpacity,
+                  child: FastBody(
+                    key: _subtitleKey,
+                    text: widget.subtitleText,
+                    textColor: _textColor,
+                  ),
+                ),
+              )
+            : null,
       ),
     );
   }
@@ -177,9 +188,10 @@ class _FastHomePageState extends State<FastHomePage> {
     double offsetBottom = 0;
 
     if (widget.leading != null) {
+      double subtitleSizeHeight = _subtitleSize?.height ?? 0;
       double leadingWidth = _leadingSize.width - _kHeaderPadding;
       offsetLeft = leadingWidth - leadingWidth * multiplier;
-      offsetBottom = (_kHeaderPadding / 2 + _subtitleSize.height) * multiplier;
+      offsetBottom = (_kHeaderPadding / 2 + subtitleSizeHeight) * multiplier;
     }
 
     _titlePadding = EdgeInsets.only(
