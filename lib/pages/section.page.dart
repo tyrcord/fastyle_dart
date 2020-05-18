@@ -9,6 +9,7 @@ const _kElevation = 0.0;
 
 class FastSectionPage extends StatelessWidget {
   final String titleText;
+  final Color titleColor;
   final EdgeInsets contentPadding;
   final Widget child;
   final Widget footer;
@@ -20,6 +21,7 @@ class FastSectionPage extends StatelessWidget {
     Key key,
     this.child,
     this.footer,
+    this.titleColor,
     this.contentPadding,
     this.titleText,
     this.actions,
@@ -73,7 +75,10 @@ class FastSectionPage extends StatelessWidget {
       children: <Widget>[
         if (titleText != null)
           Container(
-            child: FastHeadline(text: titleText),
+            child: FastHeadline(
+              text: titleText,
+              textColor: titleColor,
+            ),
             padding: _kHeaderPadding,
             margin: _kMargin,
           ),
