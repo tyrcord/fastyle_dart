@@ -7,6 +7,9 @@ class FastApp extends StatefulWidget {
   final Widget home;
   final ThemeData lightTheme;
   final ThemeData darkTheme;
+  final Iterable<LocalizationsDelegate> localizationsDelegates;
+  final Iterable<Locale> supportedLocales;
+  final Locale locale;
 
   FastApp({
     Key key,
@@ -14,6 +17,9 @@ class FastApp extends StatefulWidget {
     this.titleText,
     this.lightTheme,
     this.darkTheme,
+    this.localizationsDelegates,
+    this.supportedLocales = const <Locale>[Locale('en', 'US')],
+    this.locale,
   }) : super(key: key);
 
   @override
@@ -51,6 +57,9 @@ class _FastAppState extends State<FastApp> {
             darkTheme: widget.darkTheme,
             themeMode: state.themeMode,
             home: widget.home,
+            localizationsDelegates: widget.localizationsDelegates,
+            supportedLocales: widget.supportedLocales,
+            locale: widget.locale,
           );
         },
       ),
