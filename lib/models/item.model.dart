@@ -11,7 +11,7 @@ class FastItem<T> {
 
   const FastItem({
     @required this.label,
-    @required this.value,
+    this.value,
     this.description,
     this.categories,
     this.isEnabled = true,
