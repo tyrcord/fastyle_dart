@@ -55,7 +55,7 @@ class FastThemeBlocEvent extends BlocEvent<FastThemeBlocEventAction> {
     @required FastThemeBlocEventAction action,
   }) : super(payload: action);
 
-  FastThemeBlocEvent.dart() : this(action: FastThemeBlocEventAction.dark);
+  FastThemeBlocEvent.dark() : this(action: FastThemeBlocEventAction.dark);
 
   FastThemeBlocEvent.light() : this(action: FastThemeBlocEventAction.light);
 

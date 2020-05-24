@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
         isChecked: themeBloc.currentState.brightness == Brightness.dark,
         onValueChanged: (bool shouldSwitchToDarkMode) {
           if (shouldSwitchToDarkMode) {
-            themeBloc.dispatchEvent(FastThemeBlocEvent.dart());
+            themeBloc.dispatchEvent(FastThemeBlocEvent.dark());
           } else {
             themeBloc.dispatchEvent(FastThemeBlocEvent.light());
           }
