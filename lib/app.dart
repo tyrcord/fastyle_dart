@@ -10,6 +10,7 @@ class FastApp extends StatefulWidget {
   final Iterable<LocalizationsDelegate> localizationsDelegates;
   final Iterable<Locale> supportedLocales;
   final Locale locale;
+  final FastThemeBloc themeBloc;
 
   FastApp({
     Key key,
@@ -20,6 +21,7 @@ class FastApp extends StatefulWidget {
     this.localizationsDelegates,
     this.supportedLocales = const <Locale>[Locale('en', 'US')],
     this.locale,
+    this.themeBloc,
   }) : super(key: key);
 
   @override
@@ -31,10 +33,11 @@ class _FastAppState extends State<FastApp> {
 
   @override
   void initState() {
-    _themeBloc = FastThemeBloc(FastThemeBlocState(
-      brightness: WidgetsBinding.instance.window.platformBrightness,
-      themeMode: ThemeMode.system,
-    ));
+    _themeBloc = widget.themeBloc ??
+        FastThemeBloc(FastThemeBlocState(
+          brightness: WidgetsBinding.instance.window.platformBrightness,
+          themeMode: ThemeMode.system,
+        ));
     super.initState();
   }
 
