@@ -1,3 +1,9 @@
+## [0.6.2](https://github.com/tyrcord/fastyle_dart/releases/tag/0.6.2) (2020-05-27)
+
+### Fixes
+
+- Makes sure the children of a fast list view till the cross axis.
+
 ## [0.6.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.6.1) (2020-05-24)
 
 ### Features
