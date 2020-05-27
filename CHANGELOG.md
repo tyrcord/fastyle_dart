@@ -1,3 +1,11 @@
+# CHANGELOG
+
+## [0.6.3](https://github.com/tyrcord/fastyle_dart/releases/tag/0.6.3) (2020-05-27)
+
+### Fixes
+
+- Place the children of a fast list view at the start edge
+
 ## [0.6.2](https://github.com/tyrcord/fastyle_dart/releases/tag/0.6.2) (2020-05-27)
 
 ### Fixes
