@@ -88,7 +88,7 @@ class FastListViewLayout extends StatelessWidget {
     }
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: items.asMap().entries.map((MapEntry<int, FastItem> entry) {
         return _buildListItem(
           context: context,
