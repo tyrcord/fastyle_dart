@@ -2,6 +2,8 @@ import 'package:fastyle_dart/themes/base/base.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
+const _kLineHeight = 1.2;
+
 class FastBaseTypography extends StatelessWidget {
   final String text;
   final Color textColor;
@@ -11,12 +13,14 @@ class FastBaseTypography extends StatelessWidget {
   final int maxLines;
   final TextOverflow overflow;
   final bool useFontForNumber;
+  final double lineHeight;
 
   FastBaseTypography({
     Key key,
     @required this.text,
     this.textColor,
     this.fontSize,
+    this.lineHeight,
     this.fontWeight,
     this.maxLines,
     this.overflow,
@@ -32,6 +36,7 @@ class FastBaseTypography extends StatelessWidget {
       text,
       textAlign: textAlign,
       style: textStyle.copyWith(
+        height: lineHeight ?? _kLineHeight,
         fontSize: fontSize,
         color: textColor,
         fontWeight: fontWeight,

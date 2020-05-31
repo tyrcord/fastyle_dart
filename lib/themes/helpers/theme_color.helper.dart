@@ -22,6 +22,14 @@ class ThemeColorHelper {
         : kFastDarkWhiteColor;
   }
 
+  Color getBlueColor(BuildContext context) {
+    final themeBloc = BlocProvider.of<FastThemeBloc>(context);
+
+    return themeBloc.currentState.brightness == Brightness.light
+        ? kFastLightBlueColor
+        : kFastDarkBlueColor;
+  }
+
   Color getShadowColor(BuildContext context) {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
 
