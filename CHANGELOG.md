@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [0.7.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.7.0) (2020-05-31)
+
+### Features
+
+- Add FastArticle Widget.
+- Add FastParagraph Widget.
+- Add FastLink Widget.
+- Add FastUrlLink Widget.
+
 ## [0.6.3](https://github.com/tyrcord/fastyle_dart/releases/tag/0.6.3) (2020-05-27)
 
 ### Fixes
