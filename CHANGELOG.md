@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.7.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.7.1) (2020-06-12)
+
+### Fixes
+
+- Rebuild the selectable list when the selection changes.
+
 ## [0.7.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.7.0) (2020-05-31)
 
 ### Features
