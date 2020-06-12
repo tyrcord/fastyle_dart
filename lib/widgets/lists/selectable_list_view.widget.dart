@@ -44,6 +44,15 @@ class _FastSelectableListViewState<T extends FastItem>
   }
 
   @override
+  void didUpdateWidget(FastSelectableListView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.selection != widget.selection) {
+      _selection = widget.selection;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return FastListViewLayout(
       listItemBuilder: _buildListItems,
