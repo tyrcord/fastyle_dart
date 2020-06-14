@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.7.2](https://github.com/tyrcord/fastyle_dart/releases/tag/0.7.2) (2020-06-13)
+
+### Features
+
+- Darken tertiary label color.
+
 ## [0.7.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.7.1) (2020-06-12)
 
 ### Fixes
