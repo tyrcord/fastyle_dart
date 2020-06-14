@@ -11,8 +11,8 @@ const kFastLightSecondaryBackgroundColor = Colors.white;
 
 // Label Colors
 const kFastLightlabelColor = Color(0xFF424242);
-const kFastLightSecondaryLabelColor = Color(0xFF656565);
-final kFastLightTertiaryLabelColor = CupertinoColors.tertiaryLabel.color;
+const kFastLightSecondaryLabelColor = Color(0xFF676767);
+const kFastLightTertiaryLabelColor = Color(0xFF949494);
 final kFastLightHintLabelColor = CupertinoColors.placeholderText.color;
 
 // Separator Colors
