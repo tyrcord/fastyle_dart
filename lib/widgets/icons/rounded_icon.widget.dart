@@ -1,8 +1,6 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-const _kIconSize = 20.0;
-
 class FastRoundedIcon extends StatelessWidget {
   final IconData iconData;
   final Color iconColor;
@@ -27,7 +25,7 @@ class FastRoundedIcon extends StatelessWidget {
       ),
       child: Icon(
         iconData,
-        size: iconSize ?? _kIconSize,
+        size: iconSize ?? kFastIconSize,
         color: iconColor ?? ThemeHelper.colors.getWhiteColor(context),
       ),
     );

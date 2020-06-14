@@ -2,8 +2,6 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-const _iconSize = 20.0;
-
 class FastIconButton extends StatelessWidget {
   final VoidCallback onTap;
   final Icon icon;
@@ -23,7 +21,7 @@ class FastIconButton extends StatelessWidget {
     this.highlightColor,
     this.padding = kFastEdgeInsets8,
     this.emphasis = FastButtonEmphasis.low,
-    this.iconSize = _iconSize,
+    this.iconSize,
   }) : super(key: key);
 
   @override
@@ -42,7 +40,7 @@ class FastIconButton extends StatelessWidget {
         onPressed: isEnabled ? onTap : null,
         highlightColor: highlightColor,
         icon: icon,
-        iconSize: iconSize,
+        iconSize: iconSize ?? kFastIconSize,
         disabledColor: disabledColor,
         color: _color,
       ),
