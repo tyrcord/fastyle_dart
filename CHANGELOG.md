@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.7.3](https://github.com/tyrcord/fastyle_dart/releases/tag/0.7.3) (2020-06-13)
+
+### Enhancements
+
+- [ListItem] Change default padding between the leading and title widgets.
+
 ## [0.7.2](https://github.com/tyrcord/fastyle_dart/releases/tag/0.7.2) (2020-06-13)
 
 ### Features
