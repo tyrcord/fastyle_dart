@@ -27,6 +27,8 @@ class FastListItemLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final title = FastBody(text: titleText);
+
     return ThemeHelper.getListTitleTheme(
       context: context,
       child: ListTile(
@@ -34,7 +36,12 @@ class FastListItemLayout extends StatelessWidget {
         dense: isDense ?? descriptor?.isDense ?? true,
         enabled: isEnabled,
         leading: leading ?? descriptor?.leading,
-        title: FastBody(text: titleText),
+        title: leading != null
+            ? Transform(
+                transform: Matrix4.translationValues(-16, 0.0, 0.0),
+                child: title,
+              )
+            : title,
         subtitle:
             descriptionText != null ? FastBody2(text: descriptionText) : null,
         trailing: trailing ?? descriptor?.trailing,
