@@ -41,7 +41,7 @@ class FastTextField extends StatelessWidget {
       autocorrect: false,
       cursorColor: theme.primaryColor,
       keyboardType: TextInputType.text,
-      style: theme.textTheme.body1,
+      style: ThemeHelper.texts.getBodyTextStyle(context),
       decoration: InputDecoration(hintText: placeholderText),
       onChanged: onValueChanged,
     );

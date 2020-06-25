@@ -134,10 +134,9 @@ class _FastHomePageState extends State<FastHomePage> {
   }
 
   Widget _buildFlexibleSpaceBar(BuildContext context) {
-    final theme = Theme.of(context);
     final _textColor = ThemeHelper.colors.getColorWithBestConstrast(
       context: context,
-      darkColor: theme.textTheme.title.color,
+      darkColor: ThemeHelper.texts.getTitleTextStyle(context).color,
       lightColor: ThemeHelper.colors.getWhiteColor(context),
     );
 

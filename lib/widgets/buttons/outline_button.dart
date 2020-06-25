@@ -29,7 +29,7 @@ class FastOutlineButton extends StatelessWidget {
     final theme = Theme.of(context);
     final _color = borderColor ?? emphasis == FastButtonEmphasis.high
         ? theme.primaryColor
-        : theme.textTheme.button.color;
+        : ThemeHelper.texts.getButtonTextStyle(context).color;
 
     final disabledColor = _color.withAlpha(155);
 

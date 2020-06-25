@@ -29,7 +29,7 @@ class FastRaisedButton extends StatelessWidget {
     final _textColor = textColor ??
         ThemeHelper.colors.getColorWithBestConstrast(
           context: context,
-          darkColor: theme.textTheme.button.color,
+          darkColor: ThemeHelper.texts.getButtonTextStyle(context).color,
           lightColor: ThemeHelper.colors.getWhiteColor(context),
           backgroundColor: _backgroundColor,
         );

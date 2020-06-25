@@ -27,7 +27,7 @@ class FastTextButton extends StatelessWidget {
     ThemeData theme = Theme.of(context);
     Color _color = textColor ?? emphasis == FastButtonEmphasis.high
         ? theme.primaryColor
-        : theme.textTheme.button.color;
+        : ThemeHelper.texts.getButtonTextStyle(context).color;
 
     Color disabledColor = _color.withAlpha(155);
 

@@ -1,39 +1,39 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
+const _kFontSize48 = 48.0;
 const _kFontSize34 = 34.0;
-const _kFontSize28 = 28.0;
 const _kFontSize20 = 20.0;
 const _kFontSize17 = 17.0;
 const _kFontSize15 = 15.0;
 const _kFontSize13 = 13.0;
 
 final kFastTextTheme = TextTheme(
-  display1: GoogleFonts.robotoCondensed(
-    fontSize: _kFontSize34,
+  headline4: GoogleFonts.robotoCondensed(
+    fontSize: _kFontSize48,
     fontWeight: FontWeight.w400,
   ),
-  headline: GoogleFonts.robotoCondensed(
-    fontSize: _kFontSize28,
+  headline5: GoogleFonts.robotoCondensed(
+    fontSize: _kFontSize34,
     fontWeight: FontWeight.w600,
   ),
-  subhead: GoogleFonts.robotoCondensed(
+  subtitle1: GoogleFonts.robotoCondensed(
     fontSize: _kFontSize17,
     fontWeight: FontWeight.w600,
   ),
-  title: GoogleFonts.robotoCondensed(
+  headline6: GoogleFonts.robotoCondensed(
     fontSize: _kFontSize20,
     fontWeight: FontWeight.w400,
   ),
-  subtitle: GoogleFonts.robotoCondensed(
+  subtitle2: GoogleFonts.robotoCondensed(
     fontSize: _kFontSize15,
     fontWeight: FontWeight.w600,
   ),
-  body1: GoogleFonts.robotoCondensed(
+  bodyText1: GoogleFonts.robotoCondensed(
     fontSize: _kFontSize17,
     fontWeight: FontWeight.w400,
   ),
-  body2: GoogleFonts.robotoCondensed(
+  bodyText2: GoogleFonts.robotoCondensed(
     fontSize: _kFontSize15,
     fontWeight: FontWeight.w400,
   ),

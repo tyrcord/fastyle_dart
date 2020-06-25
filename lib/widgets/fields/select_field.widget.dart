@@ -103,7 +103,7 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
           Expanded(child: text),
           Icon(
             Icons.arrow_drop_down,
-            color: Theme.of(context).textTheme.body1.color,
+            color: ThemeHelper.texts.getBodyTextStyle(context).color,
             size: _kIconSize,
           ),
         ],

@@ -30,7 +30,7 @@ class FastIconButton extends StatelessWidget {
     Color _color = iconColor ??
         (emphasis == FastButtonEmphasis.high
             ? theme.primaryColor
-            : theme.textTheme.button.color);
+            : ThemeHelper.texts.getButtonTextStyle(context).color);
 
     Color disabledColor = _color.withAlpha(155);
 

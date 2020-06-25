@@ -46,7 +46,7 @@ class FastSearchField extends StatelessWidget {
         enabledBorder: InputBorder.none,
         focusedBorder: InputBorder.none,
       ),
-      style: theme.textTheme.title,
+      style: ThemeHelper.texts.getTitleTextStyle(context),
       onChanged: onValueChanged,
     );
   }

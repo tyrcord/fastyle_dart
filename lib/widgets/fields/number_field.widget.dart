@@ -37,6 +37,7 @@ class FastNumberField extends StatelessWidget {
 
   Widget _buildControl(BuildContext context) {
     final theme = Theme.of(context);
+    final bodyTextStyle = ThemeHelper.texts.getBodyTextStyle(context);
 
     return TextFormField(
       readOnly: isReadOnly,
@@ -48,7 +49,7 @@ class FastNumberField extends StatelessWidget {
         decimal: shouldAcceptDecimalValue,
       ),
       decoration: InputDecoration(hintText: placeholderText),
-      style: theme.textTheme.body1.copyWith(fontFamily: kFastFontForNumber),
+      style: bodyTextStyle.copyWith(fontFamily: kFastFontForNumber),
       inputFormatters: [
         NumberInputFormatter(
           maxLength: maxLength,

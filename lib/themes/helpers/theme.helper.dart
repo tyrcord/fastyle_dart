@@ -31,7 +31,7 @@ class ThemeHelper {
 
     return ListTileTheme(
       iconColor: theme.iconTheme.color,
-      textColor: theme.textTheme.body1.color,
+      textColor: ThemeHelper.texts.getBodyTextStyle(context).color,
       dense: true,
       child: child,
     );

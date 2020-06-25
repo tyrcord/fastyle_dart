@@ -11,25 +11,25 @@ final kLightFastTheme = kBaseFastTheme.copyWith(
   dialogBackgroundColor: kFastLightSecondaryBackgroundColor,
   hintColor: kFastLightHintLabelColor,
   textTheme: _baseTextTheme.copyWith(
-    display1: _baseTextTheme.display1.copyWith(
+    headline4: _baseTextTheme.headline4.copyWith(
       color: kFastLightlabelColor,
     ),
-    headline: _baseTextTheme.headline.copyWith(
+    headline5: _baseTextTheme.headline5.copyWith(
       color: kFastLightlabelColor,
     ),
-    subhead: _baseTextTheme.subhead.copyWith(
+    subtitle1: _baseTextTheme.subtitle1.copyWith(
       color: kFastLightSecondaryLabelColor,
     ),
-    title: _baseTextTheme.title.copyWith(
+    headline6: _baseTextTheme.headline6.copyWith(
       color: kFastLightlabelColor,
     ),
-    subtitle: _baseTextTheme.subtitle.copyWith(
+    subtitle2: _baseTextTheme.subtitle2.copyWith(
       color: kFastLightSecondaryLabelColor,
     ),
-    body1: _baseTextTheme.body1.copyWith(
+    bodyText1: _baseTextTheme.bodyText1.copyWith(
       color: kFastLightSecondaryLabelColor,
     ),
-    body2: _baseTextTheme.body2.copyWith(
+    bodyText2: _baseTextTheme.bodyText2.copyWith(
       color: kFastLightTertiaryLabelColor,
     ),
     button: _baseTextTheme.button.copyWith(

@@ -2,55 +2,55 @@ import 'package:flutter/material.dart';
 
 class ThemeTextHelper {
   TextStyle getDisplayTextStyle(BuildContext context) {
-    return Theme.of(context).textTheme.display1;
+    return Theme.of(context).textTheme.headline4;
   }
 
   TextStyle getHeadlineTextStyle(BuildContext context) {
-    return Theme.of(context).textTheme.headline;
+    return Theme.of(context).textTheme.headline5;
   }
 
   TextStyle getPlaceHolderHeadlineTextStyle(BuildContext context) {
     final theme = Theme.of(context);
 
-    return theme.textTheme.headline.copyWith(
+    return theme.textTheme.headline5.copyWith(
       fontWeight: FontWeight.w300,
       color: theme.hintColor,
     );
   }
 
   TextStyle getSubheadLineTextStyle(BuildContext context) {
-    return Theme.of(context).textTheme.subhead;
+    return Theme.of(context).textTheme.subtitle1;
   }
 
   TextStyle getTitleTextStyle(BuildContext context) {
-    return Theme.of(context).textTheme.title;
+    return Theme.of(context).textTheme.headline6;
   }
 
   TextStyle getPlaceHolderTitleTextStyle(BuildContext context) {
     final theme = Theme.of(context);
 
-    return theme.textTheme.title.copyWith(
+    return theme.textTheme.headline6.copyWith(
       fontWeight: FontWeight.w300,
       color: theme.hintColor,
     );
   }
 
   TextStyle getSubtitleTextStyle(BuildContext context) {
-    return Theme.of(context).textTheme.subtitle;
+    return Theme.of(context).textTheme.subtitle2;
   }
 
   TextStyle getBodyTextStyle(BuildContext context) {
-    return Theme.of(context).textTheme.body1;
+    return Theme.of(context).textTheme.bodyText1;
   }
 
   TextStyle getBody2TextStyle(BuildContext context) {
-    return Theme.of(context).textTheme.body2;
+    return Theme.of(context).textTheme.bodyText2;
   }
 
   TextStyle getPlaceholderTextStyle(BuildContext context) {
     final theme = Theme.of(context);
 
-    return theme.textTheme.body1.copyWith(
+    return theme.textTheme.bodyText1.copyWith(
       fontWeight: FontWeight.w300,
       color: theme.hintColor,
     );

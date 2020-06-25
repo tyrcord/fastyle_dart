@@ -39,7 +39,7 @@ class FastSectionPage extends StatelessWidget {
         leading: leading,
         iconTheme: IconThemeData(
           color: themeBloc.currentState.brightness == Brightness.light
-              ? Theme.of(context).textTheme.body1.color
+              ? ThemeHelper.texts.getBodyTextStyle(context).color
               : ThemeHelper.colors.getWhiteColor(context),
         ),
         backgroundColor: Colors.transparent,

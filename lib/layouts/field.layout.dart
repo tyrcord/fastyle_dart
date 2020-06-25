@@ -45,13 +45,15 @@ class FastFieldLayout extends StatelessWidget {
   }
 
   Widget _buildLabel(BuildContext context) {
+    final textColor = ThemeHelper.texts.getBodyTextStyle(context).color;
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
         Expanded(
           child: FastBody2(
             text: toBeginningOfSentenceCase(labelText),
-            textColor: Theme.of(context).textTheme.body1.color,
+            textColor: textColor,
           ),
         ),
         if (captionText != null)
