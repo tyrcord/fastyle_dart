@@ -34,10 +34,13 @@ class _FastAppState extends State<FastApp> {
   @override
   void initState() {
     _themeBloc = widget.themeBloc ??
-        FastThemeBloc(FastThemeBlocState(
-          brightness: WidgetsBinding.instance.window.platformBrightness,
-          themeMode: ThemeMode.system,
-        ));
+        FastThemeBloc(
+          initialState: FastThemeBlocState(
+            brightness: WidgetsBinding.instance.window.platformBrightness,
+            themeMode: ThemeMode.system,
+          ),
+        );
+
     super.initState();
   }
 

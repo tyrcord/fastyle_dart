@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 class FastDisplay extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
-  FastDisplay({
+  const FastDisplay({
     Key key,
     @required String text,
     Color textColor,
@@ -45,7 +45,7 @@ class FastDisplay extends FastBaseTypography {
 class FastHeadline extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
-  FastHeadline({
+  const FastHeadline({
     Key key,
     @required String text,
     Color textColor,
@@ -80,7 +80,7 @@ class FastHeadline extends FastBaseTypography {
 class FastPlaceHolderHeadline extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
-  FastPlaceHolderHeadline({
+  const FastPlaceHolderHeadline({
     Key key,
     @required String text,
     Color textColor,
@@ -150,7 +150,7 @@ class FastSubhead extends FastBaseTypography {
 class FastTitle extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
-  FastTitle({
+  const FastTitle({
     Key key,
     @required String text,
     Color textColor,
@@ -186,7 +186,7 @@ class FastTitle extends FastBaseTypography {
 class FastPlaceholderTitle extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
-  FastPlaceholderTitle({
+  const FastPlaceholderTitle({
     Key key,
     @required String text,
     Color textColor,
@@ -256,7 +256,7 @@ class FastSubtitle extends FastBaseTypography {
 class FastBody extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
-  FastBody({
+  const FastBody({
     Key key,
     @required String text,
     Color textColor,
@@ -292,7 +292,7 @@ class FastBody extends FastBaseTypography {
 class FastBody2 extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
-  FastBody2({
+  const FastBody2({
     Key key,
     @required String text,
     Color textColor,
@@ -328,7 +328,7 @@ class FastBody2 extends FastBaseTypography {
 class FastPlaceholder extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
-  FastPlaceholder({
+  const FastPlaceholder({
     Key key,
     @required String text,
     Color textColor,
@@ -398,7 +398,7 @@ class FastButtonLabel extends FastBaseTypography {
 class FastCaption extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
-  FastCaption({
+  const FastCaption({
     Key key,
     @required String text,
     Color textColor,
@@ -434,7 +434,7 @@ class FastCaption extends FastBaseTypography {
 class FastHelper extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
-  FastHelper({
+  const FastHelper({
     Key key,
     @required String text,
     Color textColor,

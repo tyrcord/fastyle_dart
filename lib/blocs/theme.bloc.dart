@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class FastThemeBloc
     extends BidirectionalBloc<FastThemeBlocEvent, FastThemeBlocState> {
   // TODO: Persist state
-  FastThemeBloc(FastThemeBlocState initialState)
-      : super(initialState: initialState);
+  FastThemeBloc({FastThemeBlocState initialState})
+      : super(initialState: initialState ?? FastThemeBlocState());
 
   @override
   Stream<FastThemeBlocState> mapEventToState(

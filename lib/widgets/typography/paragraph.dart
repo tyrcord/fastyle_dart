@@ -8,7 +8,7 @@ class FastParagraph extends StatelessWidget {
   final EdgeInsets margin;
   final Widget child;
 
-  FastParagraph({
+  const FastParagraph({
     Key key,
     this.text,
     this.margin,

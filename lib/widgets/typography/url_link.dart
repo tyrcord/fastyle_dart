@@ -9,7 +9,7 @@ class FastUrlLink extends StatelessWidget {
   final UrlLinkCallback onTap;
   final Color color;
 
-  FastUrlLink({
+  const FastUrlLink({
     Key key,
     @required this.onTap,
     @required this.text,

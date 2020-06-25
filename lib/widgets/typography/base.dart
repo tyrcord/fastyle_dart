@@ -15,7 +15,7 @@ class FastBaseTypography extends StatelessWidget {
   final bool useFontForNumber;
   final double lineHeight;
 
-  FastBaseTypography({
+  const FastBaseTypography({
     Key key,
     @required this.text,
     this.textColor,

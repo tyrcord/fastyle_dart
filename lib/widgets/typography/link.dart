@@ -7,7 +7,7 @@ class FastLink extends StatelessWidget {
   final VoidCallback onTap;
   final Color color;
 
-  FastLink({
+  const FastLink({
     Key key,
     @required this.text,
     this.onTap,

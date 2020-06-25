@@ -4,7 +4,7 @@ import 'package:tbloc_dart/core/base/bloc_provider.dart';
 
 const _kContentPadding = kFastEdgeInsets16;
 const _kHeaderPadding = EdgeInsets.symmetric(horizontal: 16.0);
-const _kMargin = EdgeInsets.only(bottom: 16.0);
+const _kMargin = EdgeInsets.symmetric(vertical: 16.0);
 const _kElevation = 0.0;
 
 class FastSectionPage extends StatelessWidget {

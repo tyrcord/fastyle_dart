@@ -8,7 +8,7 @@ class FastArticle extends StatelessWidget {
   final EdgeInsets titleMargin;
   final Iterable<Widget> children;
 
-  FastArticle({
+  const FastArticle({
     Key key,
     this.titleText,
     this.titleMargin,
