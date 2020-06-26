@@ -65,7 +65,7 @@ class _FastHomePageState extends State<FastHomePage> {
         physics: const AlwaysScrollableScrollPhysics(),
         controller: _scrollController,
         slivers: <Widget>[
-          // TODO: Make FastSylverAppBar
+          // TODO: Make FastSliverAppBar
           SliverAppBar(
             backgroundColor: Colors.transparent,
             expandedHeight: _expandedHeight,
