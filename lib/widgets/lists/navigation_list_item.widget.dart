@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 
 const _kDefaultTrailing = const Icon(Icons.keyboard_arrow_right);
 
-class FastNavigationListItem extends StatelessWidget {
+class FastNavigationListItem<T extends FastItem> extends StatelessWidget {
+  final T item;
   final String titleText;
-  final VoidCallback onTap;
   final String descriptionText;
+  final VoidCallback onTap;
   final Widget leading;
   final Widget trailing;
   final bool isEnabled;
@@ -15,8 +16,9 @@ class FastNavigationListItem extends StatelessWidget {
 
   FastNavigationListItem({
     Key key,
-    @required this.titleText,
     @required this.onTap,
+    this.item,
+    this.titleText,
     this.descriptionText,
     this.leading,
     this.trailing = _kDefaultTrailing,
@@ -29,12 +31,12 @@ class FastNavigationListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return FastListItemLayout(
       contentPadding: contentPadding,
-      titleText: titleText,
+      titleText: titleText ?? item?.label,
+      descriptionText: descriptionText ?? item?.description,
       onTap: onTap,
-      descriptionText: descriptionText,
       leading: leading,
       trailing: trailing,
-      isEnabled: isEnabled,
+      isEnabled: isEnabled ?? item?.isEnabled,
       isDense: isDense,
     );
   }

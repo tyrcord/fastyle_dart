@@ -1,7 +1,8 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-class FastToggleListItem extends StatefulWidget {
+class FastToggleListItem<T extends FastItem> extends StatefulWidget {
+  final T item;
   final String titleText;
   final String descriptionText;
   final ValueChanged<bool> onValueChanged;
@@ -12,8 +13,9 @@ class FastToggleListItem extends StatefulWidget {
 
   FastToggleListItem({
     Key key,
-    @required this.titleText,
     @required this.onValueChanged,
+    this.item,
+    this.titleText,
     this.descriptionText,
     this.leading,
     this.isEnabled = true,
@@ -43,13 +45,15 @@ class _FastToggleListItemState extends State<FastToggleListItem> {
         inactiveTrackColor: ThemeHelper.colors.getHintColor(context),
         dense: widget.isDense,
         title: FastBody(
-          text: widget.titleText,
+          text: widget.titleText ?? widget.item?.label,
         ),
         subtitle: widget.descriptionText != null
-            ? FastBody2(text: widget.descriptionText)
+            ? FastBody2(
+                text: widget.descriptionText ?? widget.item?.description,
+              )
             : null,
         onChanged: (bool value) {
-          if (widget.isEnabled) {
+          if (widget.item?.isEnabled ?? true && widget.isEnabled) {
             setState(() {
               _value = value;
               widget.onValueChanged(value);
