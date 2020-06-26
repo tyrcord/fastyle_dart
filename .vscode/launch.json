@@ -5,19 +5,22 @@
       "name": "Flutter - Debug",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "debug"
+      "flutterMode": "debug",
+      "program": "example/lib/main.dart"
     },
     {
       "name": "Flutter - Profile",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "profile"
+      "flutterMode": "profile",
+      "program": "example/lib/main.dart"
     },
     {
       "name": "Flutter - Release",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "release"
+      "flutterMode": "release",
+      "program": "example/lib/main.dart"
     }
   ]
 }
