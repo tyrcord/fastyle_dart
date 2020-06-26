@@ -6,6 +6,7 @@ const _kContentPadding = kFastEdgeInsets16;
 const _kHeaderPadding = EdgeInsets.symmetric(horizontal: 16.0);
 const _kMargin = EdgeInsets.symmetric(vertical: 16.0);
 const _kElevation = 0.0;
+const _kAppBarHeightSize = Size.fromHeight(kToolbarHeight);
 
 class FastSectionPage extends StatelessWidget {
   final String titleText;
@@ -16,6 +17,10 @@ class FastSectionPage extends StatelessWidget {
   final Widget leading;
   final List<Widget> actions;
   final bool isViewScrollable;
+  final Widget floatingActionButton;
+  final Color appBarbackgroundColor;
+  final isTitlePositionBelowAppBar;
+  final Size appBarHeightSize;
 
   FastSectionPage({
     Key key,
@@ -27,6 +32,10 @@ class FastSectionPage extends StatelessWidget {
     this.actions,
     this.leading,
     this.isViewScrollable = false,
+    this.floatingActionButton,
+    this.appBarbackgroundColor,
+    this.isTitlePositionBelowAppBar = true,
+    this.appBarHeightSize,
   }) : super(key: key);
 
   @override
@@ -34,35 +43,48 @@ class FastSectionPage extends StatelessWidget {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        brightness: themeBloc.currentState.brightness,
-        leading: leading,
-        iconTheme: IconThemeData(
-          color: themeBloc.currentState.brightness == Brightness.light
-              ? ThemeHelper.texts.getBodyTextStyle(context).color
-              : ThemeHelper.colors.getWhiteColor(context),
+      appBar: PreferredSize(
+        preferredSize: appBarHeightSize ?? _kAppBarHeightSize,
+        child: AppBar(
+          brightness: themeBloc.currentState.brightness,
+          leading: leading,
+          iconTheme: IconThemeData(
+            color: themeBloc.currentState.brightness == Brightness.light
+                ? ThemeHelper.texts.getBodyTextStyle(context).color
+                : ThemeHelper.colors.getWhiteColor(context),
+          ),
+          backgroundColor: appBarbackgroundColor ?? Colors.transparent,
+          elevation: _kElevation,
+          actions: actions,
+          title: !isTitlePositionBelowAppBar
+              ? FastTitle(
+                  text: titleText,
+                  textColor: titleColor,
+                  fontSize: 28.0,
+                )
+              : null,
+          centerTitle: false,
         ),
-        backgroundColor: Colors.transparent,
-        elevation: _kElevation,
-        actions: actions,
       ),
       body: SafeArea(
         top: false,
-        child: _buildPageContent(),
+        bottom: false,
+        child: _buildPageContent(context),
       ),
+      floatingActionButton: floatingActionButton,
     );
   }
 
-  Widget _buildPageContent() {
+  Widget _buildPageContent(BuildContext context) {
     if (isViewScrollable) {
-      return _builScrollableContent();
+      return _builScrollableContent(context);
     }
 
-    return _buildFixedContent();
+    return _buildFixedContent(context);
   }
 
-  Widget _buildFixedContent() {
-    Widget content = _buildContent();
+  Widget _buildFixedContent(BuildContext context) {
+    Widget content = _buildContent(context);
 
     if (!isViewScrollable) {
       content = Expanded(
@@ -73,7 +95,7 @@ class FastSectionPage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        if (titleText != null)
+        if (titleText != null && isTitlePositionBelowAppBar)
           Container(
             child: FastHeadline(
               text: titleText,
@@ -83,41 +105,55 @@ class FastSectionPage extends StatelessWidget {
             margin: _kMargin,
           ),
         content,
-        if (!isViewScrollable && footer != null) _buildFooter(),
+        if (!isViewScrollable && footer != null) _buildFooter(context),
       ],
     );
   }
 
-  CustomScrollView _builScrollableContent() {
+  CustomScrollView _builScrollableContent(BuildContext context) {
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
-          child: _buildFixedContent(),
+          child: _buildFixedContent(context),
         ),
         if (footer != null)
           SliverFillRemaining(
             hasScrollBody: false,
-            child: _buildFooter(),
+            child: _buildFooter(context),
           ),
       ],
     );
   }
 
-  Widget _buildContent() {
+  Widget _buildContent(BuildContext context) {
     final padding = contentPadding ?? _kContentPadding;
 
     return Padding(
-      padding: footer == null ? padding : padding.copyWith(bottom: 0.0),
+      padding: footer == null
+          ? padding.copyWith(bottom: _getBottomPadding(context))
+          : padding.copyWith(bottom: 0.0),
       child: child,
     );
   }
 
-  Widget _buildFooter() {
+  Widget _buildFooter(BuildContext context) {
     final padding = contentPadding ?? _kContentPadding;
 
     return Padding(
-      padding: padding.copyWith(top: 0.0),
+      padding: padding.copyWith(
+        top: 0.0,
+        bottom: _getBottomPadding(context),
+      ),
       child: footer,
     );
+  }
+
+  double _getBottomPadding(BuildContext context) {
+    if (isViewScrollable) {
+      final mediaQueryData = MediaQuery.of(context);
+      return mediaQueryData.padding.bottom;
+    }
+
+    return 0.0;
   }
 }

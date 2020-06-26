@@ -54,6 +54,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
           child: AnnotatedRegion<SystemUiOverlayStyle>(
             value: overlayStyle,
             child: SafeArea(
+              bottom: false,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
