@@ -52,22 +52,32 @@ class _FastAppState extends State<FastApp> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      bloc: _themeBloc,
-      child: BlocBuilderWidget(
+    return GestureDetector(
+      onTap: () {
+        final currentFocus = FocusScope.of(context);
+
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus.unfocus();
+        }
+      },
+      child: BlocProvider(
         bloc: _themeBloc,
-        builder: (context, FastThemeBlocState state) {
-          return MaterialApp(
-            title: widget.titleText,
-            theme: widget.lightTheme,
-            darkTheme: widget.darkTheme,
-            themeMode: state.themeMode,
-            home: widget.home,
-            localizationsDelegates: widget.localizationsDelegates,
-            supportedLocales: widget.supportedLocales,
-            locale: widget.locale,
-          );
-        },
+        child: BlocBuilderWidget(
+          bloc: _themeBloc,
+          builder: (context, FastThemeBlocState state) {
+            return MaterialApp(
+              title: widget.titleText,
+              theme: widget.lightTheme,
+              darkTheme: widget.darkTheme,
+              themeMode: state.themeMode,
+              home: widget.home,
+              localizationsDelegates: widget.localizationsDelegates,
+              supportedLocales: widget.supportedLocales,
+              locale: widget.locale,
+            );
+          },
+        ),
       ),
     );
   }
