@@ -138,8 +138,6 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
   }
 
   bool _onSearch(T option, String query) {
-    return _normalizeText(option.label).contains(query);
+    return normalizeText(option.label).contains(query);
   }
-
-  String _normalizeText(String text) => removeDiacritics(text.toLowerCase());
 }
