@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
             final response = await Navigator.push(
               context,
               CupertinoPageRoute(
-                builder: (context) => FastSearchPage<FastItem<String>>(
+                builder: (context) => FastSearchPage(
                   items: demoItems,
                   categories: demoCategories,
                   shouldGroupByCategory: true,
