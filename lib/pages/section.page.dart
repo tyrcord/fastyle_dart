@@ -138,11 +138,12 @@ class FastSectionPage extends StatelessWidget {
 
   Widget _buildFooter(BuildContext context) {
     final padding = contentPadding ?? _kContentPadding;
+    final mediaQueryData = MediaQuery.of(context);
 
     return Padding(
       padding: padding.copyWith(
         top: 0.0,
-        bottom: _getBottomPadding(context),
+        bottom: mediaQueryData.padding.bottom,
       ),
       child: footer,
     );
