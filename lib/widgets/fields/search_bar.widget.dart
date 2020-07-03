@@ -1,6 +1,5 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
-import 'package:diacritic/diacritic.dart';
 
 const _kIconSize = 28.0;
 
@@ -14,6 +13,7 @@ class FastSearchBar<T extends FastItem> extends StatefulWidget {
   final void Function(List<T> _suggestions, String query) onSuggestions;
   final VoidCallback onLeadingButtonTap;
   final bool showLeadingIcon;
+  final TextEditingController textEditingController;
 
   FastSearchBar({
     @required this.items,
@@ -25,6 +25,7 @@ class FastSearchBar<T extends FastItem> extends StatefulWidget {
     this.onSuggestions,
     this.onLeadingButtonTap,
     this.showLeadingIcon = true,
+    this.textEditingController,
   }) : super();
 
   @override
@@ -32,8 +33,25 @@ class FastSearchBar<T extends FastItem> extends StatefulWidget {
 }
 
 class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
-  TextEditingController _textEditingController = TextEditingController();
+  TextEditingController _textController;
+  FocusNode _focusNode;
   String _searchQuery;
+
+  @override
+  initState() {
+    _textController = widget.textEditingController ?? TextEditingController();
+    _textController.addListener(_handleSearchQueryChanges);
+    _focusNode = FocusNode();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _textController.removeListener(_handleSearchQueryChanges);
+    _textController.dispose();
+    _focusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) => _buildSearchAppBar(context);
@@ -71,7 +89,7 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
     return FastIconButton(
       icon: useCloseButton ? closeIcon : backIcon,
       onTap: () {
-        FocusScope.of(context).requestFocus(FocusNode());
+        _focusNode.unfocus();
         widget?.onLeadingButtonTap();
       },
       iconSize: _kIconSize,
@@ -85,17 +103,8 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
             ? EdgeInsets.zero
             : const EdgeInsets.only(left: 16.0),
         placeholderText: widget.placeholderText,
-        textEditingController: _textEditingController,
-        onValueChanged: (String queryText) {
-          setState(() {
-            if (queryText.isNotEmpty) {
-              _searchQuery = _normalizeText(queryText);
-              _buildSuggestions(_searchQuery);
-            } else {
-              _clearState();
-            }
-          });
-        },
+        textEditingController: _textController,
+        focusNode: _focusNode,
       ),
     );
   }
@@ -107,34 +116,33 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
         FastIconButton(
           icon: Icon(Icons.delete_outline),
           iconColor: _searchQuery == null ? theme.hintColor : null,
-          onTap: () {
-            setState(() {
-              _textEditingController.clear();
-              widget.onSuggestions(null, null);
-              _clearState();
-            });
-          },
+          onTap: () => _textController.clear(),
           iconSize: _kIconSize,
         );
   }
 
-  void _buildSuggestions(String query) {
-    if (widget.onSuggestions != null) {
-      final suggestions = widget.items.where((T option) {
-        if (widget.onSearchFilter != null) {
-          return widget.onSearchFilter(option, query);
-        }
+  void _handleSearchQueryChanges() {
+    final queryText = _textController.text;
 
-        return _onSearch(option, query);
-      }).toList();
-
-      widget.onSuggestions(suggestions, query);
-    }
+    setState(() {
+      if (queryText.isEmpty) {
+        _searchQuery = null;
+        widget?.onSuggestions(null, null);
+      } else {
+        _searchQuery = normalizeText(queryText);
+        widget?.onSuggestions(_buildSuggestions(_searchQuery), _searchQuery);
+      }
+    });
   }
 
-  void _clearState() {
-    _searchQuery = null;
-    widget.onSuggestions(null, null);
+  List<T> _buildSuggestions(String queryText) {
+    return widget.items.where((T option) {
+      if (widget.onSearchFilter != null) {
+        return widget.onSearchFilter(option, queryText);
+      }
+
+      return _onSearch(option, queryText);
+    }).toList();
   }
 
   bool _onSearch(T option, String query) {
