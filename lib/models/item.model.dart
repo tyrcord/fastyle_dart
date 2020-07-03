@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class FastItem<T> {
   final String label;
+  final String normalizedLabel;
   final T value;
   final String description;
   final List<FastCategory> categories;
@@ -16,14 +17,16 @@ class FastItem<T> {
     this.categories,
     this.isEnabled = true,
     this.descriptor,
+    this.normalizedLabel,
   });
 
-  FastItem copyWith({
+  FastItem<T> copyWith({
     String label,
     T value,
     String description,
     bool enabled,
     bool selected,
+    String normalizedLabel,
   }) {
     return FastItem(
       label: label ?? this.label,
@@ -32,10 +35,11 @@ class FastItem<T> {
       categories: categories ?? this.categories,
       isEnabled: enabled ?? this.isEnabled,
       descriptor: descriptor ?? this.descriptor,
+      normalizedLabel: normalizedLabel ?? this.normalizedLabel,
     );
   }
 
-  FastItem clone() {
+  FastItem<T> clone() {
     return FastItem(
       label: label,
       value: value,
@@ -43,6 +47,7 @@ class FastItem<T> {
       categories: categories,
       isEnabled: isEnabled,
       descriptor: descriptor != null ? descriptor.clone() : null,
+      normalizedLabel: normalizedLabel,
     );
   }
 }

@@ -1,10 +1,10 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-class FastListItemCategory<T> {
-  final List<FastItem> items;
+class FastListItemCategory<T extends FastItem> {
+  final List<T> items;
   final String label;
-  final T value;
+  final String value;
 
   const FastListItemCategory({
     @required this.items,
@@ -12,10 +12,10 @@ class FastListItemCategory<T> {
     @required this.value,
   });
 
-  FastListItemCategory copyWith({
-    List<FastItem> items,
+  FastListItemCategory<T> copyWith({
+    List<T> items,
     String label,
-    T value,
+    String value,
   }) {
     return FastListItemCategory(
       items: items ?? this.items,
@@ -24,7 +24,7 @@ class FastListItemCategory<T> {
     );
   }
 
-  FastListItemCategory clone() {
+  FastListItemCategory<T> clone() {
     return FastListItemCategory(
       items: items,
       label: label,

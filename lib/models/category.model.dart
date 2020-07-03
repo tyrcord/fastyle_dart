@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class FastCategory<T> {
+class FastCategory {
   final String label;
-  final T value;
+  final String value;
 
   const FastCategory({
     @required this.label,
@@ -11,7 +11,7 @@ class FastCategory<T> {
 
   FastCategory copyWith({
     String label,
-    T value,
+    String value,
   }) {
     return FastCategory(
       label: label ?? this.label,

@@ -8,8 +8,8 @@ const kFastListTileCategoryAll = FastCategory(
   value: kFastAllString,
 );
 
-class FastListViewLayout extends StatelessWidget {
-  final List<FastItem> items;
+class FastListViewLayout<T extends FastItem> extends StatelessWidget {
+  final List<T> items;
   final FastListItemBuilder listItemBuilder;
   final List<FastCategory> categories;
   final bool shouldGroupByCategory;
@@ -39,15 +39,15 @@ class FastListViewLayout extends StatelessWidget {
     return _buildListView(context, _items);
   }
 
-  Widget _buildTabViews(BuildContext context, List<FastItem> items) {
+  Widget _buildTabViews(BuildContext context, List<T> items) {
     final List<ListView> views = [];
     final List<Tab> tabs = [];
 
-    final List<FastListItemCategory> listCategories = _buildListCategories(
+    final List<FastListItemCategory<T>> listCategories = _buildListCategories(
       items,
     );
 
-    listCategories.forEach((FastListItemCategory listCategory) {
+    listCategories.forEach((FastListItemCategory<T> listCategory) {
       tabs.add(Tab(text: toBeginningOfSentenceCase(listCategory.label)));
       views.add(_buildListView(context, listCategory.items));
     });
@@ -58,9 +58,13 @@ class FastListViewLayout extends StatelessWidget {
     );
   }
 
-  Widget _buildListView(BuildContext context, List<FastItem> items) {
+  Widget _buildListView(BuildContext context, List<T> items) {
     if (shouldSortItems) {
-      items.sort((a, b) => a.label.compareTo(b.label));
+      items = items.map((T item) {
+        return item.copyWith(normalizedLabel: normalizeText(item.label)) as T;
+      }).toList();
+
+      items.sort((a, b) => a.normalizedLabel.compareTo(b.normalizedLabel));
     }
 
     final lastIndex = items.length - 1;
@@ -89,7 +93,7 @@ class FastListViewLayout extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: items.asMap().entries.map((MapEntry<int, FastItem> entry) {
+      children: items.asMap().entries.map((MapEntry<int, T> entry) {
         return _buildListItem(
           context: context,
           item: entry.value,
@@ -101,8 +105,8 @@ class FastListViewLayout extends StatelessWidget {
     );
   }
 
-  List<FastListItemCategory> _buildListCategories(List<FastItem> items) {
-    final Map<String, FastListItemCategory> categoriesMap = {
+  List<FastListItemCategory<T>> _buildListCategories(List<T> items) {
+    final Map<String, FastListItemCategory<T>> categoriesMap = {
       kFastListTileCategoryAll.value: _buildListCategory(
         kFastListTileCategoryAll,
       ),
@@ -110,7 +114,7 @@ class FastListViewLayout extends StatelessWidget {
 
     final allCategory = categoriesMap[kFastListTileCategoryAll.value].items;
 
-    items.forEach((FastItem item) {
+    items.forEach((T item) {
       item.categories?.forEach((FastCategory category) {
         if (!categoriesMap.containsKey(category.value)) {
           categoriesMap[category.value] = _buildListCategory(category);
@@ -127,17 +131,17 @@ class FastListViewLayout extends StatelessWidget {
     return categoriesMap.values.toList();
   }
 
-  FastListItemCategory _buildListCategory(FastCategory category) {
+  FastListItemCategory<T> _buildListCategory(FastCategory category) {
     return FastListItemCategory(
       label: category.label,
       value: category.value,
-      items: [],
+      items: <T>[],
     );
   }
 
   Widget _buildListItem({
     BuildContext context,
-    FastItem item,
+    T item,
     int index,
     bool isLastItem,
     BoxDecoration decoration,
