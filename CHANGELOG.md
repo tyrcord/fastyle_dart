@@ -1,16 +1,33 @@
 # CHANGELOG
 
+## [0.8.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.8.0) (2020-06-25)
+
+### Features
+
+- Implemented ListNavigationListView
+- Implemented FastSearchBar
+- Implemented treebounce indicator
+- Manage focus at app level
+
+### Enhancements
+
+- Minor improvements
+
+### Fixes
+
+- Fix bad padding values
+
 ## [0.7.5](https://github.com/tyrcord/fastyle_dart/releases/tag/0.7.5) (2020-06-25)
 
 ### Enhancements
 
-- minor improvements
+- Minor improvements
 
 ## [0.7.4](https://github.com/tyrcord/fastyle_dart/releases/tag/0.7.4) (2020-06-25)
 
 ### Enhancements
 
-- minor improvements
+- Minor improvements
 
 ## [0.7.3](https://github.com/tyrcord/fastyle_dart/releases/tag/0.7.3) (2020-06-13)
 
