@@ -1,6 +1,7 @@
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:tbloc_dart/tbloc_dart.dart';
 import 'package:flutter/material.dart';
-import 'package:tbloc_dart/core/base/bloc_provider.dart';
 
 const _kContentPadding = kFastEdgeInsets16;
 const _kHeaderPadding = EdgeInsets.symmetric(horizontal: 16.0);
@@ -21,6 +22,7 @@ class FastSectionPage extends StatelessWidget {
   final Color appBarbackgroundColor;
   final isTitlePositionBelowAppBar;
   final Size appBarHeightSize;
+  final bool isLoading;
 
   FastSectionPage({
     Key key,
@@ -35,6 +37,7 @@ class FastSectionPage extends StatelessWidget {
     this.floatingActionButton,
     this.appBarbackgroundColor,
     this.isTitlePositionBelowAppBar = true,
+    this.isLoading = false, // BETA
     this.appBarHeightSize,
   }) : super(key: key);
 
@@ -69,7 +72,9 @@ class FastSectionPage extends StatelessWidget {
       body: SafeArea(
         top: false,
         bottom: false,
-        child: _buildPageContent(context),
+        child: !isLoading
+            ? _buildPageContent(context)
+            : FusexThreeBounceIndicator(),
       ),
       floatingActionButton: floatingActionButton,
     );
