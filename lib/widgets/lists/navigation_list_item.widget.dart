@@ -34,8 +34,8 @@ class FastNavigationListItem<T extends FastItem> extends StatelessWidget {
       titleText: titleText ?? item?.label,
       descriptionText: descriptionText ?? item?.description,
       onTap: onTap,
-      leading: leading,
-      trailing: trailing,
+      leading: item?.descriptor?.leading ?? leading,
+      trailing: item?.descriptor?.trailing ?? trailing,
       isEnabled: isEnabled ?? item?.isEnabled,
       isDense: isDense,
     );

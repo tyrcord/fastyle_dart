@@ -8,7 +8,7 @@ class FastSearchBar<T extends FastItem> extends StatefulWidget {
   final String placeholderText;
   final Icon closeIcon;
   final Icon backIcon;
-  final Icon deleteIcon;
+  final Icon clearSearchIcon;
   final bool Function(T option, String query) onSearchFilter;
   final void Function(List<T> _suggestions, String query) onSuggestions;
   final VoidCallback onLeadingButtonTap;
@@ -20,7 +20,7 @@ class FastSearchBar<T extends FastItem> extends StatefulWidget {
     this.placeholderText,
     this.closeIcon,
     this.backIcon,
-    this.deleteIcon,
+    this.clearSearchIcon,
     this.onSearchFilter,
     this.onSuggestions,
     this.onLeadingButtonTap,
@@ -72,7 +72,7 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
         children: <Widget>[
           if (widget.showLeadingIcon) _buildLeadingIcon(context),
           _buildSearchTextInput(context),
-          _buildDeleteIcon(context),
+          _buildClearIcon(context),
         ],
       ),
     );
@@ -109,16 +109,15 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
     );
   }
 
-  Widget _buildDeleteIcon(BuildContext context) {
+  Widget _buildClearIcon(BuildContext context) {
     final theme = Theme.of(context);
 
-    return widget.deleteIcon ??
-        FastIconButton(
-          icon: Icon(Icons.delete_outline),
-          iconColor: _searchQuery == null ? theme.hintColor : null,
-          onTap: () => _textController.clear(),
-          iconSize: _kIconSize,
-        );
+    return FastIconButton(
+      icon: widget.clearSearchIcon ?? Icon(Icons.delete_outline),
+      iconColor: _searchQuery == null ? theme.hintColor : null,
+      onTap: () => _textController.clear(),
+      iconSize: _kIconSize,
+    );
   }
 
   void _handleSearchQueryChanges() {

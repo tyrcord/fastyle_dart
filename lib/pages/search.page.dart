@@ -11,7 +11,7 @@ class FastSearchPage<T extends FastItem> extends StatefulWidget {
   final String placeholderText;
   final Icon closeIcon;
   final Icon backIcon;
-  final Icon deleteIcon;
+  final Icon clearSearchIcon;
   final bool shouldSortItems;
   final bool Function(T option, String query) onSearch;
 
@@ -23,7 +23,7 @@ class FastSearchPage<T extends FastItem> extends StatefulWidget {
     this.placeholderText,
     this.closeIcon,
     this.backIcon,
-    this.deleteIcon,
+    this.clearSearchIcon,
     this.shouldSortItems = true,
     this.onSearch,
   }) : super();
@@ -63,7 +63,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
                     placeholderText: widget.placeholderText,
                     closeIcon: widget.closeIcon,
                     backIcon: widget.backIcon,
-                    deleteIcon: widget.deleteIcon,
+                    clearSearchIcon: widget.clearSearchIcon,
                     onSuggestions: (List<T> suggestions, String query) {
                       setState(() {
                         _suggestions = suggestions;

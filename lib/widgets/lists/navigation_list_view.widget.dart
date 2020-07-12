@@ -12,6 +12,8 @@ class FastNavigationListView<T extends FastItem> extends StatefulWidget {
   final FastListItemBuilder<T> listItemBuilder;
   final EdgeInsets itemContentPadding;
   final bool showSearchBar;
+  final String placeholderSearchText;
+  final Icon clearSearchIcon;
 
   FastNavigationListView({
     Key key,
@@ -25,6 +27,8 @@ class FastNavigationListView<T extends FastItem> extends StatefulWidget {
     this.listItemBuilder,
     this.itemContentPadding,
     this.showSearchBar = false,
+    this.placeholderSearchText,
+    this.clearSearchIcon,
   }) : super(key: key);
 
   @override
@@ -48,6 +52,8 @@ class _FastNavigationListViewState<T extends FastItem>
             onSuggestions: (List<T> suggestions, String query) {
               setState(() => _suggestions = suggestions);
             },
+            placeholderText: widget.placeholderSearchText,
+            clearSearchIcon: widget.clearSearchIcon,
           ),
         Expanded(
           child: FastListViewLayout<T>(
