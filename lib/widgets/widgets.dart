@@ -6,4 +6,5 @@ export './lists/lists.dart';
 export './tabs/tabs.dart';
 export './typography/typography.dart';
 export './icons/icons.dart';
+export './indicators/indicators.dart';
 export './fields/fields.dart';
