@@ -22,6 +22,8 @@ class FastSectionPage extends StatelessWidget {
   final isTitlePositionBelowAppBar;
   final Size appBarHeightSize;
   final bool isLoading;
+  final Widget closeButton;
+  final Widget backButton;
 
   FastSectionPage({
     Key key,
@@ -38,6 +40,8 @@ class FastSectionPage extends StatelessWidget {
     this.isTitlePositionBelowAppBar = true,
     this.isLoading = false, // BETA
     this.appBarHeightSize,
+    this.closeButton,
+    this.backButton,
   }) : super(key: key);
 
   @override
@@ -48,8 +52,9 @@ class FastSectionPage extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: appBarHeightSize ?? _kAppBarHeightSize,
         child: AppBar(
+          automaticallyImplyLeading: false,
           brightness: themeBloc.currentState.brightness,
-          leading: leading,
+          leading: leading ?? _buildLeadingIcon(context),
           iconTheme: IconThemeData(
             color: themeBloc.currentState.brightness == Brightness.light
                 ? ThemeHelper.texts.getBodyTextStyle(context).color
@@ -77,6 +82,22 @@ class FastSectionPage extends StatelessWidget {
       ),
       floatingActionButton: floatingActionButton,
     );
+  }
+
+  Widget _buildLeadingIcon(BuildContext context) {
+    final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
+    final bool canPop = parentRoute?.canPop ?? false;
+    final bool useCloseButton =
+        parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
+    Widget leading;
+
+    if (canPop) {
+      leading = useCloseButton
+          ? closeButton ?? const CloseButton()
+          : backButton ?? const BackButton();
+    }
+
+    return leading;
   }
 
   Widget _buildPageContent(BuildContext context) {
