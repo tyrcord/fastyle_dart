@@ -2,6 +2,8 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:fastyle_dart/models/models.dart';
 import 'package:flutter/material.dart';
 
+const _defaultIcon = Icon(Icons.done);
+
 class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
   final T item;
   final String titleText;
@@ -30,12 +32,18 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _trailing = trailing ??
-        item.descriptor?.trailing ??
-        Icon(
-          Icons.done,
-          color: ThemeHelper.colors.getPrimaryColor(context),
-        );
+    final _color = ThemeHelper.colors.getPrimaryColor(context);
+    Widget _trailing = trailing ?? item.descriptor?.trailing ?? _defaultIcon;
+
+    if (_trailing is Icon) {
+      final icon = _trailing as Icon;
+
+      _trailing = Icon(
+        icon.icon,
+        color: _color,
+        size: icon.size,
+      );
+    }
 
     return FastListItemLayout(
       contentPadding: contentPadding,
