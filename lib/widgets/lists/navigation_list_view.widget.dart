@@ -14,6 +14,7 @@ class FastNavigationListView<T extends FastItem> extends StatefulWidget {
   final bool showSearchBar;
   final String placeholderSearchText;
   final Icon clearSearchIcon;
+  final bool shouldUseFuzzySearch;
 
   FastNavigationListView({
     Key key,
@@ -29,6 +30,7 @@ class FastNavigationListView<T extends FastItem> extends StatefulWidget {
     this.showSearchBar = false,
     this.placeholderSearchText,
     this.clearSearchIcon,
+    this.shouldUseFuzzySearch = false,
   }) : super(key: key);
 
   @override
@@ -47,6 +49,7 @@ class _FastNavigationListViewState<T extends FastItem>
       children: [
         if (widget.showSearchBar)
           FastSearchBar(
+            shouldUseFuzzySearch: widget.shouldUseFuzzySearch,
             items: widget.items,
             showLeadingIcon: false,
             onSuggestions: (List<T> suggestions, String query) {
@@ -61,7 +64,8 @@ class _FastNavigationListViewState<T extends FastItem>
             items: _suggestions ?? widget.items,
             isViewScrollable: widget.isViewScrollable,
             showItemDivider: widget.showItemDivider,
-            shouldSortItems: widget.shouldSortItems,
+            shouldSortItems:
+                widget.shouldUseFuzzySearch ? false : widget.shouldSortItems,
           ),
         ),
       ],

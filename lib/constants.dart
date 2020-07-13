@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fuzzy/fuzzy.dart';
 
 const kFastEmptyString = '';
 const kFastNoneString = 'none';
@@ -15,3 +16,14 @@ const kFastEdgeInsets6 = EdgeInsets.all(6.0);
 // Sizes
 
 const kFastIconSize = 20.0;
+
+final kFastFuzzyOptions = FuzzyOptions(
+  isCaseSensitive: false,
+  shouldNormalize: true,
+  shouldSort: true,
+  distance: 100,
+  threshold: 0.25,
+  location: 0,
+  findAllMatches: false,
+  minMatchCharLength: 2,
+);

@@ -1,5 +1,8 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
+import 'package:fuzzy/data/result.dart';
+import 'package:fuzzy/fuzzy.dart';
+import 'package:recase/recase.dart';
 
 const _kIconSize = 28.0;
 
@@ -10,10 +13,11 @@ class FastSearchBar<T extends FastItem> extends StatefulWidget {
   final Icon backIcon;
   final Icon clearSearchIcon;
   final bool Function(T option, String query) onSearchFilter;
-  final void Function(List<T> _suggestions, String query) onSuggestions;
+  final void Function(List<T> suggestions, String query) onSuggestions;
   final VoidCallback onLeadingButtonTap;
   final bool showLeadingIcon;
   final TextEditingController textEditingController;
+  final bool shouldUseFuzzySearch;
 
   FastSearchBar({
     @required this.items,
@@ -26,6 +30,7 @@ class FastSearchBar<T extends FastItem> extends StatefulWidget {
     this.onLeadingButtonTap,
     this.showLeadingIcon = true,
     this.textEditingController,
+    this.shouldUseFuzzySearch = false,
   }) : super();
 
   @override
@@ -34,6 +39,8 @@ class FastSearchBar<T extends FastItem> extends StatefulWidget {
 
 class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
   TextEditingController _textController;
+  List<String> _itemLabels;
+  Map<String, T> _itemMap;
   FocusNode _focusNode;
   String _searchQuery;
 
@@ -41,8 +48,18 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
   initState() {
     _textController = widget.textEditingController ?? TextEditingController();
     _textController.addListener(_handleSearchQueryChanges);
+    _buildFuzzyMetadataIfNeeded();
     _focusNode = FocusNode();
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(FastSearchBar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.items != widget.items) {
+      _buildFuzzyMetadataIfNeeded();
+    }
   }
 
   @override
@@ -120,6 +137,19 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
     );
   }
 
+  void _buildFuzzyMetadataIfNeeded() {
+    if (widget.shouldUseFuzzySearch) {
+      _itemLabels = widget.items.map((e) => normalizeText(e.label)).toList();
+      _itemMap = Map<String, T>();
+
+      widget.items.forEach((T item) {
+        return _itemMap.putIfAbsent(_buildItemKey(item.label), () => item);
+      });
+    }
+  }
+
+  String _buildItemKey(String key) => ReCase(normalizeText(key)).snakeCase;
+
   void _handleSearchQueryChanges() {
     final queryText = _textController.text;
 
@@ -135,16 +165,27 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
   }
 
   List<T> _buildSuggestions(String queryText) {
+    if (widget.shouldUseFuzzySearch) {
+      return _buildFuzzySuggestions(queryText);
+    }
+
     return widget.items.where((T option) {
       if (widget.onSearchFilter != null) {
         return widget.onSearchFilter(option, queryText);
       }
 
-      return _onSearch(option, queryText);
+      return normalizeText(option.label).contains(queryText);
     }).toList();
   }
 
-  bool _onSearch(T option, String query) {
-    return normalizeText(option.label).contains(query);
+  List<T> _buildFuzzySuggestions(String queryText) {
+    final fuse = Fuzzy(_itemLabels, options: kFastFuzzyOptions);
+    final List<T> results = [];
+
+    fuse.search(queryText).forEach((Result<dynamic> result) {
+      results.add(_itemMap[_buildItemKey(result.item)]);
+    });
+
+    return results;
   }
 }

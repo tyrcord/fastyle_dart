@@ -14,6 +14,7 @@ class FastSearchPage<T extends FastItem> extends StatefulWidget {
   final Icon clearSearchIcon;
   final bool shouldSortItems;
   final bool Function(T option, String query) onSearch;
+  final bool shouldUseFuzzySearch;
 
   FastSearchPage({
     @required this.items,
@@ -26,6 +27,7 @@ class FastSearchPage<T extends FastItem> extends StatefulWidget {
     this.clearSearchIcon,
     this.shouldSortItems = true,
     this.onSearch,
+    this.shouldUseFuzzySearch = false,
   }) : super();
 
   @override
@@ -59,6 +61,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   FastSearchBar(
+                    shouldUseFuzzySearch: widget.shouldUseFuzzySearch,
                     items: widget.items,
                     placeholderText: widget.placeholderText,
                     closeIcon: widget.closeIcon,
@@ -87,7 +90,8 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
   Widget _buildContent(BuildContext context) {
     return Expanded(
       child: FastSelectableListView(
-        shouldSortItems: widget.shouldSortItems ?? true,
+        shouldSortItems:
+            widget.shouldUseFuzzySearch ? false : widget.shouldSortItems,
         items: _suggestions ?? widget.items,
         onSelectionChanged: (FastItem item) => _close(context, item),
         categories: widget.categories,

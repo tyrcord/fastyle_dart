@@ -57,11 +57,11 @@ class _FastSelectableListViewState<T extends FastItem>
     return FastListViewLayout(
       listItemBuilder: _buildListItems,
       items: widget.items,
-      isViewScrollable: widget.isViewScrollable,
-      showItemDivider: widget.showItemDivider,
-      shouldSortItems: widget.shouldSortItems,
+      isViewScrollable: widget.isViewScrollable ?? true,
+      showItemDivider: widget.showItemDivider ?? false,
+      shouldSortItems: widget.shouldSortItems ?? true,
       categories: widget.categories,
-      shouldGroupByCategory: widget.shouldGroupByCategory,
+      shouldGroupByCategory: widget.shouldGroupByCategory ?? false,
     );
   }
 
