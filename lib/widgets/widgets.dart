@@ -8,3 +8,4 @@ export './typography/typography.dart';
 export './icons/icons.dart';
 export './indicators/indicators.dart';
 export './fields/fields.dart';
+export './views/views.dart';

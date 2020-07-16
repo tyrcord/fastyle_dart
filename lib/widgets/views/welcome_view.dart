@@ -1,0 +1,170 @@
+import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:flutter/material.dart';
+
+const _kStepDotSize = 10.0;
+const _kDoneText = 'done';
+const _kNextText = 'next';
+const _kSkipText = 'skip';
+
+typedef BoolCallback = bool Function();
+
+class FastWelcomeView extends StatefulWidget {
+  final List<Widget> slides;
+  final bool allowToSkip;
+  final int stepDotSize;
+  final Color stepDotColor;
+  final WidgetBuilder homeBuilder;
+  final BoolCallback canSkip;
+  final BoolCallback canTerminate;
+  final VoidCallback onDone;
+  final VoidCallback onSkip;
+  final String doneText;
+  final String nextText;
+  final String skipText;
+
+  const FastWelcomeView({
+    Key key,
+    @required this.homeBuilder,
+    @required this.slides,
+    this.allowToSkip = false,
+    this.canSkip,
+    this.canTerminate,
+    this.stepDotSize,
+    this.doneText = _kDoneText,
+    this.nextText = _kNextText,
+    this.skipText = _kSkipText,
+    this.stepDotColor,
+    this.onDone,
+    this.onSkip,
+  }) : super(key: key);
+
+  @override
+  _FastWelcomeViewState createState() => _FastWelcomeViewState();
+}
+
+class _FastWelcomeViewState extends State<FastWelcomeView> {
+  PageController _pageViewController = new PageController();
+  int _pageCursor = 0;
+  int _slidesLength = 0;
+
+  bool get hasReachEnd => _pageCursor + 1 == _slidesLength;
+
+  @override
+  void initState() {
+    _slidesLength = widget.slides?.length ?? 0;
+    _pageViewController.addListener(() {
+      setState(() {
+        _pageCursor = _pageViewController.page.round();
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pageViewController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                child: PageView.builder(
+                  controller: _pageViewController,
+                  itemCount: _slidesLength,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Builder(builder: (context) => widget.slides[index]);
+                  },
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: _buildStepper(context),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStepper(BuildContext context) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Opacity(
+            child: FastTextButton(onTap: _onSkip, text: widget.skipText),
+            opacity: widget.allowToSkip && !hasReachEnd ? 1 : 0,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: _buildSteps(context),
+          ),
+          FastTextButton(
+            onTap: () {
+              if (hasReachEnd) {
+                _onDone();
+              } else {
+                _pageViewController.nextPage(
+                  duration: kTabScrollDuration,
+                  curve: Curves.ease,
+                );
+              }
+            },
+            text: hasReachEnd ? widget.doneText : widget.nextText,
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> _buildSteps(BuildContext context) {
+    final stepDotSize = widget.stepDotSize ?? _kStepDotSize;
+    final primaryColor =
+        widget.stepDotColor ?? ThemeHelper.colors.getPrimaryColor(context);
+
+    return List<Widget>.generate(
+      _slidesLength,
+      (index) => Container(
+        margin: const EdgeInsets.symmetric(horizontal: 4),
+        height: stepDotSize,
+        width: stepDotSize,
+        decoration: BoxDecoration(
+          color: _pageCursor == index
+              ? primaryColor
+              : primaryColor.withOpacity(0.2),
+          borderRadius: BorderRadius.circular(stepDotSize),
+        ),
+      ),
+    );
+  }
+
+  void _onSkip() {
+    if (widget.onSkip != null) {
+      widget.onSkip();
+    }
+
+    _done();
+  }
+
+  void _onDone() {
+    if (widget.onDone != null) {
+      widget.onDone();
+    }
+
+    _done();
+  }
+
+  void _done() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: widget.homeBuilder),
+    );
+  }
+}
