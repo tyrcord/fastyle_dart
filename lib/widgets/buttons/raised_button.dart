@@ -36,6 +36,7 @@ class FastRaisedButton extends StatelessWidget {
 
     return FastButtonLayout(
       child: RaisedButton(
+        color: _backgroundColor,
         padding: padding,
         onPressed: isEnabled ? onTap : null,
         splashColor: Colors.transparent,
