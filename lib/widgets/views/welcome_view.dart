@@ -73,20 +73,15 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
         child: Column(
           children: <Widget>[
             Expanded(
-              child: Container(
-                child: PageView.builder(
-                  controller: _pageViewController,
-                  itemCount: _slidesLength,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Builder(builder: (context) => widget.slides[index]);
-                  },
-                ),
+              child: PageView.builder(
+                controller: _pageViewController,
+                itemCount: _slidesLength,
+                itemBuilder: (BuildContext context, int index) {
+                  return widget.slides[index];
+                },
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: _buildStepper(context),
-            ),
+            _buildStepper(context),
           ],
         ),
       ),
@@ -94,33 +89,31 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
   }
 
   Widget _buildStepper(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Opacity(
-            child: FastTextButton(onTap: _onSkip, text: widget.skipText),
-            opacity: widget.allowToSkip && !hasReachEnd ? 1 : 0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: _buildSteps(context),
-          ),
-          FastTextButton(
-            onTap: () {
-              if (hasReachEnd) {
-                _onDone();
-              } else {
-                _pageViewController.nextPage(
-                  duration: kTabScrollDuration,
-                  curve: Curves.ease,
-                );
-              }
-            },
-            text: hasReachEnd ? widget.doneText : widget.nextText,
-          ),
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Opacity(
+          child: FastTextButton(onTap: _onSkip, text: widget.skipText),
+          opacity: widget.allowToSkip && !hasReachEnd ? 1 : 0,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: _buildSteps(context),
+        ),
+        FastTextButton(
+          onTap: () {
+            if (hasReachEnd) {
+              _onDone();
+            } else {
+              _pageViewController.nextPage(
+                duration: kTabScrollDuration,
+                curve: Curves.ease,
+              );
+            }
+          },
+          text: hasReachEnd ? widget.doneText : widget.nextText,
+        ),
+      ],
     );
   }
 
