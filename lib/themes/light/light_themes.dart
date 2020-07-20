@@ -1,44 +1,51 @@
 import 'package:fastyle_dart/themes/theme.factory.dart';
 import 'package:flutter/cupertino.dart';
 
-final kLightBlueFastTheme = ThemeFactory.buildLightThemeWithColors(
-  CupertinoColors.systemBlue,
-  CupertinoColors.systemIndigo.color,
-  CupertinoColors.systemTeal.color,
+final kLightBlueFastTheme = FastThemeFactory.buildLightThemeWithColors(
+  primaryColor: CupertinoColors.systemBlue.color,
+  primaryColorDark: CupertinoColors.systemBlue.highContrastColor,
+  secondaryColor: CupertinoColors.systemIndigo.color,
+  tertiaryColor: CupertinoColors.systemTeal.color,
 );
 
-final kLightIndigoFastTheme = ThemeFactory.buildLightThemeWithColors(
-  CupertinoColors.systemIndigo,
-  CupertinoColors.systemPurple.color,
-  CupertinoColors.systemTeal.color,
+final kLightIndigoFastTheme = FastThemeFactory.buildLightThemeWithColors(
+  primaryColor: CupertinoColors.systemIndigo.color,
+  primaryColorDark: CupertinoColors.systemIndigo.highContrastColor,
+  secondaryColor: CupertinoColors.systemPurple.color,
+  tertiaryColor: CupertinoColors.systemTeal.color,
 );
 
-final kLightPinkFastTheme = ThemeFactory.buildLightThemeWithColors(
-  CupertinoColors.systemPink,
-  CupertinoColors.systemPurple.color,
-  CupertinoColors.systemTeal.color,
+final kLightPinkFastTheme = FastThemeFactory.buildLightThemeWithColors(
+  primaryColor: CupertinoColors.systemPink.color,
+  primaryColorDark: CupertinoColors.systemPink.highContrastColor,
+  secondaryColor: CupertinoColors.systemPurple.color,
+  tertiaryColor: CupertinoColors.systemTeal.color,
 );
 
-final kLightPurpleFastTheme = ThemeFactory.buildLightThemeWithColors(
-  CupertinoColors.systemPurple,
-  CupertinoColors.systemIndigo.color,
-  CupertinoColors.systemTeal.color,
+final kLightPurpleFastTheme = FastThemeFactory.buildLightThemeWithColors(
+  primaryColor: CupertinoColors.systemPurple.color,
+  primaryColorDark: CupertinoColors.systemPurple.highContrastColor,
+  secondaryColor: CupertinoColors.systemIndigo.color,
+  tertiaryColor: CupertinoColors.systemTeal.color,
 );
 
-final kLightTealFastTheme = ThemeFactory.buildLightThemeWithColors(
-  CupertinoColors.systemTeal,
-  CupertinoColors.systemPurple.color,
-  CupertinoColors.systemBlue.color,
+final kLightTealFastTheme = FastThemeFactory.buildLightThemeWithColors(
+  primaryColor: CupertinoColors.systemTeal.color,
+  primaryColorDark: CupertinoColors.systemTeal.highContrastColor,
+  secondaryColor: CupertinoColors.systemPurple.color,
+  tertiaryColor: CupertinoColors.systemBlue.color,
 );
 
-final kLightYellowFastTheme = ThemeFactory.buildLightThemeWithColors(
-  CupertinoColors.systemYellow,
-  CupertinoColors.systemIndigo.color,
-  CupertinoColors.systemTeal.color,
+final kLightYellowFastTheme = FastThemeFactory.buildLightThemeWithColors(
+  primaryColor: CupertinoColors.systemYellow.color,
+  primaryColorDark: CupertinoColors.systemYellow.highContrastColor,
+  secondaryColor: CupertinoColors.systemIndigo.color,
+  tertiaryColor: CupertinoColors.systemTeal.color,
 );
 
-final kLightOrangeFastTheme = ThemeFactory.buildLightThemeWithColors(
-  CupertinoColors.systemOrange,
-  CupertinoColors.systemIndigo.color,
-  CupertinoColors.systemTeal.color,
+final kLightOrangeFastTheme = FastThemeFactory.buildLightThemeWithColors(
+  primaryColor: CupertinoColors.systemOrange.color,
+  primaryColorDark: CupertinoColors.systemOrange.highContrastColor,
+  secondaryColor: CupertinoColors.systemIndigo.color,
+  tertiaryColor: CupertinoColors.systemTeal.color,
 );

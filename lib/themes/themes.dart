@@ -7,6 +7,7 @@ export 'package:fastyle_dart/themes/helpers/helpers.dart';
 export 'package:fastyle_dart/themes/theme_scheme.dart';
 export 'package:fastyle_dart/themes/light/light.dart';
 export 'package:fastyle_dart/themes/dark/dark.dart';
+export './theme.factory.dart';
 
 class FastTheme {
   static FastThemeScheme dark = FastThemeScheme(

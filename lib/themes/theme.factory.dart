@@ -4,59 +4,60 @@ import 'package:fastyle_dart/themes/light/light.theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ThemeFactory {
-  static ThemeData buildLightThemeWithColors(
-    CupertinoDynamicColor primaryColor,
+class FastThemeFactory {
+  static ThemeData buildLightThemeWithColors({
+    @required Color primaryColor,
     Color secondaryColor,
     Color tertiaryColor,
-  ) {
-    return buildWithColors(
-      kLightFastTheme,
-      primaryColor.color,
-      primaryColor.highContrastColor,
-      secondaryColor,
-      tertiaryColor,
-    );
-  }
-
-  static ThemeData buildDarkThemeWithColors(
-    CupertinoDynamicColor primaryColor,
-    Color secondaryColor,
-    Color tertiaryColor,
-  ) {
-    return buildWithColors(
-      kDarkFastTheme,
-      primaryColor.darkColor,
-      primaryColor.darkHighContrastColor,
-      secondaryColor,
-      tertiaryColor,
-    );
-  }
-
-  static ThemeData buildWithColors(
-    ThemeData baseTheme,
-    Color primaryColor,
     Color primaryColorDark,
+  }) {
+    return buildFastThemeWithColors(
+      baseTheme: kLightFastTheme,
+      primaryColor: primaryColor,
+      primaryColorDark: primaryColorDark,
+      secondaryColor: secondaryColor,
+      tertiaryColor: tertiaryColor,
+    );
+  }
+
+  static ThemeData buildDarkThemeWithColors({
+    @required Color primaryColor,
     Color secondaryColor,
     Color tertiaryColor,
-  ) {
+    Color primaryColorDark,
+  }) {
+    return buildFastThemeWithColors(
+      baseTheme: kDarkFastTheme,
+      primaryColor: primaryColor,
+      primaryColorDark: primaryColorDark,
+      secondaryColor: secondaryColor,
+      tertiaryColor: tertiaryColor,
+    );
+  }
+
+  static ThemeData buildFastThemeWithColors({
+    @required ThemeData baseTheme,
+    @required Color primaryColor,
+    Color secondaryColor,
+    Color tertiaryColor,
+    Color primaryColorDark,
+  }) {
     final textTheme = baseTheme.textTheme;
+    final _primaryColorDark = primaryColorDark ?? baseTheme.primaryColorDark;
+    final _secondaryColor = secondaryColor ?? baseTheme.accentColor;
+    final _tertiaryColor = tertiaryColor ?? textTheme.overline.color;
 
     return baseTheme.copyWith(
       primaryColor: primaryColor,
-      primaryColorDark: primaryColorDark,
-      accentColor: secondaryColor,
+      primaryColorDark: _primaryColorDark,
+      accentColor: _secondaryColor,
       buttonColor: primaryColor,
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: primaryColor,
       ),
       textTheme: textTheme.copyWith(
-        caption: textTheme.caption.copyWith(
-          color: secondaryColor,
-        ),
-        overline: textTheme.overline.copyWith(
-          color: tertiaryColor,
-        ),
+        caption: textTheme.caption.copyWith(color: _secondaryColor),
+        overline: textTheme.overline.copyWith(color: _tertiaryColor),
       ),
       buttonTheme: ButtonThemeData(
         buttonColor: primaryColor,
