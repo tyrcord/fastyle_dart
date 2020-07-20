@@ -1,6 +1,7 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 const _kContentPadding = kFastEdgeInsets16;
 const _kHeaderPadding = EdgeInsets.symmetric(horizontal: 16.0);
@@ -47,13 +48,23 @@ class FastSectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
+    Brightness brightness = themeBloc.currentState.brightness;
+    brightness = brightness == Brightness.dark
+        ? Brightness.light
+        : (appBarbackgroundColor != null &&
+                    appBarbackgroundColor.computeLuminance() > 0.5) ||
+                appBarbackgroundColor == null
+            ? Brightness.light
+            : Brightness.dark;
+
+    log(brightness.toString());
 
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: appBarHeightSize ?? _kAppBarHeightSize,
         child: AppBar(
           automaticallyImplyLeading: false,
-          brightness: themeBloc.currentState.brightness,
+          brightness: brightness,
           leading: leading ?? _buildLeadingIcon(context),
           iconTheme: IconThemeData(
             color: themeBloc.currentState.brightness == Brightness.light

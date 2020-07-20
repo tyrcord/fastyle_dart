@@ -1,5 +1,7 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:tbloc_dart/tbloc_dart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 const _kStepDotSize = 10.0;
 const _kDoneText = 'done';
@@ -68,21 +70,30 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: PageView.builder(
-                controller: _pageViewController,
-                itemCount: _slidesLength,
-                itemBuilder: (BuildContext context, int index) {
-                  return widget.slides[index];
-                },
+    final themeBloc = BlocProvider.of<FastThemeBloc>(context);
+    final brightness = themeBloc.currentState.brightness;
+    final SystemUiOverlayStyle overlayStyle = brightness == Brightness.dark
+        ? SystemUiOverlayStyle.light
+        : SystemUiOverlayStyle.dark;
+
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: overlayStyle,
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: PageView.builder(
+                  controller: _pageViewController,
+                  itemCount: _slidesLength,
+                  itemBuilder: (BuildContext context, int index) {
+                    return widget.slides[index];
+                  },
+                ),
               ),
-            ),
-            _buildStepper(context),
-          ],
+              _buildStepper(context),
+            ],
+          ),
         ),
       ),
     );
