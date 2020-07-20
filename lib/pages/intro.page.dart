@@ -1,0 +1,27 @@
+import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:flutter/material.dart';
+
+class FastIntroPage extends StatelessWidget {
+  final String titleText;
+  final List<Widget> children;
+
+  const FastIntroPage({
+    Key key,
+    @required this.titleText,
+    this.children,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(right: 16, left: 16, top: 32),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          FastHeadline(text: titleText),
+          if (children != null) ...children,
+        ],
+      ),
+    );
+  }
+}
