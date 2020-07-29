@@ -57,8 +57,6 @@ class FastSectionPage extends StatelessWidget {
             ? Brightness.light
             : Brightness.dark;
 
-    log(brightness.toString());
-
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: appBarHeightSize ?? _kAppBarHeightSize,
