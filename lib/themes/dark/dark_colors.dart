@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 // Colors
 final kFastDarkWhiteColor = CupertinoColors.label.darkColor;
 final kFastDarkBlueColor = CupertinoColors.systemBlue.darkColor;
+final kFastDarkRedColor = CupertinoColors.systemRed.darkColor;
+final kFastDarkGreenColor = CupertinoColors.systemGreen.darkColor;
 
 // Background Colors
 final kFastDarkPrimaryBackgroundColor =
