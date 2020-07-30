@@ -5,6 +5,7 @@ export './constants.dart';
 
 export './blocs/blocs.dart';
 export './clippers/clippers.dart';
+export './controllers/controllers.dart';
 export './descriptors/descriptors.dart';
 export './enums/enums.dart';
 export './formatters/formatters.dart';

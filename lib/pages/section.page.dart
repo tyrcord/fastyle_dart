@@ -22,14 +22,16 @@ class FastSectionPage extends StatelessWidget {
   final Color appBarbackgroundColor;
   final isTitlePositionBelowAppBar;
   final Size appBarHeightSize;
-  final bool isLoading;
   final Widget closeButton;
   final Widget backButton;
+  final Future<bool> loadingFuture;
+  final WidgetBuilder loadingBuilder;
+  final WidgetBuilder errorBuilder;
+  final WidgetBuilder contentBuilder;
+  final WidgetBuilder footerBuilder;
 
   FastSectionPage({
     Key key,
-    this.child,
-    this.footer,
     this.titleColor,
     this.contentPadding,
     this.titleText,
@@ -39,10 +41,16 @@ class FastSectionPage extends StatelessWidget {
     this.floatingActionButton,
     this.appBarbackgroundColor,
     this.isTitlePositionBelowAppBar = true,
-    this.isLoading = false, // BETA
     this.appBarHeightSize,
     this.closeButton,
     this.backButton,
+    this.loadingBuilder,
+    this.loadingFuture,
+    this.errorBuilder,
+    this.contentBuilder,
+    this.footerBuilder,
+    this.child,
+    this.footer,
   }) : super(key: key);
 
   @override
@@ -85,9 +93,12 @@ class FastSectionPage extends StatelessWidget {
       body: SafeArea(
         top: false,
         bottom: false,
-        child: !isLoading
-            ? _buildPageContent(context)
-            : FusexThreeBounceIndicator(),
+        child: FastSectionPageController(
+          readyBuilder: _buildPageContent(),
+          loadingBuilder: loadingBuilder,
+          errorBuilder: errorBuilder,
+          loadingFuture: loadingFuture,
+        ),
       ),
       floatingActionButton: floatingActionButton,
     );
@@ -109,12 +120,14 @@ class FastSectionPage extends StatelessWidget {
     return leading;
   }
 
-  Widget _buildPageContent(BuildContext context) {
-    if (isViewScrollable) {
-      return _builScrollableContent(context);
-    }
+  WidgetBuilder _buildPageContent() {
+    return (BuildContext context) {
+      if (isViewScrollable) {
+        return _builScrollableContent(context);
+      }
 
-    return _buildFixedContent(context);
+      return _buildFixedContent(context);
+    };
   }
 
   Widget _buildFixedContent(BuildContext context) {
@@ -150,7 +163,7 @@ class FastSectionPage extends StatelessWidget {
         SliverToBoxAdapter(
           child: _buildFixedContent(context),
         ),
-        if (footer != null)
+        if (footer != null || footerBuilder != null)
           SliverFillRemaining(
             hasScrollBody: false,
             child: _buildFooter(context),
@@ -166,7 +179,7 @@ class FastSectionPage extends StatelessWidget {
       padding: footer == null
           ? padding.copyWith(bottom: _getBottomPadding(context))
           : padding.copyWith(bottom: 0.0),
-      child: child,
+      child: contentBuilder != null ? Builder(builder: contentBuilder) : child,
     );
   }
 
@@ -179,7 +192,7 @@ class FastSectionPage extends StatelessWidget {
         top: 0.0,
         bottom: mediaQueryData.padding.bottom,
       ),
-      child: footer,
+      child: footerBuilder != null ? Builder(builder: footerBuilder) : footer,
     );
   }
 
