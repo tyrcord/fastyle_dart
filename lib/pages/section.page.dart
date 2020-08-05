@@ -134,9 +134,7 @@ class FastSectionPage extends StatelessWidget {
     Widget content = _buildContent(context);
 
     if (!isViewScrollable) {
-      content = Expanded(
-        child: content,
-      );
+      content = Expanded(child: content);
     }
 
     return Column(
@@ -152,7 +150,8 @@ class FastSectionPage extends StatelessWidget {
             margin: _kMargin,
           ),
         content,
-        if (!isViewScrollable && footer != null) _buildFooter(context),
+        if (!isViewScrollable && (footer != null || footerBuilder != null))
+          _buildFooter(context),
       ],
     );
   }

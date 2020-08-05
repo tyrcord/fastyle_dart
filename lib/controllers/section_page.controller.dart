@@ -2,7 +2,7 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
-const _kMaxDuration = Duration(seconds: 2);
+const _kMaxDuration = Duration(seconds: 15);
 
 class FastSectionPageController extends StatefulWidget {
   final WidgetBuilder loadingBuilder;
