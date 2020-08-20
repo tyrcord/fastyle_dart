@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class FastThreeBounceIndicator extends StatelessWidget {
+  final Color color;
+
+  FastThreeBounceIndicator({Key key, this.color}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final primaryColor = ThemeHelper.colors.getPrimaryColor(context);
+    final primaryColor = color ?? ThemeHelper.colors.getPrimaryColor(context);
 
     return Center(
       child: SpinKitThreeBounce(color: primaryColor, size: kFastIconSize),
