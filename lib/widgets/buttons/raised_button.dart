@@ -10,6 +10,7 @@ class FastRaisedButton extends StatelessWidget {
   final Color textColor;
   final Color highlightColor;
   final EdgeInsetsGeometry padding;
+  final Widget child;
 
   const FastRaisedButton({
     Key key,
@@ -20,6 +21,7 @@ class FastRaisedButton extends StatelessWidget {
     this.textColor,
     this.highlightColor,
     this.padding,
+    this.child,
   }) : super(key: key);
 
   @override
@@ -41,10 +43,11 @@ class FastRaisedButton extends StatelessWidget {
         onPressed: isEnabled ? onTap : null,
         splashColor: Colors.transparent,
         highlightColor: highlightColor,
-        child: FastButtonLabel(
-          text: text,
-          textColor: isEnabled ? _textColor : _textColor.withAlpha(155),
-        ),
+        child: child ??
+            FastButtonLabel(
+              text: text,
+              textColor: isEnabled ? _textColor : _textColor.withAlpha(155),
+            ),
       ),
     );
   }
