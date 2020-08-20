@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,7 @@ class FastWelcomeView extends StatefulWidget {
   final String doneText;
   final String nextText;
   final String skipText;
+  final FastWelcomeViewController controller;
 
   const FastWelcomeView({
     Key key,
@@ -38,6 +41,7 @@ class FastWelcomeView extends StatefulWidget {
     this.stepDotColor,
     this.onDone,
     this.onSkip,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -45,7 +49,8 @@ class FastWelcomeView extends StatefulWidget {
 }
 
 class _FastWelcomeViewState extends State<FastWelcomeView> {
-  PageController _pageViewController = new PageController();
+  PageController _pageViewController = PageController();
+  FastWelcomeViewController _controller;
   int _pageCursor = 0;
   int _slidesLength = 0;
 
@@ -53,6 +58,7 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
 
   @override
   void initState() {
+    _controller = widget.controller ?? FastWelcomeViewController(false);
     _slidesLength = widget.slides?.length ?? 0;
     _pageViewController.addListener(() {
       setState(() {
@@ -80,26 +86,34 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
       value: overlayStyle,
       child: Scaffold(
         body: SafeArea(
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: PageView.builder(
-                  controller: _pageViewController,
-                  itemCount: _slidesLength,
-                  itemBuilder: (BuildContext context, int index) {
-                    return widget.slides[index];
-                  },
+          child: ValueListenableBuilder(
+            valueListenable: _controller,
+            builder: (BuildContext context, bool isPending, Widget child) {
+              return IgnorePointer(
+                ignoring: isPending,
+                child: Column(
+                  children: <Widget>[
+                    Expanded(
+                      child: PageView.builder(
+                        controller: _pageViewController,
+                        itemCount: _slidesLength,
+                        itemBuilder: (BuildContext context, int index) {
+                          return widget.slides[index];
+                        },
+                      ),
+                    ),
+                    _buildStepper(context, isPending),
+                  ],
                 ),
-              ),
-              _buildStepper(context),
-            ],
+              );
+            },
           ),
         ),
       ),
     );
   }
 
-  Widget _buildStepper(BuildContext context) {
+  Widget _buildStepper(BuildContext context, bool isPending) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -123,6 +137,7 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
             }
           },
           text: hasReachEnd ? widget.doneText : widget.nextText,
+          isEnabled: !isPending,
         ),
       ],
     );
