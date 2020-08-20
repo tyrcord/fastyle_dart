@@ -8,6 +8,7 @@ const _kHeaderPadding = EdgeInsets.symmetric(horizontal: 16.0);
 const _kMargin = EdgeInsets.symmetric(vertical: 16.0);
 const _kElevation = 0.0;
 const _kAppBarHeightSize = Size.fromHeight(kToolbarHeight);
+const _kBottomPaddingMin = 16.0;
 
 class FastSectionPage extends StatelessWidget {
   final String titleText;
@@ -189,7 +190,7 @@ class FastSectionPage extends StatelessWidget {
     return Padding(
       padding: padding.copyWith(
         top: 0.0,
-        bottom: mediaQueryData.padding.bottom,
+        bottom: mediaQueryData.padding.bottom + _kBottomPaddingMin,
       ),
       child: footerBuilder != null ? Builder(builder: footerBuilder) : footer,
     );
@@ -198,7 +199,7 @@ class FastSectionPage extends StatelessWidget {
   double _getBottomPadding(BuildContext context) {
     if (isViewScrollable) {
       final mediaQueryData = MediaQuery.of(context);
-      return mediaQueryData.padding.bottom;
+      return mediaQueryData.padding.bottom + _kBottomPaddingMin;
     }
 
     return 0.0;

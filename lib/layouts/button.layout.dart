@@ -13,11 +13,12 @@ class FastButtonLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
+    return Container(
       constraints: BoxConstraints(
         minHeight: _kMinButtonHeight,
         minWidth: _kMinButtonWidth,
       ),
+      padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: child,
     );
   }
