@@ -9,6 +9,7 @@ class FastTextField extends StatelessWidget {
   final bool isReadOnly;
   final ValueChanged<String> onValueChanged;
   final TextAlign textAlign;
+  final TextEditingController textEditingController;
 
   FastTextField({
     Key key,
@@ -19,6 +20,7 @@ class FastTextField extends StatelessWidget {
     this.isReadOnly = false,
     this.onValueChanged,
     this.textAlign,
+    this.textEditingController,
   }) : super(key: key);
 
   @override
@@ -44,6 +46,7 @@ class FastTextField extends StatelessWidget {
       style: ThemeHelper.texts.getBodyTextStyle(context),
       decoration: InputDecoration(hintText: placeholderText),
       onChanged: onValueChanged,
+      controller: textEditingController,
     );
   }
 }
