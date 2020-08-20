@@ -14,13 +14,17 @@ class FastIntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(right: 16, left: 16, top: 32),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          FastHeadline(text: titleText),
-          if (children != null) ...children,
-        ],
+      padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            const SizedBox(height: 16.0),
+            FastHeadline(text: titleText),
+            if (children != null) ...children,
+            const SizedBox(height: 16.0),
+          ],
+        ),
       ),
     );
   }
