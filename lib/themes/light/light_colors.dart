@@ -6,6 +6,8 @@ const kFastLightWhiteColor = Color(0xFFFAFAFA);
 final kFastLightBlueColor = CupertinoColors.systemBlue.color;
 final kFastLightRedColor = CupertinoColors.systemRed.color;
 final kFastLightGreenColor = CupertinoColors.systemGreen.color;
+final kFastLightOrangeColor = CupertinoColors.systemOrange.color;
+final kFastLightYellowColor = CupertinoColors.systemYellow.color;
 
 // Background Colors
 const kFastLightPrimaryBackgroundColor = kFastLightWhiteColor;

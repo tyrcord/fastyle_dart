@@ -5,6 +5,8 @@ final kFastDarkWhiteColor = CupertinoColors.label.darkColor;
 final kFastDarkBlueColor = CupertinoColors.systemBlue.darkColor;
 final kFastDarkRedColor = CupertinoColors.systemRed.darkColor;
 final kFastDarkGreenColor = CupertinoColors.systemGreen.darkColor;
+final kFastDarkOrangeColor = CupertinoColors.systemOrange.darkColor;
+final kFastDarkYellowColor = CupertinoColors.systemYellow.darkColor;
 
 // Background Colors
 final kFastDarkPrimaryBackgroundColor =
