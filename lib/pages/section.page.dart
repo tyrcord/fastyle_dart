@@ -59,7 +59,7 @@ class FastSectionPage extends StatelessWidget {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
     Brightness brightness = themeBloc.currentState.brightness;
     brightness = brightness == Brightness.dark
-        ? Brightness.light
+        ? Brightness.dark
         : (appBarbackgroundColor != null &&
                     appBarbackgroundColor.computeLuminance() > 0.5) ||
                 appBarbackgroundColor == null
