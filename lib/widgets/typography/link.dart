@@ -1,6 +1,7 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class FastLink extends StatelessWidget {
   final String text;
@@ -28,10 +29,16 @@ class FastLink extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
-      child: RichText(
-        text: TextSpan(
-          style: linkTextStyle,
-          text: text,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(minHeight: 34.0),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: RichText(
+            text: TextSpan(
+              style: linkTextStyle,
+              text: text,
+            ),
+          ),
         ),
       ),
     );
