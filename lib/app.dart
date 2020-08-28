@@ -65,7 +65,7 @@ class _FastAppState extends State<FastApp> {
         bloc: _themeBloc,
         child: BlocBuilderWidget(
           bloc: _themeBloc,
-          builder: (context, FastThemeBlocState state, dynamic error) {
+          builder: (context, FastThemeBlocState state) {
             return MaterialApp(
               title: widget.titleText,
               theme: widget.lightTheme,
