@@ -40,7 +40,7 @@ class FastAlertDialog extends FastDialog {
       widgets: widgets ?? _buildDefaultContent(),
       titleColor: titleColor,
       backgroundColor: backgroundColor,
-      actions: actions ?? _buildDefaultActions(),
+      actions: actions ?? _buildDefaultActions(context),
     );
   }
 
@@ -53,7 +53,7 @@ class FastAlertDialog extends FastDialog {
     ];
   }
 
-  List<Widget> _buildDefaultActions() {
+  List<Widget> _buildDefaultActions(BuildContext context) {
     final cancelText = this.cancelText ?? _kCancelText;
 
     return [
@@ -63,7 +63,13 @@ class FastAlertDialog extends FastDialog {
           text: cancelText ?? _kCancelText,
         ),
       FastTextButton(
-        onTap: onValid,
+        onTap: () {
+          if (onValid != null) {
+            onValid();
+          } else {
+            Navigator.pop(context);
+          }
+        },
         text: validText ?? _kValidText,
         emphasis: FastButtonEmphasis.high,
       ),
