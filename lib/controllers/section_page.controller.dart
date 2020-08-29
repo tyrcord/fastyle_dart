@@ -2,8 +2,6 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
-const _kMaxDuration = Duration(seconds: 15);
-
 class FastSectionPageController extends StatefulWidget {
   final WidgetBuilder loadingBuilder;
   final WidgetBuilder errorBuilder;
@@ -80,9 +78,7 @@ class _FastSectionPageControllerState extends State<FastSectionPageController> {
   void _listenToLoadingFutureIfNeeded() {
     if (widget.loadingFuture != null) {
       loadingFuture = widget.loadingTimeout != null
-          ? widget.loadingFuture.timeout(
-              widget.loadingTimeout,
-            )
+          ? widget.loadingFuture.timeout(widget.loadingTimeout)
           : widget.loadingFuture;
 
       loadingFuture.then((bool isReady) {
