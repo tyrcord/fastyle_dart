@@ -79,13 +79,17 @@ class _FastSectionPageControllerState extends State<FastSectionPageController> {
 
   void _listenToLoadingFutureIfNeeded() {
     if (widget.loadingFuture != null) {
-      loadingFuture = widget.loadingFuture.timeout(
-        widget.loadingTimeout ?? _kMaxDuration,
-      );
+      loadingFuture = widget.loadingTimeout != null
+          ? widget.loadingFuture.timeout(
+              widget.loadingTimeout,
+            )
+          : widget.loadingFuture;
 
-      loadingFuture
-          .then((value) => eventController.sink.add(SectionPageEvent.Ready))
-          .catchError((_) => eventController.sink.add(SectionPageEvent.Error));
+      loadingFuture.then((bool isReady) {
+        eventController.sink.add(
+          isReady ? SectionPageEvent.Ready : SectionPageEvent.Error,
+        );
+      }).catchError((_) => eventController.sink.add(SectionPageEvent.Error));
     }
   }
 
