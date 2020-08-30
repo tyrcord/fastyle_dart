@@ -86,11 +86,8 @@ class _FastNavigationListViewState<T extends FastItem>
       item: item,
       onTap: () {
         if (widget.isEnabled && item.isEnabled) {
-          setState(() {
-            _suggestions = null;
-            FocusScope.of(context).unfocus();
-            widget.onSelectionChanged(item);
-          });
+          FocusScope.of(context).unfocus();
+          widget.onSelectionChanged(item);
         }
       },
     );
