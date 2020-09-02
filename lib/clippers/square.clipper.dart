@@ -23,7 +23,5 @@ class FastSquareClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return false;
-  }
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
