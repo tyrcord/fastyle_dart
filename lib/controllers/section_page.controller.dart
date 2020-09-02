@@ -93,7 +93,7 @@ class _FastSectionPageControllerState extends State<FastSectionPageController> {
       );
 
       _cancellableLoadingOperation.value
-          .then((bool isLoaded) => _dispatchLoadEvent(hasError: isLoaded))
+          .then((bool isLoaded) => _dispatchLoadEvent(hasError: !isLoaded))
           .catchError((_) => _dispatchLoadEvent(hasError: true));
     }
   }
