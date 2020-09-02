@@ -1,9 +1,10 @@
-import 'package:tbloc_dart/tbloc_dart.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:tbloc_dart/tbloc_dart.dart';
 
 class FastThemeBloc
     extends BidirectionalBloc<FastThemeBlocEvent, FastThemeBlocState> {
-  // TODO: Persist state
   FastThemeBloc({FastThemeBlocState initialState})
       : super(initialState: initialState ?? FastThemeBlocState());
 
@@ -29,35 +30,4 @@ class FastThemeBloc
       );
     }
   }
-}
-
-class FastThemeBlocState extends BlocState {
-  final ThemeMode themeMode;
-  final Brightness brightness;
-
-  const FastThemeBlocState({
-    this.themeMode = ThemeMode.system,
-    this.brightness,
-  }) : super();
-
-  @override
-  List<Object> get props => [themeMode];
-}
-
-enum FastThemeBlocEventAction {
-  light,
-  dark,
-  system,
-}
-
-class FastThemeBlocEvent extends BlocEvent<FastThemeBlocEventAction> {
-  const FastThemeBlocEvent({
-    @required FastThemeBlocEventAction action,
-  }) : super(payload: action);
-
-  FastThemeBlocEvent.dark() : this(action: FastThemeBlocEventAction.dark);
-
-  FastThemeBlocEvent.light() : this(action: FastThemeBlocEventAction.light);
-
-  FastThemeBlocEvent.system() : this(action: FastThemeBlocEventAction.system);
 }
