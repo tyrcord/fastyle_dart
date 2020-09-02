@@ -1,6 +1,7 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 const _kMarginHelper = EdgeInsets.only(top: 4.0);
 const _kMargin = EdgeInsets.only(bottom: 8.0);
@@ -57,9 +58,7 @@ class FastFieldLayout extends StatelessWidget {
           ),
         ),
         if (captionText != null)
-          FastCaption(
-            text: toBeginningOfSentenceCase(captionText),
-          ),
+          FastCaption(text: toBeginningOfSentenceCase(captionText)),
       ],
     );
   }

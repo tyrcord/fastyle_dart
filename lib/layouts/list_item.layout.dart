@@ -1,28 +1,31 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fastyle_dart/fastyle_dart.dart';
+
+final _kTransform = Matrix4.translationValues(-16, 0.0, 0.0);
+
 class FastListItemLayout extends StatelessWidget {
-  final String titleText;
+  final FastListItemDescriptor descriptor;
+  final EdgeInsets contentPadding;
   final String descriptionText;
   final VoidCallback onTap;
-  final Widget leading;
+  final String titleText;
   final Widget trailing;
+  final Widget leading;
   final bool isEnabled;
   final bool isDense;
-  final FastListTileDescriptor descriptor;
-  final EdgeInsets contentPadding;
 
   FastListItemLayout({
     Key key,
     @required this.titleText,
-    this.onTap,
-    this.descriptionText,
-    this.leading,
-    this.trailing,
     this.isEnabled = true,
-    this.isDense,
-    this.descriptor,
+    this.descriptionText,
     this.contentPadding,
+    this.descriptor,
+    this.trailing,
+    this.isDense,
+    this.leading,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -37,10 +40,7 @@ class FastListItemLayout extends StatelessWidget {
         enabled: isEnabled,
         leading: leading ?? descriptor?.leading,
         title: leading != null
-            ? Transform(
-                transform: Matrix4.translationValues(-16, 0.0, 0.0),
-                child: title,
-              )
+            ? Transform(transform: _kTransform, child: title)
             : title,
         subtitle:
             descriptionText != null ? FastBody2(text: descriptionText) : null,

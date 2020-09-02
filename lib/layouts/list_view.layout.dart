@@ -1,7 +1,7 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 const kFastListTileCategoryAll = FastCategory(
   label: kFastAllString,
@@ -52,10 +52,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
       views.add(_buildListView(context, listCategory.items));
     });
 
-    return FastTabs(
-      tabs: tabs,
-      views: views,
-    );
+    return FastTabs(tabs: tabs, views: views);
   }
 
   Widget _buildListView(BuildContext context, List<T> items) {
@@ -70,9 +67,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     final lastIndex = items.length - 1;
     final Decoration dividerDecoration = showItemDivider
         ? BoxDecoration(
-            border: Border(
-              bottom: Divider.createBorderSide(context),
-            ),
+            border: Border(bottom: Divider.createBorderSide(context)),
           )
         : null;
 
