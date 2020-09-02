@@ -4,13 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
 
-import 'package:example/data/items.dart';
-import 'package:example/pages/buttons.dart';
-import 'package:example/pages/cards.dart';
-import 'package:example/pages/fields.dart';
-import 'package:example/pages/lists.dart';
-import 'package:example/pages/tabs.dart';
-import 'package:example/pages/typography.dart';
+import 'package:fastyle_dart_example/data/items.dart';
+import 'package:fastyle_dart_example/pages/buttons.dart';
+import 'package:fastyle_dart_example/pages/cards.dart';
+import 'package:fastyle_dart_example/pages/fields.dart';
+import 'package:fastyle_dart_example/pages/lists.dart';
+import 'package:fastyle_dart_example/pages/tabs.dart';
+import 'package:fastyle_dart_example/pages/typography.dart';
 
 void main() => runApp(MyApp());
 
