@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
 
-class FastListTileDescriptor {
+class FastListItemDescriptor {
   final bool isDense;
   final Widget leading;
   final Widget trailing;
 
-  const FastListTileDescriptor({
+  const FastListItemDescriptor({
     this.isDense = true,
     this.leading,
     this.trailing,
   });
 
-  FastListTileDescriptor copyWith({
+  FastListItemDescriptor copyWith({
     bool dense,
     Widget leading,
     Widget trailing,
   }) {
-    return FastListTileDescriptor(
+    return FastListItemDescriptor(
       isDense: dense ?? this.isDense,
       leading: leading ?? this.leading,
       trailing: trailing ?? this.trailing,
     );
   }
 
-  FastListTileDescriptor clone() {
-    return FastListTileDescriptor(
+  FastListItemDescriptor clone() {
+    return FastListItemDescriptor(
       isDense: isDense,
       leading: leading,
       trailing: trailing,

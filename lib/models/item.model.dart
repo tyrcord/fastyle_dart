@@ -8,7 +8,7 @@ class FastItem<T> {
   final String description;
   final List<FastCategory> categories;
   final bool isEnabled;
-  final FastListTileDescriptor descriptor;
+  final FastListItemDescriptor descriptor;
 
   const FastItem({
     @required this.label,

@@ -1,1 +1,1 @@
-export './list_title.descriptor.dart';
+export 'list_item.descriptor.dart';
