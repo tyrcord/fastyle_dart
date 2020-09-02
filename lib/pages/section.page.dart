@@ -95,7 +95,7 @@ class FastSectionPage extends StatelessWidget {
         top: false,
         bottom: false,
         child: FastSectionPageController(
-          readyBuilder: _buildPageContent(),
+          loadedBuilder: _buildPageContent(),
           loadingBuilder: loadingBuilder,
           errorBuilder: errorBuilder,
           loadingFuture: loadingFuture,

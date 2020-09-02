@@ -1,20 +1,22 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:async/async.dart';
+
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastSectionPageController extends StatefulWidget {
   final WidgetBuilder loadingBuilder;
+  final WidgetBuilder loadedBuilder;
   final WidgetBuilder errorBuilder;
-  final WidgetBuilder readyBuilder;
   final Future<bool> loadingFuture;
   final Duration loadingTimeout;
 
   FastSectionPageController({
     Key key,
-    @required this.readyBuilder,
-    this.loadingFuture,
+    @required this.loadedBuilder,
     this.loadingBuilder,
     this.errorBuilder,
+    this.loadingFuture,
     this.loadingTimeout,
   }) : super(key: key);
 
@@ -23,19 +25,20 @@ class FastSectionPageController extends StatefulWidget {
 }
 
 class _FastSectionPageControllerState extends State<FastSectionPageController> {
-  final PublishSubject<SectionPageEvent> eventController =
-      PublishSubject<SectionPageEvent>();
+  final PublishSubject<SectionPageLoadEvent> eventController =
+      PublishSubject<SectionPageLoadEvent>();
 
+  CancelableOperation<bool> _cancellableLoadingOperation;
   Future<bool> loadingFuture;
   bool hasError = false;
   bool isLoading;
-  bool isReady;
+  bool isLoaded;
 
   @override
   void initState() {
     isLoading = widget.loadingFuture != null;
-    isReady = !isLoading;
-    _listenToEvents();
+    isLoaded = !isLoading;
+    _listenToLoadEvents();
     _listenToLoadingFutureIfNeeded();
     super.initState();
   }
@@ -46,7 +49,7 @@ class _FastSectionPageControllerState extends State<FastSectionPageController> {
 
     if (oldWidget.loadingFuture != widget.loadingFuture) {
       isLoading = widget.loadingFuture != null;
-      isReady = !isLoading;
+      isLoaded = !isLoading;
       _listenToLoadingFutureIfNeeded();
     }
   }
@@ -62,7 +65,7 @@ class _FastSectionPageControllerState extends State<FastSectionPageController> {
     return Builder(
       builder: isLoading
           ? _buildLoadingWidget()
-          : hasError ? _buildErrorWidget() : widget.readyBuilder,
+          : hasError ? _buildErrorWidget() : widget.loadedBuilder,
     );
   }
 
@@ -77,42 +80,47 @@ class _FastSectionPageControllerState extends State<FastSectionPageController> {
 
   void _listenToLoadingFutureIfNeeded() {
     if (widget.loadingFuture != null) {
+      if (_cancellableLoadingOperation != null) {
+        _cancellableLoadingOperation.cancel();
+      }
+
       loadingFuture = widget.loadingTimeout != null
           ? widget.loadingFuture.timeout(widget.loadingTimeout)
           : widget.loadingFuture;
 
-      loadingFuture.then((bool isReady) {
-        eventController.sink.add(
-          isReady ? SectionPageEvent.Ready : SectionPageEvent.Error,
-        );
-      }).catchError((_) {
-        if (!eventController.isClosed) {
-          eventController.sink.add(SectionPageEvent.Error);
-        }
-      });
+      _cancellableLoadingOperation = CancelableOperation<bool>.fromFuture(
+        loadingFuture,
+      );
+
+      _cancellableLoadingOperation.value
+          .then((bool isLoaded) => _dispatchLoadEvent(hasError: isLoaded))
+          .catchError((_) => _dispatchLoadEvent(hasError: true));
     }
   }
 
-  void _listenToEvents() {
-    eventController.listen((SectionPageEvent event) {
-      if (event == SectionPageEvent.Error) {
+  void _dispatchLoadEvent({hasError = false}) {
+    if (!eventController.isClosed) {
+      eventController.sink.add(
+        hasError ? SectionPageLoadEvent.Error : SectionPageLoadEvent.Loaded,
+      );
+    }
+  }
+
+  void _listenToLoadEvents() {
+    eventController.listen((SectionPageLoadEvent event) {
+      if (event == SectionPageLoadEvent.Error) {
         setState(() {
           isLoading = false;
-          isReady = false;
+          isLoaded = false;
           hasError = true;
         });
       } else {
         setState(() {
           isLoading = false;
-          isReady = true;
+          isLoaded = true;
           hasError = false;
         });
       }
     });
   }
-}
-
-enum SectionPageEvent {
-  Error,
-  Ready,
 }

@@ -1,0 +1,4 @@
+enum SectionPageLoadEvent {
+  Error,
+  Loaded,
+}
