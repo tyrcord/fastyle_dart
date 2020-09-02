@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
-import 'package:flutter/material.dart';
 
 class ThemeColorHelper {
   Color getColorWithBestConstrast({
@@ -38,6 +39,14 @@ class ThemeColorHelper {
         : kFastDarkGreenColor;
   }
 
+  Color getIndigoColor(BuildContext context) {
+    final themeBloc = BlocProvider.of<FastThemeBloc>(context);
+
+    return themeBloc.currentState.brightness == Brightness.light
+        ? kFastLightIndigoColor
+        : kFastDarkIndigoColor;
+  }
+
   Color getOrangeColor(BuildContext context) {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
 
@@ -46,12 +55,20 @@ class ThemeColorHelper {
         : kFastDarkOrangeColor;
   }
 
-  Color getYellowColor(BuildContext context) {
+  Color getPinkColor(BuildContext context) {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
 
     return themeBloc.currentState.brightness == Brightness.light
-        ? kFastLightYellowColor
-        : kFastDarkYellowColor;
+        ? kFastLightPinkColor
+        : kFastDarkPinkColor;
+  }
+
+  Color getPurpleColor(BuildContext context) {
+    final themeBloc = BlocProvider.of<FastThemeBloc>(context);
+
+    return themeBloc.currentState.brightness == Brightness.light
+        ? kFastLightPurpleColor
+        : kFastDarkPurpleColor;
   }
 
   Color getRedColor(BuildContext context) {
@@ -60,6 +77,22 @@ class ThemeColorHelper {
     return themeBloc.currentState.brightness == Brightness.light
         ? kFastLightRedColor
         : kFastDarkRedColor;
+  }
+
+  Color getTealColor(BuildContext context) {
+    final themeBloc = BlocProvider.of<FastThemeBloc>(context);
+
+    return themeBloc.currentState.brightness == Brightness.light
+        ? kFastLightTealColor
+        : kFastDarkTealColor;
+  }
+
+  Color getYellowColor(BuildContext context) {
+    final themeBloc = BlocProvider.of<FastThemeBloc>(context);
+
+    return themeBloc.currentState.brightness == Brightness.light
+        ? kFastLightYellowColor
+        : kFastDarkYellowColor;
   }
 
   Color getShadowColor(BuildContext context) {
