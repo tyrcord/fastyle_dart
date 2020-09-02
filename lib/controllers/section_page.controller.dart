@@ -85,7 +85,11 @@ class _FastSectionPageControllerState extends State<FastSectionPageController> {
         eventController.sink.add(
           isReady ? SectionPageEvent.Ready : SectionPageEvent.Error,
         );
-      }).catchError((_) => eventController.sink.add(SectionPageEvent.Error));
+      }).catchError((_) {
+        if (!eventController.isClosed) {
+          eventController.sink.add(SectionPageEvent.Error);
+        }
+      });
     }
   }
 
