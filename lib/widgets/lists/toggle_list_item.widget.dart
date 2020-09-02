@@ -45,11 +45,11 @@ class _FastToggleListItemState extends State<FastToggleListItem> {
         inactiveTrackColor: ThemeHelper.colors.getHintColor(context),
         dense: widget.isDense,
         title: FastBody(
-          text: widget.titleText ?? widget.item?.label,
+          text: widget.titleText ?? widget.item?.labelText,
         ),
         subtitle: widget.descriptionText != null
             ? FastBody2(
-                text: widget.descriptionText ?? widget.item?.description,
+                text: widget.descriptionText ?? widget.item?.descriptionText,
               )
             : null,
         onChanged: (bool value) {

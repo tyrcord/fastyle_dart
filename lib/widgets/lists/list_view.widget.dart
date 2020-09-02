@@ -45,8 +45,8 @@ class FastListView<T extends FastItem> extends StatelessWidget {
 
     return FastListItemLayout(
       contentPadding: itemContentPadding,
-      titleText: option.label,
-      descriptionText: option.description,
+      titleText: option.labelText,
+      descriptionText: option.descriptionText,
       leading: option.descriptor?.leading,
       trailing: option.descriptor?.trailing,
       isEnabled: option.isEnabled,

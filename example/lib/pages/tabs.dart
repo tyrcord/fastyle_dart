@@ -7,7 +7,7 @@ class TabsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final options = List<FastItem>.generate(50, (int index) {
-      return FastItem(label: index.toString(), value: index);
+      return FastItem(labelText: index.toString(), value: index);
     });
 
     return FastSectionPage(
@@ -28,7 +28,7 @@ class TabsPage extends StatelessWidget {
             showItemDivider: true,
             items: options,
             onSelectionChanged: (FastItem option) {
-              log('${option.label} selected');
+              log('${option.labelText} selected');
             },
           ),
           Icon(Icons.euro_symbol),

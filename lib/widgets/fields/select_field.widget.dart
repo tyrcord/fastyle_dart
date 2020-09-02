@@ -92,7 +92,7 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
 
   Widget _buildControl(BuildContext context) {
     final text = _selection != null
-        ? FastBody(text: _selection.label)
+        ? FastBody(text: _selection.labelText)
         : widget.placeholderText != null
             ? FastPlaceholder(text: widget.placeholderText)
             : FastBody(text: kFastNoneString);

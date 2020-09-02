@@ -38,11 +38,11 @@ class FieldsPage extends StatelessWidget {
             labelText: 'Position',
             options: [
               FastItem(
-                label: 'Long',
+                labelText: 'Long',
                 value: 'long',
               ),
               FastItem(
-                label: 'Short',
+                labelText: 'Short',
                 value: 'short',
               ),
             ],

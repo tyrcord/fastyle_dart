@@ -139,11 +139,12 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
 
   void _buildFuzzyMetadataIfNeeded() {
     if (widget.shouldUseFuzzySearch) {
-      _itemLabels = widget.items.map((e) => normalizeText(e.label)).toList();
+      _itemLabels =
+          widget.items.map((e) => normalizeText(e.labelText)).toList();
       _itemMap = Map<String, T>();
 
       widget.items.forEach((T item) {
-        return _itemMap.putIfAbsent(_buildItemKey(item.label), () => item);
+        return _itemMap.putIfAbsent(_buildItemKey(item.labelText), () => item);
       });
     }
   }
@@ -174,7 +175,7 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
         return widget.onSearchFilter(option, queryText);
       }
 
-      return normalizeText(option.label).contains(queryText);
+      return normalizeText(option.labelText).contains(queryText);
     }).toList();
   }
 

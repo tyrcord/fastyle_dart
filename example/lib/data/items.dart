@@ -1,8 +1,8 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 
-const fruitsCategory = FastCategory(label: 'Fruits', value: 'fruits');
+const fruitsCategory = FastCategory(labelText: 'Fruits', value: 'fruits');
 const vegetablesCategory = FastCategory(
-  label: 'Vegetables',
+  labelText: 'Vegetables',
   value: 'vegetables',
 );
 
@@ -10,102 +10,102 @@ const demoCategories = [fruitsCategory, vegetablesCategory];
 
 final List<FastItem<String>> demoItems = [
   FastItem(
-    label: 'Apples',
+    labelText: 'Apples',
     value: 'apples',
     categories: [fruitsCategory],
   ),
   FastItem(
-    label: 'Bananas',
+    labelText: 'Bananas',
     value: 'bananas',
     categories: [fruitsCategory],
   ),
   FastItem(
-    label: 'Grappes',
+    labelText: 'Grappes',
     value: 'grappes',
     categories: [fruitsCategory],
   ),
   FastItem(
-    label: 'Tomatoes',
+    labelText: 'Tomatoes',
     value: 'tomatoes',
     categories: [fruitsCategory, vegetablesCategory],
   ),
   FastItem(
-    label: 'Broccoli',
+    labelText: 'Broccoli',
     value: 'broccoli',
     categories: [vegetablesCategory],
   ),
   FastItem(
-    label: 'Lettuce',
+    labelText: 'Lettuce',
     value: 'lettuce',
     categories: [vegetablesCategory],
   ),
   FastItem(
-    label: 'Potato',
+    labelText: 'Potato',
     value: 'potato',
     categories: [vegetablesCategory],
   ),
   FastItem(
-    label: 'Eggplant',
+    labelText: 'Eggplant',
     value: 'eggplant',
     categories: [vegetablesCategory],
   ),
   FastItem(
-    label: 'Avocado',
+    labelText: 'Avocado',
     value: 'avocado',
     categories: [vegetablesCategory, fruitsCategory],
   ),
   FastItem(
-    label: 'Cabbages',
+    labelText: 'Cabbages',
     value: 'cabbages',
     categories: [vegetablesCategory],
   ),
   FastItem(
-    label: 'Tofu',
+    labelText: 'Tofu',
     value: 'tofu',
     categories: [vegetablesCategory],
   ),
   FastItem(
-    label: 'Cucumber',
+    labelText: 'Cucumber',
     value: 'cucumber',
     categories: [vegetablesCategory],
   ),
   FastItem(
-    label: 'Zucchini',
+    labelText: 'Zucchini',
     value: 'zucchini',
     categories: [vegetablesCategory],
   ),
   FastItem(
-    label: 'Orange',
+    labelText: 'Orange',
     value: 'Orange',
     categories: [fruitsCategory],
   ),
   FastItem(
-    label: 'Cauliflower',
+    labelText: 'Cauliflower',
     value: 'cauliflower',
     categories: [vegetablesCategory],
   ),
   FastItem(
-    label: 'Spinach',
+    labelText: 'Spinach',
     value: 'spinach',
     categories: [vegetablesCategory],
   ),
   FastItem(
-    label: 'Apricots',
+    labelText: 'Apricots',
     value: 'apricots',
     categories: [fruitsCategory],
   ),
   FastItem(
-    label: 'Raspberries',
+    labelText: 'Raspberries',
     value: 'raspberries',
     categories: [fruitsCategory],
   ),
   FastItem(
-    label: 'Kiwifruit',
+    labelText: 'Kiwifruit',
     value: 'kiwifruit',
     categories: [fruitsCategory],
   ),
   FastItem(
-    label: 'Pêche',
+    labelText: 'Pêche',
     value: 'peche',
     categories: [fruitsCategory],
   ),

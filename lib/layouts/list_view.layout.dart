@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 
 const kFastListTileCategoryAll = FastCategory(
-  label: kFastAllString,
+  labelText: kFastAllString,
   value: kFastAllString,
 );
 
@@ -48,7 +48,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     );
 
     listCategories.forEach((FastListItemCategory<T> listCategory) {
-      tabs.add(Tab(text: toBeginningOfSentenceCase(listCategory.label)));
+      tabs.add(Tab(text: toBeginningOfSentenceCase(listCategory.labelText)));
       views.add(_buildListView(context, listCategory.items));
     });
 
@@ -58,10 +58,12 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   Widget _buildListView(BuildContext context, List<T> items) {
     if (shouldSortItems) {
       items = items.map((T item) {
-        return item.copyWith(normalizedLabel: normalizeText(item.label)) as T;
+        return item.copyWith(normalizedLabelText: normalizeText(item.labelText))
+            as T;
       }).toList();
 
-      items.sort((a, b) => a.normalizedLabel.compareTo(b.normalizedLabel));
+      items.sort(
+          (a, b) => a.normalizedLabelText.compareTo(b.normalizedLabelText));
     }
 
     final lastIndex = items.length - 1;
@@ -128,7 +130,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
 
   FastListItemCategory<T> _buildListCategory(FastCategory category) {
     return FastListItemCategory(
-      label: category.label,
+      labelText: category.labelText,
       value: category.value,
       items: <T>[],
     );

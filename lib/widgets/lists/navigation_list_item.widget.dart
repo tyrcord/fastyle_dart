@@ -31,8 +31,8 @@ class FastNavigationListItem<T extends FastItem> extends StatelessWidget {
   Widget build(BuildContext context) {
     return FastListItemLayout(
       contentPadding: contentPadding,
-      titleText: titleText ?? item?.label,
-      descriptionText: descriptionText ?? item?.description,
+      titleText: titleText ?? item?.labelText,
+      descriptionText: descriptionText ?? item?.descriptionText,
       onTap: onTap,
       leading: item?.descriptor?.leading ?? leading,
       trailing: item?.descriptor?.trailing ?? trailing,

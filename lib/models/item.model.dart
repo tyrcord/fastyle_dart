@@ -1,53 +1,55 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fastyle_dart/fastyle_dart.dart';
+
 class FastItem<T> {
-  final String label;
-  final String normalizedLabel;
-  final T value;
-  final String description;
-  final List<FastCategory> categories;
-  final bool isEnabled;
   final FastListItemDescriptor descriptor;
+  final List<FastCategory> categories;
+  final String normalizedLabelText;
+  final String descriptionText;
+  final String labelText;
+  final bool isEnabled;
+  final T value;
 
   const FastItem({
-    @required this.label,
-    this.value,
-    this.description,
-    this.categories,
+    @required this.labelText,
+    this.normalizedLabelText,
     this.isEnabled = true,
+    this.descriptionText,
+    this.categories,
     this.descriptor,
-    this.normalizedLabel,
+    this.value,
   });
 
   FastItem<T> copyWith({
-    String label,
+    FastListItemDescriptor descriptor,
+    List<FastCategory> categories,
+    String normalizedLabelText,
+    String descriptionText,
+    String labelText,
+    bool isEnabled,
     T value,
-    String description,
-    bool enabled,
-    bool selected,
-    String normalizedLabel,
   }) {
     return FastItem(
-      label: label ?? this.label,
-      value: value ?? this.value,
-      description: description ?? this.description,
+      normalizedLabelText: normalizedLabelText ?? this.normalizedLabelText,
+      descriptionText: descriptionText ?? this.descriptionText,
       categories: categories ?? this.categories,
-      isEnabled: enabled ?? this.isEnabled,
       descriptor: descriptor ?? this.descriptor,
-      normalizedLabel: normalizedLabel ?? this.normalizedLabel,
+      isEnabled: isEnabled ?? this.isEnabled,
+      labelText: labelText ?? this.labelText,
+      value: value ?? this.value,
     );
   }
 
   FastItem<T> clone() {
     return FastItem(
-      label: label,
-      value: value,
-      description: description,
+      descriptor: descriptor != null ? descriptor.clone() : null,
+      normalizedLabelText: normalizedLabelText,
+      descriptionText: descriptionText,
       categories: categories,
       isEnabled: isEnabled,
-      descriptor: descriptor != null ? descriptor.clone() : null,
-      normalizedLabel: normalizedLabel,
+      labelText: labelText,
+      value: value,
     );
   }
 }

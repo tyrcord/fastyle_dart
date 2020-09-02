@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
 
 class FastCategory {
-  final String label;
+  final String labelText;
   final String value;
 
   const FastCategory({
-    @required this.label,
+    @required this.labelText,
     @required this.value,
   });
 
-  FastCategory copyWith({
-    String label,
-    String value,
-  }) {
+  FastCategory copyWith({String label, String value}) {
     return FastCategory(
-      label: label ?? this.label,
+      labelText: label ?? this.labelText,
       value: value ?? this.value,
     );
   }
 
   FastCategory clone() {
     return FastCategory(
-      label: label,
+      labelText: labelText,
       value: value,
     );
   }

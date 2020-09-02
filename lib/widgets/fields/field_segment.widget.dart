@@ -75,7 +75,7 @@ class _FastSegmentFieldState<T> extends State<FastSegmentField<T>> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0),
           child: FastBody(
-            text: item.label,
+            text: item.labelText,
             textColor: _selectedIndex == index
                 ? ThemeHelper.colors.getWhiteColor(context)
                 : primaryColor,

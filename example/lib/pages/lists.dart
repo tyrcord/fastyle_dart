@@ -7,26 +7,26 @@ class ListsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final options = [
-      FastItem(label: 'Option 1', value: 1),
-      FastItem(label: 'Option 2', value: 2),
-      FastItem(label: 'Option 3', value: 3),
+      FastItem(labelText: 'Option 1', value: 1),
+      FastItem(labelText: 'Option 2', value: 2),
+      FastItem(labelText: 'Option 3', value: 3),
     ];
 
     final optionWithDescriptions = [
       FastItem(
-        label: 'Option 1',
+        labelText: 'Option 1',
         value: 1,
-        description: 'Description 1',
+        descriptionText: 'Description 1',
       ),
       FastItem(
-        label: 'Option 2',
+        labelText: 'Option 2',
         value: 2,
-        description: 'Description 2',
+        descriptionText: 'Description 2',
       ),
       FastItem(
-        label: 'Option 3',
+        labelText: 'Option 3',
         value: 3,
-        description: 'Description 3',
+        descriptionText: 'Description 3',
       ),
     ];
 
@@ -43,7 +43,7 @@ class ListsPage extends StatelessWidget {
             isViewScrollable: false,
             items: options,
             onSelectionChanged: (FastItem option) {
-              log('${option.label} selected');
+              log('${option.labelText} selected');
             },
           ),
           FastListHeader(
@@ -55,7 +55,7 @@ class ListsPage extends StatelessWidget {
             items: options,
             selection: options.first,
             onSelectionChanged: (FastItem option) {
-              log('${option.label} selected');
+              log('${option.labelText} selected');
             },
           ),
           FastListHeader(
@@ -66,7 +66,7 @@ class ListsPage extends StatelessWidget {
             items: optionWithDescriptions,
             selection: optionWithDescriptions[2],
             onSelectionChanged: (FastItem option) {
-              log('${option.label} selected');
+              log('${option.labelText} selected');
             },
           ),
           FastListHeader(
@@ -78,7 +78,7 @@ class ListsPage extends StatelessWidget {
             items: optionWithDescriptions,
             selection: optionWithDescriptions[2],
             onSelectionChanged: (FastItem option) {
-              log('${option.label} selected');
+              log('${option.labelText} selected');
             },
           ),
         ],
