@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fuzzy/fuzzy.dart';
 
+// Strings
+
 const kFastEmptyString = '';
 const kFastNoneString = 'none';
 const kFastAllString = 'all';
@@ -16,6 +18,8 @@ const kFastEdgeInsets6 = EdgeInsets.all(6.0);
 // Sizes
 
 const kFastIconSize = 20.0;
+
+// Options
 
 final kFastFuzzyOptions = FuzzyOptions(
   isCaseSensitive: false,

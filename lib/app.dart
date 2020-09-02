@@ -1,27 +1,28 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:tbloc_dart/tbloc_dart.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:tbloc_dart/tbloc_dart.dart';
+
 class FastApp extends StatefulWidget {
-  final String titleText;
-  final Widget home;
-  final ThemeData lightTheme;
-  final ThemeData darkTheme;
   final Iterable<LocalizationsDelegate> localizationsDelegates;
   final Iterable<Locale> supportedLocales;
-  final Locale locale;
   final FastThemeBloc themeBloc;
+  final ThemeData lightTheme;
+  final ThemeData darkTheme;
+  final String titleText;
+  final Locale locale;
+  final Widget home;
 
   FastApp({
     Key key,
     @required this.home,
-    this.titleText,
+    this.supportedLocales = const <Locale>[Locale('en', 'US')],
+    this.localizationsDelegates,
     this.lightTheme,
     this.darkTheme,
-    this.localizationsDelegates,
-    this.supportedLocales = const <Locale>[Locale('en', 'US')],
-    this.locale,
     this.themeBloc,
+    this.titleText,
+    this.locale,
   }) : super(key: key);
 
   @override
