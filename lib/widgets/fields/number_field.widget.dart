@@ -36,7 +36,6 @@ class FastNumberField extends StatelessWidget {
   }
 
   Widget _buildControl(BuildContext context) {
-    final theme = Theme.of(context);
     final bodyTextStyle = ThemeHelper.texts.getBodyTextStyle(context);
 
     return TextFormField(
@@ -44,7 +43,7 @@ class FastNumberField extends StatelessWidget {
       textAlign: textAlign ?? TextAlign.start,
       textInputAction: TextInputAction.done,
       autocorrect: false,
-      cursorColor: theme.primaryColor,
+      cursorColor: ThemeHelper.colors.getPrimaryColor(context),
       keyboardType: TextInputType.numberWithOptions(
         decimal: shouldAcceptDecimalValue,
       ),

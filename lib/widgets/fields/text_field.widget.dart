@@ -34,14 +34,12 @@ class FastTextField extends StatelessWidget {
   }
 
   Widget _buildControl(BuildContext context) {
-    final theme = Theme.of(context);
-
     return TextFormField(
       readOnly: isReadOnly,
       textAlign: textAlign ?? TextAlign.start,
       textInputAction: TextInputAction.done,
       autocorrect: false,
-      cursorColor: theme.primaryColor,
+      cursorColor: ThemeHelper.colors.getPrimaryColor(context),
       keyboardType: TextInputType.text,
       style: ThemeHelper.texts.getBodyTextStyle(context),
       decoration: InputDecoration(hintText: placeholderText),

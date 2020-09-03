@@ -45,12 +45,7 @@ class FastAlertDialog extends FastDialog {
   }
 
   List<Widget> _buildDefaultContent() {
-    return [
-      FastBody(
-        text: messageText,
-        textColor: messageColor,
-      ),
-    ];
+    return [FastBody(text: messageText, textColor: messageColor)];
   }
 
   List<Widget> _buildDefaultActions(BuildContext context) {

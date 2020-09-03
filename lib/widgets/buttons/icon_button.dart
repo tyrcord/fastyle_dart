@@ -1,6 +1,6 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastIconButton extends StatelessWidget {
   final VoidCallback onTap;
@@ -26,13 +26,10 @@ class FastIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
-    Color _color = iconColor ??
+    final _color = iconColor ??
         (emphasis == FastButtonEmphasis.high
-            ? theme.primaryColor
+            ? ThemeHelper.colors.getPrimaryColor(context)
             : ThemeHelper.texts.getButtonTextStyle(context).color);
-
-    Color disabledColor = _color.withAlpha(155);
 
     return FastButtonLayout(
       child: IconButton(
@@ -41,7 +38,7 @@ class FastIconButton extends StatelessWidget {
         highlightColor: highlightColor,
         icon: icon,
         iconSize: iconSize ?? kFastIconSize,
-        disabledColor: disabledColor,
+        disabledColor: _color.withAlpha(kDisabledAlpha),
         color: _color,
       ),
     );

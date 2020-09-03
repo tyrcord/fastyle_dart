@@ -22,17 +22,10 @@ class FastDialog extends AlertDialog {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: FastTitle(
-        text: titleText,
-        textColor: titleColor,
-      ),
+      title: FastTitle(text: titleText, textColor: titleColor),
       titlePadding: kFastEdgeInsets16,
       contentPadding: _kPaddingContent,
-      content: SingleChildScrollView(
-        child: ListBody(
-          children: widgets,
-        ),
-      ),
+      content: SingleChildScrollView(child: ListBody(children: widgets)),
       actions: actions,
       backgroundColor: backgroundColor,
     );

@@ -1,26 +1,27 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 const _kBlurRadius = 4.0;
 
 class FastCard extends StatelessWidget {
-  final Widget child;
-  final EdgeInsets padding;
-  final String titleText;
   final List<Widget> headerActions;
   final List<Widget> footerActions;
-  final Color shadowColor;
   final Color backgroundColor;
+  final EdgeInsets padding;
+  final Color shadowColor;
+  final String titleText;
+  final Widget child;
 
   FastCard({
     Key key,
     @required this.titleText,
-    this.child,
-    this.padding,
+    this.backgroundColor,
     this.headerActions,
     this.footerActions,
     this.shadowColor,
-    this.backgroundColor,
+    this.padding,
+    this.child,
   }) : super(key: key);
 
   @override
@@ -71,17 +72,11 @@ class FastCard extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: hasHeaderActions
-                ? EdgeInsets.only(right: 8.0)
+                ? const EdgeInsets.only(right: 8.0)
                 : EdgeInsets.zero,
-            child: FastTitle(
-              text: titleText,
-              overflow: TextOverflow.ellipsis,
-            ),
+            child: FastTitle(text: titleText, overflow: TextOverflow.ellipsis),
           ),
-          if (headerActions != null)
-            Row(
-              children: <Widget>[...headerActions],
-            ),
+          if (headerActions != null) Row(children: <Widget>[...headerActions]),
         ],
       ),
     );

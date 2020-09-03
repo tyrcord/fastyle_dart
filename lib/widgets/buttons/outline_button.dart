@@ -1,31 +1,31 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastOutlineButton extends StatelessWidget {
-  final VoidCallback onTap;
-  final String text;
-  final bool isEnabled;
-  final Color textColor;
-  final Color borderColor;
-  final Color highlightColor;
   final Color highlightedBorderColor;
-  final EdgeInsetsGeometry padding;
   final FastButtonEmphasis emphasis;
+  final EdgeInsetsGeometry padding;
+  final Color highlightColor;
+  final VoidCallback onTap;
+  final Color borderColor;
+  final Color textColor;
+  final bool isEnabled;
   final Widget child;
+  final String text;
 
   const FastOutlineButton({
     Key key,
     @required this.onTap,
-    this.text,
-    this.isEnabled = true,
-    this.borderColor,
-    this.highlightColor,
-    this.padding,
     this.emphasis = FastButtonEmphasis.low,
     this.highlightedBorderColor,
-    this.child,
+    this.isEnabled = true,
+    this.highlightColor,
+    this.borderColor,
     this.textColor,
+    this.padding,
+    this.child,
+    this.text,
   }) : super(key: key);
 
   @override
@@ -34,7 +34,7 @@ class FastOutlineButton extends StatelessWidget {
         ? ThemeHelper.colors.getPrimaryColor(context)
         : ThemeHelper.texts.getButtonTextStyle(context).color;
 
-    final disabledColor = _color.withAlpha(155);
+    final disabledColor = _color.withAlpha(kDisabledAlpha);
 
     return FastButtonLayout(
       child: OutlineButton(

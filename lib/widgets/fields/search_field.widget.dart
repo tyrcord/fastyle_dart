@@ -32,15 +32,13 @@ class FastSearchField extends StatelessWidget {
   }
 
   Widget _buildControl(BuildContext context) {
-    final theme = Theme.of(context);
-
     return TextFormField(
       controller: textEditingController,
       readOnly: isReadOnly,
       textAlign: textAlign ?? TextAlign.start,
       textInputAction: TextInputAction.search,
       autocorrect: false,
-      cursorColor: theme.primaryColor,
+      cursorColor: ThemeHelper.colors.getPrimaryColor(context),
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
         hintText: placeholderText ?? _kSearchPlaceholderText,

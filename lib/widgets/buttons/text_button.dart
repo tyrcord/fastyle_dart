@@ -1,45 +1,45 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastTextButton extends StatelessWidget {
-  final VoidCallback onTap;
-  final String text;
-  final bool isEnabled;
-  final Color textColor;
-  final Color highlightColor;
-  final EdgeInsetsGeometry padding;
   final FastButtonEmphasis emphasis;
+  final EdgeInsetsGeometry padding;
+  final Color highlightColor;
+  final VoidCallback onTap;
+  final Color textColor;
+  final bool isEnabled;
+  final Widget child;
+  final String text;
 
   const FastTextButton({
     Key key,
     @required this.onTap,
-    this.text,
-    this.isEnabled = true,
-    this.textColor,
-    this.highlightColor,
-    this.padding,
     this.emphasis = FastButtonEmphasis.low,
+    this.isEnabled = true,
+    this.highlightColor,
+    this.textColor,
+    this.padding,
+    this.child,
+    this.text,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
-    Color _color = textColor ?? emphasis == FastButtonEmphasis.high
-        ? theme.primaryColor
+    final _color = textColor ?? emphasis == FastButtonEmphasis.high
+        ? ThemeHelper.colors.getPrimaryColor(context)
         : ThemeHelper.texts.getButtonTextStyle(context).color;
-
-    Color disabledColor = _color.withAlpha(155);
 
     return FastButtonLayout(
       child: FlatButton(
         padding: padding,
         onPressed: isEnabled ? onTap : null,
         highlightColor: highlightColor,
-        child: FastButtonLabel(
-          text: text,
-          textColor: isEnabled ? _color : disabledColor,
-        ),
+        child: child ??
+            FastButtonLabel(
+              text: text,
+              textColor: isEnabled ? _color : _color.withAlpha(155),
+            ),
       ),
     );
   }

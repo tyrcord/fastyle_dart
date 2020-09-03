@@ -31,3 +31,7 @@ final kFastFuzzyOptions = FuzzyOptions(
   findAllMatches: false,
   minMatchCharLength: 2,
 );
+
+// Numbers
+
+const kDisabledAlpha = 155;

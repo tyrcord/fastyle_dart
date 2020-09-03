@@ -44,7 +44,7 @@ class _FastSegmentFieldState<T> extends State<FastSegmentField<T>> {
   }
 
   Widget _buildControl(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
+    final primaryColor = ThemeHelper.colors.getPrimaryColor(context);
 
     return Container(
       padding: EdgeInsets.only(top: 9),
@@ -67,8 +67,6 @@ class _FastSegmentFieldState<T> extends State<FastSegmentField<T>> {
   }
 
   Map<int, Padding> _buildSegements(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
-
     return _options.map((int index, FastItem<T> item) {
       return MapEntry(
         index,
@@ -78,7 +76,7 @@ class _FastSegmentFieldState<T> extends State<FastSegmentField<T>> {
             text: item.labelText,
             textColor: _selectedIndex == index
                 ? ThemeHelper.colors.getWhiteColor(context)
-                : primaryColor,
+                : ThemeHelper.colors.getPrimaryColor(context),
           ),
         ),
       );

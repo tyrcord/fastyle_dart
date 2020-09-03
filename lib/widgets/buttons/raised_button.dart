@@ -1,33 +1,33 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastRaisedButton extends StatelessWidget {
-  final VoidCallback onTap;
-  final String text;
-  final bool isEnabled;
-  final Color backgroundColor;
-  final Color textColor;
-  final Color highlightColor;
   final EdgeInsetsGeometry padding;
+  final Color backgroundColor;
+  final Color highlightColor;
+  final VoidCallback onTap;
+  final Color textColor;
+  final bool isEnabled;
   final Widget child;
+  final String text;
 
   const FastRaisedButton({
     Key key,
     @required this.onTap,
-    this.text,
     this.isEnabled = true,
     this.backgroundColor,
-    this.textColor,
     this.highlightColor,
+    this.textColor,
     this.padding,
     this.child,
+    this.text,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final _backgroundColor = backgroundColor ?? theme.primaryColor;
+    final _backgroundColor =
+        backgroundColor ?? ThemeHelper.colors.getPrimaryColor(context);
     final _textColor = textColor ??
         ThemeHelper.colors.getColorWithBestConstrast(
           context: context,
@@ -46,7 +46,8 @@ class FastRaisedButton extends StatelessWidget {
         child: child ??
             FastButtonLabel(
               text: text,
-              textColor: isEnabled ? _textColor : _textColor.withAlpha(155),
+              textColor:
+                  isEnabled ? _textColor : _textColor.withAlpha(kDisabledAlpha),
             ),
       ),
     );

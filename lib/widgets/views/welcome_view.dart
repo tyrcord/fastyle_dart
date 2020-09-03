@@ -1,9 +1,8 @@
-import 'dart:developer';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 const _kStepDotSize = 10.0;
 const _kDoneText = 'done';
@@ -61,9 +60,7 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
     _controller = widget.controller ?? FastWelcomeViewController(false);
     _slidesLength = widget.slides?.length ?? 0;
     _pageViewController.addListener(() {
-      setState(() {
-        _pageCursor = _pageViewController.page.round();
-      });
+      setState(() => _pageCursor = _pageViewController.page.round());
     });
     super.initState();
   }
