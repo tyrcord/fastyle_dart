@@ -17,6 +17,7 @@ dependencies:
   flutter_spinkit: ^4.1.2+1
   fuzzy: ^0.2.3
   recase: ^3.0.0
+  rxdart: ^0.24.1
 
 dev_dependencies:
   flutter_test:
