@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## [0.9.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.9.0) (2020-09-03)
+
+### Features
+
+- Implemented ListNavigationListView
+- [SearchBar] Implemented fuzzy search.
+- Implemented Welcome view.
+- Implemented Welcome Page.
+- Implemented Welcome view controller.
+
+### Enhancements
+
+- Improved margins/paddings consistency.
+- Added missing color helper methods.
+- Minor improvements.
+
+### Fixes
+
+- Fixed wrong status bar color.
+- [RaiseButton] Make sure it uses the primary color as default color.
+- [NavigationListView] Avoid to clear the suggestions when the selection change.
+
 ## [0.8.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.8.0) (2020-06-25)
 
 ### Features
