@@ -3,12 +3,12 @@ import 'package:tbloc_dart/tbloc_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-const _kContentPadding = kFastEdgeInsets16;
 const _kHeaderPadding = EdgeInsets.symmetric(horizontal: 16.0);
-const _kMargin = EdgeInsets.symmetric(vertical: 16.0);
-const _kElevation = 0.0;
 const _kAppBarHeightSize = Size.fromHeight(kToolbarHeight);
+const _kMargin = EdgeInsets.symmetric(vertical: 16.0);
+const _kContentPadding = kFastEdgeInsets16;
 const _kBottomPaddingMin = 16.0;
+const _kElevation = 0.0;
 
 class FastSectionPage extends StatelessWidget {
   final String titleText;
@@ -21,7 +21,7 @@ class FastSectionPage extends StatelessWidget {
   final bool isViewScrollable;
   final Widget floatingActionButton;
   final Color appBarbackgroundColor;
-  final isTitlePositionBelowAppBar;
+  final bool isTitlePositionBelowAppBar;
   final Size appBarHeightSize;
   final Widget closeButton;
   final Widget backButton;
@@ -69,27 +69,7 @@ class FastSectionPage extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: appBarHeightSize ?? _kAppBarHeightSize,
-        child: AppBar(
-          automaticallyImplyLeading: false,
-          brightness: brightness,
-          leading: leading ?? _buildLeadingIcon(context),
-          iconTheme: IconThemeData(
-            color: themeBloc.currentState.brightness == Brightness.light
-                ? ThemeHelper.texts.getBodyTextStyle(context).color
-                : ThemeHelper.colors.getWhiteColor(context),
-          ),
-          backgroundColor: appBarbackgroundColor ?? Colors.transparent,
-          elevation: _kElevation,
-          actions: actions,
-          title: !isTitlePositionBelowAppBar
-              ? FastTitle(
-                  text: titleText,
-                  textColor: titleColor,
-                  fontSize: 28.0,
-                )
-              : null,
-          centerTitle: false,
-        ),
+        child: _buildAppBar(context),
       ),
       body: SafeArea(
         top: false,
@@ -102,6 +82,40 @@ class FastSectionPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: floatingActionButton,
+    );
+  }
+
+  Widget _buildAppBar(BuildContext context) {
+    final themeBloc = BlocProvider.of<FastThemeBloc>(context);
+    Brightness brightness = themeBloc.currentState.brightness;
+    brightness = brightness == Brightness.dark
+        ? Brightness.dark
+        : (appBarbackgroundColor != null &&
+                    appBarbackgroundColor.computeLuminance() > 0.5) ||
+                appBarbackgroundColor == null
+            ? Brightness.light
+            : Brightness.dark;
+
+    return AppBar(
+      automaticallyImplyLeading: false,
+      brightness: brightness,
+      leading: leading ?? _buildLeadingIcon(context),
+      iconTheme: IconThemeData(
+        color: themeBloc.currentState.brightness == Brightness.light
+            ? ThemeHelper.texts.getBodyTextStyle(context).color
+            : ThemeHelper.colors.getWhiteColor(context),
+      ),
+      backgroundColor: appBarbackgroundColor ?? Colors.transparent,
+      elevation: _kElevation,
+      actions: actions,
+      title: !isTitlePositionBelowAppBar
+          ? FastTitle(
+              text: titleText,
+              textColor: titleColor,
+              fontSize: 28.0,
+            )
+          : null,
+      centerTitle: false,
     );
   }
 
@@ -160,9 +174,7 @@ class FastSectionPage extends StatelessWidget {
   CustomScrollView _builScrollableContent(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(
-          child: _buildFixedContent(context),
-        ),
+        SliverToBoxAdapter(child: _buildFixedContent(context)),
         if (footer != null || footerBuilder != null)
           SliverFillRemaining(
             hasScrollBody: false,

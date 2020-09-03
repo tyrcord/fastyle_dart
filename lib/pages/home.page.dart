@@ -1,6 +1,7 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 const _kExpandedHeight = 160.0;
 const _kHeaderPadding = 16.0;
@@ -27,7 +28,8 @@ class FastHomePage extends StatefulWidget {
     this.expandedHeight,
     this.contentPadding,
   })  : assert(
-            expandedHeight != null ? expandedHeight >= _kExpandedHeight : true),
+          expandedHeight != null ? expandedHeight >= _kExpandedHeight : true,
+        ),
         super(key: key);
 
   @override
@@ -56,38 +58,6 @@ class _FastHomePageState extends State<FastHomePage> {
   void dispose() {
     _scrollController.dispose();
     super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        controller: _scrollController,
-        slivers: <Widget>[
-          // TODO: Make FastSliverAppBar
-          SliverAppBar(
-            backgroundColor: Colors.transparent,
-            expandedHeight: _expandedHeight,
-            stretch: true,
-            pinned: true,
-            leading: Container(
-              child: widget.leading,
-              key: _leadingKey,
-            ),
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: ThemeHelper.gradients.primaryLinearGradient(context),
-              ),
-              child: _buildFlexibleSpaceBar(context),
-            ),
-            actions: widget.actions,
-          ),
-          _buildContent(),
-        ],
-      ),
-      floatingActionButton: widget.floatingActionButton,
-    );
   }
 
   void _onAfterLayout(Duration duration) {
@@ -133,6 +103,41 @@ class _FastHomePageState extends State<FastHomePage> {
     }
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: CustomScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        controller: _scrollController,
+        slivers: <Widget>[
+          _buildAppBar(context),
+          _buildContent(),
+        ],
+      ),
+      floatingActionButton: widget.floatingActionButton,
+    );
+  }
+
+  Widget _buildAppBar(BuildContext context) {
+    return SliverAppBar(
+      backgroundColor: Colors.transparent,
+      expandedHeight: _expandedHeight,
+      stretch: true,
+      pinned: true,
+      leading: Container(
+        child: widget.leading,
+        key: _leadingKey,
+      ),
+      flexibleSpace: Container(
+        decoration: BoxDecoration(
+          gradient: ThemeHelper.gradients.primaryLinearGradient(context),
+        ),
+        child: _buildFlexibleSpaceBar(context),
+      ),
+      actions: widget.actions,
+    );
+  }
+
   Widget _buildFlexibleSpaceBar(BuildContext context) {
     final _textColor = ThemeHelper.colors.getColorWithBestConstrast(
       context: context,
@@ -151,21 +156,24 @@ class _FastHomePageState extends State<FastHomePage> {
           textColor: _textColor,
         ),
         background: widget.subtitleText != null
-            ? Container(
-                alignment: Alignment.bottomLeft,
-                margin: const EdgeInsets.only(bottom: _kHeaderPadding),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: _kHeaderPadding),
-                child: Opacity(
-                  opacity: _subtitleOpacity,
-                  child: FastBody(
-                    key: _subtitleKey,
-                    text: widget.subtitleText,
-                    textColor: _textColor,
-                  ),
-                ),
-              )
+            ? _buildFlexibleSpaceBarBackground(_textColor)
             : null,
+      ),
+    );
+  }
+
+  Widget _buildFlexibleSpaceBarBackground(Color textColor) {
+    return Container(
+      alignment: Alignment.bottomLeft,
+      margin: const EdgeInsets.only(bottom: _kHeaderPadding),
+      padding: const EdgeInsets.symmetric(horizontal: _kHeaderPadding),
+      child: Opacity(
+        opacity: _subtitleOpacity,
+        child: FastBody(
+          key: _subtitleKey,
+          text: widget.subtitleText,
+          textColor: textColor,
+        ),
       ),
     );
   }
@@ -175,9 +183,7 @@ class _FastHomePageState extends State<FastHomePage> {
       top: false,
       sliver: SliverPadding(
         padding: widget.contentPadding ?? _kContentPadding,
-        sliver: SliverList(
-          delegate: SliverChildListDelegate(widget.children),
-        ),
+        sliver: SliverList(delegate: SliverChildListDelegate(widget.children)),
       ),
     );
   }

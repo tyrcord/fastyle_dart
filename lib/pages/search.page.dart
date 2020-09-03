@@ -1,33 +1,34 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:tbloc_dart/tbloc_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:tbloc_dart/tbloc_dart.dart';
+
 class FastSearchPage<T extends FastItem> extends StatefulWidget {
+  final bool Function(T option, String query) onSearch;
   final List<FastCategory> categories;
   final bool shouldGroupByCategory;
-  final List<T> items;
-  final T selection;
+  final bool shouldUseFuzzySearch;
   final String placeholderText;
-  final Icon closeIcon;
-  final Icon backIcon;
   final Icon clearSearchIcon;
   final bool shouldSortItems;
-  final bool Function(T option, String query) onSearch;
-  final bool shouldUseFuzzySearch;
+  final Icon closeIcon;
+  final List<T> items;
+  final Icon backIcon;
+  final T selection;
 
   FastSearchPage({
     @required this.items,
-    this.categories,
     this.shouldGroupByCategory = false,
-    this.selection,
+    this.shouldUseFuzzySearch = false,
+    this.shouldSortItems = true,
+    this.clearSearchIcon,
     this.placeholderText,
+    this.categories,
+    this.selection,
     this.closeIcon,
     this.backIcon,
-    this.clearSearchIcon,
-    this.shouldSortItems = true,
     this.onSearch,
-    this.shouldUseFuzzySearch = false,
   }) : super();
 
   @override
@@ -73,9 +74,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
                         _searchQuery = query;
                       });
                     },
-                    onLeadingButtonTap: () {
-                      _close(context, widget.selection);
-                    },
+                    onLeadingButtonTap: () => _close(context, widget.selection),
                   ),
                   _buildContent(context),
                 ],

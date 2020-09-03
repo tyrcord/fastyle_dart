@@ -1,11 +1,11 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-class FastIntroPage extends StatelessWidget {
+class FastWelcomePage extends StatelessWidget {
   final String titleText;
   final List<Widget> children;
 
-  const FastIntroPage({
+  const FastWelcomePage({
     Key key,
     @required this.titleText,
     this.children,
