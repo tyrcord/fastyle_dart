@@ -57,7 +57,7 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
 
   @override
   void initState() {
-    _controller = widget.controller ?? FastWelcomeViewController(false);
+    _controller = widget.controller ?? FastWelcomeViewController();
     _slidesLength = widget.slides?.length ?? 0;
     _pageViewController.addListener(() {
       setState(() => _pageCursor = _pageViewController.page.round());
