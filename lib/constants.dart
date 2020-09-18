@@ -18,6 +18,11 @@ const kFastEdgeInsets6 = EdgeInsets.all(6.0);
 // Sizes
 
 const kFastIconSize = 20.0;
+const kFastSizedBox8 = SizedBox(height: 8.0);
+const kFastSizedBox16 = SizedBox(height: 16.0);
+const kFastSizedBox24 = SizedBox(height: 24.0);
+const kFastSizedBox32 = SizedBox(height: 32.0);
+const kFastSizedBox64 = SizedBox(height: 64.0);
 
 // Options
 

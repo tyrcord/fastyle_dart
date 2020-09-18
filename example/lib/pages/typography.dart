@@ -11,61 +11,61 @@ class TypographyPage extends StatelessWidget {
           FastDisplay(
             text: "Display",
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastDisplay(
             text: "\$28,000",
             useFontForNumber: true,
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastHeadline(
             text: "Headline",
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastPlaceHolderHeadline(
             text: "Placeholder Headline",
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastSubhead(
             text: "Subhead",
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastTitle(
             text: "Title",
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastPlaceholderTitle(
             text: "Placeholder Title",
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastSubtitle(
             text: "subtitle",
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastBody(
             text: "Body 1",
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastBody(
             text: "\$28,000",
             useFontForNumber: true,
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastPlaceholder(
             text: "Placeholder",
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastBody2(
             text: "Body 2",
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastButtonLabel(
             text: "Button",
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastCaption(
             text: "Caption",
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastHelper(
             text: "Helper",
           ),

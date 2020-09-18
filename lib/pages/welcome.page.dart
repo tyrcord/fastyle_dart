@@ -19,10 +19,10 @@ class FastWelcomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            const SizedBox(height: 16.0),
+            kFastSizedBox16,
             FastHeadline(text: titleText),
             if (children != null) ...children,
-            const SizedBox(height: 16.0),
+            kFastSizedBox16,
           ],
         ),
       ),

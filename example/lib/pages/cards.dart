@@ -13,12 +13,12 @@ class CardsPage extends StatelessWidget {
           FastCard(
             titleText: 'Empty Card',
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastCard(
             titleText: 'French',
             child: FastBody2(text: 'Bonjour le monde !'),
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastCard(
             titleText: 'English',
             child: FastBody2(text: 'Hello World!'),
@@ -33,7 +33,7 @@ class CardsPage extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastCard(
             titleText: 'Spanish',
             child: Column(
@@ -44,7 +44,7 @@ class CardsPage extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastCard(
             titleText: 'English',
             child: FastBody(text: 'With Shadow ;)'),
@@ -70,7 +70,7 @@ class CardsPage extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 16.0),
+          kFastSizedBox16,
           FastCard(
             titleText: 'English',
             headerActions: <Widget>[
