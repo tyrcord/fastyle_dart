@@ -11,17 +11,21 @@ class FastSearchField extends StatelessWidget {
   final EdgeInsets margin;
   final TextAlign textAlign;
   final FocusNode focusNode;
+  final bool allowAutocorrect;
 
   FastSearchField({
     Key key,
     this.placeholderText,
     this.onValueChanged,
     this.textEditingController,
-    this.isReadOnly = false,
+    bool isReadOnly = false,
     this.margin,
     this.textAlign,
     this.focusNode,
-  }) : super(key: key);
+    bool allowAutocorrect = false,
+  })  : this.isReadOnly = isReadOnly ?? false,
+        this.allowAutocorrect = allowAutocorrect ?? false,
+        super(key: key);
 
   Widget build(BuildContext context) {
     return FastFieldLayout(
@@ -37,7 +41,7 @@ class FastSearchField extends StatelessWidget {
       readOnly: isReadOnly,
       textAlign: textAlign ?? TextAlign.start,
       textInputAction: TextInputAction.search,
-      autocorrect: false,
+      autocorrect: allowAutocorrect,
       cursorColor: ThemeHelper.colors.getPrimaryColor(context),
       keyboardType: TextInputType.text,
       decoration: InputDecoration(

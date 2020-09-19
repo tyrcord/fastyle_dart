@@ -28,10 +28,13 @@ class FastSearchBar<T extends FastItem> extends StatefulWidget {
     this.onSearchFilter,
     this.onSuggestions,
     this.onLeadingButtonTap,
-    this.showLeadingIcon = true,
     this.textEditingController,
-    this.shouldUseFuzzySearch = false,
-  }) : super();
+    bool showLeadingIcon = true,
+    bool shouldUseFuzzySearch = false,
+  })  : assert(items != null),
+        this.showLeadingIcon = showLeadingIcon ?? true,
+        this.shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
+        super();
 
   @override
   _FastSearchBarState createState() => _FastSearchBarState<T>();

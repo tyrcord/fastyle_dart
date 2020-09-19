@@ -22,7 +22,8 @@ class FastCard extends StatelessWidget {
     this.shadowColor,
     this.padding,
     this.child,
-  }) : super(key: key);
+  })  : assert(titleText != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

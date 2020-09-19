@@ -10,6 +10,7 @@ class FastTextField extends StatelessWidget {
   final ValueChanged<String> onValueChanged;
   final TextAlign textAlign;
   final TextEditingController textEditingController;
+  final bool allowAutocorrect;
 
   FastTextField({
     Key key,
@@ -17,11 +18,15 @@ class FastTextField extends StatelessWidget {
     this.captionText,
     this.placeholderText,
     this.helperText,
-    this.isReadOnly = false,
     this.onValueChanged,
     this.textAlign,
     this.textEditingController,
-  }) : super(key: key);
+    bool isReadOnly = false,
+    bool allowAutocorrect = false,
+  })  : assert(labelText != null),
+        this.isReadOnly = isReadOnly ?? false,
+        this.allowAutocorrect = allowAutocorrect ?? false,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +43,7 @@ class FastTextField extends StatelessWidget {
       readOnly: isReadOnly,
       textAlign: textAlign ?? TextAlign.start,
       textInputAction: TextInputAction.done,
-      autocorrect: false,
+      autocorrect: allowAutocorrect,
       cursorColor: ThemeHelper.colors.getPrimaryColor(context),
       keyboardType: TextInputType.text,
       style: ThemeHelper.texts.getBodyTextStyle(context),

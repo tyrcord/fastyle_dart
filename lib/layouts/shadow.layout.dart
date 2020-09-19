@@ -14,12 +14,13 @@ class FastShadowLayout extends StatelessWidget {
 
   FastShadowLayout({
     Key key,
-    @required this.shadowColor,
     @required this.child,
+    this.shadowColor,
     this.backgroundColor,
     this.borderRadius,
     this.blurRadius,
-  }) : super(key: key);
+  })  : assert(child != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

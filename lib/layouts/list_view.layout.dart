@@ -22,11 +22,17 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     @required this.items,
     @required this.listItemBuilder,
     this.categories,
-    this.shouldGroupByCategory = false,
-    this.isViewScrollable = true,
-    this.shouldSortItems = true,
-    this.showItemDivider = false,
-  }) : super(key: key);
+    bool shouldGroupByCategory = false,
+    bool isViewScrollable = true,
+    bool shouldSortItems = true,
+    bool showItemDivider = false,
+  })  : this.shouldGroupByCategory = shouldGroupByCategory ?? false,
+        this.isViewScrollable = isViewScrollable ?? true,
+        this.shouldSortItems = shouldSortItems ?? true,
+        this.showItemDivider = showItemDivider ?? false,
+        assert(items != null),
+        assert(listItemBuilder != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

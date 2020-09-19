@@ -14,12 +14,13 @@ class FastItem<T> {
   const FastItem({
     @required this.labelText,
     this.normalizedLabelText,
-    this.isEnabled = true,
+    bool isEnabled = true,
     this.descriptionText,
     this.categories,
     this.descriptor,
     this.value,
-  });
+  })  : this.isEnabled = isEnabled ?? true,
+        assert(labelText != null);
 
   FastItem<T> copyWith({
     FastListItemDescriptor descriptor,

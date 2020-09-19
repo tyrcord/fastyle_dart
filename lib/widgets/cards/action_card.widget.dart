@@ -21,7 +21,9 @@ class FastActionCard extends StatelessWidget {
     this.footerActions,
     this.shadowColor,
     this.backgroundColor,
-  }) : super(key: key);
+  })  : assert(onTap != null),
+        assert(titleText != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

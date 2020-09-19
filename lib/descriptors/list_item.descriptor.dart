@@ -1,15 +1,17 @@
+import 'package:fastyle_dart/descriptors/descriptor.dart';
 import 'package:flutter/material.dart';
 
-class FastListItemDescriptor {
+class FastListItemDescriptor extends FastDescriptor {
   final bool isDense;
   final Widget leading;
   final Widget trailing;
 
   const FastListItemDescriptor({
-    this.isDense = true,
+    bool isDense = true,
     this.leading,
     this.trailing,
-  });
+  })  : this.isDense = isDense ?? true,
+        super();
 
   FastListItemDescriptor copyWith({
     bool dense,

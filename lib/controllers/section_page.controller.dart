@@ -18,7 +18,8 @@ class FastSectionPageController extends StatefulWidget {
     this.errorBuilder,
     this.loadingFuture,
     this.loadingTimeout,
-  }) : super(key: key);
+  })  : assert(loadedBuilder != null),
+        super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FastSectionPageControllerState();
@@ -101,14 +102,14 @@ class _FastSectionPageControllerState extends State<FastSectionPageController> {
   void _dispatchLoadEvent({hasError = false}) {
     if (!eventController.isClosed) {
       eventController.sink.add(
-        hasError ? SectionPageLoadEvent.Error : SectionPageLoadEvent.Loaded,
+        hasError ? SectionPageLoadEvent.error : SectionPageLoadEvent.loaded,
       );
     }
   }
 
   void _listenToLoadEvents() {
     eventController.listen((SectionPageLoadEvent event) {
-      if (event == SectionPageLoadEvent.Error) {
+      if (event == SectionPageLoadEvent.error) {
         setState(() {
           isLoading = false;
           isLoaded = false;

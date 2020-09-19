@@ -22,8 +22,11 @@ class FastTabs extends StatelessWidget {
     this.labelStyle,
     this.unselectedLabelColor,
     this.unselectedLabelStyle,
-    this.isViewScrollable = true,
-  }) : super(key: key);
+    bool isViewScrollable = true,
+  })  : assert(tabs != null),
+        assert(views != null),
+        this.isViewScrollable = isViewScrollable ?? true,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

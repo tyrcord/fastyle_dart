@@ -38,10 +38,10 @@ class FastSectionPage extends StatelessWidget {
     this.titleText,
     this.actions,
     this.leading,
-    this.isViewScrollable = false,
     this.floatingActionButton,
     this.appBarbackgroundColor,
-    this.isTitlePositionBelowAppBar = true,
+    bool isTitlePositionBelowAppBar = true,
+    bool isViewScrollable = false,
     this.appBarHeightSize,
     this.closeButton,
     this.backButton,
@@ -52,7 +52,9 @@ class FastSectionPage extends StatelessWidget {
     this.footerBuilder,
     this.child,
     this.footer,
-  }) : super(key: key);
+  })  : this.isTitlePositionBelowAppBar = isTitlePositionBelowAppBar ?? true,
+        this.isViewScrollable = isViewScrollable ?? false,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

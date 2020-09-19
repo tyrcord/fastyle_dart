@@ -13,7 +13,8 @@ class FastRoundedIcon extends StatelessWidget {
     this.iconColor,
     this.iconSize,
     this.backgroundColor,
-  }) : super(key: key);
+  })  : assert(iconData != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

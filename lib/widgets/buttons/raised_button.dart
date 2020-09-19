@@ -15,14 +15,16 @@ class FastRaisedButton extends StatelessWidget {
   const FastRaisedButton({
     Key key,
     @required this.onTap,
-    this.isEnabled = true,
+    bool isEnabled = true,
     this.backgroundColor,
     this.highlightColor,
     this.textColor,
     this.padding,
     this.child,
     this.text,
-  }) : super(key: key);
+  })  : this.isEnabled = isEnabled ?? true,
+        assert(onTap != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

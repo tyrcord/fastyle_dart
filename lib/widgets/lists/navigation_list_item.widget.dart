@@ -21,11 +21,15 @@ class FastNavigationListItem<T extends FastItem> extends StatelessWidget {
     this.titleText,
     this.descriptionText,
     this.leading,
-    this.trailing = _kDefaultTrailing,
-    this.isEnabled = true,
-    this.isDense = true,
+    Icon trailing = _kDefaultTrailing,
+    bool isEnabled = true,
+    bool isDense = true,
     this.contentPadding,
-  }) : super(key: key);
+  })  : this.trailing = trailing ?? _kDefaultTrailing,
+        this.isEnabled = isEnabled ?? true,
+        this.isDense = isDense ?? true,
+        assert(onTap != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

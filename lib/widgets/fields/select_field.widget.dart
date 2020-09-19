@@ -25,10 +25,14 @@ class FastSelectField<T> extends StatefulWidget {
     this.placeholderText,
     this.helperText,
     this.onSelectionChanged,
-    this.isReadOnly = false,
-    this.shouldGroupByCategory = false,
+    bool isReadOnly = false,
+    bool shouldGroupByCategory = false,
     this.categories,
-  }) : super(key: key);
+  })  : assert(labelText != null),
+        assert(items != null),
+        this.isReadOnly = isReadOnly ?? false,
+        this.shouldGroupByCategory = shouldGroupByCategory ?? false,
+        super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FastSelectFieldState<T>();

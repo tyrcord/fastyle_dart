@@ -10,7 +10,9 @@ class FastListItemCategory<T extends FastItem> {
     @required this.items,
     @required this.labelText,
     @required this.value,
-  });
+  })  : assert(items != null),
+        assert(labelText != null),
+        assert(value != null);
 
   FastListItemCategory<T> copyWith({
     List<T> items,

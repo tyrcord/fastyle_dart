@@ -16,13 +16,18 @@ class FastIconButton extends StatelessWidget {
     Key key,
     @required this.onTap,
     @required this.icon,
-    this.isEnabled = true,
     this.iconColor,
     this.highlightColor,
-    this.padding = kFastEdgeInsets8,
-    this.emphasis = FastButtonEmphasis.low,
     this.iconSize,
-  }) : super(key: key);
+    bool isEnabled = true,
+    EdgeInsetsGeometry padding = kFastEdgeInsets8,
+    FastButtonEmphasis emphasis = FastButtonEmphasis.low,
+  })  : this.isEnabled = isEnabled ?? true,
+        this.padding = padding ?? kFastEdgeInsets8,
+        this.emphasis = emphasis ?? FastButtonEmphasis.low,
+        assert(onTap != null),
+        assert(icon != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

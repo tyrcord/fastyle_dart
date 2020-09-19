@@ -13,7 +13,8 @@ class FastParagraph extends StatelessWidget {
     this.text,
     this.margin,
     this.child,
-  }) : super(key: key);
+  })  : assert(text != null || child != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

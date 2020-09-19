@@ -8,8 +8,9 @@ class FastButtonLayout extends StatelessWidget {
 
   const FastButtonLayout({
     Key key,
-    this.child,
-  }) : super(key: key);
+    @required this.child,
+  })  : assert(child != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

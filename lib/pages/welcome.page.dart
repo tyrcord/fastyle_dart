@@ -9,7 +9,8 @@ class FastWelcomePage extends StatelessWidget {
     Key key,
     @required this.titleText,
     this.children,
-  }) : super(key: key);
+  })  : assert(titleText != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

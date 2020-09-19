@@ -19,15 +19,22 @@ class FastSelectableListView<T extends FastItem> extends StatefulWidget {
     @required this.onSelectionChanged,
     @required this.items,
     this.categories,
-    this.shouldGroupByCategory = false,
     this.selection,
-    this.isEnabled = true,
-    this.isViewScrollable = true,
-    this.shouldSortItems = true,
-    this.showItemDivider = false,
+    bool shouldGroupByCategory = false,
+    bool isEnabled = true,
+    bool isViewScrollable = true,
+    bool shouldSortItems = true,
+    bool showItemDivider = false,
     this.listItemBuilder,
     this.itemContentPadding,
-  }) : super(key: key);
+  })  : assert(items != null),
+        assert(onSelectionChanged != null),
+        this.shouldGroupByCategory = shouldGroupByCategory ?? false,
+        this.isEnabled = isEnabled ?? true,
+        this.isViewScrollable = isViewScrollable ?? true,
+        this.shouldSortItems = shouldSortItems ?? true,
+        this.showItemDivider = showItemDivider ?? false,
+        super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FastSelectableListViewState<T>();

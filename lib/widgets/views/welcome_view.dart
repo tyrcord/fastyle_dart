@@ -14,7 +14,7 @@ typedef BoolCallback = bool Function();
 class FastWelcomeView extends StatefulWidget {
   final List<Widget> slides;
   final bool allowToSkip;
-  final int stepDotSize;
+  final double stepDotSize;
   final Color stepDotColor;
   final WidgetBuilder homeBuilder;
   final BoolCallback canSkip;
@@ -30,18 +30,25 @@ class FastWelcomeView extends StatefulWidget {
     Key key,
     @required this.homeBuilder,
     @required this.slides,
-    this.allowToSkip = false,
+    bool allowToSkip = false,
     this.canSkip,
     this.canTerminate,
-    this.stepDotSize,
-    this.doneText = _kDoneText,
-    this.nextText = _kNextText,
-    this.skipText = _kSkipText,
+    double stepDotSize = _kStepDotSize,
+    String doneText = _kDoneText,
+    String nextText = _kNextText,
+    String skipText = _kSkipText,
     this.stepDotColor,
     this.onDone,
     this.onSkip,
     this.controller,
-  }) : super(key: key);
+  })  : assert(homeBuilder != null),
+        assert(slides != null),
+        this.allowToSkip = allowToSkip ?? false,
+        this.doneText = doneText ?? _kDoneText,
+        this.nextText = nextText ?? _kNextText,
+        this.skipText = skipText ?? _kSkipText,
+        this.stepDotSize = stepDotSize ?? _kStepDotSize,
+        super(key: key);
 
   @override
   _FastWelcomeViewState createState() => _FastWelcomeViewState();
@@ -141,7 +148,6 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
   }
 
   List<Widget> _buildSteps(BuildContext context) {
-    final stepDotSize = widget.stepDotSize ?? _kStepDotSize;
     final primaryColor =
         widget.stepDotColor ?? ThemeHelper.colors.getPrimaryColor(context);
 
@@ -149,13 +155,13 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
       _slidesLength,
       (index) => Container(
         margin: const EdgeInsets.symmetric(horizontal: 4),
-        height: stepDotSize,
-        width: stepDotSize,
+        height: widget.stepDotSize,
+        width: widget.stepDotSize,
         decoration: BoxDecoration(
           color: _pageCursor == index
               ? primaryColor
               : primaryColor.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(stepDotSize),
+          borderRadius: BorderRadius.circular(widget.stepDotSize),
         ),
       ),
     );

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 const _kValidText = 'valid';
 const _kCancelText = 'cancel';
 
-class FastAlertDialog extends FastDialog {
+class FastAlertDialog extends AlertDialog {
   final String titleText;
   final String cancelText;
   final String validText;
@@ -30,7 +30,8 @@ class FastAlertDialog extends FastDialog {
     this.onCancel,
     this.onValid,
     this.messageColor,
-  })  : assert(messageText == null || widgets == null),
+  })  : assert(titleText != null),
+        assert(messageText == null || widgets == null),
         assert(actions == null || cancelText == null);
 
   @override

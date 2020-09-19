@@ -20,7 +20,8 @@ class FastListHeader extends StatelessWidget {
     this.captionColor,
     this.margin,
     this.padding,
-  }) : super(key: key);
+  })  : assert(categoryText != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

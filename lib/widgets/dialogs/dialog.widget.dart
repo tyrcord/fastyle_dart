@@ -17,7 +17,8 @@ class FastDialog extends AlertDialog {
     this.titleColor,
     this.actions,
     this.backgroundColor,
-  });
+  })  : assert(titleText != null),
+        assert(widgets != null);
 
   @override
   Widget build(BuildContext context) {

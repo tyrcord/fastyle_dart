@@ -15,8 +15,11 @@ class FastSegmentField<T> extends StatefulWidget {
     @required this.options,
     this.captionText,
     this.onValueChanged,
-    this.isReadOnly = false,
-  }) : super(key: key);
+    bool isReadOnly = false,
+  })  : this.isReadOnly = isReadOnly ?? false,
+        assert(options != null),
+        assert(labelText != null),
+        super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FastSegmentFieldState<T>();

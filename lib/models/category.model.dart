@@ -7,7 +7,8 @@ class FastCategory {
   const FastCategory({
     @required this.labelText,
     @required this.value,
-  });
+  })  : assert(labelText != null),
+        assert(value != null);
 
   FastCategory copyWith({String label, String value}) {
     return FastCategory(

@@ -25,10 +25,13 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
     this.isSelected,
     this.trailing,
     this.leading,
-    this.isDense = true,
-    this.isEnabled = true,
+    bool isDense = true,
+    bool isEnabled = true,
     this.contentPadding,
-  }) : super(key: key);
+  })  : assert(onTap != null),
+        this.isDense = isDense ?? true,
+        this.isEnabled = isEnabled ?? true,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

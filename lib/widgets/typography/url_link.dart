@@ -15,18 +15,17 @@ class FastUrlLink extends StatelessWidget {
     @required this.text,
     @required this.url,
     this.color,
-  }) : super(key: key);
+  })  : assert(onTap != null),
+        assert(text != null),
+        assert(url != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FastLink(
       color: color,
       text: text,
-      onTap: () {
-        if (onTap != null) {
-          onTap(url);
-        }
-      },
+      onTap: () => onTap(url),
     );
   }
 }

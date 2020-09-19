@@ -22,9 +22,11 @@ class FastFieldLayout extends StatelessWidget {
     this.captionText,
     this.placeholderText,
     this.helperText,
-    this.showHelperBoundaries = true,
+    bool showHelperBoundaries = true,
     this.margin,
-  }) : super(key: key);
+  })  : this.showHelperBoundaries = showHelperBoundaries ?? true,
+        assert(control != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class FastFieldLayout extends StatelessWidget {
         children: <Widget>[
           if (labelText != null) _buildLabel(context),
           ConstrainedBox(
-            constraints: BoxConstraints(minHeight: 33.0),
+            constraints: const BoxConstraints(minHeight: 33.0),
             child: control,
           ),
           if (showHelperBoundaries) _buildHelper(context),
@@ -46,15 +48,13 @@ class FastFieldLayout extends StatelessWidget {
   }
 
   Widget _buildLabel(BuildContext context) {
-    final textColor = ThemeHelper.texts.getBodyTextStyle(context).color;
-
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
         Expanded(
           child: FastBody2(
             text: toBeginningOfSentenceCase(labelText),
-            textColor: textColor,
+            textColor: ThemeHelper.texts.getBodyTextStyle(context).color,
           ),
         ),
         if (captionText != null)

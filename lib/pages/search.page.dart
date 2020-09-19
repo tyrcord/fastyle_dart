@@ -19,9 +19,9 @@ class FastSearchPage<T extends FastItem> extends StatefulWidget {
 
   FastSearchPage({
     @required this.items,
-    this.shouldGroupByCategory = false,
-    this.shouldUseFuzzySearch = false,
-    this.shouldSortItems = true,
+    bool shouldGroupByCategory = false,
+    bool shouldUseFuzzySearch = false,
+    bool shouldSortItems = true,
     this.clearSearchIcon,
     this.placeholderText,
     this.categories,
@@ -29,7 +29,11 @@ class FastSearchPage<T extends FastItem> extends StatefulWidget {
     this.closeIcon,
     this.backIcon,
     this.onSearch,
-  }) : super();
+  })  : this.shouldGroupByCategory = shouldGroupByCategory ?? false,
+        this.shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
+        this.shouldSortItems = shouldSortItems ?? true,
+        assert(items != null),
+        super();
 
   @override
   State<StatefulWidget> createState() => FastSearchPageState<T>();

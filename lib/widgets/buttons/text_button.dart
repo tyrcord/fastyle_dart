@@ -15,14 +15,17 @@ class FastTextButton extends StatelessWidget {
   const FastTextButton({
     Key key,
     @required this.onTap,
-    this.emphasis = FastButtonEmphasis.low,
-    this.isEnabled = true,
+    FastButtonEmphasis emphasis = FastButtonEmphasis.low,
+    bool isEnabled = true,
     this.highlightColor,
     this.textColor,
     this.padding,
     this.child,
     this.text,
-  }) : super(key: key);
+  })  : this.isEnabled = isEnabled ?? true,
+        this.emphasis = emphasis ?? FastButtonEmphasis.low,
+        assert(onTap != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -10,10 +10,11 @@ class FastArticle extends StatelessWidget {
 
   const FastArticle({
     Key key,
-    this.titleText,
+    @required this.titleText,
     this.titleMargin,
     this.children,
-  }) : super(key: key);
+  })  : assert(titleText != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

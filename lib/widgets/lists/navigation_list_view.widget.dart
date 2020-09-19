@@ -21,17 +21,25 @@ class FastNavigationListView<T extends FastItem> extends StatefulWidget {
     @required this.onSelectionChanged,
     @required this.items,
     this.selection,
-    this.isEnabled = true,
-    this.isViewScrollable = true,
-    this.shouldSortItems = true,
-    this.showItemDivider = false,
     this.listItemBuilder,
     this.itemContentPadding,
-    this.showSearchBar = false,
     this.placeholderSearchText,
     this.clearSearchIcon,
-    this.shouldUseFuzzySearch = false,
-  }) : super(key: key);
+    bool isEnabled = true,
+    bool isViewScrollable = true,
+    bool shouldSortItems = true,
+    bool showItemDivider = false,
+    bool showSearchBar = false,
+    bool shouldUseFuzzySearch = false,
+  })  : assert(onSelectionChanged != null),
+        assert(items != null),
+        this.isEnabled = isEnabled ?? true,
+        this.isViewScrollable = isViewScrollable ?? true,
+        this.shouldSortItems = shouldSortItems ?? true,
+        this.showItemDivider = showItemDivider ?? false,
+        this.showSearchBar = showSearchBar ?? false,
+        this.shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
+        super(key: key);
 
   @override
   _FastNavigationListViewState<T> createState() =>

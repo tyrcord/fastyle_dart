@@ -18,10 +18,14 @@ class FastToggleListItem<T extends FastItem> extends StatefulWidget {
     this.titleText,
     this.descriptionText,
     this.leading,
-    this.isEnabled = true,
-    this.isDense = true,
-    this.isChecked = false,
-  }) : super(key: key);
+    bool isEnabled = true,
+    bool isDense = true,
+    bool isChecked = false,
+  })  : assert(onValueChanged != null),
+        this.isEnabled = isEnabled ?? true,
+        this.isDense = isDense ?? true,
+        this.isChecked = isChecked ?? false,
+        super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FastToggleListItemState();

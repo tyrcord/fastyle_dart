@@ -18,7 +18,7 @@ class FastListItemLayout extends StatelessWidget {
   FastListItemLayout({
     Key key,
     @required this.titleText,
-    this.isEnabled = true,
+    bool isEnabled = true,
     this.descriptionText,
     this.contentPadding,
     this.descriptor,
@@ -26,7 +26,9 @@ class FastListItemLayout extends StatelessWidget {
     this.isDense,
     this.leading,
     this.onTap,
-  }) : super(key: key);
+  })  : this.isEnabled = isEnabled ?? true,
+        assert(titleText != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

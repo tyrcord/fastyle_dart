@@ -24,9 +24,12 @@ class FastBaseTypography extends StatelessWidget {
     this.fontWeight,
     this.maxLines,
     this.overflow,
-    this.textAlign = TextAlign.left,
-    this.useFontForNumber = false,
-  }) : super(key: key);
+    TextAlign textAlign = TextAlign.left,
+    bool useFontForNumber = false,
+  })  : assert(text != null),
+        this.textAlign = textAlign ?? TextAlign.left,
+        this.useFontForNumber = useFontForNumber ?? false,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

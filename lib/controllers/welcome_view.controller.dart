@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class FastWelcomeViewController extends ValueNotifier<bool> {
-  FastWelcomeViewController({bool isPending = false}) : super(isPending);
+  FastWelcomeViewController({
+    bool isPending = false,
+  }) : super(isPending ?? false);
 
   resume() {
     if (value) {
