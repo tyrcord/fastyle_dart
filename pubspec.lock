@@ -70,7 +70,7 @@ packages:
       name: equatable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.4"
+    version: "1.2.5"
   fake_async:
     dependency: transitive
     description:
@@ -199,7 +199,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.2+1"
+    version: "4.3.2+2"
   recase:
     dependency: "direct main"
     description:
@@ -260,7 +260,7 @@ packages:
       name: tbloc_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.1"
+    version: "0.7.0"
   term_glyph:
     dependency: transitive
     description:
