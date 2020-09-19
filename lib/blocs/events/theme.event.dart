@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 import 'package:tbloc_dart/tbloc_dart.dart';
 
-enum FastThemeBlocEventAction {
+enum FastThemeBlocEventType {
   light,
   dark,
   system,
 }
 
-class FastThemeBlocEvent extends BlocEvent<FastThemeBlocEventAction> {
+class FastThemeBlocEvent extends BlocEvent<FastThemeBlocEventType, dynamic> {
   const FastThemeBlocEvent({
-    @required FastThemeBlocEventAction action,
-  }) : super(payload: action);
+    @required FastThemeBlocEventType type,
+  }) : super(type: type);
 
-  FastThemeBlocEvent.dark() : this(action: FastThemeBlocEventAction.dark);
+  FastThemeBlocEvent.dark() : this(type: FastThemeBlocEventType.dark);
 
-  FastThemeBlocEvent.light() : this(action: FastThemeBlocEventAction.light);
+  FastThemeBlocEvent.light() : this(type: FastThemeBlocEventType.light);
 
-  FastThemeBlocEvent.system() : this(action: FastThemeBlocEventAction.system);
+  FastThemeBlocEvent.system() : this(type: FastThemeBlocEventType.system);
 }

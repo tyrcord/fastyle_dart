@@ -5,20 +5,21 @@ import 'package:tbloc_dart/tbloc_dart.dart';
 
 class FastThemeBloc
     extends BidirectionalBloc<FastThemeBlocEvent, FastThemeBlocState> {
-  FastThemeBloc({FastThemeBlocState initialState})
-      : super(initialState: initialState ?? FastThemeBlocState());
+  FastThemeBloc({
+    FastThemeBlocState initialState,
+  }) : super(initialState: initialState ?? FastThemeBlocState());
 
   @override
   Stream<FastThemeBlocState> mapEventToState(
     FastThemeBlocEvent event,
     FastThemeBlocState currentState,
   ) async* {
-    if (event.payload == FastThemeBlocEventAction.light) {
+    if (event.type == FastThemeBlocEventType.light) {
       yield FastThemeBlocState(
         themeMode: ThemeMode.light,
         brightness: Brightness.light,
       );
-    } else if (event.payload == FastThemeBlocEventAction.dark) {
+    } else if (event.type == FastThemeBlocEventType.dark) {
       yield FastThemeBlocState(
         themeMode: ThemeMode.dark,
         brightness: Brightness.dark,
