@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## [0.10.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.10.0) (2020-09-19)
+
+### Features
+
+- Added predefined sizedboxes.
+
+### Enhancements
+
+- Made `isPending` parameter of FastWelcomeViewController optional.
+
+### Fixes
+
+- Fixed wrong indentation for the FastItem's description.
+
 ## [0.9.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.9.0) (2020-09-03)
 
 ### Features
