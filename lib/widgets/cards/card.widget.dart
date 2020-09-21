@@ -11,11 +11,13 @@ class FastCard extends StatelessWidget {
   final EdgeInsets padding;
   final Color shadowColor;
   final String titleText;
+  final Color titleTextColor;
   final Widget child;
 
   FastCard({
     Key key,
     @required this.titleText,
+    this.titleTextColor,
     this.backgroundColor,
     this.headerActions,
     this.footerActions,
@@ -75,7 +77,11 @@ class FastCard extends StatelessWidget {
             padding: hasHeaderActions
                 ? const EdgeInsets.only(right: 8.0)
                 : EdgeInsets.zero,
-            child: FastTitle(text: titleText, overflow: TextOverflow.ellipsis),
+            child: FastTitle(
+              text: titleText,
+              textColor: titleTextColor,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           if (headerActions != null) Row(children: <Widget>[...headerActions]),
         ],

@@ -10,6 +10,7 @@ class FastActionCard extends StatelessWidget {
   final Color shadowColor;
   final Color backgroundColor;
   final VoidCallback onTap;
+  final Color titleTextColor;
 
   FastActionCard({
     Key key,
@@ -21,6 +22,7 @@ class FastActionCard extends StatelessWidget {
     this.footerActions,
     this.shadowColor,
     this.backgroundColor,
+    this.titleTextColor,
   })  : assert(onTap != null),
         assert(titleText != null),
         super(key: key);
@@ -31,6 +33,7 @@ class FastActionCard extends StatelessWidget {
       onTap: onTap,
       child: FastCard(
         titleText: titleText,
+        titleTextColor: titleTextColor,
         child: child,
         padding: padding,
         headerActions: headerActions,
