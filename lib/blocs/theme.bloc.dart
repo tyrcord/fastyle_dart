@@ -10,10 +10,7 @@ class FastThemeBloc
   }) : super(initialState: initialState ?? FastThemeBlocState());
 
   @override
-  Stream<FastThemeBlocState> mapEventToState(
-    FastThemeBlocEvent event,
-    FastThemeBlocState currentState,
-  ) async* {
+  Stream<FastThemeBlocState> mapEventToState(FastThemeBlocEvent event) async* {
     if (event.type == FastThemeBlocEventType.light) {
       yield FastThemeBlocState(
         themeMode: ThemeMode.light,
