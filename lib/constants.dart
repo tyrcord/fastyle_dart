@@ -30,11 +30,34 @@ final kFastFuzzyOptions = FuzzyOptions(
   isCaseSensitive: false,
   shouldNormalize: true,
   shouldSort: true,
-  distance: 100,
-  threshold: 0.25,
   location: 0,
+  threshold: 0.25,
+  distance: 100,
   findAllMatches: false,
   minMatchCharLength: 2,
+);
+
+final kFastFastItemFuzzyOptions = FuzzyOptions(
+  isCaseSensitive: kFastFuzzyOptions.isCaseSensitive,
+  shouldNormalize: kFastFuzzyOptions.shouldNormalize,
+  shouldSort: kFastFuzzyOptions.shouldSort,
+  location: kFastFuzzyOptions.location,
+  threshold: kFastFuzzyOptions.threshold,
+  distance: kFastFuzzyOptions.distance,
+  findAllMatches: kFastFuzzyOptions.findAllMatches,
+  minMatchCharLength: kFastFuzzyOptions.minMatchCharLength,
+  keys: [
+    WeightedKey(
+      name: 'labelText',
+      getter: (dynamic item) => item.labelText,
+      weight: 1,
+    ),
+    WeightedKey(
+      name: 'descriptionText',
+      getter: (dynamic item) => item.descriptionText,
+      weight: 0.5,
+    ),
+  ],
 );
 
 // Numbers

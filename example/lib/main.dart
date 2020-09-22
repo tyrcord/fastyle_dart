@@ -51,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   items: demoItems,
                   categories: demoCategories,
                   shouldGroupByCategory: true,
+                  shouldUseFuzzySearch: true,
                 ),
                 fullscreenDialog: true,
               ),
