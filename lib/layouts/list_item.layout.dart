@@ -45,10 +45,12 @@ class FastListItemLayout extends StatelessWidget {
             ? Transform(transform: _kTransform, child: title)
             : title,
         subtitle: descriptionText != null
-            ? Transform(
-                transform: _kTransform,
-                child: FastBody2(text: descriptionText),
-              )
+            ? leading == null
+                ? FastBody2(text: descriptionText)
+                : Transform(
+                    transform: _kTransform,
+                    child: FastBody2(text: descriptionText),
+                  )
             : null,
         trailing: trailing ?? descriptor?.trailing,
         onTap: onTap,
