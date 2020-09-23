@@ -12,6 +12,7 @@ class FastNumberField extends StatelessWidget {
   final int maxValue;
   final TextAlign textAlign;
   final bool allowAutocorrect;
+  final String initialValue;
 
   FastNumberField({
     Key key,
@@ -25,6 +26,7 @@ class FastNumberField extends StatelessWidget {
     bool shouldAcceptDecimalValue = true,
     bool allowAutocorrect = false,
     this.textAlign,
+    this.initialValue,
   })  : assert(labelText != null),
         this.maxLength = maxLength ?? NumberInputFormatter.safeMaxLength,
         this.maxValue = maxValue ?? NumberInputFormatter.safeInteger,
@@ -47,7 +49,9 @@ class FastNumberField extends StatelessWidget {
     final bodyTextStyle = ThemeHelper.texts.getBodyTextStyle(context);
 
     return TextFormField(
+      initialValue: initialValue,
       readOnly: isReadOnly,
+      enabled: !isReadOnly,
       textAlign: textAlign ?? TextAlign.start,
       textInputAction: TextInputAction.done,
       autocorrect: allowAutocorrect,

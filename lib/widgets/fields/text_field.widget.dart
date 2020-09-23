@@ -11,10 +11,12 @@ class FastTextField extends StatelessWidget {
   final TextAlign textAlign;
   final TextEditingController textEditingController;
   final bool allowAutocorrect;
+  final String initialValue;
 
   FastTextField({
     Key key,
     @required this.labelText,
+    this.initialValue,
     this.captionText,
     this.placeholderText,
     this.helperText,
@@ -41,6 +43,8 @@ class FastTextField extends StatelessWidget {
   Widget _buildControl(BuildContext context) {
     return TextFormField(
       readOnly: isReadOnly,
+      enabled: !isReadOnly,
+      initialValue: initialValue,
       textAlign: textAlign ?? TextAlign.start,
       textInputAction: TextInputAction.done,
       autocorrect: allowAutocorrect,
