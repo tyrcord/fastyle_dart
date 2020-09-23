@@ -60,6 +60,15 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
   }
 
   @override
+  void didUpdateWidget(FastSelectField<T> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.selection != oldWidget.selection) {
+      setState(() => _selection = widget.selection);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       child: FastFieldLayout(
