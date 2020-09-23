@@ -4,7 +4,7 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastIconButton extends StatelessWidget {
   final VoidCallback onTap;
-  final Icon icon;
+  final Widget icon;
   final bool isEnabled;
   final Color iconColor;
   final Color highlightColor;
