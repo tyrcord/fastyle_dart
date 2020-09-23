@@ -47,10 +47,9 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
 
   @override
   void initState() {
-    _focusNode = new FocusNode();
-
-    _selection = widget.selection;
     super.initState();
+    _focusNode = new FocusNode();
+    _selection = widget.selection;
   }
 
   @override

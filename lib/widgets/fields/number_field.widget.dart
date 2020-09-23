@@ -13,6 +13,7 @@ class FastNumberField extends StatelessWidget {
   final TextAlign textAlign;
   final bool allowAutocorrect;
   final String initialValue;
+  final Function(String) onValueChanged;
 
   FastNumberField({
     Key key,
@@ -27,6 +28,7 @@ class FastNumberField extends StatelessWidget {
     bool allowAutocorrect = false,
     this.textAlign,
     this.initialValue,
+    this.onValueChanged,
   })  : assert(labelText != null),
         this.maxLength = maxLength ?? NumberInputFormatter.safeMaxLength,
         this.maxValue = maxValue ?? NumberInputFormatter.safeInteger,
@@ -68,6 +70,7 @@ class FastNumberField extends StatelessWidget {
           shouldAcceptDecimalValue: shouldAcceptDecimalValue,
         ),
       ],
+      onChanged: onValueChanged,
     );
   }
 }
