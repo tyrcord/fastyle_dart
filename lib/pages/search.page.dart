@@ -91,10 +91,13 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
   }
 
   Widget _buildContent(BuildContext context) {
+    final _shouldSortItems = _searchQuery != null && widget.shouldUseFuzzySearch
+        ? false
+        : widget.shouldSortItems;
+
     return Expanded(
       child: FastSelectableListView(
-        shouldSortItems:
-            widget.shouldUseFuzzySearch ? false : widget.shouldSortItems,
+        shouldSortItems: _shouldSortItems,
         items: _suggestions ?? widget.items,
         onSelectionChanged: (FastItem item) => _close(context, item),
         categories: widget.categories,

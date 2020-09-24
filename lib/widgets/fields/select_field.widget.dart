@@ -16,6 +16,7 @@ class FastSelectField<T> extends StatefulWidget {
   final List<FastCategory> categories;
   final bool shouldGroupByCategory;
   final bool shouldUseFuzzySearch;
+  final bool shouldSortItems;
 
   FastSelectField({
     Key key,
@@ -29,9 +30,11 @@ class FastSelectField<T> extends StatefulWidget {
     bool isReadOnly = false,
     bool shouldGroupByCategory = false,
     bool shouldUseFuzzySearch = false,
+    bool shouldSortItems = true,
     this.categories,
   })  : assert(labelText != null),
         assert(items != null),
+        shouldSortItems = shouldSortItems ?? true,
         this.isReadOnly = isReadOnly ?? false,
         this.shouldGroupByCategory = shouldGroupByCategory ?? false,
         this.shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
@@ -89,6 +92,7 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
                 categories: widget.categories,
                 selection: widget.selection,
                 shouldUseFuzzySearch: widget.shouldUseFuzzySearch,
+                shouldSortItems: widget.shouldSortItems,
               ),
               fullscreenDialog: true,
             ),

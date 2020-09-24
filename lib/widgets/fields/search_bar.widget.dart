@@ -162,7 +162,12 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
     final fuse = Fuzzy(widget.items, options: kFastFastItemFuzzyOptions);
     final List<T> results = [];
 
-    fuse.search(queryText).forEach((Result<dynamic> result) {
+    // TODO: workaround https://github.com/comigor/fuzzy/issues/8
+    final rawResults = fuse.search(queryText);
+    rawResults.forEach((r) => r.score = r.matches[0].score);
+    rawResults.sort((a, b) => a.score.compareTo(b.score));
+
+    rawResults.forEach((Result<dynamic> result) {
       results.add(result.item as T);
     });
 
