@@ -23,7 +23,7 @@ class FastArticle extends StatelessWidget {
       children: [
         Container(
           margin: titleMargin ?? _kTitleMargin,
-          child: FastTitle(text: titleText),
+          child: FastTitle(text: titleText, fontWeight: FontWeight.w600),
         ),
         if (children != null) ...children,
       ],

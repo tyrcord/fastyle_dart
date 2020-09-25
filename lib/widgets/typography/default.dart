@@ -110,7 +110,7 @@ class FastPlaceHolderHeadline extends FastBaseTypography {
 }
 
 /// SUBHEAD
-/// 17px
+/// 18px
 /// semibold
 /// uppercase
 class FastSubhead extends FastBaseTypography {
@@ -144,7 +144,7 @@ class FastSubhead extends FastBaseTypography {
 }
 
 /// TITLE
-/// 20px
+/// 22px
 /// regular
 /// lowercase
 class FastTitle extends FastBaseTypography {
@@ -216,7 +216,7 @@ class FastPlaceholderTitle extends FastBaseTypography {
 }
 
 /// SUBTITLE
-/// 15px
+/// 16px
 /// semibold
 /// uppercase
 class FastSubtitle extends FastBaseTypography {
@@ -250,7 +250,7 @@ class FastSubtitle extends FastBaseTypography {
 }
 
 /// BODY 1
-/// 17px
+/// 18px
 /// normal
 /// lowercase
 class FastBody extends FastBaseTypography {
@@ -286,7 +286,7 @@ class FastBody extends FastBaseTypography {
 }
 
 /// BODY 2
-/// 17px
+/// 18px
 /// normal
 /// lowercase
 class FastBody2 extends FastBaseTypography {
@@ -322,7 +322,7 @@ class FastBody2 extends FastBaseTypography {
 }
 
 /// PLACEHOLDER
-/// 17px
+/// 18px
 /// light
 /// lowercase
 class FastPlaceholder extends FastBaseTypography {
@@ -358,7 +358,7 @@ class FastPlaceholder extends FastBaseTypography {
 }
 
 /// BUTTON
-/// 15px
+/// 16px
 /// semibold
 /// uppercase
 class FastButtonLabel extends FastBaseTypography {
@@ -392,7 +392,7 @@ class FastButtonLabel extends FastBaseTypography {
 }
 
 /// CAPTION
-/// 15px
+/// 16px
 /// light
 /// lowercase
 class FastCaption extends FastBaseTypography {
@@ -428,7 +428,7 @@ class FastCaption extends FastBaseTypography {
 }
 
 /// HELPER
-/// 13px
+/// 14px
 /// light
 /// lowercase
 class FastHelper extends FastBaseTypography {
