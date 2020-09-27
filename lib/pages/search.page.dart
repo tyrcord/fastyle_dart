@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 
+const _kIconSize = 28.0;
+
 class FastSearchPage<T extends FastItem> extends StatefulWidget {
   final bool Function(T option, String query) onSearch;
   final List<FastCategory> categories;
@@ -16,6 +18,7 @@ class FastSearchPage<T extends FastItem> extends StatefulWidget {
   final List<T> items;
   final Icon backIcon;
   final T selection;
+  final String titleText;
 
   FastSearchPage({
     @required this.items,
@@ -29,6 +32,7 @@ class FastSearchPage<T extends FastItem> extends StatefulWidget {
     this.closeIcon,
     this.backIcon,
     this.onSearch,
+    this.titleText,
   })  : this.shouldGroupByCategory = shouldGroupByCategory ?? false,
         this.shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
         this.shouldSortItems = shouldSortItems ?? true,
@@ -47,6 +51,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
   Widget build(BuildContext context) {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
     final brightness = themeBloc.currentState.brightness;
+    final hasTitle = widget.titleText != null;
     final SystemUiOverlayStyle overlayStyle = brightness == Brightness.dark
         ? SystemUiOverlayStyle.light
         : SystemUiOverlayStyle.dark;
@@ -65,11 +70,13 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
+                  if (hasTitle) _buildTitle(),
                   FastSearchBar(
                     shouldUseFuzzySearch: widget.shouldUseFuzzySearch,
                     items: widget.items,
                     placeholderText: widget.placeholderText,
                     closeIcon: widget.closeIcon,
+                    showLeadingIcon: !hasTitle,
                     backIcon: widget.backIcon,
                     clearSearchIcon: widget.clearSearchIcon,
                     onSuggestions: (List<T> suggestions, String query) {
@@ -87,6 +94,31 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildTitle() {
+    return Padding(
+      padding: const EdgeInsets.only(right: 16.0),
+      child: Row(children: [
+        _buildLeadingIcon(context),
+        FastTitle(text: widget.titleText),
+      ]),
+    );
+  }
+
+  FastIconButton _buildLeadingIcon(BuildContext context) {
+    final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
+    final bool useCloseButton =
+        parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
+
+    final closeIcon = widget.closeIcon ?? Icon(Icons.close);
+    final backIcon = widget.backIcon ?? Icon(Icons.arrow_back);
+
+    return FastIconButton(
+      icon: useCloseButton ? closeIcon : backIcon,
+      onTap: () => _close(context, widget.selection),
+      iconSize: _kIconSize,
     );
   }
 

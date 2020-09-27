@@ -17,6 +17,7 @@ class FastSelectField<T> extends StatefulWidget {
   final bool shouldGroupByCategory;
   final bool shouldUseFuzzySearch;
   final bool shouldSortItems;
+  final String titleText;
 
   FastSelectField({
     Key key,
@@ -31,6 +32,7 @@ class FastSelectField<T> extends StatefulWidget {
     bool shouldGroupByCategory = false,
     bool shouldUseFuzzySearch = false,
     bool shouldSortItems = true,
+    this.titleText,
     this.categories,
   })  : assert(labelText != null),
         assert(items != null),
@@ -87,6 +89,7 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
             context,
             CupertinoPageRoute(
               builder: (BuildContext context) => FastSearchPage(
+                titleText: widget.titleText,
                 items: widget.items,
                 shouldGroupByCategory: widget.shouldGroupByCategory,
                 categories: widget.categories,
