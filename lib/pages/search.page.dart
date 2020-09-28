@@ -102,12 +102,24 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
   }
 
   Widget _buildTitle() {
-    return Padding(
-      padding: const EdgeInsets.only(right: 16.0),
-      child: Row(children: [
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
         _buildLeadingIcon(context),
-        FastTitle(text: widget.titleText),
-      ]),
+        Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                width: ThemeHelper.borderSize,
+                color: Theme.of(context).dividerColor,
+              ),
+            ),
+          ),
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+          child: FastHeadline(text: widget.titleText),
+        ),
+      ],
     );
   }
 
