@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 const _kFontSize48 = 48.0;
 const _kFontSize34 = 34.0;
-const _kFontSize22 = 22.0;
+const _kFontSize24 = 24.0;
 const _kFontSize18 = 18.0;
 const _kFontSize16 = 16.0;
 const _kFontSize14 = 14.0;
@@ -22,7 +22,7 @@ final kFastTextTheme = TextTheme(
     fontWeight: FontWeight.w600,
   ),
   headline6: GoogleFonts.robotoCondensed(
-    fontSize: _kFontSize22,
+    fontSize: _kFontSize24,
     fontWeight: FontWeight.w500,
   ),
   subtitle2: GoogleFonts.robotoCondensed(

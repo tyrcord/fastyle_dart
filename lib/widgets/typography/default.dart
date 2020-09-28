@@ -144,7 +144,7 @@ class FastSubhead extends FastBaseTypography {
 }
 
 /// TITLE
-/// 22px
+/// 24px
 /// regular
 /// lowercase
 class FastTitle extends FastBaseTypography {
@@ -172,6 +172,7 @@ class FastTitle extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
+          letterSpacing: 1.2,
         );
 
   TextStyle getDefaultTextStyle(BuildContext context) {

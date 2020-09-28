@@ -14,6 +14,7 @@ class FastBaseTypography extends StatelessWidget {
   final TextOverflow overflow;
   final bool useFontForNumber;
   final double lineHeight;
+  final double letterSpacing;
 
   const FastBaseTypography({
     Key key,
@@ -26,6 +27,7 @@ class FastBaseTypography extends StatelessWidget {
     this.overflow,
     TextAlign textAlign = TextAlign.left,
     bool useFontForNumber = false,
+    this.letterSpacing,
   })  : assert(text != null),
         this.textAlign = textAlign ?? TextAlign.left,
         this.useFontForNumber = useFontForNumber ?? false,
@@ -42,6 +44,7 @@ class FastBaseTypography extends StatelessWidget {
         height: lineHeight ?? _kLineHeight,
         fontSize: fontSize,
         color: textColor,
+        letterSpacing: letterSpacing,
         fontWeight: fontWeight,
         fontFamily:
             useFontForNumber ? kFastFontForNumber : textStyle.fontFamily,
