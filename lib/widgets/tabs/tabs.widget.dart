@@ -11,6 +11,7 @@ class FastTabs extends StatelessWidget {
   final Color unselectedLabelColor;
   final TextStyle unselectedLabelStyle;
   final bool isViewScrollable;
+  final int initialIndex;
 
   FastTabs({
     Key key,
@@ -23,8 +24,10 @@ class FastTabs extends StatelessWidget {
     this.unselectedLabelColor,
     this.unselectedLabelStyle,
     bool isViewScrollable = true,
+    int initialIndex,
   })  : assert(tabs != null),
         assert(views != null),
+        initialIndex = initialIndex ?? 0,
         this.isViewScrollable = isViewScrollable ?? true,
         super(key: key);
 
@@ -32,6 +35,7 @@ class FastTabs extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: tabs.length,
+      initialIndex: initialIndex,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

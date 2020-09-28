@@ -13,6 +13,7 @@ class FastSelectableListView<T extends FastItem> extends StatefulWidget {
   final bool shouldSortItems;
   final FastListItemBuilder<T> listItemBuilder;
   final EdgeInsets itemContentPadding;
+  final int intialTabIndex;
 
   FastSelectableListView({
     Key key,
@@ -27,6 +28,7 @@ class FastSelectableListView<T extends FastItem> extends StatefulWidget {
     bool showItemDivider = false,
     this.listItemBuilder,
     this.itemContentPadding,
+    this.intialTabIndex,
   })  : assert(items != null),
         assert(onSelectionChanged != null),
         this.shouldGroupByCategory = shouldGroupByCategory ?? false,
@@ -69,6 +71,7 @@ class _FastSelectableListViewState<T extends FastItem>
       shouldSortItems: widget.shouldSortItems ?? true,
       categories: widget.categories,
       shouldGroupByCategory: widget.shouldGroupByCategory ?? false,
+      intialTabIndex: widget.intialTabIndex,
     );
   }
 

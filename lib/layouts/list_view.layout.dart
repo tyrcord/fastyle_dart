@@ -16,6 +16,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   final bool isViewScrollable;
   final bool shouldSortItems;
   final bool showItemDivider;
+  final int intialTabIndex;
 
   FastListViewLayout({
     Key key,
@@ -26,6 +27,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     bool isViewScrollable = true,
     bool shouldSortItems = true,
     bool showItemDivider = false,
+    this.intialTabIndex,
   })  : this.shouldGroupByCategory = shouldGroupByCategory ?? false,
         this.isViewScrollable = isViewScrollable ?? true,
         this.shouldSortItems = shouldSortItems ?? true,
@@ -58,7 +60,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
       views.add(_buildListView(context, listCategory.items));
     });
 
-    return FastTabs(tabs: tabs, views: views);
+    return FastTabs(tabs: tabs, views: views, initialIndex: intialTabIndex);
   }
 
   Widget _buildListView(BuildContext context, List<T> items) {

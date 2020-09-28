@@ -33,6 +33,7 @@ class FastSearchPage<T extends FastItem> extends StatefulWidget {
     this.backIcon,
     this.onSearch,
     this.titleText,
+    this.intialTabIndex,
   })  : this.shouldGroupByCategory = shouldGroupByCategory ?? false,
         this.shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
         this.shouldSortItems = shouldSortItems ?? true,
@@ -136,6 +137,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
         shouldGroupByCategory:
             _searchQuery == null ? widget.shouldGroupByCategory : false,
         selection: widget.selection,
+        intialTabIndex: widget.intialTabIndex,
       ),
     );
   }
