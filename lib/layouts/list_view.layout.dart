@@ -6,6 +6,7 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 const kFastListTileCategoryAll = FastCategory(
   labelText: kFastAllString,
   value: kFastAllString,
+  weight: 999,
 );
 
 class FastListViewLayout<T extends FastItem> extends StatelessWidget {
@@ -137,7 +138,9 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
       });
     });
 
-    return categoriesMap.values.toList();
+    final categories = categoriesMap.values.toList();
+    categories.sort((a, b) => b.weight.compareTo(a.weight));
+    return categories;
   }
 
   FastListItemCategory<T> _buildListCategory(FastCategory category) {
@@ -145,6 +148,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
       labelText: category.labelText,
       value: category.value,
       items: <T>[],
+      weight: category.weight,
     );
   }
 

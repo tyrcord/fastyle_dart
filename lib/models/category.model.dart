@@ -3,17 +3,21 @@ import 'package:flutter/material.dart';
 class FastCategory {
   final String labelText;
   final String value;
+  final double weight;
 
   const FastCategory({
     @required this.labelText,
     @required this.value,
+    double weight = 0,
   })  : assert(labelText != null),
-        assert(value != null);
+        assert(value != null),
+        weight = weight ?? 0;
 
-  FastCategory copyWith({String label, String value}) {
+  FastCategory copyWith({String label, String value, double weight}) {
     return FastCategory(
       labelText: label ?? this.labelText,
       value: value ?? this.value,
+      weight: weight ?? this.weight,
     );
   }
 
@@ -21,6 +25,7 @@ class FastCategory {
     return FastCategory(
       labelText: labelText,
       value: value,
+      weight: weight,
     );
   }
 }
