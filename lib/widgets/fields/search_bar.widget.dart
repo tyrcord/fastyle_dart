@@ -130,15 +130,17 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
   void _handleSearchQueryChanges() {
     final queryText = _textController.text;
 
-    setState(() {
-      if (queryText.isEmpty) {
-        _searchQuery = null;
-        widget?.onSuggestions(null, null);
-      } else {
-        _searchQuery = normalizeText(queryText);
-        widget?.onSuggestions(_buildSuggestions(_searchQuery), _searchQuery);
-      }
-    });
+    if (queryText != _searchQuery) {
+      setState(() {
+        if (queryText.isEmpty) {
+          _searchQuery = null;
+          widget?.onSuggestions(null, null);
+        } else {
+          _searchQuery = normalizeText(queryText);
+          widget?.onSuggestions(_buildSuggestions(_searchQuery), _searchQuery);
+        }
+      });
+    }
   }
 
   List<T> _buildSuggestions(String queryText) {
