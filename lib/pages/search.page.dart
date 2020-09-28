@@ -19,6 +19,8 @@ class FastSearchPage<T extends FastItem> extends StatefulWidget {
   final Icon backIcon;
   final T selection;
   final String titleText;
+  final int intialTabIndex;
+  final String tabAllCategoryText;
 
   FastSearchPage({
     @required this.items,
@@ -34,6 +36,7 @@ class FastSearchPage<T extends FastItem> extends StatefulWidget {
     this.onSearch,
     this.titleText,
     this.intialTabIndex,
+    this.tabAllCategoryText,
   })  : this.shouldGroupByCategory = shouldGroupByCategory ?? false,
         this.shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
         this.shouldSortItems = shouldSortItems ?? true,
@@ -138,6 +141,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
             _searchQuery == null ? widget.shouldGroupByCategory : false,
         selection: widget.selection,
         intialTabIndex: widget.intialTabIndex,
+        tabAllCategoryText: widget.tabAllCategoryText,
       ),
     );
   }

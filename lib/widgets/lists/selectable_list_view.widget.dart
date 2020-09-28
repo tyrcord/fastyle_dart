@@ -14,6 +14,7 @@ class FastSelectableListView<T extends FastItem> extends StatefulWidget {
   final FastListItemBuilder<T> listItemBuilder;
   final EdgeInsets itemContentPadding;
   final int intialTabIndex;
+  final String tabAllCategoryText;
 
   FastSelectableListView({
     Key key,
@@ -29,6 +30,7 @@ class FastSelectableListView<T extends FastItem> extends StatefulWidget {
     this.listItemBuilder,
     this.itemContentPadding,
     this.intialTabIndex,
+    this.tabAllCategoryText,
   })  : assert(items != null),
         assert(onSelectionChanged != null),
         this.shouldGroupByCategory = shouldGroupByCategory ?? false,
@@ -72,6 +74,7 @@ class _FastSelectableListViewState<T extends FastItem>
       categories: widget.categories,
       shouldGroupByCategory: widget.shouldGroupByCategory ?? false,
       intialTabIndex: widget.intialTabIndex,
+      tabAllCategoryText: widget.tabAllCategoryText,
     );
   }
 

@@ -17,6 +17,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   final bool shouldSortItems;
   final bool showItemDivider;
   final int intialTabIndex;
+  final String tabAllCategoryText;
 
   FastListViewLayout({
     Key key,
@@ -28,6 +29,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     bool shouldSortItems = true,
     bool showItemDivider = false,
     this.intialTabIndex,
+    this.tabAllCategoryText,
   })  : this.shouldGroupByCategory = shouldGroupByCategory ?? false,
         this.isViewScrollable = isViewScrollable ?? true,
         this.shouldSortItems = shouldSortItems ?? true,
@@ -113,7 +115,9 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   List<FastListItemCategory<T>> _buildListCategories(List<T> items) {
     final Map<String, FastListItemCategory<T>> categoriesMap = {
       kFastListTileCategoryAll.value: _buildListCategory(
-        kFastListTileCategoryAll,
+        kFastListTileCategoryAll.copyWith(
+          label: tabAllCategoryText ?? kFastListTileCategoryAll.labelText,
+        ),
       ),
     };
 
