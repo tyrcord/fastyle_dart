@@ -50,13 +50,13 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
 
     return FastListItemLayout(
       contentPadding: contentPadding,
-      titleText: titleText ?? item?.labelText,
-      descriptionText: descriptionText ?? item?.descriptionText,
+      titleText: item?.labelText ?? titleText,
+      descriptionText: item?.descriptionText ?? descriptionText,
       onTap: onTap,
-      leading: leading,
+      leading: item?.descriptor?.leading ?? leading,
       trailing: isSelected ? _trailing : null,
-      isEnabled: isEnabled ?? item?.isEnabled,
-      isDense: isDense,
+      isEnabled: item?.isEnabled ?? isEnabled,
+      isDense: item?.descriptor?.isDense ?? isDense,
     );
   }
 }
