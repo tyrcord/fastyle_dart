@@ -85,6 +85,7 @@ class _FastSelectableListViewState<T extends FastItem>
 
   Widget _buildSelectableListItem(T option) {
     return FastSelectableListItem(
+      key: UniqueKey(),
       contentPadding: widget.itemContentPadding,
       item: option,
       onTap: () {
