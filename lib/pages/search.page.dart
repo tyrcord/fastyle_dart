@@ -12,11 +12,11 @@ class FastSearchPage<T extends FastItem> extends StatefulWidget {
   final bool shouldGroupByCategory;
   final bool shouldUseFuzzySearch;
   final String placeholderText;
-  final Icon clearSearchIcon;
+  final Widget clearSearchIcon;
   final bool shouldSortItems;
-  final Icon closeIcon;
+  final Widget closeIcon;
   final List<T> items;
-  final Icon backIcon;
+  final Widget backIcon;
   final T selection;
   final String titleText;
   final int intialTabIndex;

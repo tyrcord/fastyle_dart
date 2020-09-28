@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:fuzzy/data/result.dart';
 import 'package:fuzzy/fuzzy.dart';
 
-const _kIconSize = 28.0;
+const _kIconSize = 24.0;
 
 class FastSearchBar<T extends FastItem> extends StatefulWidget {
   final List<T> items;
   final String placeholderText;
-  final Icon closeIcon;
-  final Icon backIcon;
-  final Icon clearSearchIcon;
+  final Widget closeIcon;
+  final Widget backIcon;
+  final Widget clearSearchIcon;
   final bool Function(T option, String query) onSearchFilter;
   final void Function(List<T> suggestions, String query) onSuggestions;
   final VoidCallback onLeadingButtonTap;
