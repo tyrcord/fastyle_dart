@@ -14,6 +14,7 @@ class FastNumberField extends StatelessWidget {
   final bool allowAutocorrect;
   final String initialValue;
   final Function(String) onValueChanged;
+  final TextEditingController textEditingController;
 
   FastNumberField({
     Key key,
@@ -29,7 +30,9 @@ class FastNumberField extends StatelessWidget {
     this.textAlign,
     this.initialValue,
     this.onValueChanged,
+    this.textEditingController,
   })  : assert(labelText != null),
+        assert(initialValue == null || textEditingController == null),
         this.maxLength = maxLength ?? NumberInputFormatter.safeMaxLength,
         this.maxValue = maxValue ?? NumberInputFormatter.safeInteger,
         this.isReadOnly = isReadOnly ?? false,
@@ -71,6 +74,7 @@ class FastNumberField extends StatelessWidget {
         ),
       ],
       onChanged: onValueChanged,
+      controller: textEditingController,
     );
   }
 }
