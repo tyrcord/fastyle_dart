@@ -4,7 +4,8 @@ version: 0.10.1
 homepage: https://github.com/tyrcord/fastyle_dart
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.10.0 <3.0.0"
+  flutter: ">=1.22.0 <2.0.0"
 
 dependencies:
   flutter:
@@ -13,7 +14,7 @@ dependencies:
   google_fonts: ^1.1.0
   intl: ^0.16.1
   diacritic: ^0.1.1
-  tbloc_dart: ^0.7.1
+  tbloc_dart: ^0.8.0
   flutter_spinkit: ^4.1.2+1
   fuzzy: ^0.2.3
   rxdart: ^0.24.1
