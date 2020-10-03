@@ -11,6 +11,7 @@ class FastIconButton extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final double iconSize;
   final FastButtonEmphasis emphasis;
+  final String tooltip;
 
   const FastIconButton({
     Key key,
@@ -22,6 +23,7 @@ class FastIconButton extends StatelessWidget {
     bool isEnabled = true,
     EdgeInsetsGeometry padding = kFastEdgeInsets8,
     FastButtonEmphasis emphasis = FastButtonEmphasis.low,
+    this.tooltip,
   })  : this.isEnabled = isEnabled ?? true,
         this.padding = padding ?? kFastEdgeInsets8,
         this.emphasis = emphasis ?? FastButtonEmphasis.low,
@@ -45,6 +47,7 @@ class FastIconButton extends StatelessWidget {
         iconSize: iconSize ?? kFastIconSize,
         disabledColor: _color.withAlpha(kDisabledAlpha),
         color: _color,
+        tooltip: tooltip,
       ),
     );
   }
