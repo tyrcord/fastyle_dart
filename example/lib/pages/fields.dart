@@ -78,6 +78,10 @@ class FieldsPage extends StatelessWidget {
             placeholderText: 'value',
             captionText: 'optional',
           ),
+          FastReadOnlyTextField(
+            labelText: 'Read Only',
+            valueText: 'Can select text',
+          ),
         ],
       ),
     );
