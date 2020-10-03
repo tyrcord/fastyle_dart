@@ -15,11 +15,11 @@ final kFastTextTheme = TextTheme(
   ),
   headline5: GoogleFonts.robotoCondensed(
     fontSize: _kFontSize34,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w700,
   ),
   subtitle1: GoogleFonts.robotoCondensed(
     fontSize: _kFontSize18,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w700,
   ),
   headline6: GoogleFonts.robotoCondensed(
     fontSize: _kFontSize24,
@@ -27,7 +27,7 @@ final kFastTextTheme = TextTheme(
   ),
   subtitle2: GoogleFonts.robotoCondensed(
     fontSize: _kFontSize16,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w700,
   ),
   bodyText1: GoogleFonts.robotoCondensed(
     fontSize: _kFontSize18,
@@ -39,7 +39,7 @@ final kFastTextTheme = TextTheme(
   ),
   button: GoogleFonts.robotoCondensed(
     fontSize: _kFontSize16,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w700,
   ),
   caption: GoogleFonts.robotoCondensed(
     fontSize: _kFontSize16,

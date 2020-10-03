@@ -65,7 +65,10 @@ class FastNumberField extends StatelessWidget {
         decimal: shouldAcceptDecimalValue,
       ),
       decoration: InputDecoration(hintText: placeholderText),
-      style: bodyTextStyle.copyWith(fontFamily: kFastFontForNumber),
+      style: bodyTextStyle.copyWith(
+        fontFamily: kFastFontForNumber,
+        fontWeight: FontWeight.w700,
+      ),
       inputFormatters: [
         NumberInputFormatter(
           maxLength: maxLength,

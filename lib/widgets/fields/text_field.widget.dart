@@ -12,6 +12,7 @@ class FastTextField extends StatelessWidget {
   final TextEditingController textEditingController;
   final bool allowAutocorrect;
   final String initialValue;
+  final bool useFontForNumber;
 
   FastTextField({
     Key key,
@@ -25,9 +26,11 @@ class FastTextField extends StatelessWidget {
     this.textEditingController,
     bool isReadOnly = false,
     bool allowAutocorrect = false,
+    bool useFontForNumber = false,
   })  : assert(labelText != null),
         this.isReadOnly = isReadOnly ?? false,
         this.allowAutocorrect = allowAutocorrect ?? false,
+        useFontForNumber = useFontForNumber ?? false,
         super(key: key);
 
   @override
@@ -50,7 +53,10 @@ class FastTextField extends StatelessWidget {
       autocorrect: allowAutocorrect,
       cursorColor: ThemeHelper.colors.getPrimaryColor(context),
       keyboardType: TextInputType.text,
-      style: ThemeHelper.texts.getBodyTextStyle(context),
+      style: ThemeHelper.texts.getBodyTextStyle(context).copyWith(
+            fontWeight: FontWeight.w700,
+            fontFamily: useFontForNumber ? kFastFontForNumber : null,
+          ),
       decoration: InputDecoration(hintText: placeholderText),
       onChanged: onValueChanged,
       controller: textEditingController,

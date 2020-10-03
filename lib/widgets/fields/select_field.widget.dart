@@ -133,10 +133,13 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
 
   Widget _buildControl(BuildContext context) {
     final text = _selection != null
-        ? FastBody(text: _selection.labelText)
+        ? FastBody(text: _selection.labelText, fontWeight: FontWeight.w700)
         : widget.placeholderText != null
-            ? FastPlaceholder(text: widget.placeholderText)
-            : FastBody(text: kFastNoneString);
+            ? FastPlaceholder(
+                text: widget.placeholderText,
+                fontWeight: FontWeight.w700,
+              )
+            : FastBody(text: kFastNoneString, fontWeight: FontWeight.w700);
 
     return Container(
       child: Row(
