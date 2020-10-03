@@ -44,14 +44,11 @@ class FastReadOnlyTextField extends StatelessWidget {
       child: Align(
         alignment: Alignment.centerLeft,
         child: child ??
-            SelectableText(
-              valueText ?? placeholderText,
+            FastBody(
+              text: valueText ?? placeholderText,
               enableInteractiveSelection: enableInteractiveSelection,
               textAlign: textAlign,
-              style: ThemeHelper.texts.getBodyTextStyle(context).copyWith(
-                    fontWeight: FontWeight.w700,
-                    fontFamily: useFontForNumber ? kFastFontForNumber : null,
-                  ),
+              fontWeight: FontWeight.w700,
             ),
       ),
       decoration: BoxDecoration(

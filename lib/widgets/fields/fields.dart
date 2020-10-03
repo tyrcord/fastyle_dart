@@ -4,4 +4,4 @@ export './search_bar.widget.dart';
 export './search_field.widget.dart';
 export './select_field.widget.dart';
 export './text_field.widget.dart';
-export './read_only.widget.dart';
+export './read_only_field.widget.dart';

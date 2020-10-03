@@ -20,6 +20,7 @@ class FastDisplay extends FastBaseTypography {
     TextOverflow overflow,
     bool useFontForNumber = false,
     double lineHeight,
+    bool enableInteractiveSelection = false,
   }) : super(
           key: key,
           text: text,
@@ -31,6 +32,7 @@ class FastDisplay extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
+          enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -56,6 +58,7 @@ class FastHeadline extends FastBaseTypography {
     TextOverflow overflow,
     bool useFontForNumber = false,
     double lineHeight,
+    bool enableInteractiveSelection = false,
   }) : super(
           key: key,
           text: text,
@@ -66,6 +69,7 @@ class FastHeadline extends FastBaseTypography {
           maxLines: maxLines,
           overflow: overflow,
           lineHeight: lineHeight,
+          enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -91,6 +95,7 @@ class FastPlaceHolderHeadline extends FastBaseTypography {
     TextOverflow overflow,
     bool useFontForNumber = false,
     double lineHeight,
+    bool enableInteractiveSelection = false,
   }) : super(
           key: key,
           text: text,
@@ -102,6 +107,7 @@ class FastPlaceHolderHeadline extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
+          enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -125,6 +131,7 @@ class FastSubhead extends FastBaseTypography {
     TextOverflow overflow,
     bool useFontForNumber = false,
     double lineHeight,
+    bool enableInteractiveSelection = false,
   }) : super(
           key: key,
           textAlign: textAlign,
@@ -136,6 +143,7 @@ class FastSubhead extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
+          enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -161,6 +169,7 @@ class FastTitle extends FastBaseTypography {
     TextOverflow overflow,
     bool useFontForNumber = false,
     double lineHeight,
+    bool enableInteractiveSelection = false,
   }) : super(
           key: key,
           text: text,
@@ -173,6 +182,7 @@ class FastTitle extends FastBaseTypography {
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
           letterSpacing: 1.2,
+          enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -198,6 +208,7 @@ class FastPlaceholderTitle extends FastBaseTypography {
     TextOverflow overflow,
     bool useFontForNumber = false,
     double lineHeight,
+    bool enableInteractiveSelection = false,
   }) : super(
           key: key,
           text: text,
@@ -209,6 +220,7 @@ class FastPlaceholderTitle extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
+          enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -232,6 +244,7 @@ class FastSubtitle extends FastBaseTypography {
     TextOverflow overflow,
     bool useFontForNumber = false,
     double lineHeight,
+    bool enableInteractiveSelection = false,
   }) : super(
           key: key,
           textAlign: textAlign,
@@ -243,6 +256,7 @@ class FastSubtitle extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
+          enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -266,7 +280,8 @@ class FastBody extends FastBaseTypography {
     FontWeight fontWeight,
     int maxLines,
     TextOverflow overflow,
-    bool useFontForNumber,
+    bool useFontForNumber = false,
+    bool enableInteractiveSelection = false,
     double lineHeight,
   }) : super(
           key: key,
@@ -278,6 +293,7 @@ class FastBody extends FastBaseTypography {
           maxLines: maxLines,
           overflow: overflow,
           useFontForNumber: useFontForNumber ?? false,
+          enableInteractiveSelection: enableInteractiveSelection ?? false,
           lineHeight: lineHeight,
         );
 
@@ -304,6 +320,7 @@ class FastBody2 extends FastBaseTypography {
     TextOverflow overflow,
     bool useFontForNumber = false,
     double lineHeight,
+    bool enableInteractiveSelection = false,
   }) : super(
           key: key,
           text: text,
@@ -315,6 +332,7 @@ class FastBody2 extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
+          enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -340,6 +358,7 @@ class FastPlaceholder extends FastBaseTypography {
     TextOverflow overflow,
     bool useFontForNumber = false,
     double lineHeight,
+    bool enableInteractiveSelection = false,
   }) : super(
           key: key,
           text: text,
@@ -351,6 +370,7 @@ class FastPlaceholder extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
+          enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -374,6 +394,7 @@ class FastButtonLabel extends FastBaseTypography {
     TextOverflow overflow,
     bool useFontForNumber = false,
     double lineHeight,
+    bool enableInteractiveSelection = false,
   }) : super(
           key: key,
           textAlign: textAlign,
@@ -385,6 +406,7 @@ class FastButtonLabel extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
+          enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -410,6 +432,7 @@ class FastCaption extends FastBaseTypography {
     TextOverflow overflow,
     bool useFontForNumber = false,
     double lineHeight,
+    bool enableInteractiveSelection = false,
   }) : super(
           key: key,
           text: text,
@@ -421,6 +444,7 @@ class FastCaption extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
+          enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -446,6 +470,7 @@ class FastHelper extends FastBaseTypography {
     TextOverflow overflow,
     bool useFontForNumber = false,
     double lineHeight,
+    bool enableInteractiveSelection = false,
   }) : super(
           key: key,
           text: text,
@@ -457,6 +482,7 @@ class FastHelper extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
+          enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
   TextStyle getDefaultTextStyle(BuildContext context) {

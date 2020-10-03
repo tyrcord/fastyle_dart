@@ -15,6 +15,7 @@ class FastBaseTypography extends StatelessWidget {
   final bool useFontForNumber;
   final double lineHeight;
   final double letterSpacing;
+  final bool enableInteractiveSelection;
 
   const FastBaseTypography({
     Key key,
@@ -28,27 +29,37 @@ class FastBaseTypography extends StatelessWidget {
     TextAlign textAlign = TextAlign.left,
     bool useFontForNumber = false,
     this.letterSpacing,
+    bool enableInteractiveSelection = false,
   })  : assert(text != null),
+        this.enableInteractiveSelection = enableInteractiveSelection ?? false,
         this.textAlign = textAlign ?? TextAlign.left,
         this.useFontForNumber = useFontForNumber ?? false,
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = getDefaultTextStyle(context);
+    final textStyle = getDefaultTextStyle(context).copyWith(
+      height: lineHeight ?? _kLineHeight,
+      fontSize: fontSize,
+      color: textColor,
+      letterSpacing: letterSpacing,
+      fontWeight: fontWeight,
+      fontFamily: useFontForNumber ? kFastFontForNumber : null,
+    );
+
+    if (enableInteractiveSelection) {
+      return SelectableText(
+        text,
+        textAlign: textAlign,
+        style: textStyle,
+        maxLines: maxLines,
+      );
+    }
 
     return Text(
       text,
       textAlign: textAlign,
-      style: textStyle.copyWith(
-        height: lineHeight ?? _kLineHeight,
-        fontSize: fontSize,
-        color: textColor,
-        letterSpacing: letterSpacing,
-        fontWeight: fontWeight,
-        fontFamily:
-            useFontForNumber ? kFastFontForNumber : textStyle.fontFamily,
-      ),
+      style: textStyle,
       maxLines: maxLines,
       overflow: overflow,
     );
