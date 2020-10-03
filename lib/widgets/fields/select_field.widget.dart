@@ -94,7 +94,9 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
         control: _buildControl(context),
       ),
       onTap: () async {
-        if (!widget.isReadOnly) {
+        var items = widget.items;
+
+        if (!widget.isReadOnly && items != null && items.isNotEmpty) {
           FocusScope.of(context).requestFocus(_focusNode);
 
           final response = await Navigator.push(
