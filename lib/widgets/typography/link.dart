@@ -5,12 +5,14 @@ class FastLink extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
   final Color color;
+  final TextAlign textAlign;
 
   const FastLink({
     Key key,
     @required this.text,
     @required this.onTap,
     this.color,
+    this.textAlign,
   })  : assert(text != null),
         assert(onTap != null),
         super(key: key);
@@ -31,11 +33,9 @@ class FastLink extends StatelessWidget {
       onTap: onTap,
       child: ConstrainedBox(
         constraints: const BoxConstraints(minHeight: 34.0),
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: RichText(
-            text: TextSpan(style: linkTextStyle, text: text),
-          ),
+        child: RichText(
+          textAlign: textAlign ?? TextAlign.left,
+          text: TextSpan(style: linkTextStyle, text: text),
         ),
       ),
     );
