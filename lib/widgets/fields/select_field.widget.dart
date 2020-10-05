@@ -24,6 +24,8 @@ class FastSelectField<T> extends StatefulWidget {
   final Widget clearSearchIcon;
   final Widget closeIcon;
   final Widget backIcon;
+  final bool canClearSelection;
+  final String clearSelectionText;
 
   FastSelectField({
     Key key,
@@ -46,8 +48,11 @@ class FastSelectField<T> extends StatefulWidget {
     this.clearSearchIcon,
     this.closeIcon,
     this.backIcon,
+    bool canClearSelection = true,
+    this.clearSelectionText,
   })  : assert(labelText != null),
         assert(items != null),
+        canClearSelection = canClearSelection ?? true,
         shouldSortItems = shouldSortItems ?? true,
         this.isReadOnly = isReadOnly ?? false,
         this.shouldGroupByCategory = shouldGroupByCategory ?? false,
@@ -116,6 +121,8 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
                 clearSearchIcon: widget.clearSearchIcon,
                 backIcon: widget.backIcon,
                 closeIcon: widget.closeIcon,
+                canClearSelection: widget.canClearSelection,
+                clearSelectionText: widget.clearSelectionText,
               ),
               fullscreenDialog: true,
             ),
@@ -123,10 +130,7 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
 
           setState(() {
             _selection = response;
-
-            if (widget.onSelectionChanged != null) {
-              widget.onSelectionChanged(_selection);
-            }
+            widget.onSelectionChanged(_selection);
           });
         }
       },

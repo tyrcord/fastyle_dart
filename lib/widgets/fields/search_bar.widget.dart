@@ -17,6 +17,7 @@ class FastSearchBar<T extends FastItem> extends StatefulWidget {
   final bool showLeadingIcon;
   final TextEditingController textEditingController;
   final bool shouldUseFuzzySearch;
+  final bool showShowBottomBorder;
 
   FastSearchBar({
     @required this.items,
@@ -30,7 +31,9 @@ class FastSearchBar<T extends FastItem> extends StatefulWidget {
     this.textEditingController,
     bool showLeadingIcon = true,
     bool shouldUseFuzzySearch = false,
+    bool showShowBottomBorder = true,
   })  : assert(items != null),
+        showShowBottomBorder = showShowBottomBorder ?? true,
         this.showLeadingIcon = showLeadingIcon ?? true,
         this.shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
         super();
@@ -66,14 +69,16 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
   Widget _buildSearchAppBar(BuildContext context) {
     return Container(
       height: kToolbarHeight,
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            width: ThemeHelper.borderSize,
-            color: Theme.of(context).dividerColor,
-          ),
-        ),
-      ),
+      decoration: widget.showShowBottomBorder
+          ? BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  width: ThemeHelper.borderSize,
+                  color: Theme.of(context).dividerColor,
+                ),
+              ),
+            )
+          : null,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
