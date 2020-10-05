@@ -68,7 +68,6 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
         : SystemUiOverlayStyle.dark;
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: overlayStyle,
         child: Column(

@@ -35,6 +35,15 @@ class _FastToggleListItemState extends State<FastToggleListItem> {
   bool _value;
 
   @override
+  void didUpdateWidget(covariant FastToggleListItem<FastItem> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.isChecked != widget.isChecked) {
+      setState(() => _value = widget.isChecked);
+    }
+  }
+
+  @override
   void initState() {
     _value = widget.isChecked;
     super.initState();

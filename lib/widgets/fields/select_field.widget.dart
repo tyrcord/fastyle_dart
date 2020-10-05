@@ -29,13 +29,13 @@ class FastSelectField<T> extends StatefulWidget {
 
   FastSelectField({
     Key key,
+    @required this.onSelectionChanged,
     @required this.labelText,
     @required this.items,
     this.selection,
     this.captionText,
     this.placeholderText,
     this.helperText,
-    this.onSelectionChanged,
     bool isReadOnly = false,
     bool shouldGroupByCategory = false,
     bool shouldUseFuzzySearch = false,
@@ -52,6 +52,7 @@ class FastSelectField<T> extends StatefulWidget {
     this.clearSelectionText,
   })  : assert(labelText != null),
         assert(items != null),
+        assert(onSelectionChanged != null),
         canClearSelection = canClearSelection ?? true,
         shouldSortItems = shouldSortItems ?? true,
         this.isReadOnly = isReadOnly ?? false,
