@@ -95,7 +95,9 @@ class _FastListItemLayoutState extends State<FastListItemLayout> {
   }
 
   _afterLayout(_) {
-    if (_leading != null) {
+    if (_leading != null &&
+        _leadingKey != null &&
+        _leadingKey.currentContext != null) {
       final RenderBox renderBox = _leadingKey.currentContext.findRenderObject();
       final width = renderBox.size.width;
 

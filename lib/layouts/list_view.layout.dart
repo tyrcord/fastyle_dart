@@ -86,6 +86,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
 
     if (isViewScrollable || shouldGroupByCategory) {
       return ListView.builder(
+        padding: EdgeInsets.zero,
         itemCount: items.length,
         itemBuilder: (BuildContext context, int index) {
           return _buildListItem(
