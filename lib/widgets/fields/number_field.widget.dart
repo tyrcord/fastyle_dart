@@ -15,6 +15,7 @@ class FastNumberField extends StatelessWidget {
   final String initialValue;
   final Function(String) onValueChanged;
   final TextEditingController textEditingController;
+  final bool isEnabled;
 
   FastNumberField({
     Key key,
@@ -31,6 +32,7 @@ class FastNumberField extends StatelessWidget {
     this.initialValue,
     this.onValueChanged,
     this.textEditingController,
+    bool isEnabled = true,
   })  : assert(labelText != null),
         assert(initialValue == null || textEditingController == null),
         this.maxLength = maxLength ?? NumberInputFormatter.safeMaxLength,
@@ -38,6 +40,7 @@ class FastNumberField extends StatelessWidget {
         this.isReadOnly = isReadOnly ?? false,
         this.shouldAcceptDecimalValue = shouldAcceptDecimalValue ?? true,
         this.allowAutocorrect = allowAutocorrect ?? false,
+        isEnabled = isEnabled ?? true,
         super(key: key);
 
   @override
@@ -56,7 +59,7 @@ class FastNumberField extends StatelessWidget {
     return TextFormField(
       initialValue: initialValue,
       readOnly: isReadOnly,
-      enabled: !isReadOnly,
+      enabled: isEnabled,
       textAlign: textAlign ?? TextAlign.start,
       textInputAction: TextInputAction.done,
       autocorrect: allowAutocorrect,
