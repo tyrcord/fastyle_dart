@@ -103,7 +103,8 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
         var items = widget.items;
 
         if (!widget.isReadOnly && items != null && items.isNotEmpty) {
-          FocusScope.of(context).requestFocus(_focusNode);
+          FocusManager.instance.primaryFocus.unfocus();
+          _focusNode.requestFocus();
 
           final response = await Navigator.push(
             context,

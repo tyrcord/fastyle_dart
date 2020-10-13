@@ -192,8 +192,5 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
     );
   }
 
-  void _close(BuildContext context, T item) {
-    FocusScope.of(context).requestFocus(FocusNode());
-    Navigator.pop(context, item);
-  }
+  void _close(BuildContext context, T item) => Navigator.pop(context, item);
 }

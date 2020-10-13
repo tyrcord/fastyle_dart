@@ -44,7 +44,6 @@ class FastSearchBar<T extends FastItem> extends StatefulWidget {
 
 class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
   TextEditingController _textController;
-  FocusNode _focusNode;
   String _searchQuery;
 
   @override
@@ -52,14 +51,12 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
     super.initState();
     _textController = widget.textEditingController ?? TextEditingController();
     _textController.addListener(_handleSearchQueryChanges);
-    _focusNode = FocusNode();
   }
 
   @override
   void dispose() {
     _textController.removeListener(_handleSearchQueryChanges);
     _textController.dispose();
-    _focusNode.dispose();
     super.dispose();
   }
 
@@ -101,7 +98,6 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
     return FastIconButton(
       icon: useCloseButton ? closeIcon : backIcon,
       onTap: () {
-        _focusNode.unfocus();
         widget?.onLeadingButtonTap();
       },
       iconSize: _kIconSize,
@@ -116,7 +112,6 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
             : const EdgeInsets.only(left: 16.0),
         placeholderText: widget.placeholderText,
         textEditingController: _textController,
-        focusNode: _focusNode,
       ),
     );
   }

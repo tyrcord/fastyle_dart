@@ -10,7 +10,6 @@ class FastSearchField extends StatelessWidget {
   final TextEditingController textEditingController;
   final EdgeInsets margin;
   final TextAlign textAlign;
-  final FocusNode focusNode;
   final bool allowAutocorrect;
 
   FastSearchField({
@@ -21,7 +20,6 @@ class FastSearchField extends StatelessWidget {
     bool isReadOnly = false,
     this.margin,
     this.textAlign,
-    this.focusNode,
     bool allowAutocorrect = false,
   })  : this.isReadOnly = isReadOnly ?? false,
         this.allowAutocorrect = allowAutocorrect ?? false,
@@ -52,7 +50,6 @@ class FastSearchField extends StatelessWidget {
       ),
       style: ThemeHelper.texts.getTitleTextStyle(context),
       onChanged: onValueChanged,
-      focusNode: focusNode,
     );
   }
 }

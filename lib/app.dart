@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
+import 'package:flutter/services.dart';
 
 const _kSupportedLocales = const <Locale>[Locale('en', 'US')];
 
@@ -59,11 +62,9 @@ class _FastAppState extends State<FastApp> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        final currentFocus = FocusScope.of(context);
-
-        if (!currentFocus.hasPrimaryFocus &&
-            currentFocus.focusedChild != null) {
+        if (Platform.isIOS || Platform.isAndroid) {
           FocusManager.instance.primaryFocus.unfocus();
+          SystemChannels.textInput.invokeMethod('TextInput.hide');
         }
       },
       child: BlocProvider(
