@@ -14,6 +14,8 @@ class FastWelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO improvements
+    // https://github.com/flutter/flutter/issues/18711#issuecomment-505791677
     return Container(
       padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
       child: SingleChildScrollView(
