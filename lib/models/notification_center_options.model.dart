@@ -5,7 +5,7 @@ class FastNotificationCenterOptions {
   final double iconSize;
   final Color iconColor;
 
-  FastNotificationCenterOptions({
+  const FastNotificationCenterOptions({
     this.leadingIcon,
     this.iconSize,
     this.iconColor,
