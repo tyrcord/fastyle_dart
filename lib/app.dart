@@ -73,6 +73,7 @@ class _FastAppState extends State<FastApp> {
           bloc: _themeBloc,
           builder: (context, FastThemeBlocState state) {
             return MaterialApp(
+              navigatorKey: FastNotificationCenter.navigatorKey,
               title: widget.titleText,
               theme: widget.lightTheme,
               darkTheme: widget.darkTheme,

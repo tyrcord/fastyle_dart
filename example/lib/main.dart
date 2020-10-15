@@ -1,4 +1,5 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:fastyle_dart_example/pages/notifications.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -172,6 +173,19 @@ class _MyHomePageState extends State<MyHomePage> {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => FieldsPage()),
+          );
+        },
+      ),
+      FastNavigationListItem(
+        leading: FastRoundedIcon(
+          iconData: Icons.message,
+          backgroundColor: CupertinoColors.systemOrange.darkColor,
+        ),
+        titleText: 'Notifications',
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => NotificationsPage()),
           );
         },
       ),

@@ -126,4 +126,8 @@ class ThemeColorHelper {
   Color getHintColor(BuildContext context) {
     return Theme.of(context).hintColor;
   }
+
+  Color getBackGroundColor(BuildContext context) {
+    return Theme.of(context).backgroundColor;
+  }
 }

@@ -16,3 +16,4 @@ export './pages/pages.dart';
 export './themes/themes.dart';
 export './types/types.dart';
 export './widgets/widgets.dart';
+export './services/services.dart';

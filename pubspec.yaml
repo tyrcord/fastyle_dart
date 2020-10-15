@@ -10,7 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   async: ^2.4.2
+  collection: ^1.14.13
   google_fonts: ^1.1.0
   intl: ^0.16.1
   diacritic: ^0.1.1
@@ -18,6 +20,7 @@ dependencies:
   flutter_spinkit: ^4.1.2+1
   fuzzy: ^0.2.3
   rxdart: ^0.24.1
+  flushbar: ^1.10.4
 
 dev_dependencies:
   flutter_test:

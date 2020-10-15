@@ -36,4 +36,11 @@ class ThemeHelper {
       child: child,
     );
   }
+
+  static BoxShadow getDefaultBoxShadow(BuildContext context) {
+    return BoxShadow(
+      color: ThemeHelper.colors.getShadowColor(context),
+      blurRadius: kFastBlurRadius,
+    );
+  }
 }

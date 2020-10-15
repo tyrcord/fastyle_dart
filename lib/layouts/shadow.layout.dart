@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
 
-const _kBorderRadius = 12.0;
-const _kBlurRadius = 3.0;
-
 class FastShadowLayout extends StatelessWidget {
   final Color backgroundColor;
   final double borderRadius;
@@ -24,8 +21,8 @@ class FastShadowLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _blurRadius = blurRadius ?? _kBlurRadius;
-    final _borderRadius = borderRadius ?? _kBorderRadius;
+    final _blurRadius = blurRadius ?? kFastBlurRadius;
+    final _borderRadius = borderRadius ?? kFastBorderRadius;
     final _shadowColor =
         shadowColor ?? ThemeHelper.colors.getShadowColor(context);
 
