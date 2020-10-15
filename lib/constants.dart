@@ -71,3 +71,7 @@ final kFastFastItemFuzzyOptions = FuzzyOptions(
 // Alpha
 
 const kDisabledAlpha = 155;
+
+// Duration
+
+const kFastTrottleTimeDuration = Duration(seconds: 1);

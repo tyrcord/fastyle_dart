@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
 
-class FastOutlineButton extends StatelessWidget {
+class FastOutlineButton extends StatefulWidget implements IFastButton {
   final Color highlightedBorderColor;
   final FastButtonEmphasis emphasis;
   final EdgeInsetsGeometry padding;
@@ -13,7 +13,8 @@ class FastOutlineButton extends StatelessWidget {
   final bool isEnabled;
   final Widget child;
   final String text;
-
+  final bool shouldTrottleTime;
+  final Duration trottleTimeDuration;
   const FastOutlineButton({
     Key key,
     @required this.onTap,
@@ -26,32 +27,56 @@ class FastOutlineButton extends StatelessWidget {
     this.padding,
     this.child,
     this.text,
+    bool shouldTrottleTime = false,
+    Duration trottleTimeDuration = kFastTrottleTimeDuration,
   })  : this.isEnabled = isEnabled ?? true,
         this.emphasis = emphasis ?? FastButtonEmphasis.low,
+        shouldTrottleTime = shouldTrottleTime ?? false,
+        trottleTimeDuration = trottleTimeDuration ?? kFastTrottleTimeDuration,
         assert(onTap != null),
         super(key: key);
 
   @override
+  _FastOutlineButtonState createState() => _FastOutlineButtonState();
+}
+
+class _FastOutlineButtonState extends State<FastOutlineButton>
+    with FastThrottleButtonMixin {
+  @override
+  void initState() {
+    super.initState();
+    subscribeToTrottlerEvents();
+  }
+
+  @override
+  void dispose() {
+    unsubscribeToTrottlerEventsIfNeeded();
+    trottler.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final _color = borderColor ?? emphasis == FastButtonEmphasis.high
-        ? ThemeHelper.colors.getPrimaryColor(context)
-        : ThemeHelper.texts.getButtonTextStyle(context).color;
+    final _color =
+        widget.borderColor ?? widget.emphasis == FastButtonEmphasis.high
+            ? ThemeHelper.colors.getPrimaryColor(context)
+            : ThemeHelper.texts.getButtonTextStyle(context).color;
 
     final disabledColor = _color.withAlpha(kDisabledAlpha);
 
     return FastButtonLayout(
       child: OutlineButton(
-        padding: padding,
-        onPressed: isEnabled ? onTap : null,
+        padding: widget.padding,
+        onPressed: throttleOnTapIfNeeded(),
         borderSide: BorderSide(color: _color),
         disabledBorderColor: disabledColor,
-        textColor: textColor ?? _color,
-        highlightColor: highlightColor,
-        highlightedBorderColor: highlightedBorderColor ?? disabledColor,
-        child: child ??
+        textColor: widget.textColor ?? _color,
+        highlightColor: widget.highlightColor,
+        highlightedBorderColor: widget.highlightedBorderColor ?? disabledColor,
+        child: widget.child ??
             FastButtonLabel(
-              text: text,
-              textColor: isEnabled ? _color : disabledColor,
+              text: widget.text,
+              textColor: widget.isEnabled ? _color : disabledColor,
             ),
       ),
     );

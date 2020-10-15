@@ -17,3 +17,5 @@ export './themes/themes.dart';
 export './types/types.dart';
 export './widgets/widgets.dart';
 export './services/services.dart';
+export './interfaces/interfaces.dart';
+export './mixins/mixins.dart';

@@ -53,6 +53,7 @@ class NotificationsPage extends StatelessWidget {
                 ),
               );
             },
+            shouldTrottleTime: true,
           ),
         ],
       ),

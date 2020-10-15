@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
 
-class FastRaisedButton extends StatelessWidget {
+class FastRaisedButton extends StatefulWidget implements IFastButton {
   final EdgeInsetsGeometry padding;
   final Color backgroundColor;
   final Color highlightColor;
@@ -11,6 +11,8 @@ class FastRaisedButton extends StatelessWidget {
   final bool isEnabled;
   final Widget child;
   final String text;
+  final bool shouldTrottleTime;
+  final Duration trottleTimeDuration;
 
   const FastRaisedButton({
     Key key,
@@ -22,15 +24,38 @@ class FastRaisedButton extends StatelessWidget {
     this.padding,
     this.child,
     this.text,
-  })  : this.isEnabled = isEnabled ?? true,
+    bool shouldTrottleTime = false,
+    Duration trottleTimeDuration = kFastTrottleTimeDuration,
+  })  : isEnabled = isEnabled ?? true,
+        shouldTrottleTime = shouldTrottleTime ?? false,
+        trottleTimeDuration = trottleTimeDuration ?? kFastTrottleTimeDuration,
         assert(onTap != null),
         super(key: key);
 
   @override
+  _FastRaisedButtonState createState() => _FastRaisedButtonState();
+}
+
+class _FastRaisedButtonState extends State<FastRaisedButton>
+    with FastThrottleButtonMixin {
+  @override
+  void initState() {
+    super.initState();
+    subscribeToTrottlerEvents();
+  }
+
+  @override
+  void dispose() {
+    unsubscribeToTrottlerEventsIfNeeded();
+    trottler.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final _backgroundColor =
-        backgroundColor ?? ThemeHelper.colors.getPrimaryColor(context);
-    final _textColor = textColor ??
+        widget.backgroundColor ?? ThemeHelper.colors.getPrimaryColor(context);
+    final _textColor = widget.textColor ??
         ThemeHelper.colors.getColorWithBestConstrast(
           context: context,
           darkColor: ThemeHelper.texts.getButtonTextStyle(context).color,
@@ -41,15 +66,16 @@ class FastRaisedButton extends StatelessWidget {
     return FastButtonLayout(
       child: RaisedButton(
         color: _backgroundColor,
-        padding: padding,
-        onPressed: isEnabled ? onTap : null,
+        padding: widget.padding,
+        onPressed: throttleOnTapIfNeeded(),
         splashColor: Colors.transparent,
-        highlightColor: highlightColor,
-        child: child ??
+        highlightColor: widget.highlightColor,
+        child: widget.child ??
             FastButtonLabel(
-              text: text,
-              textColor:
-                  isEnabled ? _textColor : _textColor.withAlpha(kDisabledAlpha),
+              text: widget.text,
+              textColor: widget.isEnabled
+                  ? _textColor
+                  : _textColor.withAlpha(kDisabledAlpha),
             ),
       ),
     );
