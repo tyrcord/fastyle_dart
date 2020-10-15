@@ -83,7 +83,7 @@ class FastNotificationCenter {
   }) {
     _addNotification(
       Flushbar(
-        margin: kFastEdgeInsets16,
+        margin: kFastEdgeInsets8,
         borderRadius: kFastBorderRadius,
         messageText: FastBody(text: message),
         duration: _notificationDuration,
