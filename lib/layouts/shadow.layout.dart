@@ -23,8 +23,10 @@ class FastShadowLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     final _blurRadius = blurRadius ?? kFastBlurRadius;
     final _borderRadius = borderRadius ?? kFastBorderRadius;
-    final _shadowColor =
-        shadowColor ?? ThemeHelper.colors.getShadowColor(context);
+    final _shadowColor = shadowColor ??
+        ThemeHelper.colors.getShadowColor(
+          context,
+        );
 
     return Container(
       decoration: BoxDecoration(
@@ -32,7 +34,10 @@ class FastShadowLayout extends StatelessWidget {
           BoxShadow(color: _shadowColor, blurRadius: _blurRadius),
         ],
         borderRadius: BorderRadius.circular(_borderRadius),
-        color: backgroundColor ?? Theme.of(context).backgroundColor,
+        color: backgroundColor ??
+            ThemeHelper.colors.getBackGroundColor(
+              context,
+            ),
       ),
       child: child,
     );

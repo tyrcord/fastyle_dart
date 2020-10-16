@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-const _kMinButtonHeight = 40.0;
-const _kMinButtonWidth = 44.0;
-
 class FastButtonLayout extends StatelessWidget {
   final Widget child;
 
@@ -15,10 +12,7 @@ class FastButtonLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(
-        minHeight: _kMinButtonHeight,
-        minWidth: _kMinButtonWidth,
-      ),
+      constraints: const BoxConstraints(minHeight: 40.0, minWidth: 44.0),
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: child,
     );

@@ -3,9 +3,6 @@ import 'package:intl/intl.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
 
-const _kMarginHelper = EdgeInsets.only(top: 4.0);
-const _kMargin = EdgeInsets.only(bottom: 8.0);
-
 class FastFieldLayout extends StatelessWidget {
   final String captionText;
   final String labelText;
@@ -24,14 +21,14 @@ class FastFieldLayout extends StatelessWidget {
     this.helperText,
     bool showHelperBoundaries = true,
     this.margin,
-  })  : this.showHelperBoundaries = showHelperBoundaries ?? true,
+  })  : showHelperBoundaries = showHelperBoundaries ?? true,
         assert(control != null),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: margin ?? _kMargin,
+      margin: margin ?? const EdgeInsets.only(bottom: 8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -69,7 +66,7 @@ class FastFieldLayout extends StatelessWidget {
     return Opacity(
       opacity: hasHelper ? 1.0 : 0.0,
       child: Container(
-        margin: _kMarginHelper,
+        margin: const EdgeInsets.only(top: 4.0),
         child: FastHelper(
           text: hasHelper
               ? toBeginningOfSentenceCase(helperText)

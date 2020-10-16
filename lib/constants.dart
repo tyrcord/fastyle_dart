@@ -75,3 +75,7 @@ const kDisabledAlpha = 155;
 // Duration
 
 const kFastTrottleTimeDuration = Duration(seconds: 1);
+
+// Languages
+
+const kFastSupportedLocales = const <Locale>[Locale('en', 'US')];

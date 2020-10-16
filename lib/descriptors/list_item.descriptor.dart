@@ -10,7 +10,7 @@ class FastListItemDescriptor extends FastDescriptor {
     bool isDense = true,
     this.leading,
     this.trailing,
-  })  : this.isDense = isDense ?? true,
+  })  : isDense = isDense ?? true,
         super();
 
   FastListItemDescriptor copyWith({

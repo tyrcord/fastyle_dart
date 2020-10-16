@@ -31,10 +31,10 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     bool showItemDivider = false,
     this.intialTabIndex,
     this.tabAllCategoryText,
-  })  : this.shouldGroupByCategory = shouldGroupByCategory ?? false,
-        this.isViewScrollable = isViewScrollable ?? true,
-        this.shouldSortItems = shouldSortItems ?? true,
-        this.showItemDivider = showItemDivider ?? false,
+  })  : shouldGroupByCategory = shouldGroupByCategory ?? false,
+        isViewScrollable = isViewScrollable ?? true,
+        shouldSortItems = shouldSortItems ?? true,
+        showItemDivider = showItemDivider ?? false,
         assert(items != null),
         assert(listItemBuilder != null),
         super(key: key);
@@ -53,7 +53,6 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   Widget _buildTabViews(BuildContext context, List<T> items) {
     final List<ListView> views = [];
     final List<Tab> tabs = [];
-
     final List<FastListItemCategory<T>> listCategories = _buildListCategories(
       items,
     );
@@ -74,7 +73,8 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
       }).toList();
 
       items.sort(
-          (a, b) => a.normalizedLabelText.compareTo(b.normalizedLabelText));
+        (a, b) => a.normalizedLabelText.compareTo(b.normalizedLabelText),
+      );
     }
 
     final lastIndex = items.length - 1;
@@ -160,7 +160,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     bool isLastItem,
     BoxDecoration decoration,
   }) {
-    Widget listItem = listItemBuilder(context, item, index);
+    final listItem = listItemBuilder(context, item, index);
 
     if (isLastItem && decoration != null) {
       return DecoratedBox(

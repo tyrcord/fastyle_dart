@@ -6,8 +6,6 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 import 'package:flutter/services.dart';
 
-const _kSupportedLocales = const <Locale>[Locale('en', 'US')];
-
 class FastApp extends StatefulWidget {
   final Iterable<LocalizationsDelegate> localizationsDelegates;
   final Iterable<Locale> supportedLocales;
@@ -21,15 +19,15 @@ class FastApp extends StatefulWidget {
   FastApp({
     Key key,
     @required this.home,
-    Iterable<Locale> supportedLocales = _kSupportedLocales,
     this.localizationsDelegates,
     this.lightTheme,
     this.darkTheme,
     this.themeBloc,
     this.titleText,
     this.locale,
+    Iterable<Locale> supportedLocales = kFastSupportedLocales,
   })  : assert(home != null),
-        this.supportedLocales = supportedLocales ?? _kSupportedLocales,
+        supportedLocales = supportedLocales ?? kFastSupportedLocales,
         super(key: key);
 
   @override

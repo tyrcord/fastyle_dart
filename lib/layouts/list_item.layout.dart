@@ -24,7 +24,7 @@ class FastListItemLayout extends StatefulWidget {
     this.isDense,
     this.leading,
     this.onTap,
-  })  : this.isEnabled = isEnabled ?? true,
+  })  : isEnabled = isEnabled ?? true,
         assert(titleText != null),
         super(key: key);
 
@@ -39,7 +39,7 @@ class _FastListItemLayoutState extends State<FastListItemLayout> {
   Widget _leading;
 
   // Material specifications.
-  static const double _minLeadingWidth = 40.0;
+  static const _minLeadingWidth = 40.0;
 
   @override
   void initState() {
