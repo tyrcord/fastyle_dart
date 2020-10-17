@@ -71,7 +71,7 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
   @override
   void initState() {
     super.initState();
-    _focusNode = new FocusNode();
+    _focusNode = FocusNode();
     _selection = widget.selection;
   }
 
@@ -147,7 +147,10 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
                 text: widget.placeholderText,
                 fontWeight: FontWeight.w700,
               )
-            : FastBody(text: kFastNoneString, fontWeight: FontWeight.w700);
+            : const FastBody(
+                text: kFastNoneString,
+                fontWeight: FontWeight.w700,
+              );
 
     return Container(
       child: Row(

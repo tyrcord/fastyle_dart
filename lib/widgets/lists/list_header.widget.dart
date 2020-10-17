@@ -31,15 +31,9 @@ class FastListHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          FastSubhead(
-            text: categoryText,
-            textColor: categoryColor,
-          ),
+          FastSubhead(text: categoryText, textColor: categoryColor),
           if (captionText != null)
-            FastCaption(
-              text: captionText,
-              textColor: captionColor,
-            ),
+            FastCaption(text: captionText, textColor: captionColor),
         ],
       ),
     );

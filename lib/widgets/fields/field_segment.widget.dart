@@ -50,7 +50,7 @@ class _FastSegmentFieldState<T> extends State<FastSegmentField<T>> {
     final primaryColor = ThemeHelper.colors.getPrimaryColor(context);
 
     return Container(
-      padding: EdgeInsets.only(top: 9),
+      padding: const EdgeInsets.only(top: 9),
       child: CupertinoSegmentedControl(
         borderColor: primaryColor,
         selectedColor: primaryColor,
@@ -74,7 +74,7 @@ class _FastSegmentFieldState<T> extends State<FastSegmentField<T>> {
       return MapEntry(
         index,
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: FastBody(
             text: item.labelText,
             textColor: _selectedIndex == index

@@ -50,11 +50,7 @@ class FastTabs extends StatelessWidget {
             unselectedLabelStyle: unselectedLabelStyle,
             tabs: tabs,
           ),
-          Expanded(
-            child: TabBarView(
-              children: views,
-            ),
-          ),
+          Expanded(child: TabBarView(children: views)),
         ],
       ),
     );

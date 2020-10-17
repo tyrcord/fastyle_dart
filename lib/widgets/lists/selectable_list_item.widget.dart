@@ -40,12 +40,7 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
 
     if (_trailing is Icon) {
       final icon = _trailing as Icon;
-
-      _trailing = Icon(
-        icon.icon,
-        color: _color,
-        size: icon.size,
-      );
+      _trailing = Icon(icon.icon, color: _color, size: icon.size);
     }
 
     return FastListItemLayout(

@@ -120,7 +120,7 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
     final theme = Theme.of(context);
 
     return FastIconButton(
-      icon: widget.clearSearchIcon ?? Icon(Icons.delete_outline),
+      icon: widget.clearSearchIcon ?? const Icon(Icons.delete_outline),
       iconColor: _searchQuery == null ? theme.hintColor : null,
       onTap: () => _textController.clear(),
       iconSize: _kIconSize,

@@ -43,6 +43,18 @@ class FastPendingReadOnlyTextField extends StatefulWidget {
 class _FastPendingReadOnlyTextFieldState
     extends State<FastPendingReadOnlyTextField>
     with SingleTickerProviderStateMixin {
+  static const _animationDuration = Duration(milliseconds: 750);
+  static final _blurWidget = Positioned(
+    height: 37,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    child: BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 0.5, sigmaY: 0.5),
+      child: Container(color: Colors.transparent),
+    ),
+  );
+
   AnimationController _controller;
   Animation<double> _animation;
   bool _initialized = false;
@@ -53,7 +65,7 @@ class _FastPendingReadOnlyTextFieldState
 
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 750),
+      duration: _animationDuration,
     );
 
     final CurvedAnimation curve = CurvedAnimation(
@@ -113,17 +125,7 @@ class _FastPendingReadOnlyTextFieldState
               fontWeight: FontWeight.w700,
             ),
           ),
-          if (widget.isPending)
-            Positioned(
-              height: 37,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 0.5, sigmaY: 0.5),
-                child: Container(color: Colors.black.withOpacity(0)),
-              ),
-            ),
+          if (widget.isPending) _blurWidget,
         ],
       ),
     );

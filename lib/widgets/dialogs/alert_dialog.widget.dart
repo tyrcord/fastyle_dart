@@ -55,8 +55,8 @@ class FastAlertDialog extends AlertDialog {
     return [
       if (onCancel != null && cancelText != null)
         FastTextButton(
-          onTap: onCancel,
           text: cancelText ?? _kCancelText,
+          onTap: onCancel,
         ),
       FastTextButton(
         onTap: () {
