@@ -1,4 +1,5 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:fastyle_dart_example/pages/colors.dart';
 import 'package:fastyle_dart_example/pages/notifications.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 import 'package:flutter/cupertino.dart';
@@ -102,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
       FastNavigationListItem(
         leading: FastRoundedIcon(
           iconData: Icons.radio_button_checked,
-          backgroundColor: CupertinoColors.systemPurple.darkColor,
+          backgroundColor: ThemeHelper.colors.getPurpleColor(context),
         ),
         titleText: 'Buttons',
         descriptionText: 'Raised, icon buttons',
@@ -116,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
       FastNavigationListItem(
         leading: FastRoundedIcon(
           iconData: Icons.text_fields,
-          backgroundColor: CupertinoColors.systemGreen.darkColor,
+          backgroundColor: ThemeHelper.colors.getGreenColor(context),
         ),
         titleText: 'Typography',
         descriptionText: 'Title, subhead...',
@@ -130,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
       FastNavigationListItem(
         leading: FastRoundedIcon(
           iconData: Icons.table_chart,
-          backgroundColor: CupertinoColors.systemBlue.darkColor,
+          backgroundColor: ThemeHelper.colors.getBlueColor(context),
         ),
         titleText: 'Tabs',
         onTap: () {
@@ -143,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
       FastNavigationListItem(
         leading: FastRoundedIcon(
           iconData: Icons.view_agenda,
-          backgroundColor: CupertinoColors.systemPink.darkColor,
+          backgroundColor: ThemeHelper.colors.getPinkColor(context),
         ),
         titleText: 'Cards',
         onTap: () {
@@ -154,7 +155,10 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       FastNavigationListItem(
-        leading: FastRoundedIcon(iconData: Icons.view_list),
+        leading: FastRoundedIcon(
+          iconData: Icons.view_list,
+          backgroundColor: ThemeHelper.colors.getIndigoColor(context),
+        ),
         titleText: 'List',
         onTap: () {
           Navigator.push(
@@ -166,7 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
       FastNavigationListItem(
         leading: FastRoundedIcon(
           iconData: Icons.edit,
-          backgroundColor: CupertinoColors.systemTeal.darkColor,
+          backgroundColor: ThemeHelper.colors.getTealColor(context),
         ),
         titleText: 'Fields',
         onTap: () {
@@ -179,13 +183,26 @@ class _MyHomePageState extends State<MyHomePage> {
       FastNavigationListItem(
         leading: FastRoundedIcon(
           iconData: Icons.message,
-          backgroundColor: CupertinoColors.systemOrange.darkColor,
+          backgroundColor: ThemeHelper.colors.getOrangeColor(context),
         ),
         titleText: 'Notifications',
         onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => NotificationsPage()),
+          );
+        },
+      ),
+      FastNavigationListItem(
+        leading: FastRoundedIcon(
+          iconData: Icons.colorize,
+          backgroundColor: ThemeHelper.colors.getRedColor(context),
+        ),
+        titleText: 'Colors',
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ColorsPage()),
           );
         },
       ),

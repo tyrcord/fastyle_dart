@@ -1,28 +1,27 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 // Colors
-final kFastDarkWhiteColor = CupertinoColors.label.darkColor;
-final kFastDarkBlueColor = CupertinoColors.systemBlue.darkColor;
-const kFastDarkBlueGrayColor = Color(0xFF878686);
-final kFastDarkGreenColor = CupertinoColors.systemGreen.darkColor;
-final kFastDarkIndigoColor = CupertinoColors.systemIndigo.darkColor;
-final kFastDarkOrangeColor = CupertinoColors.systemOrange.darkColor;
-final kFastDarkPinkColor = CupertinoColors.systemPink.darkColor;
-final kFastDarkPurpleColor = CupertinoColors.systemPurple.darkColor;
-final kFastDarkRedColor = CupertinoColors.systemRed.darkColor;
+const kFastDarkWhiteColor = Color(0xFFFAFAFA);
+const kFastDarkBlueColor = Color(0xFF6BC3FE);
+const kFastDarkBlueGrayColor = Color(0xFF90ACBA);
+const kFastDarkGreenColor = Color(0xFF6DDB63);
+const kFastDarkIndigoColor = Color(0xFF8A93FF);
+const kFastDarkOrangeColor = Color(0xFFFF8D63);
+const kFastDarkPinkColor = Color(0xFFFF54C0);
+const kFastDarkPurpleColor = Color(0xFFB37DFF);
+const kFastDarkRedColor = Color(0xFFFF4F4D);
 final kFastDarkTealColor = CupertinoColors.systemTeal.darkColor;
-final kFastDarkYellowColor = CupertinoColors.systemYellow.darkColor;
+const kFastDarkYellowColor = Color(0xFFFFDA24);
 
 // Background Colors
-final kFastDarkPrimaryBackgroundColor =
-    CupertinoColors.systemBackground.darkColor;
-final kFastDarkSecondaryBackgroundColor =
-    CupertinoColors.secondarySystemBackground.darkColor;
+const kFastDarkPrimaryBackgroundColor = Color(0xFF111219);
+const kFastDarkSecondaryBackgroundColor = Color(0xFF1E2026);
 final kFastDarkTertiaryBackgroundColor =
     CupertinoColors.tertiarySystemBackground.darkColor;
 
 // Label Colors
-final kFastDarklabelColor = CupertinoColors.label.darkColor;
+final kFastDarklabelColor = kFastDarkWhiteColor;
 final kFastDarkSecondaryLabelColor = CupertinoColors.secondaryLabel.darkColor;
 final kFastDarkTertiaryLabelColor = CupertinoColors.tertiaryLabel.darkColor;
 final kFastDarkHintLabelColor = CupertinoColors.placeholderText.darkColor;
@@ -31,4 +30,4 @@ final kFastDarkHintLabelColor = CupertinoColors.placeholderText.darkColor;
 final kFastDarkSeparatorColor = CupertinoColors.separator.darkColor;
 
 // Shawdow Colors
-const kFastDarkShadowColor = Color(0xff8e8e93);
+const kFastDarkShadowColor = Color(0xFF09090D);
