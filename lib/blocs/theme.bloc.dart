@@ -7,7 +7,10 @@ class FastThemeBloc
     extends BidirectionalBloc<FastThemeBlocEvent, FastThemeBlocState> {
   FastThemeBloc({
     FastThemeBlocState initialState,
-  }) : super(initialState: initialState ?? FastThemeBlocState());
+  }) : super(initialState: initialState ?? FastThemeBlocState()) {
+    WidgetsBinding.instance.window
+      ..onPlatformBrightnessChanged = onPlatformBrightnessChanged;
+  }
 
   @override
   Stream<FastThemeBlocState> mapEventToState(FastThemeBlocEvent event) async* {
@@ -26,6 +29,15 @@ class FastThemeBloc
         themeMode: ThemeMode.system,
         brightness: WidgetsBinding.instance.window.platformBrightness,
       );
+    }
+  }
+
+  void onPlatformBrightnessChanged() {
+    final newBrightness = WidgetsBinding.instance.window.platformBrightness;
+
+    if (currentState.themeMode == ThemeMode.system &&
+        newBrightness != currentState.brightness) {
+      dispatchEvent(FastThemeBlocEvent.system());
     }
   }
 }
