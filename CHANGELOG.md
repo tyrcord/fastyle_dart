@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## [0.11.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.11.0) (2020-10-19)
+
+### Enhancements
+
+- The search logic also uses the description text.
+- Update Light and Dark themes.
+- Update dependencies.
+- Minor performance improvements.
+
+### Features
+
+- Added notification center service.
+- Added the titleColor property to FastCard.
+- Added the initialValue property to number and text fields.
+- Added the initialTabIndex property to SelectField.
+- Added the tabAllCategoryText property to SelectField.
+- Added the textEditingController property to NumberField.
+- added the isEnabled property to NumberField.
+- Allow to sort CategoryTabs by weight.
+- Allow to throttle buttons.
+- Made Fast texts selectable.
+
+### Fixes
+
+- Fixed wrong indentation with FieldLayout.
+
 ## [0.10.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.10.1) (2020-09-20)
 
 ### Enhancements
