@@ -73,17 +73,26 @@ class FastCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Padding(
-            padding: hasHeaderActions
-                ? const EdgeInsets.only(right: 8.0)
-                : EdgeInsets.zero,
-            child: FastTitle(
-              text: titleText,
-              textColor: titleTextColor,
-              overflow: TextOverflow.ellipsis,
+          Flexible(
+            flex: 2,
+            child: Padding(
+              padding: hasHeaderActions
+                  ? const EdgeInsets.only(right: 8.0)
+                  : EdgeInsets.zero,
+              child: FastTitle(
+                text: titleText,
+                textColor: titleTextColor,
+              ),
             ),
           ),
-          if (headerActions != null) Row(children: <Widget>[...headerActions]),
+          if (headerActions != null)
+            Flexible(
+              flex: 1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[...headerActions],
+              ),
+            ),
         ],
       ),
     );
