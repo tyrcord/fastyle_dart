@@ -8,6 +8,7 @@ class FastSegmentField<T> extends StatefulWidget {
   final String labelText;
   final String captionText;
   final bool isReadOnly;
+  final int selectedIndex;
 
   FastSegmentField({
     Key key,
@@ -16,7 +17,9 @@ class FastSegmentField<T> extends StatefulWidget {
     this.captionText,
     this.onValueChanged,
     bool isReadOnly = false,
-  })  : this.isReadOnly = isReadOnly ?? false,
+    int selectedIndex = 0,
+  })  : isReadOnly = isReadOnly ?? false,
+        selectedIndex = selectedIndex ?? 0,
         assert(options != null),
         assert(labelText != null),
         super(key: key);
@@ -31,9 +34,18 @@ class _FastSegmentFieldState<T> extends State<FastSegmentField<T>> {
 
   @override
   void initState() {
-    _selectedIndex = 0;
+    _selectedIndex = widget.selectedIndex;
     _options = widget.options.asMap();
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(FastSegmentField<T> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.selectedIndex != oldWidget.selectedIndex) {
+      setState(() => _selectedIndex = widget.selectedIndex);
+    }
   }
 
   @override
