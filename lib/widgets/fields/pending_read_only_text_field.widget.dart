@@ -15,6 +15,8 @@ class FastPendingReadOnlyTextField extends StatefulWidget {
   final Widget child;
   final bool enableInteractiveSelection;
   final bool isPending;
+  final Color valueTextColor;
+  final bool showHelperBoundaries;
 
   FastPendingReadOnlyTextField({
     Key key,
@@ -29,10 +31,13 @@ class FastPendingReadOnlyTextField extends StatefulWidget {
     bool enableInteractiveSelection = true,
     bool isPending = false,
     this.pendingText,
+    this.valueTextColor,
+    bool showHelperBoundaries = true,
   })  : assert(labelText != null),
         isPending = isPending ?? false,
         enableInteractiveSelection = enableInteractiveSelection ?? true,
         useFontForNumber = useFontForNumber ?? false,
+        showHelperBoundaries = showHelperBoundaries ?? true,
         super(key: key);
 
   @override
@@ -106,6 +111,7 @@ class _FastPendingReadOnlyTextFieldState
       labelText: widget.labelText,
       captionText: widget.captionText,
       helperText: widget.helperText,
+      showHelperBoundaries: widget.showHelperBoundaries,
       child: Stack(
         children: <Widget>[
           AnimatedBuilder(
@@ -120,8 +126,11 @@ class _FastPendingReadOnlyTextFieldState
               text: widget.isPending && widget.pendingText != null
                   ? widget.pendingText
                   : widget.valueText ?? widget.placeholderText,
+              textColor: widget.valueTextColor,
               enableInteractiveSelection: widget.enableInteractiveSelection,
-              textAlign: widget.textAlign,
+              textAlign: !widget.isPending && widget.valueText != null
+                  ? widget.textAlign
+                  : null,
               fontWeight: FontWeight.w700,
             ),
           ),
