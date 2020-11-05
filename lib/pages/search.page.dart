@@ -75,7 +75,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
           children: <Widget>[
             _buildHeader(context),
             Expanded(child: _buildListView(context)),
-            _buildFooter(context),
+            if (widget.canClearSelection) _buildFooter(context),
           ],
         ),
       ),
