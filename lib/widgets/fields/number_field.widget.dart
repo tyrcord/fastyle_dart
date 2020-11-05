@@ -16,6 +16,8 @@ class FastNumberField extends StatelessWidget {
   final Function(String) onValueChanged;
   final TextEditingController textEditingController;
   final bool isEnabled;
+  final Widget suffixIcon;
+  final BoxConstraints suffixIconConstraints;
 
   FastNumberField({
     Key key,
@@ -33,6 +35,8 @@ class FastNumberField extends StatelessWidget {
     this.onValueChanged,
     this.textEditingController,
     bool isEnabled = true,
+    this.suffixIcon,
+    this.suffixIconConstraints,
   })  : assert(labelText != null),
         assert(initialValue == null || textEditingController == null),
         this.maxLength = maxLength ?? NumberInputFormatter.safeMaxLength,
@@ -67,7 +71,15 @@ class FastNumberField extends StatelessWidget {
       keyboardType: TextInputType.numberWithOptions(
         decimal: shouldAcceptDecimalValue,
       ),
-      decoration: InputDecoration(hintText: placeholderText),
+      decoration: InputDecoration(
+        hintText: placeholderText,
+        suffixIcon: suffixIcon,
+        suffixIconConstraints: suffixIconConstraints ??
+            const BoxConstraints(
+              maxHeight: kFastIconSize,
+              maxWidth: kFastIconSize,
+            ),
+      ),
       style: bodyTextStyle.copyWith(
         fontFamily: kFastFontForNumber,
         fontWeight: FontWeight.w700,
