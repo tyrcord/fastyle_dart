@@ -11,6 +11,7 @@ class FastFieldLayout extends StatelessWidget {
   final Widget control;
   final bool showHelperBoundaries;
   final EdgeInsets margin;
+  final Color helperTextColor;
 
   FastFieldLayout({
     Key key,
@@ -21,6 +22,7 @@ class FastFieldLayout extends StatelessWidget {
     this.helperText,
     bool showHelperBoundaries = true,
     this.margin,
+    this.helperTextColor,
   })  : showHelperBoundaries = showHelperBoundaries ?? true,
         assert(control != null),
         super(key: key);
@@ -68,6 +70,7 @@ class FastFieldLayout extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(top: 4.0),
         child: FastHelper(
+          textColor: helperTextColor,
           text: hasHelper
               ? toBeginningOfSentenceCase(helperText)
               : kFastEmptyString,

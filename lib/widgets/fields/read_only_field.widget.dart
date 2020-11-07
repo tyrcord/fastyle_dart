@@ -13,6 +13,7 @@ class FastReadOnlyTextField extends StatelessWidget {
   final bool enableInteractiveSelection;
   final Color valueTextColor;
   final bool showHelperBoundaries;
+  final Color helperTextColor;
 
   FastReadOnlyTextField({
     Key key,
@@ -27,6 +28,7 @@ class FastReadOnlyTextField extends StatelessWidget {
     bool enableInteractiveSelection = true,
     bool showHelperBoundaries = true,
     this.valueTextColor,
+    this.helperTextColor,
   })  : assert(labelText != null),
         enableInteractiveSelection = enableInteractiveSelection ?? true,
         useFontForNumber = useFontForNumber ?? false,
@@ -39,6 +41,7 @@ class FastReadOnlyTextField extends StatelessWidget {
       labelText: labelText,
       captionText: captionText,
       helperText: helperText,
+      helperTextColor: helperTextColor,
       control: _buildControl(context),
       showHelperBoundaries: showHelperBoundaries,
     );
