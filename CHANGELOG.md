@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## [0.11.2](https://github.com/tyrcord/fastyle_dart/releases/tag/0.11.2) (2020-11-11)
+
+### Enhancements
+
+- Added selectedIndex property to the FastFieldSegmentField.
+- Added valueTextColor and showHelperBoundaries properties to the FastReadOnlyTextField.
+- Added suffixIcon and suffixIconConstraints properties to the FastNumberField.
+- Minor performance improvements.
+
+### Fixes
+
+- [FastSearchPage] Hide the clear selection button.
+
 ## [0.11.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.11.1) (2020-10-19)
 
 ### Enhancements
