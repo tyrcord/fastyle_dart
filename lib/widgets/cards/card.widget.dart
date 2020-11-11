@@ -64,6 +64,7 @@ class FastCard extends StatelessWidget {
     final customPadding = hasHeaderActions ? 8.0 : 16.0;
 
     return Container(
+      constraints: BoxConstraints(minHeight: 52.0),
       padding: EdgeInsets.only(
         left: 16.0,
         right: customPadding,
