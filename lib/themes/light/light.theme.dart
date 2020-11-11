@@ -69,4 +69,7 @@ final kLightFastTheme = kBaseFastTheme.copyWith(
       ),
     ),
   ),
+  popupMenuTheme: PopupMenuThemeData(
+    color: kFastLightSecondaryBackgroundColor,
+  ),
 );
