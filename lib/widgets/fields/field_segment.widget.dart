@@ -17,9 +17,8 @@ class FastSegmentField<T> extends StatefulWidget {
     this.captionText,
     this.onValueChanged,
     bool isReadOnly = false,
-    int selectedIndex = 0,
+    this.selectedIndex = 0,
   })  : isReadOnly = isReadOnly ?? false,
-        selectedIndex = selectedIndex ?? 0,
         assert(options != null),
         assert(labelText != null),
         super(key: key);
