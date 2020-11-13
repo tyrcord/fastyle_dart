@@ -1,3 +1,4 @@
+import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 class ThemeGradientHelper {
@@ -5,11 +6,11 @@ class ThemeGradientHelper {
     final theme = Theme.of(context);
 
     return LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
+      begin: Alignment.bottomLeft,
+      end: Alignment.topRight,
       colors: [
         theme.primaryColor,
-        theme.primaryColorDark,
+        ThemeHelper.colors.getSecondaryColor(context),
       ],
     );
   }
