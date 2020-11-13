@@ -54,6 +54,7 @@ class FastNumberField extends StatelessWidget {
       captionText: captionText,
       helperText: helperText,
       control: _buildControl(context),
+      suffixIcon: suffixIcon,
     );
   }
 
@@ -73,12 +74,11 @@ class FastNumberField extends StatelessWidget {
       ),
       decoration: InputDecoration(
         hintText: placeholderText,
-        suffixIcon: suffixIcon,
-        suffixIconConstraints: suffixIconConstraints ??
-            const BoxConstraints(
-              maxHeight: kFastIconSize,
-              maxWidth: kFastIconSize,
-            ),
+        suffixIcon:
+            suffixIcon != null ? const SizedBox(width: 40, height: 33) : null,
+        suffixIconConstraints:
+            const BoxConstraints(maxWidth: 40, maxHeight: 33) ??
+                suffixIconConstraints,
       ),
       style: bodyTextStyle.copyWith(
         fontFamily: kFastFontForNumber,

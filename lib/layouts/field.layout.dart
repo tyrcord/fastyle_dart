@@ -12,6 +12,7 @@ class FastFieldLayout extends StatelessWidget {
   final bool showHelperBoundaries;
   final EdgeInsets margin;
   final Color helperTextColor;
+  final Widget suffixIcon;
 
   FastFieldLayout({
     Key key,
@@ -23,6 +24,7 @@ class FastFieldLayout extends StatelessWidget {
     bool showHelperBoundaries = true,
     this.margin,
     this.helperTextColor,
+    this.suffixIcon,
   })  : showHelperBoundaries = showHelperBoundaries ?? true,
         assert(control != null),
         super(key: key);
@@ -36,9 +38,20 @@ class FastFieldLayout extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           if (labelText != null) _buildLabel(context),
-          ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 33.0),
-            child: control,
+          Stack(
+            children: <Widget>[
+              ConstrainedBox(
+                constraints: const BoxConstraints(minHeight: 33.0),
+                child: control,
+              ),
+              if (suffixIcon != null)
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: suffixIcon,
+                )
+            ],
           ),
           if (showHelperBoundaries) _buildHelper(context),
         ],
