@@ -55,6 +55,27 @@ class FieldsPage extends StatelessWidget {
             placeholderText: '42',
             captionText: 'optional',
           ),
+          FastNumberField(
+            labelText: 'Number with a suffix icon',
+            placeholderText: '0',
+            suffixIcon: Container(
+              child: PopupMenuButton(
+                itemBuilder: (context) => <PopupMenuItem>[
+                  PopupMenuItem(child: Text('Option 1'), value: 1),
+                  PopupMenuItem(child: Text('Option 2'), value: 2),
+                ],
+                padding: EdgeInsets.zero,
+                icon: Align(
+                  alignment: Alignment.centerRight,
+                  child: Icon(
+                    Icons.more_vert,
+                    size: kFastIconSize,
+                    color: ThemeHelper.texts.getBodyTextStyle(context).color,
+                  ),
+                ),
+              ),
+            ),
+          ),
           FastListHeader(
             categoryText: 'category 2',
             categoryColor: primaryColor,
