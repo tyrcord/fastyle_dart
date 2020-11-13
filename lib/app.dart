@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 
 class FastApp extends StatefulWidget {
   final Iterable<LocalizationsDelegate> localizationsDelegates;
+  final bool debugShowCheckedModeBanner;
   final Iterable<Locale> supportedLocales;
   final FastThemeBloc themeBloc;
   final ThemeData lightTheme;
@@ -26,8 +27,10 @@ class FastApp extends StatefulWidget {
     this.titleText,
     this.locale,
     Iterable<Locale> supportedLocales = kFastSupportedLocales,
+    bool debugShowCheckedModeBanner = false,
   })  : assert(home != null),
         supportedLocales = supportedLocales ?? kFastSupportedLocales,
+        debugShowCheckedModeBanner = debugShowCheckedModeBanner ?? false,
         super(key: key);
 
   @override
@@ -71,6 +74,7 @@ class _FastAppState extends State<FastApp> {
           bloc: _themeBloc,
           builder: (context, FastThemeBlocState state) {
             return MaterialApp(
+              debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
               navigatorKey: FastNotificationCenter.navigatorKey,
               title: widget.titleText,
               theme: widget.lightTheme,
