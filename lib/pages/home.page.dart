@@ -154,6 +154,7 @@ class _FastHomePageState extends State<FastHomePage> {
         title: FastTitle(
           text: widget.titleText,
           textColor: _textColor,
+          maxLines: 1,
         ),
         background: widget.subtitleText != null
             ? _buildFlexibleSpaceBarBackground(_textColor)
