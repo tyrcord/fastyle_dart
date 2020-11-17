@@ -11,6 +11,7 @@ class NumberInputFormatter extends TextInputFormatter {
   static const int safeInteger = 9007199254740992; // 2^53
   static const int safeMaxLength = 16;
   static const String defaultLocale = 'en_US';
+  static const String defaultDecimalSeparator = '.';
 
   NumberInputFormatter({
     this.maxLength = NumberInputFormatter.safeMaxLength,
@@ -25,33 +26,43 @@ class NumberInputFormatter extends TextInputFormatter {
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
-    final newValueText = newValue.text;
+    var newValueText = newValue.text;
 
     if (newValueText == '' || newValueText == null) {
       return newValue;
     }
 
-    NumberFormat numberFormat = NumberFormat.decimalPattern(this.locale);
-    NumberSymbols numberSymbols = numberFormat.symbols;
+    final numberFormat = NumberFormat.decimalPattern(this.locale);
+    final numberSymbols = numberFormat.symbols;
 
-    if (newValueText == numberSymbols.DECIMAL_SEP) {
+    // workaround for locale decimal separator
+    final defaultNumberFormat = NumberFormat.decimalPattern(defaultLocale);
+
+    if (numberSymbols.DECIMAL_SEP != defaultDecimalSeparator) {
+      newValueText = newValueText.replaceFirst(
+        numberSymbols.DECIMAL_SEP,
+        defaultDecimalSeparator,
+      );
+    }
+
+    if (newValueText == defaultDecimalSeparator) {
       return this.shouldAcceptDecimalValue
           ? TextEditingValue(
               text: NumberFormat(
               '0.',
-              this.locale,
+              defaultLocale,
             ).format(0))
           : oldValue;
     }
 
     if (!this._isValidNumber(
       newValueText,
-      decimalSeparator: numberSymbols.DECIMAL_SEP,
+      decimalSeparator: defaultDecimalSeparator,
     )) {
       return oldValue;
     }
 
-    final dotRegExp = RegExp("\\${numberSymbols.DECIMAL_SEP}");
+    final dotRegExp = RegExp("\\$defaultDecimalSeparator");
     final decimalMatches = dotRegExp.allMatches(newValueText);
 
     if (decimalMatches.length > 1) {
@@ -59,7 +70,7 @@ class NumberInputFormatter extends TextInputFormatter {
     }
 
     final int decimalSeparatorPosition =
-        newValueText.indexOf(numberSymbols.DECIMAL_SEP);
+        newValueText.indexOf(defaultDecimalSeparator);
     int newValueTextLength = newValue.text.length;
 
     if (decimalSeparatorPosition > -1 &&
@@ -74,7 +85,7 @@ class NumberInputFormatter extends TextInputFormatter {
     num number;
 
     try {
-      number = numberFormat.parse(newValueText);
+      number = defaultNumberFormat.parse(newValueText);
     } catch (e) {}
 
     if (number != null) {
@@ -92,7 +103,7 @@ class NumberInputFormatter extends TextInputFormatter {
           fractionDigits = fractionDigits > 20 ? 20 : fractionDigits;
           checkedNewValueText = this._localizeNumber(
             number.toStringAsFixed(fractionDigits),
-            decimalSeparator: numberSymbols.DECIMAL_SEP,
+            decimalSeparator: defaultDecimalSeparator,
           );
         } else {
           // close to a decimal number (\d+.) => 0.
@@ -112,7 +123,7 @@ class NumberInputFormatter extends TextInputFormatter {
     return oldValue;
   }
 
-  _isValidNumber(String number, {String decimalSeparator = '.'}) {
+  bool _isValidNumber(String number, {String decimalSeparator = '.'}) {
     final regExp = this.shouldAcceptDecimalValue
         ? RegExp("^\\d*(\\$decimalSeparator?\\d*)?\$")
         : RegExp(r'^\d*$');
@@ -120,9 +131,7 @@ class NumberInputFormatter extends TextInputFormatter {
     return regExp.hasMatch(number);
   }
 
-  _localizeNumber(String value, {String decimalSeparator = '.'}) {
-    final defaultDecimalSeparator = '.';
-
+  String _localizeNumber(String value, {String decimalSeparator = '.'}) {
     if (decimalSeparator != defaultDecimalSeparator) {
       List<String> stringMedata = value.split(defaultDecimalSeparator);
 
@@ -139,7 +148,7 @@ class NumberInputFormatter extends TextInputFormatter {
           pattern += '0';
         }
 
-        NumberFormat numberFormatter = NumberFormat(pattern, this.locale);
+        NumberFormat numberFormatter = NumberFormat(pattern, defaultLocale);
         return numberFormatter.format(double.tryParse(value));
       }
     }

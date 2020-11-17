@@ -18,6 +18,7 @@ class FastNumberField extends StatelessWidget {
   final bool isEnabled;
   final Widget suffixIcon;
   final BoxConstraints suffixIconConstraints;
+  final String locale;
 
   FastNumberField({
     Key key,
@@ -37,6 +38,7 @@ class FastNumberField extends StatelessWidget {
     bool isEnabled = true,
     this.suffixIcon,
     this.suffixIconConstraints,
+    this.locale,
   })  : assert(labelText != null),
         assert(initialValue == null || textEditingController == null),
         this.maxLength = maxLength ?? NumberInputFormatter.safeMaxLength,
@@ -89,6 +91,7 @@ class FastNumberField extends StatelessWidget {
           maxLength: maxLength,
           maxValue: maxValue,
           shouldAcceptDecimalValue: shouldAcceptDecimalValue,
+          locale: locale,
         ),
       ],
       onChanged: onValueChanged,
