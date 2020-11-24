@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.11.6](https://github.com/tyrcord/fastyle_dart/releases/tag/0.11.6) (2020-11-24)
+
+### Enhancements
+
+- Added default font family fallbacks.
+
 ## [0.11.5](https://github.com/tyrcord/fastyle_dart/releases/tag/0.11.5) (2020-11-17)
 
 ### Enhancements
