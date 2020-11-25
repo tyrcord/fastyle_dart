@@ -91,7 +91,6 @@ class FastNumberField extends StatelessWidget {
           maxLength: maxLength,
           maxValue: maxValue,
           shouldAcceptDecimalValue: shouldAcceptDecimalValue,
-          locale: locale,
         ),
       ],
       onChanged: onValueChanged,

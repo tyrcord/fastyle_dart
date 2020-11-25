@@ -1,12 +1,10 @@
 import 'package:flutter/services.dart';
-import 'package:intl/number_symbols.dart';
 import 'package:intl/intl.dart';
 
 class NumberInputFormatter extends TextInputFormatter {
   final bool shouldAcceptDecimalValue;
   final int maxLength;
   final int maxValue;
-  final String locale;
 
   static const int safeInteger = 9007199254740992; // 2^53
   static const int safeMaxLength = 16;
@@ -17,7 +15,6 @@ class NumberInputFormatter extends TextInputFormatter {
     this.maxLength = NumberInputFormatter.safeMaxLength,
     this.shouldAcceptDecimalValue = true,
     this.maxValue = NumberInputFormatter.safeInteger,
-    this.locale = NumberInputFormatter.defaultLocale,
   })  : assert(maxValue <= NumberInputFormatter.safeInteger),
         assert(maxLength <= NumberInputFormatter.safeMaxLength);
 
@@ -32,17 +29,11 @@ class NumberInputFormatter extends TextInputFormatter {
       return newValue;
     }
 
-    final numberFormat = NumberFormat.decimalPattern(this.locale);
-    final numberSymbols = numberFormat.symbols;
-
     // workaround for locale decimal separator
     final defaultNumberFormat = NumberFormat.decimalPattern(defaultLocale);
 
-    if (numberSymbols.DECIMAL_SEP != defaultDecimalSeparator) {
-      newValueText = newValueText.replaceFirst(
-        numberSymbols.DECIMAL_SEP,
-        defaultDecimalSeparator,
-      );
+    if (newValueText.contains(',')) {
+      newValueText = newValueText.replaceFirst(RegExp(','), '.');
     }
 
     if (newValueText == defaultDecimalSeparator) {
