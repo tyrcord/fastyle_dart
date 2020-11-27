@@ -64,9 +64,12 @@ class FastFieldLayout extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
         Expanded(
-          child: FastBody2(
-            text: toBeginningOfSentenceCase(labelText),
-            textColor: ThemeHelper.texts.getBodyTextStyle(context).color,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 1.0),
+            child: FastBody2(
+              text: toBeginningOfSentenceCase(labelText),
+              textColor: ThemeHelper.texts.getBodyTextStyle(context).color,
+            ),
           ),
         ),
         if (captionText != null)
