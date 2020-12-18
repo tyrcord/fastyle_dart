@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.11.9](https://github.com/tyrcord/fastyle_dart/releases/tag/0.11.9) (2020-12-18)
+
+### Enhancements
+
+- Updated tbloc_dart dependency.
+
 ## [0.11.8](https://github.com/tyrcord/fastyle_dart/releases/tag/0.11.8) (2020-12-02)
 
 ### Enhancements
