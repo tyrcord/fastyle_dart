@@ -55,7 +55,7 @@ class _FastAppState extends State<FastApp> {
 
   @override
   void dispose() {
-    _themeBloc.dispose();
+    _themeBloc.close();
     super.dispose();
   }
 

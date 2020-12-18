@@ -37,7 +37,7 @@ class FastThemeBloc
 
     if (currentState.themeMode == ThemeMode.system &&
         newBrightness != currentState.brightness) {
-      dispatchEvent(FastThemeBlocEvent.system());
+      addEvent(FastThemeBlocEvent.system());
     }
   }
 }

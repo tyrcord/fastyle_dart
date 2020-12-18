@@ -91,9 +91,9 @@ class _MyHomePageState extends State<MyHomePage> {
         isChecked: themeBloc.currentState.brightness == Brightness.dark,
         onValueChanged: (bool shouldSwitchToDarkMode) {
           if (shouldSwitchToDarkMode) {
-            themeBloc.dispatchEvent(FastThemeBlocEvent.dark());
+            themeBloc.addEvent(FastThemeBlocEvent.dark());
           } else {
-            themeBloc.dispatchEvent(FastThemeBlocEvent.light());
+            themeBloc.addEvent(FastThemeBlocEvent.light());
           }
         },
       ),
