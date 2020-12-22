@@ -11,7 +11,7 @@ class FastNotificationCenterOptions {
     this.iconColor,
   });
 
-  copyWith({
+  FastNotificationCenterOptions copyWith({
     Widget leadingIcon,
     double iconSize,
     Color iconColor,

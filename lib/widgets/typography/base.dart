@@ -31,9 +31,9 @@ class FastBaseTypography extends StatelessWidget {
     this.letterSpacing,
     bool enableInteractiveSelection = false,
   })  : assert(text != null),
-        this.enableInteractiveSelection = enableInteractiveSelection ?? false,
-        this.textAlign = textAlign ?? TextAlign.left,
-        this.useFontForNumber = useFontForNumber ?? false,
+        enableInteractiveSelection = enableInteractiveSelection ?? false,
+        textAlign = textAlign ?? TextAlign.left,
+        useFontForNumber = useFontForNumber ?? false,
         super(key: key);
 
   @override

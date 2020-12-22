@@ -28,8 +28,8 @@ class FastTextField extends StatelessWidget {
     bool allowAutocorrect = false,
     bool useFontForNumber = false,
   })  : assert(labelText != null),
-        this.isReadOnly = isReadOnly ?? false,
-        this.allowAutocorrect = allowAutocorrect ?? false,
+        isReadOnly = isReadOnly ?? false,
+        allowAutocorrect = allowAutocorrect ?? false,
         useFontForNumber = useFontForNumber ?? false,
         super(key: key);
 

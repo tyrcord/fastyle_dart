@@ -5,14 +5,14 @@ class FastWelcomeViewController extends ValueNotifier<bool> {
     bool isPending = false,
   }) : super(isPending ?? false);
 
-  resume() {
+  void resume() {
     if (value) {
       value = false;
       notifyListeners();
     }
   }
 
-  pause() {
+  void pause() {
     if (!value) {
       value = true;
       notifyListeners();

@@ -11,7 +11,7 @@ const kFastListTileCategoryAll = FastCategory(
 
 class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   final List<T> items;
-  final FastListItemBuilder listItemBuilder;
+  final FastListItemBuilder<T> listItemBuilder;
   final List<FastCategory> categories;
   final bool shouldGroupByCategory;
   final bool isViewScrollable;
@@ -51,11 +51,9 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   }
 
   Widget _buildTabViews(BuildContext context, List<T> items) {
-    final List<ListView> views = [];
-    final List<Tab> tabs = [];
-    final List<FastListItemCategory<T>> listCategories = _buildListCategories(
-      items,
-    );
+    final listCategories = _buildListCategories(items);
+    final views = <Widget>[];
+    final tabs = <Tab>[];
 
     listCategories.forEach((FastListItemCategory<T> listCategory) {
       tabs.add(Tab(text: toBeginningOfSentenceCase(listCategory.labelText)));
@@ -78,7 +76,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     }
 
     final lastIndex = items.length - 1;
-    final Decoration dividerDecoration = showItemDivider
+    final dividerDecoration = showItemDivider
         ? BoxDecoration(
             border: Border(bottom: Divider.createBorderSide(context)),
           )
@@ -115,10 +113,10 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   }
 
   List<FastListItemCategory<T>> _buildListCategories(List<T> items) {
-    final Map<String, FastListItemCategory<T>> categoriesMap = {
+    final categoriesMap = {
       kFastListTileCategoryAll.value: _buildListCategory(
         kFastListTileCategoryAll.copyWith(
-          label: tabAllCategoryText ?? kFastListTileCategoryAll.labelText,
+          labelText: tabAllCategoryText ?? kFastListTileCategoryAll.labelText,
         ),
       ),
     };
@@ -131,7 +129,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
           categoriesMap[category.value] = _buildListCategory(category);
         }
 
-        if (allCategory.indexOf(item) == -1) {
+        if (!allCategory.contains(item)) {
           allCategory.add(item);
         }
 

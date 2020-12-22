@@ -24,11 +24,11 @@ class FastListView<T extends FastItem> extends StatelessWidget {
     this.listItemBuilder,
     this.itemContentPadding,
   })  : assert(items != null),
-        this.shouldGroupByCategory = shouldGroupByCategory ?? false,
-        this.isEnabled = isEnabled ?? true,
-        this.isViewScrollable = isViewScrollable ?? true,
-        this.shouldSortItems = shouldSortItems ?? true,
-        this.showItemDivider = showItemDivider ?? false,
+        shouldGroupByCategory = shouldGroupByCategory ?? false,
+        isEnabled = isEnabled ?? true,
+        isViewScrollable = isViewScrollable ?? true,
+        shouldSortItems = shouldSortItems ?? true,
+        showItemDivider = showItemDivider ?? false,
         super(key: key);
 
   @override

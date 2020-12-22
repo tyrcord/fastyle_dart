@@ -55,9 +55,9 @@ class FastSelectField<T> extends StatefulWidget {
         assert(onSelectionChanged != null),
         canClearSelection = canClearSelection ?? true,
         shouldSortItems = shouldSortItems ?? true,
-        this.isReadOnly = isReadOnly ?? false,
-        this.shouldGroupByCategory = shouldGroupByCategory ?? false,
-        this.shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
+        isReadOnly = isReadOnly ?? false,
+        shouldGroupByCategory = shouldGroupByCategory ?? false,
+        shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
         super(key: key);
 
   @override
@@ -109,7 +109,7 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
           final response = await Navigator.push(
             context,
             CupertinoPageRoute(
-              builder: (BuildContext context) => FastSearchPage(
+              builder: (BuildContext context) => FastSearchPage<FastItem<T>>(
                 titleText: widget.titleText,
                 items: widget.items,
                 shouldGroupByCategory: widget.shouldGroupByCategory,
@@ -128,7 +128,7 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
               ),
               fullscreenDialog: true,
             ),
-          );
+          ) as FastItem<T>;
 
           setState(() {
             _selection = response;

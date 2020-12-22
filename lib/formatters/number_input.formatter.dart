@@ -37,7 +37,7 @@ class NumberInputFormatter extends TextInputFormatter {
     }
 
     if (newValueText == defaultDecimalSeparator) {
-      return this.shouldAcceptDecimalValue
+      return shouldAcceptDecimalValue
           ? TextEditingValue(
               text: NumberFormat(
               '0.',
@@ -46,30 +46,29 @@ class NumberInputFormatter extends TextInputFormatter {
           : oldValue;
     }
 
-    if (!this._isValidNumber(
+    if (!_isValidNumber(
       newValueText,
       decimalSeparator: defaultDecimalSeparator,
     )) {
       return oldValue;
     }
 
-    final dotRegExp = RegExp("\\$defaultDecimalSeparator");
+    final dotRegExp = RegExp('\\$defaultDecimalSeparator');
     final decimalMatches = dotRegExp.allMatches(newValueText);
 
     if (decimalMatches.length > 1) {
       return oldValue;
     }
 
-    final int decimalSeparatorPosition =
+    final decimalSeparatorPosition =
         newValueText.indexOf(defaultDecimalSeparator);
-    int newValueTextLength = newValue.text.length;
+    var newValueTextLength = newValue.text.length;
 
-    if (decimalSeparatorPosition > -1 &&
-        decimalSeparatorPosition < this.maxLength) {
+    if (decimalSeparatorPosition > -1 && decimalSeparatorPosition < maxLength) {
       --newValueTextLength;
     }
 
-    if (newValueTextLength > this.maxLength) {
+    if (newValueTextLength > maxLength) {
       return oldValue;
     }
 
@@ -77,22 +76,23 @@ class NumberInputFormatter extends TextInputFormatter {
 
     try {
       number = defaultNumberFormat.parse(newValueText);
+      // ignore: empty_catches
     } catch (e) {}
 
     if (number != null) {
-      if (number > this.maxValue) {
+      if (number > maxValue) {
         return oldValue;
       }
 
       String checkedNewValueText;
 
-      if (this.shouldAcceptDecimalValue && decimalMatches.length > 0) {
-        int fractionDigits = newValueText.length - decimalSeparatorPosition - 1;
+      if (shouldAcceptDecimalValue && decimalMatches.isNotEmpty) {
+        var fractionDigits = newValueText.length - decimalSeparatorPosition - 1;
 
         if (fractionDigits > 0) {
           // decimal number
           fractionDigits = fractionDigits > 20 ? 20 : fractionDigits;
-          checkedNewValueText = this._localizeNumber(
+          checkedNewValueText = _localizeNumber(
             number.toStringAsFixed(fractionDigits),
             decimalSeparator: defaultDecimalSeparator,
           );
@@ -115,8 +115,8 @@ class NumberInputFormatter extends TextInputFormatter {
   }
 
   bool _isValidNumber(String number, {String decimalSeparator = '.'}) {
-    final regExp = this.shouldAcceptDecimalValue
-        ? RegExp("^\\d*(\\$decimalSeparator?\\d*)?\$")
+    final regExp = shouldAcceptDecimalValue
+        ? RegExp('^\\d*(\\$decimalSeparator?\\d*)?\$')
         : RegExp(r'^\d*$');
 
     return regExp.hasMatch(number);
@@ -124,22 +124,22 @@ class NumberInputFormatter extends TextInputFormatter {
 
   String _localizeNumber(String value, {String decimalSeparator = '.'}) {
     if (decimalSeparator != defaultDecimalSeparator) {
-      List<String> stringMedata = value.split(defaultDecimalSeparator);
+      final stringMedata = value.split(defaultDecimalSeparator);
 
       if (stringMedata.length > 1) {
-        String pattern = '';
+        var pattern = '';
 
-        for (int i = 0; i < stringMedata[0].length; i++) {
+        for (var i = 0; i < stringMedata[0].length; i++) {
           pattern += '0';
         }
 
         pattern += defaultDecimalSeparator;
 
-        for (int i = 0; i < stringMedata[1].length; i++) {
+        for (var i = 0; i < stringMedata[1].length; i++) {
           pattern += '0';
         }
 
-        NumberFormat numberFormatter = NumberFormat(pattern, defaultLocale);
+        final numberFormatter = NumberFormat(pattern, defaultLocale);
         return numberFormatter.format(double.tryParse(value));
       }
     }

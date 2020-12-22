@@ -1,10 +1,11 @@
+import 'dart:developer';
+
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:fastyle_dart_example/pages/colors.dart';
 import 'package:fastyle_dart_example/pages/notifications.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:developer';
 
 import 'package:fastyle_dart_example/data/items.dart';
 import 'package:fastyle_dart_example/pages/buttons.dart';
@@ -60,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
             );
 
             if (response != null) {
-              log(response.value);
+              log(response.value.toString());
             }
           },
           icon: Icon(Icons.search),

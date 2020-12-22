@@ -66,7 +66,9 @@ class _FastSectionPageControllerState extends State<FastSectionPageController> {
     return Builder(
       builder: isLoading
           ? _buildLoadingWidget()
-          : hasError ? _buildErrorWidget() : widget.loadedBuilder,
+          : hasError
+              ? _buildErrorWidget()
+              : widget.loadedBuilder,
     );
   }
 
@@ -99,7 +101,7 @@ class _FastSectionPageControllerState extends State<FastSectionPageController> {
     }
   }
 
-  void _dispatchLoadEvent({hasError = false}) {
+  void _dispatchLoadEvent({bool hasError = false}) {
     if (!eventController.isClosed) {
       eventController.sink.add(
         hasError ? SectionPageLoadEvent.error : SectionPageLoadEvent.loaded,

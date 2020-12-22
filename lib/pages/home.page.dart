@@ -5,7 +5,7 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 
 const _kExpandedHeight = 160.0;
 const _kHeaderPadding = 16.0;
-const _kContentPadding = const EdgeInsets.symmetric(vertical: _kHeaderPadding);
+const _kContentPadding = EdgeInsets.symmetric(vertical: _kHeaderPadding);
 
 class FastHomePage extends StatefulWidget {
   final String titleText;
@@ -37,10 +37,11 @@ class FastHomePage extends StatefulWidget {
 }
 
 class _FastHomePageState extends State<FastHomePage> {
+  final _leadingKey = GlobalKey();
+  final _subtitleKey = GlobalKey();
+
   double get _expandedHeight => widget.expandedHeight ?? _kExpandedHeight;
   ScrollController _scrollController;
-  GlobalKey _leadingKey = GlobalKey();
-  GlobalKey _subtitleKey = GlobalKey();
   EdgeInsetsGeometry _titlePadding;
   double _subtitleOpacity = 1.0;
   bool _showSubtitle = true;
@@ -67,16 +68,16 @@ class _FastHomePageState extends State<FastHomePage> {
     RenderBox subtitleRenderBox;
 
     if (widget.leading != null) {
-      leadingRenderBox = leadingContext.findRenderObject();
+      leadingRenderBox = leadingContext.findRenderObject() as RenderBox;
     }
 
     if (widget.subtitleText != null) {
-      subtitleRenderBox = subtitleContext.findRenderObject();
+      subtitleRenderBox = subtitleContext.findRenderObject() as RenderBox;
     }
 
     setState(() {
-      _leadingSize = leadingRenderBox?.size ?? null;
-      _subtitleSize = subtitleRenderBox?.size ?? null;
+      _leadingSize = leadingRenderBox?.size;
+      _subtitleSize = subtitleRenderBox?.size;
       _setTitlePadding();
     });
   }
@@ -89,8 +90,7 @@ class _FastHomePageState extends State<FastHomePage> {
       if ((offset >= 0 && offset <= threshold) || _subtitleOpacity > 0) {
         final distance = threshold - _scrollController.offset;
         final showSubtitle = offset < threshold;
-        double multiplier = distance / threshold;
-        multiplier = _sanitizeOpacity(multiplier);
+        final multiplier = _sanitizeOpacity(distance / threshold);
 
         if (showSubtitle != _showSubtitle || multiplier != _subtitleOpacity) {
           setState(() {
@@ -189,13 +189,13 @@ class _FastHomePageState extends State<FastHomePage> {
     );
   }
 
-  void _setTitlePadding({multiplier = 1.0}) {
-    double offsetLeft = 0;
-    double offsetBottom = 0;
+  void _setTitlePadding({double multiplier = 1.0}) {
+    var offsetLeft = 0.0;
+    var offsetBottom = 0.0;
 
     if (widget.leading != null) {
-      double subtitleSizeHeight = _subtitleSize?.height ?? 0;
-      double leadingWidth = _leadingSize.width - _kHeaderPadding;
+      final subtitleSizeHeight = _subtitleSize?.height ?? 0;
+      final leadingWidth = _leadingSize.width - _kHeaderPadding;
       offsetLeft = leadingWidth - leadingWidth * multiplier;
       offsetBottom = (_kHeaderPadding / 2 + subtitleSizeHeight) * multiplier;
     }

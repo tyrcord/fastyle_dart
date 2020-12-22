@@ -6,8 +6,12 @@ const _kPaddingContent = EdgeInsets.symmetric(horizontal: 16.0);
 class FastDialog extends AlertDialog {
   final String titleText;
   final Color titleColor;
-  final List<Widget> actions;
   final List<Widget> widgets;
+
+  @override
+  final List<Widget> actions;
+
+  @override
   final Color backgroundColor;
 
   FastDialog({
@@ -18,7 +22,8 @@ class FastDialog extends AlertDialog {
     this.actions,
     this.backgroundColor,
   })  : assert(titleText != null),
-        assert(widgets != null);
+        assert(widgets != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -2,9 +2,9 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 class ThemeHelper {
-  static ThemeGradientHelper _gradientHelper = ThemeGradientHelper();
-  static ThemeColorHelper _colorHelper = ThemeColorHelper();
-  static ThemeTextHelper _textHelper = ThemeTextHelper();
+  static final _gradientHelper = ThemeGradientHelper();
+  static final _colorHelper = ThemeColorHelper();
+  static final _textHelper = ThemeTextHelper();
   static double borderSize = kFastBorderSize;
   static double dividerSize = kFastDividerSize;
   static double dividerIndent = kFastDividerIndent;
@@ -27,7 +27,7 @@ class ThemeHelper {
     @required BuildContext context,
     @required Widget child,
   }) {
-    ThemeData theme = Theme.of(context);
+    final theme = Theme.of(context);
 
     return ListTileTheme(
       iconColor: theme.iconTheme.color,

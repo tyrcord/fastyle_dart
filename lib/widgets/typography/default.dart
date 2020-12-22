@@ -35,6 +35,7 @@ class FastDisplay extends FastBaseTypography {
           enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
+  @override
   TextStyle getDefaultTextStyle(BuildContext context) {
     return ThemeHelper.texts.getDisplayTextStyle(context);
   }
@@ -69,9 +70,11 @@ class FastHeadline extends FastBaseTypography {
           maxLines: maxLines,
           overflow: overflow,
           lineHeight: lineHeight,
+          useFontForNumber: useFontForNumber,
           enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
+  @override
   TextStyle getDefaultTextStyle(BuildContext context) {
     return ThemeHelper.texts.getHeadlineTextStyle(context);
   }
@@ -110,6 +113,7 @@ class FastPlaceHolderHeadline extends FastBaseTypography {
           enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
+  @override
   TextStyle getDefaultTextStyle(BuildContext context) {
     return ThemeHelper.texts.getPlaceHolderHeadlineTextStyle(context);
   }
@@ -146,6 +150,7 @@ class FastSubhead extends FastBaseTypography {
           enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
+  @override
   TextStyle getDefaultTextStyle(BuildContext context) {
     return ThemeHelper.texts.getSubheadLineTextStyle(context);
   }
@@ -185,6 +190,7 @@ class FastTitle extends FastBaseTypography {
           enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
+  @override
   TextStyle getDefaultTextStyle(BuildContext context) {
     return ThemeHelper.texts.getTitleTextStyle(context);
   }
@@ -223,6 +229,7 @@ class FastPlaceholderTitle extends FastBaseTypography {
           enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
+  @override
   TextStyle getDefaultTextStyle(BuildContext context) {
     return ThemeHelper.texts.getPlaceHolderTitleTextStyle(context);
   }
@@ -259,6 +266,7 @@ class FastSubtitle extends FastBaseTypography {
           enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
+  @override
   TextStyle getDefaultTextStyle(BuildContext context) {
     return ThemeHelper.texts.getSubtitleTextStyle(context);
   }
@@ -297,6 +305,7 @@ class FastBody extends FastBaseTypography {
           lineHeight: lineHeight,
         );
 
+  @override
   TextStyle getDefaultTextStyle(BuildContext context) {
     return ThemeHelper.texts.getBodyTextStyle(context);
   }
@@ -335,6 +344,7 @@ class FastBody2 extends FastBaseTypography {
           enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
+  @override
   TextStyle getDefaultTextStyle(BuildContext context) {
     return ThemeHelper.texts.getBody2TextStyle(context);
   }
@@ -373,6 +383,7 @@ class FastPlaceholder extends FastBaseTypography {
           enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
+  @override
   TextStyle getDefaultTextStyle(BuildContext context) {
     return ThemeHelper.texts.getPlaceholderTextStyle(context);
   }
@@ -409,6 +420,7 @@ class FastButtonLabel extends FastBaseTypography {
           enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
+  @override
   TextStyle getDefaultTextStyle(BuildContext context) {
     return ThemeHelper.texts.getButtonTextStyle(context);
   }
@@ -447,6 +459,7 @@ class FastCaption extends FastBaseTypography {
           enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
+  @override
   TextStyle getDefaultTextStyle(BuildContext context) {
     return ThemeHelper.texts.getCaptionTextStyle(context);
   }
@@ -485,6 +498,7 @@ class FastHelper extends FastBaseTypography {
           enableInteractiveSelection: enableInteractiveSelection ?? false,
         );
 
+  @override
   TextStyle getDefaultTextStyle(BuildContext context) {
     return ThemeHelper.texts.getOverlineTextStyle(context);
   }

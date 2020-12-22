@@ -52,14 +52,14 @@ class FastSectionPage extends StatelessWidget {
     this.footerBuilder,
     this.child,
     this.footer,
-  })  : this.isTitlePositionBelowAppBar = isTitlePositionBelowAppBar ?? true,
-        this.isViewScrollable = isViewScrollable ?? false,
+  })  : isTitlePositionBelowAppBar = isTitlePositionBelowAppBar ?? true,
+        isViewScrollable = isViewScrollable ?? false,
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
-    Brightness brightness = themeBloc.currentState.brightness;
+    var brightness = themeBloc.currentState.brightness;
     brightness = brightness == Brightness.dark
         ? Brightness.dark
         : (appBarbackgroundColor != null &&
@@ -89,7 +89,7 @@ class FastSectionPage extends StatelessWidget {
 
   Widget _buildAppBar(BuildContext context) {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
-    Brightness brightness = themeBloc.currentState.brightness;
+    var brightness = themeBloc.currentState.brightness;
     brightness = brightness == Brightness.dark
         ? Brightness.dark
         : (appBarbackgroundColor != null &&
@@ -123,8 +123,8 @@ class FastSectionPage extends StatelessWidget {
 
   Widget _buildLeadingIcon(BuildContext context) {
     final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
-    final bool canPop = parentRoute?.canPop ?? false;
-    final bool useCloseButton =
+    final canPop = parentRoute?.canPop ?? false;
+    final useCloseButton =
         parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
     Widget leading;
 
@@ -148,7 +148,7 @@ class FastSectionPage extends StatelessWidget {
   }
 
   Widget _buildFixedContent(BuildContext context) {
-    Widget content = _buildContent(context);
+    var content = _buildContent(context);
 
     if (!isViewScrollable) {
       content = Expanded(child: content);

@@ -10,7 +10,8 @@ class FastPadding extends StatelessWidget {
     @required this.child,
     @required this.padding,
   })  : assert(child != null),
-        assert(padding != null);
+        assert(padding != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

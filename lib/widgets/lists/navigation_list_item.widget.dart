@@ -1,7 +1,7 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-const _kDefaultTrailing = const Icon(Icons.keyboard_arrow_right);
+const _kDefaultTrailing = Icon(Icons.keyboard_arrow_right);
 
 class FastNavigationListItem<T extends FastItem> extends StatelessWidget {
   final T item;
@@ -25,9 +25,9 @@ class FastNavigationListItem<T extends FastItem> extends StatelessWidget {
     bool isEnabled = true,
     bool isDense = true,
     this.contentPadding,
-  })  : this.trailing = trailing ?? _kDefaultTrailing,
-        this.isEnabled = isEnabled ?? true,
-        this.isDense = isDense ?? true,
+  })  : trailing = trailing ?? _kDefaultTrailing,
+        isEnabled = isEnabled ?? true,
+        isDense = isDense ?? true,
         assert(onTap != null),
         super(key: key);
 

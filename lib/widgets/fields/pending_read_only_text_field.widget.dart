@@ -75,7 +75,7 @@ class _FastPendingReadOnlyTextFieldState
       duration: _animationDuration,
     );
 
-    final CurvedAnimation curve = CurvedAnimation(
+    final curve = CurvedAnimation(
       parent: _controller,
       curve: Curves.easeInOut,
     );
@@ -89,6 +89,7 @@ class _FastPendingReadOnlyTextFieldState
 
     if (!_initialized) {
       _animate(widget.isPending);
+      _initialized = true;
     }
   }
 
@@ -143,7 +144,7 @@ class _FastPendingReadOnlyTextFieldState
     );
   }
 
-  _animate(bool shouldAnimate) {
+  void _animate(bool shouldAnimate) {
     if (shouldAnimate) {
       _controller.repeat(reverse: true);
     } else {

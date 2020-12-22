@@ -29,14 +29,14 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
     bool isEnabled = true,
     this.contentPadding,
   })  : assert(onTap != null),
-        this.isDense = isDense ?? true,
-        this.isEnabled = isEnabled ?? true,
+        isDense = isDense ?? true,
+        isEnabled = isEnabled ?? true,
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final _color = ThemeHelper.colors.getPrimaryColor(context);
-    Widget _trailing = trailing ?? item.descriptor?.trailing ?? _defaultIcon;
+    var _trailing = trailing ?? item.descriptor?.trailing ?? _defaultIcon;
 
     if (_trailing is Icon) {
       final icon = _trailing as Icon;

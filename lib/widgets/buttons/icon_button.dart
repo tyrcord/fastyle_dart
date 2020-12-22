@@ -3,17 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastIconButton extends StatefulWidget implements IFastButton {
-  final VoidCallback onTap;
   final Widget icon;
-  final bool isEnabled;
+
   final Color iconColor;
   final Color highlightColor;
   final EdgeInsetsGeometry padding;
   final double iconSize;
   final FastButtonEmphasis emphasis;
   final String tooltip;
+
+  @override
   final bool shouldTrottleTime;
+
+  @override
   final Duration trottleTimeDuration;
+
+  @override
+  final VoidCallback onTap;
+
+  @override
+  final bool isEnabled;
 
   const FastIconButton({
     Key key,
@@ -28,9 +37,9 @@ class FastIconButton extends StatefulWidget implements IFastButton {
     this.tooltip,
     bool shouldTrottleTime = false,
     Duration trottleTimeDuration = kFastTrottleTimeDuration,
-  })  : this.isEnabled = isEnabled ?? true,
-        this.padding = padding ?? kFastEdgeInsets8,
-        this.emphasis = emphasis ?? FastButtonEmphasis.low,
+  })  : isEnabled = isEnabled ?? true,
+        padding = padding ?? kFastEdgeInsets8,
+        emphasis = emphasis ?? FastButtonEmphasis.low,
         shouldTrottleTime = shouldTrottleTime ?? false,
         trottleTimeDuration = trottleTimeDuration ?? kFastTrottleTimeDuration,
         assert(onTap != null),

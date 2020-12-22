@@ -9,10 +9,11 @@ class FastThemeBlocState extends BlocState {
   const FastThemeBlocState({
     ThemeMode themeMode = ThemeMode.system,
     this.brightness,
-  })  : this.themeMode = themeMode ?? ThemeMode.system,
+  })  : themeMode = themeMode ?? ThemeMode.system,
         super();
 
-  copyWith({ThemeMode themeMode, Brightness brightness}) {
+  @override
+  FastThemeBlocState copyWith({ThemeMode themeMode, Brightness brightness}) {
     return FastThemeBlocState(
       themeMode: themeMode ?? this.themeMode,
       brightness: brightness ?? this.brightness,

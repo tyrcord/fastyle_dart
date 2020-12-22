@@ -107,7 +107,7 @@ class FieldsPage extends StatelessWidget {
           FastPendingReadOnlyTextField(
             labelText: 'Pending Read Only',
             valueText: 'Pending',
-            pendingText: "\$0.000",
+            pendingText: '\$0.000',
           ),
         ],
       ),

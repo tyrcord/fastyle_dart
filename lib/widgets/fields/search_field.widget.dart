@@ -21,10 +21,11 @@ class FastSearchField extends StatelessWidget {
     this.margin,
     this.textAlign,
     bool allowAutocorrect = false,
-  })  : this.isReadOnly = isReadOnly ?? false,
-        this.allowAutocorrect = allowAutocorrect ?? false,
+  })  : isReadOnly = isReadOnly ?? false,
+        allowAutocorrect = allowAutocorrect ?? false,
         super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return FastFieldLayout(
       margin: margin,

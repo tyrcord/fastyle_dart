@@ -19,7 +19,7 @@ class FastItem<T> {
     this.categories,
     this.descriptor,
     this.value,
-  })  : this.isEnabled = isEnabled ?? true,
+  })  : isEnabled = isEnabled ?? true,
         assert(labelText != null);
 
   FastItem<T> copyWith({

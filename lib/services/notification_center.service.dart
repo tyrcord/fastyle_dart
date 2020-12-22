@@ -123,7 +123,7 @@ class FastNotificationCenter {
   }
 
   static void _nextNotification() {
-    if (_queue.length > 0) {
+    if (_queue.isNotEmpty) {
       _isShowingNotification = true;
 
       final notification = _queue.removeFirst();

@@ -13,9 +13,9 @@ class FastCategory {
         assert(value != null),
         weight = weight ?? 0;
 
-  FastCategory copyWith({String label, String value, double weight}) {
+  FastCategory copyWith({String labelText, String value, double weight}) {
     return FastCategory(
-      labelText: label ?? this.labelText,
+      labelText: labelText ?? this.labelText,
       value: value ?? this.value,
       weight: weight ?? this.weight,
     );

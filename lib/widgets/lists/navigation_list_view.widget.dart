@@ -33,12 +33,12 @@ class FastNavigationListView<T extends FastItem> extends StatefulWidget {
     bool shouldUseFuzzySearch = false,
   })  : assert(onSelectionChanged != null),
         assert(items != null),
-        this.isEnabled = isEnabled ?? true,
-        this.isViewScrollable = isViewScrollable ?? true,
-        this.shouldSortItems = shouldSortItems ?? true,
-        this.showItemDivider = showItemDivider ?? false,
-        this.showSearchBar = showSearchBar ?? false,
-        this.shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
+        isEnabled = isEnabled ?? true,
+        isViewScrollable = isViewScrollable ?? true,
+        shouldSortItems = shouldSortItems ?? true,
+        showItemDivider = showItemDivider ?? false,
+        showSearchBar = showSearchBar ?? false,
+        shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
         super(key: key);
 
   @override

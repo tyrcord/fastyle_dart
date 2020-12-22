@@ -6,8 +6,8 @@ import 'package:tbloc_dart/tbloc_dart.dart';
 
 const _kIconSize = 28.0;
 const _kBlurRadius = 3.0;
-const _kSelectTitleText = "Select";
-const _kClearSelectionText = "Clear Selection";
+const _kSelectTitleText = 'Select';
+const _kClearSelectionText = 'Clear Selection';
 
 class FastSearchPage<T extends FastItem> extends StatefulWidget {
   final bool Function(T option, String query) onSearch;
@@ -44,9 +44,9 @@ class FastSearchPage<T extends FastItem> extends StatefulWidget {
     this.tabAllCategoryText,
     bool canClearSelection = true,
     this.clearSelectionText,
-  })  : this.shouldGroupByCategory = shouldGroupByCategory ?? false,
-        this.shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
-        this.shouldSortItems = shouldSortItems ?? true,
+  })  : shouldGroupByCategory = shouldGroupByCategory ?? false,
+        shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
+        shouldSortItems = shouldSortItems ?? true,
         canClearSelection = canClearSelection ?? true,
         assert(items != null),
         super();
@@ -63,7 +63,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
   Widget build(BuildContext context) {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
     final brightness = themeBloc.currentState.brightness;
-    final SystemUiOverlayStyle overlayStyle = brightness == Brightness.dark
+    final overlayStyle = brightness == Brightness.dark
         ? SystemUiOverlayStyle.light
         : SystemUiOverlayStyle.dark;
 
@@ -125,7 +125,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
 
   FastIconButton _buildLeadingIcon(BuildContext context) {
     final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
-    final bool useCloseButton =
+    final useCloseButton =
         parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
 
     final closeIcon = widget.closeIcon ?? Icon(Icons.close);
@@ -160,7 +160,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
               child: FastSelectableListView(
                 shouldSortItems: _shouldSortItems,
                 items: _suggestions ?? widget.items,
-                onSelectionChanged: (FastItem item) => _close(context, item),
+                onSelectionChanged: (T item) => _close(context, item),
                 categories: widget.categories,
                 shouldGroupByCategory:
                     _searchQuery == null ? widget.shouldGroupByCategory : false,

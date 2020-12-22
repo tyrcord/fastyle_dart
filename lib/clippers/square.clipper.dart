@@ -11,14 +11,14 @@ class FastSquareClipper extends CustomClipper<Path> {
     double topRight = 0.0,
     double bottomLeft = 0.0,
     double bottomRight = 0.0,
-  })  : this.topLeft = topLeft ?? 0.0,
-        this.topRight = topRight ?? 0.0,
-        this.bottomLeft = bottomLeft ?? 0.0,
-        this.bottomRight = bottomRight ?? 0.0;
+  })  : topLeft = topLeft ?? 0.0,
+        topRight = topRight ?? 0.0,
+        bottomLeft = bottomLeft ?? 0.0,
+        bottomRight = bottomRight ?? 0.0;
 
   @override
   Path getClip(Size size) {
-    Path path = Path();
+    final path = Path();
     path.lineTo(topLeft, bottomLeft);
     path.lineTo(size.width, bottomRight);
     path.lineTo(size.width, topRight);

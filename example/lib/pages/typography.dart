@@ -9,65 +9,65 @@ class TypographyPage extends StatelessWidget {
       child: ListView(
         children: [
           FastDisplay(
-            text: "Display",
+            text: 'Display',
           ),
           kFastSizedBox16,
           FastDisplay(
-            text: "\$28,000",
+            text: '\$28,000',
             useFontForNumber: true,
           ),
           kFastSizedBox16,
           FastHeadline(
-            text: "Headline",
+            text: 'Headline',
           ),
           kFastSizedBox16,
           FastPlaceHolderHeadline(
-            text: "Placeholder Headline",
+            text: 'Placeholder Headline',
           ),
           kFastSizedBox16,
           FastSubhead(
-            text: "Subhead",
+            text: 'Subhead',
           ),
           kFastSizedBox16,
           FastTitle(
-            text: "Title",
+            text: 'Title',
           ),
           kFastSizedBox16,
           FastPlaceholderTitle(
-            text: "Placeholder Title",
+            text: 'Placeholder Title',
           ),
           kFastSizedBox16,
           FastSubtitle(
-            text: "subtitle",
+            text: 'subtitle',
           ),
           kFastSizedBox16,
           FastBody(
-            text: "Body 1",
+            text: 'Body 1',
           ),
           kFastSizedBox16,
           FastBody(
-            text: "\$28,000",
+            text: '\$28,000',
             useFontForNumber: true,
           ),
           kFastSizedBox16,
           FastPlaceholder(
-            text: "Placeholder",
+            text: 'Placeholder',
           ),
           kFastSizedBox16,
           FastBody2(
-            text: "Body 2",
+            text: 'Body 2',
           ),
           kFastSizedBox16,
           FastButtonLabel(
-            text: "Button",
+            text: 'Button',
           ),
           kFastSizedBox16,
           FastCaption(
-            text: "Caption",
+            text: 'Caption',
           ),
           kFastSizedBox16,
           FastHelper(
-            text: "Helper",
+            text: 'Helper',
           ),
         ],
       ),

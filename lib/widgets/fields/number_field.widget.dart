@@ -41,11 +41,11 @@ class FastNumberField extends StatelessWidget {
     this.locale,
   })  : assert(labelText != null),
         assert(initialValue == null || textEditingController == null),
-        this.maxLength = maxLength ?? NumberInputFormatter.safeMaxLength,
-        this.maxValue = maxValue ?? NumberInputFormatter.safeInteger,
-        this.isReadOnly = isReadOnly ?? false,
-        this.shouldAcceptDecimalValue = shouldAcceptDecimalValue ?? true,
-        this.allowAutocorrect = allowAutocorrect ?? false,
+        maxLength = maxLength ?? NumberInputFormatter.safeMaxLength,
+        maxValue = maxValue ?? NumberInputFormatter.safeInteger,
+        isReadOnly = isReadOnly ?? false,
+        shouldAcceptDecimalValue = shouldAcceptDecimalValue ?? true,
+        allowAutocorrect = allowAutocorrect ?? false,
         isEnabled = isEnabled ?? true,
         super(key: key);
 

@@ -28,7 +28,7 @@ class FastTabs extends StatelessWidget {
   })  : assert(tabs != null),
         assert(views != null),
         initialIndex = initialIndex ?? 0,
-        this.isViewScrollable = isViewScrollable ?? true,
+        isViewScrollable = isViewScrollable ?? true,
         super(key: key);
 
   @override

@@ -25,7 +25,7 @@ class NoSplashFactory extends InteractiveInkFeatureFactory {
     double radius,
     onRemoved,
   }) {
-    return new NoSplashInk(
+    return NoSplashInk(
       controller: controller,
       referenceBox: referenceBox,
     );

@@ -43,11 +43,11 @@ class FastWelcomeView extends StatefulWidget {
     this.controller,
   })  : assert(homeBuilder != null),
         assert(slides != null),
-        this.allowToSkip = allowToSkip ?? false,
-        this.doneText = doneText ?? _kDoneText,
-        this.nextText = nextText ?? _kNextText,
-        this.skipText = skipText ?? _kSkipText,
-        this.stepDotSize = stepDotSize ?? _kStepDotSize,
+        allowToSkip = allowToSkip ?? false,
+        doneText = doneText ?? _kDoneText,
+        nextText = nextText ?? _kNextText,
+        skipText = skipText ?? _kSkipText,
+        stepDotSize = stepDotSize ?? _kStepDotSize,
         super(key: key);
 
   @override
@@ -55,7 +55,7 @@ class FastWelcomeView extends StatefulWidget {
 }
 
 class _FastWelcomeViewState extends State<FastWelcomeView> {
-  PageController _pageViewController = PageController();
+  final PageController _pageViewController = PageController();
   FastWelcomeViewController _controller;
   int _pageCursor = 0;
   int _slidesLength = 0;
@@ -82,7 +82,7 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
   Widget build(BuildContext context) {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
     final brightness = themeBloc.currentState.brightness;
-    final SystemUiOverlayStyle overlayStyle = brightness == Brightness.dark
+    final overlayStyle = brightness == Brightness.dark
         ? SystemUiOverlayStyle.light
         : SystemUiOverlayStyle.dark;
 

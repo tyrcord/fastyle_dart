@@ -22,9 +22,9 @@ class FastToggleListItem<T extends FastItem> extends StatefulWidget {
     bool isDense = true,
     bool isChecked = false,
   })  : assert(onValueChanged != null),
-        this.isEnabled = isEnabled ?? true,
-        this.isDense = isDense ?? true,
-        this.isChecked = isChecked ?? false,
+        isEnabled = isEnabled ?? true,
+        isDense = isDense ?? true,
+        isChecked = isChecked ?? false,
         super(key: key);
 
   @override

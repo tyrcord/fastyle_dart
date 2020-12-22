@@ -6,12 +6,16 @@ class FastRaisedButton extends StatefulWidget implements IFastButton {
   final EdgeInsetsGeometry padding;
   final Color backgroundColor;
   final Color highlightColor;
+  @override
   final VoidCallback onTap;
   final Color textColor;
+  @override
   final bool isEnabled;
   final Widget child;
   final String text;
+  @override
   final bool shouldTrottleTime;
+  @override
   final Duration trottleTimeDuration;
 
   const FastRaisedButton({

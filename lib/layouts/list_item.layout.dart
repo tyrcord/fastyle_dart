@@ -33,7 +33,7 @@ class FastListItemLayout extends StatefulWidget {
 }
 
 class _FastListItemLayoutState extends State<FastListItemLayout> {
-  GlobalKey _leadingKey = GlobalKey();
+  final _leadingKey = GlobalKey();
   bool _isInitialized = false;
   double _leadingOffsetX;
   Widget _leading;
@@ -94,11 +94,12 @@ class _FastListItemLayoutState extends State<FastListItemLayout> {
     );
   }
 
-  _afterLayout(_) {
+  void _afterLayout(_) {
     if (_leading != null &&
         _leadingKey != null &&
         _leadingKey.currentContext != null) {
-      final RenderBox renderBox = _leadingKey.currentContext.findRenderObject();
+      final renderBox =
+          _leadingKey.currentContext.findRenderObject() as RenderBox;
       final width = renderBox.size.width;
 
       if (width < _minLeadingWidth) {

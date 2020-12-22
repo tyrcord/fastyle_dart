@@ -11,7 +11,7 @@ mixin FastThrottleButtonMixin<T extends IFastButton> on State<T> {
   StreamSubscription<Function> subscriptionStream;
 
   @protected
-  Function throttleOnTapIfNeeded() {
+  VoidCallback throttleOnTapIfNeeded() {
     if (widget.isEnabled && widget.onTap != null) {
       if (widget.shouldTrottleTime) {
         return () => trottler.add(widget.onTap);

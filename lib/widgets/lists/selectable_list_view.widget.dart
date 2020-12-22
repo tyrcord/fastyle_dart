@@ -33,11 +33,11 @@ class FastSelectableListView<T extends FastItem> extends StatefulWidget {
     this.tabAllCategoryText,
   })  : assert(items != null),
         assert(onSelectionChanged != null),
-        this.shouldGroupByCategory = shouldGroupByCategory ?? false,
-        this.isEnabled = isEnabled ?? true,
-        this.isViewScrollable = isViewScrollable ?? true,
-        this.shouldSortItems = shouldSortItems ?? true,
-        this.showItemDivider = showItemDivider ?? false,
+        shouldGroupByCategory = shouldGroupByCategory ?? false,
+        isEnabled = isEnabled ?? true,
+        isViewScrollable = isViewScrollable ?? true,
+        shouldSortItems = shouldSortItems ?? true,
+        showItemDivider = showItemDivider ?? false,
         super(key: key);
 
   @override
@@ -55,7 +55,7 @@ class _FastSelectableListViewState<T extends FastItem>
   }
 
   @override
-  void didUpdateWidget(FastSelectableListView oldWidget) {
+  void didUpdateWidget(FastSelectableListView<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.selection != widget.selection) {

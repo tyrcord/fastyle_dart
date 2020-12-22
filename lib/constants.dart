@@ -1,3 +1,4 @@
+import 'package:fastyle_dart/models/item.model.dart';
 import 'package:flutter/material.dart';
 import 'package:fuzzy/fuzzy.dart';
 
@@ -55,14 +56,14 @@ final kFastFastItemFuzzyOptions = FuzzyOptions(
   findAllMatches: kFastFuzzyOptions.findAllMatches,
   minMatchCharLength: kFastFuzzyOptions.minMatchCharLength,
   keys: [
-    WeightedKey(
+    WeightedKey<FastItem>(
       name: 'labelText',
-      getter: (dynamic item) => item.labelText,
+      getter: (FastItem item) => item.labelText,
       weight: 1,
     ),
     WeightedKey(
       name: 'descriptionText',
-      getter: (dynamic item) => item.descriptionText,
+      getter: (FastItem item) => item.descriptionText,
       weight: 0.5,
     ),
   ],
@@ -78,4 +79,4 @@ const kFastTrottleTimeDuration = Duration(seconds: 1);
 
 // Languages
 
-const kFastSupportedLocales = const <Locale>[Locale('en', 'US')];
+const kFastSupportedLocales = <Locale>[Locale('en', 'US')];

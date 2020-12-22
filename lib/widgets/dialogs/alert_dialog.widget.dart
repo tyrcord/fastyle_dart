@@ -11,11 +11,15 @@ class FastAlertDialog extends AlertDialog {
   final String messageText;
   final Color titleColor;
   final Color messageColor;
-  final List<Widget> actions;
   final List<Widget> widgets;
-  final Color backgroundColor;
   final VoidCallback onValid;
   final VoidCallback onCancel;
+
+  @override
+  final Color backgroundColor;
+
+  @override
+  final List<Widget> actions;
 
   FastAlertDialog({
     Key key,
@@ -32,7 +36,8 @@ class FastAlertDialog extends AlertDialog {
     this.messageColor,
   })  : assert(titleText != null),
         assert(messageText == null || widgets == null),
-        assert(actions == null || cancelText == null);
+        assert(actions == null || cancelText == null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

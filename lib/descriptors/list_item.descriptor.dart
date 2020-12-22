@@ -13,18 +13,20 @@ class FastListItemDescriptor extends FastDescriptor {
   })  : isDense = isDense ?? true,
         super();
 
+  @override
   FastListItemDescriptor copyWith({
-    bool dense,
+    bool isDense,
     Widget leading,
     Widget trailing,
   }) {
     return FastListItemDescriptor(
-      isDense: dense ?? this.isDense,
+      isDense: isDense ?? this.isDense,
       leading: leading ?? this.leading,
       trailing: trailing ?? this.trailing,
     );
   }
 
+  @override
   FastListItemDescriptor clone() {
     return FastListItemDescriptor(
       isDense: isDense,

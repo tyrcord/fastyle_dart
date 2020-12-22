@@ -34,8 +34,8 @@ class FastSearchBar<T extends FastItem> extends StatefulWidget {
     bool showShowBottomBorder = true,
   })  : assert(items != null),
         showShowBottomBorder = showShowBottomBorder ?? true,
-        this.showLeadingIcon = showLeadingIcon ?? true,
-        this.shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
+        showLeadingIcon = showLeadingIcon ?? true,
+        shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
         super();
 
   @override
@@ -47,7 +47,7 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
   String _searchQuery;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _textController = widget.textEditingController ?? TextEditingController();
     _textController.addListener(_handleSearchQueryChanges);
@@ -89,7 +89,7 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
 
   FastIconButton _buildLeadingIcon(BuildContext context) {
     final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
-    final bool useCloseButton =
+    final useCloseButton =
         parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
 
     final closeIcon = widget.closeIcon ?? Icon(Icons.close);
@@ -162,7 +162,7 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
 
   List<T> _buildFuzzySuggestions(String queryText) {
     final fuse = Fuzzy(widget.items, options: kFastFastItemFuzzyOptions);
-    final List<T> results = [];
+    final results = <T>[];
 
     // TODO: workaround https://github.com/comigor/fuzzy/issues/8
     final rawResults = fuse.search(queryText);

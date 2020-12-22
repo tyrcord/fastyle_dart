@@ -6,13 +6,18 @@ class FastTextButton extends StatefulWidget implements IFastButton {
   final FastButtonEmphasis emphasis;
   final EdgeInsetsGeometry padding;
   final Color highlightColor;
-  final VoidCallback onTap;
   final Color textColor;
-  final bool isEnabled;
   final Widget child;
   final String text;
+
+  @override
   final bool shouldTrottleTime;
+  @override
   final Duration trottleTimeDuration;
+  @override
+  final VoidCallback onTap;
+  @override
+  final bool isEnabled;
 
   const FastTextButton({
     Key key,
@@ -26,8 +31,8 @@ class FastTextButton extends StatefulWidget implements IFastButton {
     this.text,
     bool shouldTrottleTime = false,
     Duration trottleTimeDuration = kFastTrottleTimeDuration,
-  })  : this.isEnabled = isEnabled ?? true,
-        this.emphasis = emphasis ?? FastButtonEmphasis.low,
+  })  : isEnabled = isEnabled ?? true,
+        emphasis = emphasis ?? FastButtonEmphasis.low,
         shouldTrottleTime = shouldTrottleTime ?? false,
         trottleTimeDuration = trottleTimeDuration ?? kFastTrottleTimeDuration,
         assert(onTap != null),
@@ -54,10 +59,10 @@ class _FastTextButtonState extends State<FastTextButton>
 
   @override
   Widget build(BuildContext context) {
-    final _color =
-        widget.textColor ?? widget.emphasis == FastButtonEmphasis.high
+    final _color = widget.textColor ??
+        (widget.emphasis == FastButtonEmphasis.high
             ? ThemeHelper.colors.getPrimaryColor(context)
-            : ThemeHelper.texts.getButtonTextStyle(context).color;
+            : ThemeHelper.texts.getButtonTextStyle(context).color);
 
     return FastButtonLayout(
       child: FlatButton(
