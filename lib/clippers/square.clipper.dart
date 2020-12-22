@@ -22,6 +22,7 @@ class FastSquareClipper extends CustomClipper<Path> {
     path.lineTo(topLeft, bottomLeft);
     path.lineTo(size.width, bottomRight);
     path.lineTo(size.width, topRight);
+
     return path;
   }
 

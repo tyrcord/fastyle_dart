@@ -44,5 +44,6 @@ class NoSplashInk extends InteractiveInkFeature {
         );
 
   @override
+  // ignore: no-empty-block
   void paintFeature(Canvas canvas, Matrix4 transform) {}
 }

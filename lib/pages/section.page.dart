@@ -213,6 +213,7 @@ class FastSectionPage extends StatelessWidget {
   double _getBottomPadding(BuildContext context) {
     if (isViewScrollable) {
       final mediaQueryData = MediaQuery.of(context);
+
       return mediaQueryData.padding.bottom + _kBottomPaddingMin;
     }
 

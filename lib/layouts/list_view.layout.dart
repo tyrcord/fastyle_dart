@@ -139,6 +139,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
 
     final categories = categoriesMap.values.toList();
     categories.sort((a, b) => b.weight.compareTo(a.weight));
+
     return categories;
   }
 

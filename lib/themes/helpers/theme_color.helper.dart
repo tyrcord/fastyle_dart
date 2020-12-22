@@ -12,6 +12,7 @@ class ThemeColorHelper {
   }) {
     final theme = Theme.of(context);
     final primaryColor = backgroundColor ?? theme.primaryColor;
+
     return primaryColor.computeLuminance() > 0.5 ? darkColor : lightColor;
   }
 
