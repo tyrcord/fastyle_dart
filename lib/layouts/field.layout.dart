@@ -44,18 +44,21 @@ class FastFieldLayout extends StatelessWidget {
                 constraints: const BoxConstraints(minHeight: 33.0),
                 child: control,
               ),
-              if (suffixIcon != null)
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  bottom: 0,
-                  child: suffixIcon,
-                ),
+              if (suffixIcon != null) _buildSuffixIcon(),
             ],
           ),
           if (showHelperBoundaries) _buildHelper(context),
         ],
       ),
+    );
+  }
+
+  Widget _buildSuffixIcon() {
+    return Positioned(
+      top: 0,
+      right: 0,
+      bottom: 0,
+      child: suffixIcon,
     );
   }
 

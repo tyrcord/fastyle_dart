@@ -11,6 +11,8 @@ class FastThemeFactory {
     Color tertiaryColor,
     Color primaryColorDark,
   }) {
+    assert(primaryColor != null);
+
     return buildFastThemeWithColors(
       baseTheme: kLightFastTheme,
       primaryColor: primaryColor,
@@ -26,6 +28,8 @@ class FastThemeFactory {
     Color tertiaryColor,
     Color primaryColorDark,
   }) {
+    assert(primaryColor != null);
+
     return buildFastThemeWithColors(
       baseTheme: kDarkFastTheme,
       primaryColor: primaryColor,
@@ -42,15 +46,19 @@ class FastThemeFactory {
     Color tertiaryColor,
     Color primaryColorDark,
   }) {
+    assert(baseTheme != null);
+    assert(primaryColor != null);
+
     final textTheme = baseTheme.textTheme;
-    final _primaryColorDark = primaryColorDark ?? baseTheme.primaryColorDark;
     final _secondaryColor = secondaryColor ?? baseTheme.accentColor;
     final _tertiaryColor = tertiaryColor ?? textTheme.overline.color;
 
     return baseTheme.copyWith(
-      primaryColor: primaryColor,
-      primaryColorDark: _primaryColorDark,
+      inputDecorationTheme: _buildInputDecorationTheme(baseTheme, primaryColor),
+      primaryColorDark: primaryColorDark ?? baseTheme.primaryColorDark,
+      buttonTheme: _buildButtonThemeData(primaryColor),
       accentColor: _secondaryColor,
+      primaryColor: primaryColor,
       buttonColor: primaryColor,
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: primaryColor,
@@ -59,17 +67,23 @@ class FastThemeFactory {
         caption: textTheme.caption.copyWith(color: _secondaryColor),
         overline: textTheme.overline.copyWith(color: _tertiaryColor),
       ),
-      buttonTheme: ButtonThemeData(
-        buttonColor: primaryColor,
-        disabledColor: primaryColor.withAlpha(155),
-      ),
-      inputDecorationTheme: baseTheme.inputDecorationTheme.copyWith(
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: primaryColor,
-            width: kFastBorderSize,
-          ),
-        ),
+    );
+  }
+
+  static ButtonThemeData _buildButtonThemeData(Color color) {
+    return ButtonThemeData(
+      disabledColor: color.withAlpha(155),
+      buttonColor: color,
+    );
+  }
+
+  static InputDecorationTheme _buildInputDecorationTheme(
+    ThemeData themeData,
+    Color color,
+  ) {
+    return themeData.inputDecorationTheme.copyWith(
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: color, width: kFastBorderSize),
       ),
     );
   }

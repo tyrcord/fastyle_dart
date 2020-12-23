@@ -42,9 +42,7 @@ final kDarkFastTheme = kBaseFastTheme.copyWith(
       color: kFastDarkSecondaryLabelColor,
     ),
   ),
-  iconTheme: IconThemeData(
-    color: kFastDarklabelColor,
-  ),
+  iconTheme: IconThemeData(color: kFastDarklabelColor),
   tabBarTheme: _baseTabBarTheme.copyWith(
     labelColor: kFastDarklabelColor,
     unselectedLabelColor: kFastDarkSecondaryLabelColor,
@@ -59,9 +57,7 @@ final kDarkFastTheme = kBaseFastTheme.copyWith(
     indent: kFastDividerIndent,
   ),
   inputDecorationTheme: kInputDecorationTheme.copyWith(
-    hintStyle: TextStyle(
-      color: kFastDarkHintLabelColor,
-    ),
+    hintStyle: TextStyle(color: kFastDarkHintLabelColor),
     enabledBorder: UnderlineInputBorder(
       borderSide: BorderSide(
         color: kFastDarkSeparatorColor,

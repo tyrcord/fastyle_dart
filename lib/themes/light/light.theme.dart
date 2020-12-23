@@ -42,15 +42,11 @@ final kLightFastTheme = kBaseFastTheme.copyWith(
       color: kFastLightSecondaryLabelColor,
     ),
   ),
-  iconTheme: IconThemeData(
-    color: kFastLightlabelColor,
-  ),
+  cardTheme: CardTheme(color: kFastLightSecondaryBackgroundColor),
+  iconTheme: IconThemeData(color: kFastLightlabelColor),
   tabBarTheme: _baseTabBarTheme.copyWith(
     labelColor: kFastLightlabelColor,
     unselectedLabelColor: kFastLightSecondaryLabelColor,
-  ),
-  cardTheme: CardTheme(
-    color: kFastLightSecondaryBackgroundColor,
   ),
   dividerColor: kFastLightSeparatorColor,
   dividerTheme: DividerThemeData(

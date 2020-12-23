@@ -25,10 +25,7 @@ class NoSplashFactory extends InteractiveInkFeatureFactory {
     double radius,
     onRemoved,
   }) {
-    return NoSplashInk(
-      controller: controller,
-      referenceBox: referenceBox,
-    );
+    return NoSplashInk(controller: controller, referenceBox: referenceBox);
   }
 }
 
@@ -38,10 +35,7 @@ class NoSplashInk extends InteractiveInkFeature {
     @required RenderBox referenceBox,
   })  : assert(controller != null),
         assert(referenceBox != null),
-        super(
-          controller: controller,
-          referenceBox: referenceBox,
-        );
+        super(controller: controller, referenceBox: referenceBox);
 
   @override
   // ignore: no-empty-block

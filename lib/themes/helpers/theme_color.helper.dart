@@ -10,6 +10,10 @@ class ThemeColorHelper {
     @required Color lightColor,
     Color backgroundColor,
   }) {
+    assert(context != null);
+    assert(darkColor != null);
+    assert(lightColor != null);
+
     final theme = Theme.of(context);
     final primaryColor = backgroundColor ?? theme.primaryColor;
 
