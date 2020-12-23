@@ -62,12 +62,7 @@ class _FastAppState extends State<FastApp> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        if (Platform.isIOS || Platform.isAndroid) {
-          FocusManager.instance.primaryFocus.unfocus();
-          SystemChannels.textInput.invokeMethod('TextInput.hide');
-        }
-      },
+      onTap: _hideKeyboard,
       child: BlocProvider(
         bloc: _themeBloc,
         child: BlocBuilderWidget(
@@ -89,5 +84,12 @@ class _FastAppState extends State<FastApp> {
         ),
       ),
     );
+  }
+
+  void _hideKeyboard() {
+    if (Platform.isIOS || Platform.isAndroid) {
+      FocusManager.instance.primaryFocus.unfocus();
+      SystemChannels.textInput.invokeMethod('TextInput.hide');
+    }
   }
 }

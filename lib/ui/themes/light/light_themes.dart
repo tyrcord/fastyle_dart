@@ -1,5 +1,4 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:fastyle_dart/themes/theme.factory.dart';
 import 'package:flutter/cupertino.dart';
 
 final kLightBlueFastTheme = FastThemeFactory.buildLightThemeWithColors(

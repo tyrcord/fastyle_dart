@@ -1,4 +1,4 @@
-import 'package:fastyle_dart/themes/base/base.dart';
+import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 final kBaseFastTheme = ThemeData(

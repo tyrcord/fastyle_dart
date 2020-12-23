@@ -1,4 +1,4 @@
-import 'package:fastyle_dart/descriptors/descriptor.dart';
+import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 class FastListItemDescriptor extends FastDescriptor {

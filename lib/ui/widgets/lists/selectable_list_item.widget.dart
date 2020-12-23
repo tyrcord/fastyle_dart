@@ -1,5 +1,4 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:fastyle_dart/models/models.dart';
 import 'package:flutter/material.dart';
 
 const _defaultIcon = Icon(Icons.done);

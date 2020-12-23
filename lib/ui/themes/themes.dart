@@ -1,13 +1,11 @@
-import 'package:fastyle_dart/themes/theme_scheme.dart';
-import 'package:fastyle_dart/themes/light/light.dart';
-import 'package:fastyle_dart/themes/dark/dark.dart';
+import 'package:fastyle_dart/fastyle_dart.dart';
 
-export 'package:fastyle_dart/themes/base/base.dart';
-export 'package:fastyle_dart/themes/helpers/helpers.dart';
-export 'package:fastyle_dart/themes/theme_scheme.dart';
-export 'package:fastyle_dart/themes/light/light.dart';
-export 'package:fastyle_dart/themes/dark/dark.dart';
+export './base/base.dart';
+export './dark/dark.dart';
+export './helpers/helpers.dart';
+export './light/light.dart';
 export './theme.factory.dart';
+export './theme_scheme.dart';
 
 class FastTheme {
   static FastThemeScheme dark = FastThemeScheme(

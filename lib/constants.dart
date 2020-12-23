@@ -1,4 +1,4 @@
-import 'package:fastyle_dart/models/item.model.dart';
+import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:fuzzy/fuzzy.dart';
 

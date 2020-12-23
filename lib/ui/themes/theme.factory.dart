@@ -1,6 +1,4 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:fastyle_dart/themes/dark/dark.theme.dart';
-import 'package:fastyle_dart/themes/light/light.theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
