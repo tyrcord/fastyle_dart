@@ -66,8 +66,10 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   Widget _buildListView(BuildContext context, List<T> items) {
     if (shouldSortItems) {
       items = items.map((T item) {
-        return item.copyWith(normalizedLabelText: normalizeText(item.labelText))
-            as T;
+        return item.copyWith(
+          normalizedLabelText:
+              normalizeTextByRemovingDiacritics(item.labelText),
+        ) as T;
       }).toList();
 
       items.sort(

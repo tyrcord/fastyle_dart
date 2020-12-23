@@ -1,3 +1,5 @@
 import 'package:diacritic/diacritic.dart';
 
-String normalizeText(String text) => removeDiacritics(text.toLowerCase());
+String normalizeTextByRemovingDiacritics(String text) {
+  return removeDiacritics(text.toLowerCase());
+}

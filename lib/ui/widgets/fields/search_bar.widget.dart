@@ -136,7 +136,7 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
           _searchQuery = null;
           widget?.onSuggestions(null, null);
         } else {
-          _searchQuery = normalizeText(queryText);
+          _searchQuery = normalizeTextByRemovingDiacritics(queryText);
           widget?.onSuggestions(_buildSuggestions(_searchQuery), _searchQuery);
         }
       });
@@ -153,9 +153,11 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
         return widget.onSearchFilter(option, queryText);
       }
 
-      return normalizeText(option.labelText).contains(queryText) ||
+      return normalizeTextByRemovingDiacritics(option.labelText)
+              .contains(queryText) ||
           (option.descriptionText != null
-              ? normalizeText(option.descriptionText).contains(queryText)
+              ? normalizeTextByRemovingDiacritics(option.descriptionText)
+                  .contains(queryText)
               : false);
     }).toList();
   }
