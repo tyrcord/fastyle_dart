@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-class FastCategory {
+import 'package:tmodel_dart/tmodel_dart.dart';
+
+class FastCategory extends TModel {
   final String labelText;
   final String value;
   final double weight;
@@ -13,19 +15,35 @@ class FastCategory {
         assert(value != null),
         weight = weight ?? 0;
 
+  @override
   FastCategory copyWith({String labelText, String value, double weight}) {
     return FastCategory(
       labelText: labelText ?? this.labelText,
-      value: value ?? this.value,
       weight: weight ?? this.weight,
+      value: value ?? this.value,
     );
   }
 
+  @override
   FastCategory clone() {
     return FastCategory(
       labelText: labelText,
-      value: value,
       weight: weight,
+      value: value,
     );
   }
+
+  @override
+  FastCategory merge({@required FastCategory category}) {
+    assert(category != null);
+
+    return copyWith(
+      labelText: category.labelText,
+      weight: category.weight,
+      value: category.value,
+    );
+  }
+
+  @override
+  List<Object> get props => [labelText, value, weight];
 }

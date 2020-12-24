@@ -15,8 +15,26 @@ class FastThemeBlocState extends BlocState {
   @override
   FastThemeBlocState copyWith({ThemeMode themeMode, Brightness brightness}) {
     return FastThemeBlocState(
-      themeMode: themeMode ?? this.themeMode,
       brightness: brightness ?? this.brightness,
+      themeMode: themeMode ?? this.themeMode,
+    );
+  }
+
+  @override
+  FastThemeBlocState clone() {
+    return FastThemeBlocState(
+      brightness: brightness,
+      themeMode: themeMode,
+    );
+  }
+
+  @override
+  FastThemeBlocState merge({@required FastThemeBlocState state}) {
+    assert(state != null);
+
+    return copyWith(
+      brightness: state.brightness,
+      themeMode: state.themeMode,
     );
   }
 

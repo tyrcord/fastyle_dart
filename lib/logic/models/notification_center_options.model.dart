@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-class FastNotificationCenterOptions {
+import 'package:tmodel_dart/tmodel_dart.dart';
+
+class FastNotificationCenterOptions extends TModel {
   final Widget leadingIcon;
   final double iconSize;
   final Color iconColor;
@@ -11,6 +13,7 @@ class FastNotificationCenterOptions {
     this.iconColor,
   });
 
+  @override
   FastNotificationCenterOptions copyWith({
     Widget leadingIcon,
     double iconSize,
@@ -18,8 +21,33 @@ class FastNotificationCenterOptions {
   }) {
     return FastNotificationCenterOptions(
       leadingIcon: leadingIcon ?? this.leadingIcon,
-      iconSize: iconSize ?? this.iconSize,
       iconColor: iconColor ?? this.iconColor,
+      iconSize: iconSize ?? this.iconSize,
     );
   }
+
+  @override
+  FastNotificationCenterOptions clone() {
+    return FastNotificationCenterOptions(
+      leadingIcon: leadingIcon,
+      iconColor: iconColor,
+      iconSize: iconSize,
+    );
+  }
+
+  @override
+  FastNotificationCenterOptions merge({
+    @required FastNotificationCenterOptions options,
+  }) {
+    assert(options != null);
+
+    return copyWith(
+      leadingIcon: options.leadingIcon,
+      iconColor: options.iconColor,
+      iconSize: options.iconSize,
+    );
+  }
+
+  @override
+  List<Object> get props => [leadingIcon, iconSize, iconColor];
 }

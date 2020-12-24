@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:tmodel_dart/tmodel_dart.dart';
 
-class FastItem<T> {
+class FastItem<T> extends TModel {
   final FastListItemDescriptor descriptor;
   final List<FastCategory> categories;
   final String normalizedLabelText;
@@ -22,6 +23,8 @@ class FastItem<T> {
   })  : isEnabled = isEnabled ?? true,
         assert(labelText != null);
 
+  @override
+  // ignore: code-metrics
   FastItem<T> copyWith({
     FastListItemDescriptor descriptor,
     List<FastCategory> categories,
@@ -31,7 +34,7 @@ class FastItem<T> {
     bool isEnabled,
     T value,
   }) {
-    return FastItem(
+    return FastItem<T>(
       normalizedLabelText: normalizedLabelText ?? this.normalizedLabelText,
       descriptionText: descriptionText ?? this.descriptionText,
       categories: categories ?? this.categories,
@@ -42,8 +45,9 @@ class FastItem<T> {
     );
   }
 
+  @override
   FastItem<T> clone() {
-    return FastItem(
+    return FastItem<T>(
       descriptor: descriptor != null ? descriptor.clone() : null,
       normalizedLabelText: normalizedLabelText,
       descriptionText: descriptionText,
@@ -53,4 +57,30 @@ class FastItem<T> {
       value: value,
     );
   }
+
+  @override
+  FastItem<T> merge({@required FastItem<T> item}) {
+    assert(item != null);
+
+    return copyWith(
+      normalizedLabelText: item.normalizedLabelText,
+      descriptionText: item.descriptionText,
+      categories: item.categories,
+      descriptor: item.descriptor,
+      isEnabled: item.isEnabled,
+      labelText: item.labelText,
+      value: item.value,
+    );
+  }
+
+  @override
+  List<Object> get props => [
+        normalizedLabelText,
+        descriptionText,
+        categories,
+        descriptor,
+        isEnabled,
+        labelText,
+        value,
+      ];
 }
