@@ -1,6 +1,5 @@
-abstract class FastDescriptor {
-  const FastDescriptor();
+import 'package:tmodel_dart/logic/core/core.dart';
 
-  FastDescriptor copyWith();
-  FastDescriptor clone();
+abstract class FastDescriptor extends TModel {
+  const FastDescriptor();
 }

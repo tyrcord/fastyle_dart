@@ -2,36 +2,48 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 class FastListItemDescriptor extends FastDescriptor {
-  final bool isDense;
-  final Widget leading;
   final Widget trailing;
+  final Widget leading;
+  final bool isDense;
 
   const FastListItemDescriptor({
     bool isDense = true,
-    this.leading,
     this.trailing,
+    this.leading,
   })  : isDense = isDense ?? true,
         super();
 
   @override
   FastListItemDescriptor copyWith({
-    bool isDense,
-    Widget leading,
     Widget trailing,
+    Widget leading,
+    bool isDense,
   }) {
     return FastListItemDescriptor(
+      trailing: trailing ?? this.trailing,
       isDense: isDense ?? this.isDense,
       leading: leading ?? this.leading,
-      trailing: trailing ?? this.trailing,
     );
   }
 
   @override
   FastListItemDescriptor clone() {
     return FastListItemDescriptor(
+      trailing: trailing,
       isDense: isDense,
       leading: leading,
-      trailing: trailing,
     );
   }
+
+  @override
+  FastListItemDescriptor merge({@required FastListItemDescriptor descriptor}) {
+    return FastListItemDescriptor(
+      trailing: descriptor.trailing,
+      isDense: descriptor.isDense,
+      leading: descriptor.leading,
+    );
+  }
+
+  @override
+  List<Object> get props => [trailing, isDense, leading];
 }
