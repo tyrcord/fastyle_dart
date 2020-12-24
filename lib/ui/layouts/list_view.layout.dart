@@ -5,7 +5,7 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 
 const kFastListTileCategoryAll = FastCategory(
   labelText: kFastAllString,
-  value: kFastAllString,
+  valueText: kFastAllString,
   weight: 999,
 );
 
@@ -116,26 +116,26 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
 
   List<FastListItemCategory<T>> _buildListCategories(List<T> items) {
     final categoriesMap = {
-      kFastListTileCategoryAll.value: _buildListCategory(
+      kFastListTileCategoryAll.valueText: _buildListCategory(
         kFastListTileCategoryAll.copyWith(
           labelText: tabAllCategoryText ?? kFastListTileCategoryAll.labelText,
         ),
       ),
     };
 
-    final allCategory = categoriesMap[kFastListTileCategoryAll.value].items;
+    final allCategory = categoriesMap[kFastListTileCategoryAll.valueText].items;
 
     items.forEach((T item) {
       item.categories?.forEach((FastCategory category) {
-        if (!categoriesMap.containsKey(category.value)) {
-          categoriesMap[category.value] = _buildListCategory(category);
+        if (!categoriesMap.containsKey(category.valueText)) {
+          categoriesMap[category.valueText] = _buildListCategory(category);
         }
 
         if (!allCategory.contains(item)) {
           allCategory.add(item);
         }
 
-        categoriesMap[category.value].items.add(item);
+        categoriesMap[category.valueText].items.add(item);
       });
     });
 
@@ -148,7 +148,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   FastListItemCategory<T> _buildListCategory(FastCategory category) {
     return FastListItemCategory(
       labelText: category.labelText,
-      value: category.value,
+      valueText: category.valueText,
       items: <T>[],
       weight: category.weight,
     );

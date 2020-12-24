@@ -7,29 +7,29 @@ class FastListItemCategory<T extends FastItem> extends TModel {
   final String labelText;
   final List<T> items;
   final double weight;
-  final String value;
+  final String valueText;
 
   const FastListItemCategory({
     @required this.labelText,
+    @required this.valueText,
     @required this.items,
-    @required this.value,
     double weight = 0,
   })  : assert(items != null),
         assert(labelText != null),
-        assert(value != null),
+        assert(valueText != null),
         weight = weight ?? 0;
 
   @override
   FastListItemCategory<T> copyWith({
     String labelText,
+    String valueText,
     List<T> items,
     double weight,
-    String value,
   }) {
     return FastListItemCategory(
       labelText: labelText ?? this.labelText,
+      valueText: valueText ?? this.valueText,
       weight: weight ?? this.weight,
-      value: value ?? this.value,
       items: items ?? this.items,
     );
   }
@@ -38,8 +38,8 @@ class FastListItemCategory<T extends FastItem> extends TModel {
   FastListItemCategory<T> clone() {
     return FastListItemCategory(
       labelText: labelText,
+      valueText: valueText,
       weight: weight,
-      value: value,
       items: items,
     );
   }
@@ -50,12 +50,12 @@ class FastListItemCategory<T extends FastItem> extends TModel {
 
     return copyWith(
       labelText: category.labelText,
+      valueText: category.valueText,
       weight: category.weight,
-      value: category.value,
       items: category.items,
     );
   }
 
   @override
-  List<Object> get props => [labelText, value, weight, items];
+  List<Object> get props => [labelText, valueText, weight, items];
 }

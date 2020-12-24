@@ -4,23 +4,23 @@ import 'package:tmodel_dart/tmodel_dart.dart';
 
 class FastCategory extends TModel {
   final String labelText;
-  final String value;
+  final String valueText;
   final double weight;
 
   const FastCategory({
     @required this.labelText,
-    @required this.value,
+    @required this.valueText,
     double weight = 0,
   })  : assert(labelText != null),
-        assert(value != null),
+        assert(valueText != null),
         weight = weight ?? 0;
 
   @override
-  FastCategory copyWith({String labelText, String value, double weight}) {
+  FastCategory copyWith({String labelText, String valueText, double weight}) {
     return FastCategory(
       labelText: labelText ?? this.labelText,
+      valueText: valueText ?? this.valueText,
       weight: weight ?? this.weight,
-      value: value ?? this.value,
     );
   }
 
@@ -28,8 +28,8 @@ class FastCategory extends TModel {
   FastCategory clone() {
     return FastCategory(
       labelText: labelText,
+      valueText: valueText,
       weight: weight,
-      value: value,
     );
   }
 
@@ -39,11 +39,11 @@ class FastCategory extends TModel {
 
     return copyWith(
       labelText: category.labelText,
+      valueText: category.valueText,
       weight: category.weight,
-      value: category.value,
     );
   }
 
   @override
-  List<Object> get props => [labelText, value, weight];
+  List<Object> get props => [labelText, valueText, weight];
 }
