@@ -4,27 +4,27 @@ import 'package:intl/intl.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastFieldLayout extends StatelessWidget {
-  final String captionText;
-  final String labelText;
-  final String placeholderText;
-  final String helperText;
-  final Widget control;
   final bool showHelperBoundaries;
-  final EdgeInsets margin;
+  final String placeholderText;
   final Color helperTextColor;
+  final String captionText;
+  final String helperText;
+  final EdgeInsets margin;
   final Widget suffixIcon;
+  final String labelText;
+  final Widget control;
 
   FastFieldLayout({
     Key key,
     @required this.control,
-    this.labelText,
-    this.captionText,
-    this.placeholderText,
-    this.helperText,
-    bool showHelperBoundaries = true,
-    this.margin,
     this.helperTextColor,
+    this.placeholderText,
+    this.captionText,
+    this.helperText,
     this.suffixIcon,
+    this.labelText,
+    this.margin,
+    bool showHelperBoundaries = true,
   })  : showHelperBoundaries = showHelperBoundaries ?? true,
         assert(control != null),
         super(key: key);
@@ -55,10 +55,10 @@ class FastFieldLayout extends StatelessWidget {
 
   Widget _buildSuffixIcon() {
     return Positioned(
-      top: 0,
-      right: 0,
-      bottom: 0,
       child: suffixIcon,
+      bottom: 0,
+      right: 0,
+      top: 0,
     );
   }
 

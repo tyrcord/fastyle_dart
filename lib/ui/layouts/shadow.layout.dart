@@ -12,9 +12,9 @@ class FastShadowLayout extends StatelessWidget {
   FastShadowLayout({
     Key key,
     @required this.child,
-    this.shadowColor,
     this.backgroundColor,
     this.borderRadius,
+    this.shadowColor,
     this.blurRadius,
   })  : assert(child != null),
         super(key: key);
@@ -30,9 +30,7 @@ class FastShadowLayout extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(color: _shadowColor, blurRadius: _blurRadius),
-        ],
+        boxShadow: [BoxShadow(color: _shadowColor, blurRadius: _blurRadius)],
         borderRadius: BorderRadius.circular(_borderRadius),
         color: backgroundColor ??
             ThemeHelper.colors.getBackGroundColor(

@@ -16,7 +16,6 @@ class FastListItemLayout extends StatefulWidget {
   FastListItemLayout({
     Key key,
     @required this.titleText,
-    bool isEnabled = true,
     this.descriptionText,
     this.contentPadding,
     this.descriptor,
@@ -24,6 +23,7 @@ class FastListItemLayout extends StatefulWidget {
     this.isDense,
     this.leading,
     this.onTap,
+    bool isEnabled = true,
   })  : isEnabled = isEnabled ?? true,
         assert(titleText != null),
         super(key: key);
@@ -37,6 +37,8 @@ class _FastListItemLayoutState extends State<FastListItemLayout> {
   bool _isInitialized = false;
   double _leadingOffsetX;
   Widget _leading;
+
+  bool get isDense => widget.isDense ?? widget.descriptor?.isDense ?? true;
 
   // Material specifications.
   static const _minLeadingWidth = 40.0;
@@ -59,7 +61,6 @@ class _FastListItemLayoutState extends State<FastListItemLayout> {
 
   @override
   Widget build(BuildContext context) {
-    final title = FastBody(text: widget.titleText);
     Matrix4 transform;
     Widget subtitle;
 
@@ -78,20 +79,30 @@ class _FastListItemLayoutState extends State<FastListItemLayout> {
     return ThemeHelper.getListTitleTheme(
       context: context,
       child: ListTile(
-        contentPadding: widget.contentPadding,
-        dense: widget.isDense ?? widget.descriptor?.isDense ?? true,
-        enabled: widget.isEnabled,
-        leading: _leading != null
-            ? Container(key: _leadingKey, child: _leading)
-            : null,
-        title: transform != null
-            ? Transform(transform: transform, child: title)
-            : title,
-        subtitle: subtitle,
         trailing: widget.trailing ?? widget.descriptor?.trailing,
+        contentPadding: widget.contentPadding,
+        title: _buildTitle(transform),
+        enabled: widget.isEnabled,
+        leading: _buildLeading(),
         onTap: widget.onTap,
+        subtitle: subtitle,
+        dense: isDense,
       ),
     );
+  }
+
+  Widget _buildTitle(Matrix4 transform) {
+    final title = FastBody(text: widget.titleText);
+
+    return transform != null
+        ? Transform(transform: transform, child: title)
+        : title;
+  }
+
+  Widget _buildLeading() {
+    return _leading != null
+        ? Container(key: _leadingKey, child: _leading)
+        : null;
   }
 
   void _afterLayout(_) {

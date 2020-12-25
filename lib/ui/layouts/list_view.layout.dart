@@ -10,33 +10,33 @@ const kFastListTileCategoryAll = FastCategory(
 );
 
 class FastListViewLayout<T extends FastItem> extends StatelessWidget {
-  final List<T> items;
   final FastListItemBuilder<T> listItemBuilder;
   final List<FastCategory> categories;
   final bool shouldGroupByCategory;
+  final String tabAllCategoryText;
   final bool isViewScrollable;
   final bool shouldSortItems;
   final bool showItemDivider;
   final int intialTabIndex;
-  final String tabAllCategoryText;
+  final List<T> items;
 
   FastListViewLayout({
     Key key,
-    @required this.items,
     @required this.listItemBuilder,
+    @required this.items,
+    this.tabAllCategoryText,
+    this.intialTabIndex,
     this.categories,
     bool shouldGroupByCategory = false,
     bool isViewScrollable = true,
     bool shouldSortItems = true,
     bool showItemDivider = false,
-    this.intialTabIndex,
-    this.tabAllCategoryText,
   })  : shouldGroupByCategory = shouldGroupByCategory ?? false,
         isViewScrollable = isViewScrollable ?? true,
         shouldSortItems = shouldSortItems ?? true,
         showItemDivider = showItemDivider ?? false,
-        assert(items != null),
         assert(listItemBuilder != null),
+        assert(items != null),
         super(key: key);
 
   @override
@@ -64,45 +64,41 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   }
 
   Widget _buildListView(BuildContext context, List<T> items) {
-    if (shouldSortItems) {
-      items = items.map((T item) {
-        return item.copyWith(
-          normalizedLabelText:
-              normalizeTextByRemovingDiacritics(item.labelText),
-        ) as T;
-      }).toList();
-
-      items.sort(
-        (a, b) => a.normalizedLabelText.compareTo(b.normalizedLabelText),
-      );
-    }
-
-    final lastIndex = items.length - 1;
-    final dividerDecoration = showItemDivider
-        ? BoxDecoration(
-            border: Border(bottom: Divider.createBorderSide(context)),
-          )
-        : null;
-
     if (isViewScrollable || shouldGroupByCategory) {
-      return ListView.builder(
-        padding: EdgeInsets.zero,
-        itemCount: items.length,
-        itemBuilder: (BuildContext context, int index) {
-          return _buildListItem(
-            context: context,
-            item: items[index],
-            index: index,
-            isLastItem: index < lastIndex,
-            decoration: dividerDecoration,
-          );
-        },
-      );
+      return _buildScrollableContent(context);
     }
+
+    return _buildFixedContent(context);
+  }
+
+  Widget _buildScrollableContent(BuildContext context) {
+    final dividerDecoration = _buildDividerDecorationIdNeeded(context);
+    final rows = _sortItemIfNeeded(items);
+    final lastIndex = rows.length - 1;
+
+    return ListView.builder(
+      padding: EdgeInsets.zero,
+      itemCount: rows.length,
+      itemBuilder: (BuildContext context, int index) {
+        return _buildListItem(
+          context: context,
+          item: rows[index],
+          index: index,
+          isLastItem: index < lastIndex,
+          decoration: dividerDecoration,
+        );
+      },
+    );
+  }
+
+  Widget _buildFixedContent(BuildContext context) {
+    final dividerDecoration = _buildDividerDecorationIdNeeded(context);
+    final rows = _sortItemIfNeeded(items);
+    final lastIndex = rows.length - 1;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: items.asMap().entries.map((MapEntry<int, T> entry) {
+      children: rows.asMap().entries.map((MapEntry<int, T> entry) {
         return _buildListItem(
           context: context,
           item: entry.value,
@@ -112,6 +108,33 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
         );
       }).toList(),
     );
+  }
+
+  BoxDecoration _buildDividerDecorationIdNeeded(BuildContext context) {
+    return showItemDivider
+        ? BoxDecoration(
+            border: Border(
+            bottom: Divider.createBorderSide(context),
+          ))
+        : null;
+  }
+
+  List<T> _sortItemIfNeeded(List<T> items) {
+    if (shouldSortItems) {
+      items = items.map((T item) {
+        return item.copyWith(
+          normalizedLabelText: normalizeTextByRemovingDiacritics(
+            item.labelText,
+          ),
+        ) as T;
+      }).toList();
+
+      items.sort(
+        (a, b) => a.normalizedLabelText.compareTo(b.normalizedLabelText),
+      );
+    }
+
+    return items;
   }
 
   List<FastListItemCategory<T>> _buildListCategories(List<T> items) {
@@ -149,17 +172,17 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     return FastListItemCategory(
       labelText: category.labelText,
       valueText: category.valueText,
-      items: <T>[],
       weight: category.weight,
+      items: <T>[],
     );
   }
 
   Widget _buildListItem({
-    BuildContext context,
-    T item,
-    int index,
-    bool isLastItem,
     BoxDecoration decoration,
+    BuildContext context,
+    bool isLastItem,
+    int index,
+    T item,
   }) {
     final listItem = listItemBuilder(context, item, index);
 
