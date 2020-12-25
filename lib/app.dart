@@ -71,7 +71,7 @@ class _FastAppState extends State<FastApp> {
             return MaterialApp(
               debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
               navigatorKey: FastNotificationCenter.navigatorKey,
-              title: widget.titleText,
+              title: widget.titleText ?? '',
               theme: widget.lightTheme,
               darkTheme: widget.darkTheme,
               themeMode: state.themeMode,
