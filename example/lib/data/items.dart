@@ -1,9 +1,9 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 
-const fruitsCategory = FastCategory(labelText: 'Fruits', value: 'fruits');
+const fruitsCategory = FastCategory(labelText: 'Fruits', valueText: 'fruits');
 const vegetablesCategory = FastCategory(
   labelText: 'Vegetables',
-  value: 'vegetables',
+  valueText: 'vegetables',
 );
 
 const demoCategories = [fruitsCategory, vegetablesCategory];

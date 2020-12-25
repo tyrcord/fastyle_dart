@@ -9,24 +9,20 @@ class FastNotificationCenter {
   static BuildContext get _context => navigatorKey.currentContext;
   static const _animationDuration = Duration(milliseconds: 750);
   static const _notificationDuration = Duration(seconds: 2);
+  static final navigatorKey = GlobalKey<NavigatorState>();
   static final _queue = ListQueue<Flushbar>();
   static bool _isShowingNotification = false;
   static const _maxNotification = 2;
-
-  static final GlobalKey<NavigatorState> navigatorKey =
-      GlobalKey<NavigatorState>();
 
   static void error(
     String message, {
     FastNotificationCenterOptions options,
   }) {
-    final context = navigatorKey.currentContext;
-
     _buildNotification(
       message,
       options: _mergeIconColors(
         options,
-        ThemeHelper.colors.getRedColor(context),
+        ThemeHelper.colors.getRedColor(_context),
       ),
     );
   }
@@ -83,15 +79,15 @@ class FastNotificationCenter {
   }) {
     _addNotification(
       Flushbar(
-        margin: kFastEdgeInsets8,
-        borderRadius: kFastBorderRadius,
+        backgroundColor: ThemeHelper.colors.getBackGroundColor(_context),
+        boxShadows: [ThemeHelper.getDefaultBoxShadow(_context)],
+        flushbarPosition: FlushbarPosition.TOP,
+        animationDuration: _animationDuration,
         messageText: FastBody(text: message),
         duration: _notificationDuration,
+        borderRadius: kFastBorderRadius,
         icon: _buildIcon(options),
-        flushbarPosition: FlushbarPosition.TOP,
-        backgroundColor: ThemeHelper.colors.getBackGroundColor(_context),
-        animationDuration: _animationDuration,
-        boxShadows: [ThemeHelper.getDefaultBoxShadow(_context)],
+        margin: kFastEdgeInsets8,
       ),
     );
   }
