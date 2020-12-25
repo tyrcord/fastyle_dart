@@ -15,9 +15,9 @@ class FastSectionPageController extends StatefulWidget {
     Key key,
     @required this.loadedBuilder,
     this.loadingBuilder,
-    this.errorBuilder,
-    this.loadingFuture,
     this.loadingTimeout,
+    this.loadingFuture,
+    this.errorBuilder,
   })  : assert(loadedBuilder != null),
         super(key: key);
 
@@ -37,11 +37,12 @@ class _FastSectionPageControllerState extends State<FastSectionPageController> {
 
   @override
   void initState() {
+    super.initState();
+
     isLoading = widget.loadingFuture != null;
     isLoaded = !isLoading;
     _listenToLoadEvents();
     _listenToLoadingFutureIfNeeded();
-    super.initState();
   }
 
   @override
