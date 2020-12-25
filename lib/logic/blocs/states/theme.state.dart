@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 
 class FastThemeBlocState extends BlocState {
-  final ThemeMode themeMode;
   final Brightness brightness;
+  final ThemeMode themeMode;
 
   const FastThemeBlocState({
     ThemeMode themeMode = ThemeMode.system,

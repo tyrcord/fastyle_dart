@@ -4,20 +4,20 @@ import 'package:tmodel_dart/tmodel_dart.dart';
 
 class FastNotificationCenterOptions extends TModel {
   final Widget leadingIcon;
-  final double iconSize;
   final Color iconColor;
+  final double iconSize;
 
   const FastNotificationCenterOptions({
     this.leadingIcon,
-    this.iconSize,
     this.iconColor,
+    this.iconSize,
   });
 
   @override
   FastNotificationCenterOptions copyWith({
     Widget leadingIcon,
-    double iconSize,
     Color iconColor,
+    double iconSize,
   }) {
     return FastNotificationCenterOptions(
       leadingIcon: leadingIcon ?? this.leadingIcon,
@@ -49,5 +49,5 @@ class FastNotificationCenterOptions extends TModel {
   }
 
   @override
-  List<Object> get props => [leadingIcon, iconSize, iconColor];
+  List<Object> get props => [leadingIcon, iconColor, iconSize];
 }

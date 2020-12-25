@@ -16,27 +16,29 @@ class FastThemeBloc
   Stream<FastThemeBlocState> mapEventToState(FastThemeBlocEvent event) async* {
     if (event.type == FastThemeBlocEventType.light) {
       yield FastThemeBlocState(
-        themeMode: ThemeMode.light,
         brightness: Brightness.light,
+        themeMode: ThemeMode.light,
       );
     } else if (event.type == FastThemeBlocEventType.dark) {
       yield FastThemeBlocState(
-        themeMode: ThemeMode.dark,
         brightness: Brightness.dark,
+        themeMode: ThemeMode.dark,
       );
     } else {
       yield FastThemeBlocState(
-        themeMode: ThemeMode.system,
         brightness: WidgetsBinding.instance.window.platformBrightness,
+        themeMode: ThemeMode.system,
       );
     }
   }
 
+  @protected
   void onPlatformBrightnessChanged() {
     final newBrightness = WidgetsBinding.instance.window.platformBrightness;
+    final brightness = currentState.brightness;
+    final themeMode = currentState.themeMode;
 
-    if (currentState.themeMode == ThemeMode.system &&
-        newBrightness != currentState.brightness) {
+    if (themeMode == ThemeMode.system && newBrightness != brightness) {
       addEvent(FastThemeBlocEvent.system());
     }
   }

@@ -5,9 +5,9 @@ import 'package:tmodel_dart/tmodel_dart.dart';
 
 class FastListItemCategory<T extends FastItem> extends TModel {
   final String labelText;
+  final String valueText;
   final List<T> items;
   final double weight;
-  final String valueText;
 
   const FastListItemCategory({
     @required this.labelText,
