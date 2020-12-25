@@ -52,7 +52,12 @@ class FastSectionPage extends StatelessWidget {
     this.footerBuilder,
     this.child,
     this.footer,
-  })  : isTitlePositionBelowAppBar = isTitlePositionBelowAppBar ?? true,
+  })  : assert(
+          contentBuilder == null || child == null,
+          'contentBuilder and child properties '
+          'should not be initialized together',
+        ),
+        isTitlePositionBelowAppBar = isTitlePositionBelowAppBar ?? true,
         isViewScrollable = isViewScrollable ?? false,
         super(key: key);
 
