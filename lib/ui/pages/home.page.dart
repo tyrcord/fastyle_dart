@@ -8,25 +8,25 @@ const _kHeaderPadding = 16.0;
 const _kContentPadding = EdgeInsets.symmetric(vertical: _kHeaderPadding);
 
 class FastHomePage extends StatefulWidget {
-  final String titleText;
-  final String subtitleText;
+  final EdgeInsetsGeometry? contentPadding;
+  final Widget? floatingActionButton;
   final List<Widget> children;
-  final Widget floatingActionButton;
-  final EdgeInsetsGeometry contentPadding;
-  final List<Widget> actions;
-  final double expandedHeight;
-  final Widget leading;
+  final double? expandedHeight;
+  final List<Widget>? actions;
+  final String? subtitleText;
+  final String titleText;
+  final Widget? leading;
 
   FastHomePage({
-    Key key,
-    this.titleText,
-    this.subtitleText,
-    this.children,
-    this.actions,
-    this.leading,
+    Key? key,
+    required this.titleText,
+    required this.children,
     this.floatingActionButton,
     this.expandedHeight,
     this.contentPadding,
+    this.subtitleText,
+    this.actions,
+    this.leading,
   })  : assert(
           expandedHeight != null ? expandedHeight >= _kExpandedHeight : true,
         ),
@@ -41,17 +41,17 @@ class _FastHomePageState extends State<FastHomePage> {
   final _subtitleKey = GlobalKey();
 
   double get _expandedHeight => widget.expandedHeight ?? _kExpandedHeight;
-  ScrollController _scrollController;
-  EdgeInsetsGeometry _titlePadding;
+  late ScrollController _scrollController;
+  EdgeInsetsGeometry? _titlePadding;
   double _subtitleOpacity = 1.0;
   bool _showSubtitle = true;
-  Size _leadingSize;
-  Size _subtitleSize;
+  Size? _leadingSize;
+  Size? _subtitleSize;
 
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance.addPostFrameCallback(_onAfterLayout);
+    SchedulerBinding.instance!.addPostFrameCallback(_onAfterLayout);
     _scrollController = ScrollController()..addListener(_onScrollNoticiation);
   }
 
@@ -62,17 +62,17 @@ class _FastHomePageState extends State<FastHomePage> {
   }
 
   void _onAfterLayout(Duration duration) {
-    final leadingContext = _leadingKey.currentContext;
-    final subtitleContext = _subtitleKey.currentContext;
-    RenderBox leadingRenderBox;
-    RenderBox subtitleRenderBox;
+    final leadingContext = _leadingKey.currentContext!;
+    final subtitleContext = _subtitleKey.currentContext!;
+    RenderBox? leadingRenderBox;
+    RenderBox? subtitleRenderBox;
 
     if (widget.leading != null) {
-      leadingRenderBox = leadingContext.findRenderObject() as RenderBox;
+      leadingRenderBox = leadingContext.findRenderObject() as RenderBox?;
     }
 
     if (widget.subtitleText != null) {
-      subtitleRenderBox = subtitleContext.findRenderObject() as RenderBox;
+      subtitleRenderBox = subtitleContext.findRenderObject() as RenderBox?;
     }
 
     setState(() {
@@ -125,8 +125,8 @@ class _FastHomePageState extends State<FastHomePage> {
       stretch: true,
       pinned: true,
       leading: Container(
-        child: widget.leading,
         key: _leadingKey,
+        child: widget.leading,
       ),
       flexibleSpace: Container(
         decoration: BoxDecoration(
@@ -141,7 +141,7 @@ class _FastHomePageState extends State<FastHomePage> {
   Widget _buildFlexibleSpaceBar(BuildContext context) {
     final _textColor = ThemeHelper.colors.getColorWithBestConstrast(
       context: context,
-      darkColor: ThemeHelper.texts.getTitleTextStyle(context).color,
+      darkColor: ThemeHelper.texts.getTitleTextStyle(context).color!,
       lightColor: ThemeHelper.colors.getWhiteColor(context),
     );
 
@@ -172,7 +172,7 @@ class _FastHomePageState extends State<FastHomePage> {
         opacity: _subtitleOpacity,
         child: FastBody(
           key: _subtitleKey,
-          text: widget.subtitleText,
+          text: widget.subtitleText!,
           textColor: textColor,
         ),
       ),
@@ -195,7 +195,7 @@ class _FastHomePageState extends State<FastHomePage> {
 
     if (widget.leading != null) {
       final subtitleSizeHeight = _subtitleSize?.height ?? 0;
-      final leadingWidth = _leadingSize.width - _kHeaderPadding;
+      final leadingWidth = _leadingSize!.width - _kHeaderPadding;
       offsetLeft = leadingWidth - leadingWidth * multiplier;
       offsetBottom = (_kHeaderPadding / 2 + subtitleSizeHeight) * multiplier;
     }

@@ -4,18 +4,16 @@ import 'package:flutter/material.dart';
 class FastLink extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
-  final Color color;
-  final TextAlign textAlign;
+  final Color? color;
+  final TextAlign? textAlign;
 
   const FastLink({
-    Key key,
-    @required this.text,
-    @required this.onTap,
+    Key? key,
+    required this.text,
+    required this.onTap,
     this.color,
     this.textAlign,
-  })  : assert(text != null),
-        assert(onTap != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +23,7 @@ class FastLink extends StatelessWidget {
     final bodyTextStyle = ThemeHelper.texts.getBodyTextStyle(context);
 
     final linkTextStyle = bodyTextStyle.copyWith(
-      fontSize: bodyTextStyle.fontSize * scaleFactor,
+      fontSize: bodyTextStyle.fontSize! * scaleFactor,
       color: color ?? ThemeHelper.colors.getBlueColor(context),
     );
 

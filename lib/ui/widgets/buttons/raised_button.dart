@@ -3,38 +3,34 @@ import 'package:flutter/material.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastRaisedButton extends StatefulWidget implements IFastButton {
-  final EdgeInsetsGeometry padding;
-  final Color backgroundColor;
-  final Color highlightColor;
+  final EdgeInsetsGeometry? padding;
+  final Color? backgroundColor;
+  final Color? highlightColor;
   @override
   final VoidCallback onTap;
-  final Color textColor;
+  final Color? textColor;
   @override
   final bool isEnabled;
-  final Widget child;
-  final String text;
+  final Widget? child;
+  final String? text;
   @override
   final bool shouldTrottleTime;
   @override
   final Duration trottleTimeDuration;
 
   const FastRaisedButton({
-    Key key,
-    @required this.onTap,
-    bool isEnabled = true,
+    Key? key,
+    required this.onTap,
+    this.isEnabled = true,
     this.backgroundColor,
     this.highlightColor,
     this.textColor,
     this.padding,
     this.child,
     this.text,
-    bool shouldTrottleTime = false,
-    Duration trottleTimeDuration = kFastTrottleTimeDuration,
-  })  : isEnabled = isEnabled ?? true,
-        shouldTrottleTime = shouldTrottleTime ?? false,
-        trottleTimeDuration = trottleTimeDuration ?? kFastTrottleTimeDuration,
-        assert(onTap != null),
-        super(key: key);
+    this.shouldTrottleTime = false,
+    this.trottleTimeDuration = kFastTrottleTimeDuration,
+  }) : super(key: key);
 
   @override
   _FastRaisedButtonState createState() => _FastRaisedButtonState();
@@ -62,7 +58,7 @@ class _FastRaisedButtonState extends State<FastRaisedButton>
     final _textColor = widget.textColor ??
         ThemeHelper.colors.getColorWithBestConstrast(
           context: context,
-          darkColor: ThemeHelper.texts.getButtonTextStyle(context).color,
+          darkColor: ThemeHelper.texts.getButtonTextStyle(context).color!,
           lightColor: ThemeHelper.colors.getWhiteColor(context),
           backgroundColor: _backgroundColor,
         );
@@ -76,7 +72,7 @@ class _FastRaisedButtonState extends State<FastRaisedButton>
         highlightColor: widget.highlightColor,
         child: widget.child ??
             FastButtonLabel(
-              text: widget.text,
+              text: widget.text ?? kFastButtonLabel,
               textColor: widget.isEnabled
                   ? _textColor
                   : _textColor.withAlpha(kDisabledAlpha),

@@ -24,8 +24,8 @@ class ThemeHelper {
   // FIXME: should belong to the ThemeData Object
   // https://github.com/flutter/flutter/issues/31247
   static ListTileTheme getListTitleTheme({
-    @required BuildContext context,
-    @required Widget child,
+    required BuildContext context,
+    required Widget child,
   }) {
     final theme = Theme.of(context);
 

@@ -11,34 +11,34 @@ final kLightFastTheme = kBaseFastTheme.copyWith(
   dialogBackgroundColor: kFastLightSecondaryBackgroundColor,
   hintColor: kFastLightHintLabelColor,
   textTheme: _baseTextTheme.copyWith(
-    headline4: _baseTextTheme.headline4.copyWith(
+    headline4: _baseTextTheme.headline4!.copyWith(
       color: kFastLightlabelColor,
     ),
-    headline5: _baseTextTheme.headline5.copyWith(
+    headline5: _baseTextTheme.headline5!.copyWith(
       color: kFastLightlabelColor,
     ),
-    subtitle1: _baseTextTheme.subtitle1.copyWith(
+    subtitle1: _baseTextTheme.subtitle1!.copyWith(
       color: kFastLightSecondaryLabelColor,
     ),
-    headline6: _baseTextTheme.headline6.copyWith(
+    headline6: _baseTextTheme.headline6!.copyWith(
       color: kFastLightlabelColor,
     ),
-    subtitle2: _baseTextTheme.subtitle2.copyWith(
+    subtitle2: _baseTextTheme.subtitle2!.copyWith(
       color: kFastLightSecondaryLabelColor,
     ),
-    bodyText1: _baseTextTheme.bodyText1.copyWith(
+    bodyText1: _baseTextTheme.bodyText1!.copyWith(
       color: kFastLightSecondaryLabelColor,
     ),
-    bodyText2: _baseTextTheme.bodyText2.copyWith(
+    bodyText2: _baseTextTheme.bodyText2!.copyWith(
       color: kFastLightTertiaryLabelColor,
     ),
-    button: _baseTextTheme.button.copyWith(
+    button: _baseTextTheme.button!.copyWith(
       color: kFastLightlabelColor,
     ),
-    caption: _baseTextTheme.caption.copyWith(
+    caption: _baseTextTheme.caption!.copyWith(
       color: kFastLightSecondaryLabelColor,
     ),
-    overline: _baseTextTheme.overline.copyWith(
+    overline: _baseTextTheme.overline!.copyWith(
       color: kFastLightSecondaryLabelColor,
     ),
   ),

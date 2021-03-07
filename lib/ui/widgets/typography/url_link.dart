@@ -7,18 +7,15 @@ class FastUrlLink extends StatelessWidget {
   final String text;
   final String url;
   final UrlLinkCallback onTap;
-  final Color color;
+  final Color? color;
 
   const FastUrlLink({
-    Key key,
-    @required this.onTap,
-    @required this.text,
-    @required this.url,
+    Key? key,
+    required this.onTap,
+    required this.text,
+    required this.url,
     this.color,
-  })  : assert(onTap != null),
-        assert(text != null),
-        assert(url != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

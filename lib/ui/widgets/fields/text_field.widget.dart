@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 
 class FastTextField extends StatelessWidget {
   final String labelText;
-  final String captionText;
-  final String placeholderText;
-  final String helperText;
+  final String? captionText;
+  final String? placeholderText;
+  final String? helperText;
   final bool isReadOnly;
-  final ValueChanged<String> onValueChanged;
-  final TextAlign textAlign;
-  final TextEditingController textEditingController;
+  final ValueChanged<String>? onValueChanged;
+  final TextAlign? textAlign;
+  final TextEditingController? textEditingController;
   final bool allowAutocorrect;
-  final String initialValue;
+  final String? initialValue;
   final bool useFontForNumber;
 
   FastTextField({
-    Key key,
-    @required this.labelText,
+    Key? key,
+    required this.labelText,
     this.initialValue,
     this.captionText,
     this.placeholderText,
@@ -24,14 +24,10 @@ class FastTextField extends StatelessWidget {
     this.onValueChanged,
     this.textAlign,
     this.textEditingController,
-    bool isReadOnly = false,
-    bool allowAutocorrect = false,
-    bool useFontForNumber = false,
-  })  : assert(labelText != null),
-        isReadOnly = isReadOnly ?? false,
-        allowAutocorrect = allowAutocorrect ?? false,
-        useFontForNumber = useFontForNumber ?? false,
-        super(key: key);
+    this.isReadOnly = false,
+    this.allowAutocorrect = false,
+    this.useFontForNumber = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

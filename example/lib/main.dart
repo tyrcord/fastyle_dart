@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -69,12 +69,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
       titleText: 'Fastyle Demo',
       subtitleText: 'Hello stranger! Have a wonderful day! :)',
-      children: _buildList(context),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         tooltip: 'Settings',
         child: Icon(Icons.settings),
       ),
+      children: _buildList(context),
     );
   }
 

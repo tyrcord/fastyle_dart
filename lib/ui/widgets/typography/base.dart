@@ -5,35 +5,31 @@ const _kLineHeight = 1.2;
 
 class FastBaseTypography extends StatelessWidget {
   final String text;
-  final Color textColor;
-  final FontWeight fontWeight;
-  final double fontSize;
+  final Color? textColor;
+  final FontWeight? fontWeight;
+  final double? fontSize;
   final TextAlign textAlign;
-  final int maxLines;
-  final TextOverflow overflow;
+  final int? maxLines;
+  final TextOverflow? overflow;
   final bool useFontForNumber;
-  final double lineHeight;
-  final double letterSpacing;
+  final double? lineHeight;
+  final double? letterSpacing;
   final bool enableInteractiveSelection;
 
   const FastBaseTypography({
-    Key key,
-    @required this.text,
+    Key? key,
+    required this.text,
     this.textColor,
     this.fontSize,
     this.lineHeight,
     this.fontWeight,
     this.maxLines,
     this.overflow,
-    TextAlign textAlign = TextAlign.left,
-    bool useFontForNumber = false,
     this.letterSpacing,
-    bool enableInteractiveSelection = false,
-  })  : assert(text != null),
-        enableInteractiveSelection = enableInteractiveSelection ?? false,
-        textAlign = textAlign ?? TextAlign.left,
-        useFontForNumber = useFontForNumber ?? false,
-        super(key: key);
+    this.textAlign = TextAlign.left,
+    this.useFontForNumber = false,
+    this.enableInteractiveSelection = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

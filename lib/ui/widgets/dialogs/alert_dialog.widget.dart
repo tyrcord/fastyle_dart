@@ -6,24 +6,24 @@ const _kCancelText = 'cancel';
 
 class FastAlertDialog extends AlertDialog {
   final String titleText;
-  final String cancelText;
-  final String validText;
-  final String messageText;
-  final Color titleColor;
-  final Color messageColor;
-  final List<Widget> widgets;
-  final VoidCallback onValid;
-  final VoidCallback onCancel;
+  final String? cancelText;
+  final String? validText;
+  final String? messageText;
+  final Color? titleColor;
+  final Color? messageColor;
+  final List<Widget>? widgets;
+  final VoidCallback? onValid;
+  final VoidCallback? onCancel;
 
   @override
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   @override
-  final List<Widget> actions;
+  final List<Widget>? actions;
 
   FastAlertDialog({
-    Key key,
-    @required this.titleText,
+    Key? key,
+    required this.titleText,
     this.widgets,
     this.titleColor,
     this.messageText,
@@ -34,8 +34,7 @@ class FastAlertDialog extends AlertDialog {
     this.onCancel,
     this.onValid,
     this.messageColor,
-  })  : assert(titleText != null),
-        assert(messageText == null || widgets == null),
+  })  : assert(messageText == null || widgets == null),
         assert(actions == null || cancelText == null),
         super(key: key);
 
@@ -51,22 +50,20 @@ class FastAlertDialog extends AlertDialog {
   }
 
   List<Widget> _buildDefaultContent() {
-    return [FastBody(text: messageText, textColor: messageColor)];
+    return [FastBody(text: messageText!, textColor: messageColor)];
   }
 
   List<Widget> _buildDefaultActions(BuildContext context) {
-    final cancelText = this.cancelText ?? _kCancelText;
-
     return [
-      if (onCancel != null && cancelText != null)
+      if (onCancel != null)
         FastTextButton(
           text: cancelText ?? _kCancelText,
-          onTap: onCancel,
+          onTap: onCancel!,
         ),
       FastTextButton(
         onTap: () {
           if (onValid != null) {
-            onValid();
+            onValid!();
           } else {
             Navigator.pop(context);
           }

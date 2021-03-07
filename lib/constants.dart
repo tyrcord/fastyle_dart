@@ -7,6 +7,7 @@ import 'package:fuzzy/fuzzy.dart';
 const kFastEmptyString = '';
 const kFastNoneString = 'none';
 const kFastAllString = 'all';
+const kFastButtonLabel = 'Button';
 
 // EdgeInsets
 
@@ -63,7 +64,7 @@ final kFastFastItemFuzzyOptions = FuzzyOptions(
     ),
     WeightedKey(
       name: 'descriptionText',
-      getter: (FastItem item) => item.descriptionText,
+      getter: (FastItem item) => item.descriptionText ?? kFastEmptyString,
       weight: 0.5,
     ),
   ],

@@ -3,50 +3,43 @@ import 'package:flutter/material.dart';
 
 class FastNumberField extends StatelessWidget {
   final String labelText;
-  final String captionText;
-  final String placeholderText;
-  final String helperText;
+  final String? captionText;
+  final String? placeholderText;
+  final String? helperText;
   final bool isReadOnly;
   final bool shouldAcceptDecimalValue;
   final int maxLength;
   final int maxValue;
-  final TextAlign textAlign;
+  final TextAlign? textAlign;
   final bool allowAutocorrect;
-  final String initialValue;
-  final Function(String) onValueChanged;
-  final TextEditingController textEditingController;
+  final String? initialValue;
+  final Function(String)? onValueChanged;
+  final TextEditingController? textEditingController;
   final bool isEnabled;
-  final Widget suffixIcon;
-  final BoxConstraints suffixIconConstraints;
-  final String locale;
+  final Widget? suffixIcon;
+  final BoxConstraints? suffixIconConstraints;
+  final String? locale;
 
   FastNumberField({
-    Key key,
-    @required this.labelText,
+    Key? key,
+    required this.labelText,
     this.captionText,
     this.placeholderText,
     this.helperText,
-    int maxLength = NumberInputFormatter.safeMaxLength,
-    int maxValue = NumberInputFormatter.safeInteger,
-    bool isReadOnly = false,
-    bool shouldAcceptDecimalValue = true,
-    bool allowAutocorrect = false,
+    this.maxLength = NumberInputFormatter.safeMaxLength,
+    this.maxValue = NumberInputFormatter.safeInteger,
+    this.isReadOnly = false,
+    this.shouldAcceptDecimalValue = true,
+    this.allowAutocorrect = false,
     this.textAlign,
     this.initialValue,
     this.onValueChanged,
     this.textEditingController,
-    bool isEnabled = true,
+    this.isEnabled = true,
     this.suffixIcon,
     this.suffixIconConstraints,
     this.locale,
-  })  : assert(labelText != null),
-        assert(initialValue == null || textEditingController == null),
-        maxLength = maxLength ?? NumberInputFormatter.safeMaxLength,
-        maxValue = maxValue ?? NumberInputFormatter.safeInteger,
-        isReadOnly = isReadOnly ?? false,
-        shouldAcceptDecimalValue = shouldAcceptDecimalValue ?? true,
-        allowAutocorrect = allowAutocorrect ?? false,
-        isEnabled = isEnabled ?? true,
+  })  : assert(initialValue == null || textEditingController == null),
         super(key: key);
 
   @override
@@ -79,8 +72,7 @@ class FastNumberField extends StatelessWidget {
         suffixIcon:
             suffixIcon != null ? const SizedBox(width: 40, height: 33) : null,
         suffixIconConstraints:
-            const BoxConstraints(maxWidth: 40, maxHeight: 33) ??
-                suffixIconConstraints,
+            const BoxConstraints(maxWidth: 40, maxHeight: 33),
       ),
       style: bodyTextStyle.copyWith(
         fontFamily: kFastFontForNumber,

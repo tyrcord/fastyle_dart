@@ -5,18 +5,18 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 const _kBlurRadius = 4.0;
 
 class FastCard extends StatelessWidget {
-  final List<Widget> headerActions;
-  final List<Widget> footerActions;
-  final Color backgroundColor;
-  final EdgeInsets padding;
-  final Color shadowColor;
+  final List<Widget>? headerActions;
+  final List<Widget>? footerActions;
+  final Color? backgroundColor;
+  final EdgeInsets? padding;
+  final Color? shadowColor;
   final String titleText;
-  final Color titleTextColor;
-  final Widget child;
+  final Color? titleTextColor;
+  final Widget? child;
 
   FastCard({
-    Key key,
-    @required this.titleText,
+    Key? key,
+    required this.titleText,
     this.titleTextColor,
     this.backgroundColor,
     this.headerActions,
@@ -24,8 +24,7 @@ class FastCard extends StatelessWidget {
     this.shadowColor,
     this.padding,
     this.child,
-  })  : assert(titleText != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,15 +43,15 @@ class FastCard extends StatelessWidget {
 
     if (shadowColor != null) {
       return Container(
-        child: card,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: shadowColor,
+              color: shadowColor!,
               blurRadius: _kBlurRadius,
             ),
           ],
         ),
+        child: card,
       );
     }
 
@@ -91,7 +90,7 @@ class FastCard extends StatelessWidget {
               flex: 1,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[...headerActions],
+                children: <Widget>[...headerActions!],
               ),
             ),
         ],
@@ -121,7 +120,7 @@ class FastCard extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[...footerActions],
+        children: <Widget>[...footerActions!],
       ),
     );
   }

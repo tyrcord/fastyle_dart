@@ -4,41 +4,34 @@ import 'package:flutter/material.dart';
 class FastSelectableListView<T extends FastItem> extends StatefulWidget {
   final ValueChanged<T> onSelectionChanged;
   final List<T> items;
-  final T selection;
-  final List<FastCategory> categories;
+  final T? selection;
+  final List<FastCategory>? categories;
   final bool shouldGroupByCategory;
   final bool isEnabled;
   final bool isViewScrollable;
   final bool showItemDivider;
   final bool shouldSortItems;
-  final FastListItemBuilder<T> listItemBuilder;
-  final EdgeInsets itemContentPadding;
+  final FastListItemBuilder<T>? listItemBuilder;
+  final EdgeInsets? itemContentPadding;
   final int intialTabIndex;
-  final String tabAllCategoryText;
+  final String? tabAllCategoryText;
 
   FastSelectableListView({
-    Key key,
-    @required this.onSelectionChanged,
-    @required this.items,
+    Key? key,
+    required this.onSelectionChanged,
+    required this.items,
     this.categories,
     this.selection,
-    bool shouldGroupByCategory = false,
-    bool isEnabled = true,
-    bool isViewScrollable = true,
-    bool shouldSortItems = true,
-    bool showItemDivider = false,
+    this.shouldGroupByCategory = false,
+    this.isEnabled = true,
+    this.isViewScrollable = true,
+    this.shouldSortItems = true,
+    this.showItemDivider = false,
     this.listItemBuilder,
     this.itemContentPadding,
-    this.intialTabIndex,
+    this.intialTabIndex = 0,
     this.tabAllCategoryText,
-  })  : assert(items != null),
-        assert(onSelectionChanged != null),
-        shouldGroupByCategory = shouldGroupByCategory ?? false,
-        isEnabled = isEnabled ?? true,
-        isViewScrollable = isViewScrollable ?? true,
-        shouldSortItems = shouldSortItems ?? true,
-        showItemDivider = showItemDivider ?? false,
-        super(key: key);
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FastSelectableListViewState<T>();
@@ -46,7 +39,7 @@ class FastSelectableListView<T extends FastItem> extends StatefulWidget {
 
 class _FastSelectableListViewState<T extends FastItem>
     extends State<FastSelectableListView<T>> {
-  T _selection;
+  T? _selection;
 
   @override
   void initState() {
@@ -68,11 +61,11 @@ class _FastSelectableListViewState<T extends FastItem>
     return FastListViewLayout(
       listItemBuilder: _buildListItems,
       items: widget.items,
-      isViewScrollable: widget.isViewScrollable ?? true,
-      showItemDivider: widget.showItemDivider ?? false,
-      shouldSortItems: widget.shouldSortItems ?? true,
+      isViewScrollable: widget.isViewScrollable,
+      showItemDivider: widget.showItemDivider,
+      shouldSortItems: widget.shouldSortItems,
       categories: widget.categories,
-      shouldGroupByCategory: widget.shouldGroupByCategory ?? false,
+      shouldGroupByCategory: widget.shouldGroupByCategory,
       intialTabIndex: widget.intialTabIndex,
       tabAllCategoryText: widget.tabAllCategoryText,
     );
@@ -80,7 +73,7 @@ class _FastSelectableListViewState<T extends FastItem>
 
   Widget _buildListItems(BuildContext context, T option, int index) {
     if (widget.listItemBuilder != null) {
-      return widget.listItemBuilder(context, option, index);
+      return widget.listItemBuilder!(context, option, index);
     }
 
     return _buildSelectableListItem(option);

@@ -5,42 +5,37 @@ import 'package:flutter/material.dart';
 
 class FastPendingReadOnlyTextField extends StatefulWidget {
   final String labelText;
-  final String captionText;
-  final String placeholderText;
-  final String helperText;
+  final String? captionText;
+  final String? placeholderText;
+  final String? helperText;
   final TextAlign textAlign;
-  final String valueText;
-  final String pendingText;
+  final String? valueText;
+  final String? pendingText;
   final bool useFontForNumber;
-  final Widget child;
+  final Widget? child;
   final bool enableInteractiveSelection;
   final bool isPending;
-  final Color valueTextColor;
+  final Color? valueTextColor;
   final bool showHelperBoundaries;
-  final Color helperTextColor;
+  final Color? helperTextColor;
 
   FastPendingReadOnlyTextField({
-    Key key,
-    @required this.labelText,
+    Key? key,
+    required this.labelText,
     this.captionText,
     this.placeholderText,
     this.helperText,
     this.valueText,
-    this.textAlign,
-    bool useFontForNumber = false,
+    this.textAlign = TextAlign.left,
+    this.useFontForNumber = false,
     this.child,
-    bool enableInteractiveSelection = true,
-    bool isPending = false,
+    this.enableInteractiveSelection = true,
+    this.isPending = false,
     this.pendingText,
     this.valueTextColor,
-    bool showHelperBoundaries = true,
+    this.showHelperBoundaries = true,
     this.helperTextColor,
-  })  : assert(labelText != null),
-        isPending = isPending ?? false,
-        enableInteractiveSelection = enableInteractiveSelection ?? true,
-        useFontForNumber = useFontForNumber ?? false,
-        showHelperBoundaries = showHelperBoundaries ?? true,
-        super(key: key);
+  }) : super(key: key);
 
   @override
   _FastPendingReadOnlyTextFieldState createState() =>
@@ -62,8 +57,8 @@ class _FastPendingReadOnlyTextFieldState
     ),
   );
 
-  AnimationController _controller;
-  Animation<double> _animation;
+  late AnimationController _controller;
+  late Animation<double> _animation;
   bool _initialized = false;
 
   @override
@@ -120,7 +115,7 @@ class _FastPendingReadOnlyTextFieldState
         children: <Widget>[
           AnimatedBuilder(
             animation: _animation,
-            builder: (BuildContext context, Widget child) {
+            builder: (BuildContext context, Widget? child) {
               return Opacity(
                 opacity: _animation.value,
                 child: child,
@@ -128,13 +123,11 @@ class _FastPendingReadOnlyTextFieldState
             },
             child: FastBody(
               text: widget.isPending && widget.pendingText != null
-                  ? widget.pendingText
-                  : widget.valueText ?? widget.placeholderText,
+                  ? widget.pendingText!
+                  : widget.valueText ?? widget.placeholderText!,
               textColor: widget.valueTextColor,
               enableInteractiveSelection: widget.enableInteractiveSelection,
-              textAlign: !widget.isPending && widget.valueText != null
-                  ? widget.textAlign
-                  : null,
+              textAlign: widget.textAlign,
               fontWeight: FontWeight.w700,
             ),
           ),

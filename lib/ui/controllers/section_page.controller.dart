@@ -5,21 +5,20 @@ import 'package:async/async.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastSectionPageController extends StatefulWidget {
-  final WidgetBuilder loadingBuilder;
+  final WidgetBuilder? loadingBuilder;
   final WidgetBuilder loadedBuilder;
-  final WidgetBuilder errorBuilder;
-  final Future<bool> loadingFuture;
-  final Duration loadingTimeout;
+  final WidgetBuilder? errorBuilder;
+  final Future<bool>? loadingFuture;
+  final Duration? loadingTimeout;
 
   FastSectionPageController({
-    Key key,
-    @required this.loadedBuilder,
+    Key? key,
+    required this.loadedBuilder,
     this.loadingBuilder,
     this.loadingTimeout,
     this.loadingFuture,
     this.errorBuilder,
-  })  : assert(loadedBuilder != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FastSectionPageControllerState();
@@ -29,11 +28,11 @@ class _FastSectionPageControllerState extends State<FastSectionPageController> {
   final PublishSubject<SectionPageLoadEvent> eventController =
       PublishSubject<SectionPageLoadEvent>();
 
-  CancelableOperation<bool> _cancellableLoadingOperation;
-  Future<bool> loadingFuture;
+  CancelableOperation<bool>? _cancellableLoadingOperation;
+  Future<bool>? loadingFuture;
   bool hasError = false;
-  bool isLoading;
-  bool isLoaded;
+  late bool isLoading;
+  bool? isLoaded;
 
   @override
   void initState() {
@@ -75,28 +74,28 @@ class _FastSectionPageControllerState extends State<FastSectionPageController> {
 
   WidgetBuilder _buildLoadingWidget() {
     return widget.loadingBuilder ??
-        (BuildContext context) => FastThreeBounceIndicator();
+        ((BuildContext context) => FastThreeBounceIndicator());
   }
 
   WidgetBuilder _buildErrorWidget() {
-    return widget.errorBuilder ?? (BuildContext context) => Container();
+    return widget.errorBuilder ?? ((BuildContext context) => Container());
   }
 
   void _listenToLoadingFutureIfNeeded() {
     if (widget.loadingFuture != null) {
       if (_cancellableLoadingOperation != null) {
-        _cancellableLoadingOperation.cancel();
+        _cancellableLoadingOperation!.cancel();
       }
 
       loadingFuture = widget.loadingTimeout != null
-          ? widget.loadingFuture.timeout(widget.loadingTimeout)
+          ? widget.loadingFuture!.timeout(widget.loadingTimeout!)
           : widget.loadingFuture;
 
       _cancellableLoadingOperation = CancelableOperation<bool>.fromFuture(
-        loadingFuture,
+        loadingFuture!,
       );
 
-      _cancellableLoadingOperation.value
+      _cancellableLoadingOperation!.value
           .then((bool isLoaded) => _dispatchLoadEvent(hasError: !isLoaded))
           .catchError((_) => _dispatchLoadEvent(hasError: true));
     }

@@ -15,40 +15,33 @@ class FastWelcomeView extends StatefulWidget {
   final List<Widget> slides;
   final bool allowToSkip;
   final double stepDotSize;
-  final Color stepDotColor;
+  final Color? stepDotColor;
   final WidgetBuilder homeBuilder;
-  final BoolCallback canSkip;
-  final BoolCallback canTerminate;
-  final VoidCallback onDone;
-  final VoidCallback onSkip;
+  final BoolCallback? canSkip;
+  final BoolCallback? canTerminate;
+  final VoidCallback? onDone;
+  final VoidCallback? onSkip;
   final String doneText;
   final String nextText;
   final String skipText;
-  final FastWelcomeViewController controller;
+  final FastWelcomeViewController? controller;
 
   const FastWelcomeView({
-    Key key,
-    @required this.homeBuilder,
-    @required this.slides,
-    bool allowToSkip = false,
+    Key? key,
+    required this.homeBuilder,
+    required this.slides,
+    this.allowToSkip = false,
     this.canSkip,
     this.canTerminate,
-    double stepDotSize = _kStepDotSize,
-    String doneText = _kDoneText,
-    String nextText = _kNextText,
-    String skipText = _kSkipText,
+    this.stepDotSize = _kStepDotSize,
+    this.doneText = _kDoneText,
+    this.nextText = _kNextText,
+    this.skipText = _kSkipText,
     this.stepDotColor,
     this.onDone,
     this.onSkip,
     this.controller,
-  })  : assert(homeBuilder != null),
-        assert(slides != null),
-        allowToSkip = allowToSkip ?? false,
-        doneText = doneText ?? _kDoneText,
-        nextText = nextText ?? _kNextText,
-        skipText = skipText ?? _kSkipText,
-        stepDotSize = stepDotSize ?? _kStepDotSize,
-        super(key: key);
+  }) : super(key: key);
 
   @override
   _FastWelcomeViewState createState() => _FastWelcomeViewState();
@@ -56,7 +49,7 @@ class FastWelcomeView extends StatefulWidget {
 
 class _FastWelcomeViewState extends State<FastWelcomeView> {
   final PageController _pageViewController = PageController();
-  FastWelcomeViewController _controller;
+  late FastWelcomeViewController _controller;
   int _pageCursor = 0;
   int _slidesLength = 0;
 
@@ -65,9 +58,9 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
   @override
   void initState() {
     _controller = widget.controller ?? FastWelcomeViewController();
-    _slidesLength = widget.slides?.length ?? 0;
+    _slidesLength = widget.slides.length;
     _pageViewController.addListener(() {
-      setState(() => _pageCursor = _pageViewController.page.round());
+      setState(() => _pageCursor = _pageViewController.page!.round());
     });
     super.initState();
   }
@@ -92,7 +85,7 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
         body: SafeArea(
           child: ValueListenableBuilder(
             valueListenable: _controller,
-            builder: (BuildContext context, bool isPending, Widget child) {
+            builder: (BuildContext context, bool isPending, Widget? child) {
               return IgnorePointer(
                 ignoring: isPending,
                 child: Column(
@@ -122,8 +115,8 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Opacity(
-          child: FastTextButton(onTap: _onSkip, text: widget.skipText),
           opacity: widget.allowToSkip && !hasReachEnd ? 1 : 0,
+          child: FastTextButton(onTap: _onSkip, text: widget.skipText),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -169,7 +162,7 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
 
   void _onSkip() {
     if (widget.onSkip != null) {
-      widget.onSkip();
+      widget.onSkip!();
     }
 
     _done();
@@ -177,7 +170,7 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
 
   void _onDone() {
     if (widget.onDone != null) {
-      widget.onDone();
+      widget.onDone!();
     }
 
     _done();

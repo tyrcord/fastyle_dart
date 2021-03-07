@@ -10,54 +10,49 @@ const _kSelectTitleText = 'Select';
 const _kClearSelectionText = 'Clear Selection';
 
 class FastSearchPage<T extends FastItem> extends StatefulWidget {
-  final bool Function(T option, String query) onSearch;
-  final List<FastCategory> categories;
+  final bool Function(T option, String query)? onSearch;
+  final List<FastCategory>? categories;
   final bool shouldGroupByCategory;
   final bool shouldUseFuzzySearch;
-  final String placeholderText;
-  final Widget clearSearchIcon;
+  final String? placeholderText;
+  final Widget? clearSearchIcon;
   final bool shouldSortItems;
-  final Widget closeIcon;
+  final Widget? closeIcon;
   final List<T> items;
-  final Widget backIcon;
-  final T selection;
-  final String titleText;
+  final Widget? backIcon;
+  final T? selection;
+  final String? titleText;
   final int intialTabIndex;
-  final String tabAllCategoryText;
+  final String? tabAllCategoryText;
   final bool canClearSelection;
-  final String clearSelectionText;
+  final String? clearSelectionText;
 
   FastSearchPage({
-    @required this.items,
-    this.titleText,
-    bool shouldGroupByCategory = false,
-    bool shouldUseFuzzySearch = false,
-    bool shouldSortItems = true,
+    required this.items,
+    this.shouldGroupByCategory = false,
+    this.shouldUseFuzzySearch = false,
+    this.canClearSelection = true,
+    this.shouldSortItems = true,
     this.clearSearchIcon,
     this.placeholderText,
     this.categories,
+    this.titleText,
     this.selection,
     this.closeIcon,
     this.backIcon,
     this.onSearch,
-    this.intialTabIndex,
+    this.intialTabIndex = 0,
     this.tabAllCategoryText,
-    bool canClearSelection = true,
     this.clearSelectionText,
-  })  : shouldGroupByCategory = shouldGroupByCategory ?? false,
-        shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
-        shouldSortItems = shouldSortItems ?? true,
-        canClearSelection = canClearSelection ?? true,
-        assert(items != null),
-        super();
+  }) : super();
 
   @override
   State<StatefulWidget> createState() => FastSearchPageState<T>();
 }
 
 class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
-  List<T> _suggestions;
-  String _searchQuery;
+  List<T>? _suggestions;
+  String? _searchQuery;
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +104,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
               showLeadingIcon: false,
               backIcon: widget.backIcon,
               clearSearchIcon: widget.clearSearchIcon,
-              onSuggestions: (List<T> suggestions, String query) {
+              onSuggestions: (List<T>? suggestions, String? query) {
                 setState(() {
                   _suggestions = suggestions;
                   _searchQuery = query;
@@ -124,7 +119,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
   }
 
   FastIconButton _buildLeadingIcon(BuildContext context) {
-    final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
+    final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
     final useCloseButton =
         parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
 
@@ -192,5 +187,5 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
     );
   }
 
-  void _close(BuildContext context, T item) => Navigator.pop(context, item);
+  void _close(BuildContext context, T? item) => Navigator.pop(context, item);
 }

@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 
 class FastThemeBlocState extends BlocState {
-  final Brightness brightness;
+  final Brightness? brightness;
   final ThemeMode themeMode;
 
   const FastThemeBlocState({
-    ThemeMode themeMode = ThemeMode.system,
+    this.themeMode = ThemeMode.system,
     this.brightness,
-  })  : themeMode = themeMode ?? ThemeMode.system,
-        super();
+  }) : super();
 
   @override
-  FastThemeBlocState copyWith({ThemeMode themeMode, Brightness brightness}) {
+  FastThemeBlocState copyWith({ThemeMode? themeMode, Brightness? brightness}) {
     return FastThemeBlocState(
       brightness: brightness ?? this.brightness,
       themeMode: themeMode ?? this.themeMode,
@@ -29,15 +28,15 @@ class FastThemeBlocState extends BlocState {
   }
 
   @override
-  FastThemeBlocState merge({@required FastThemeBlocState state}) {
+  FastThemeBlocState merge({FastThemeBlocState? state}) {
     assert(state != null);
 
     return copyWith(
-      brightness: state.brightness,
+      brightness: state!.brightness,
       themeMode: state.themeMode,
     );
   }
 
   @override
-  List<Object> get props => [themeMode, brightness];
+  List<Object?> get props => [themeMode, brightness];
 }

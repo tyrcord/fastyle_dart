@@ -3,33 +3,27 @@ import 'package:flutter/material.dart';
 
 class FastListView<T extends FastItem> extends StatelessWidget {
   final List<T> items;
-  final List<FastCategory> categories;
+  final List<FastCategory>? categories;
   final bool shouldGroupByCategory;
   final bool isEnabled;
   final bool isViewScrollable;
   final bool showItemDivider;
   final bool shouldSortItems;
-  final FastListItemBuilder<T> listItemBuilder;
-  final EdgeInsets itemContentPadding;
+  final FastListItemBuilder<T>? listItemBuilder;
+  final EdgeInsets? itemContentPadding;
 
   FastListView({
-    Key key,
-    @required this.items,
+    Key? key,
+    required this.items,
     this.categories,
-    bool shouldGroupByCategory = false,
-    bool isEnabled = true,
-    bool isViewScrollable = true,
-    bool shouldSortItems = true,
-    bool showItemDivider = false,
+    this.shouldGroupByCategory = false,
+    this.isEnabled = true,
+    this.isViewScrollable = true,
+    this.shouldSortItems = true,
+    this.showItemDivider = false,
     this.listItemBuilder,
     this.itemContentPadding,
-  })  : assert(items != null),
-        shouldGroupByCategory = shouldGroupByCategory ?? false,
-        isEnabled = isEnabled ?? true,
-        isViewScrollable = isViewScrollable ?? true,
-        shouldSortItems = shouldSortItems ?? true,
-        showItemDivider = showItemDivider ?? false,
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +40,7 @@ class FastListView<T extends FastItem> extends StatelessWidget {
 
   Widget _buildListItems(BuildContext context, T option, int index) {
     if (listItemBuilder != null) {
-      return listItemBuilder(context, option, index);
+      return listItemBuilder!(context, option, index);
     }
 
     return FastListItemLayout(

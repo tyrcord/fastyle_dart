@@ -4,13 +4,11 @@ import 'package:flutter/material.dart';
 
 class FastThemeFactory {
   static ThemeData buildLightThemeWithColors({
-    @required Color primaryColor,
-    Color secondaryColor,
-    Color tertiaryColor,
-    Color primaryColorDark,
+    required Color primaryColor,
+    Color? secondaryColor,
+    Color? tertiaryColor,
+    Color? primaryColorDark,
   }) {
-    assert(primaryColor != null);
-
     return buildFastThemeWithColors(
       baseTheme: kLightFastTheme,
       primaryColor: primaryColor,
@@ -21,13 +19,11 @@ class FastThemeFactory {
   }
 
   static ThemeData buildDarkThemeWithColors({
-    @required Color primaryColor,
-    Color secondaryColor,
-    Color tertiaryColor,
-    Color primaryColorDark,
+    required Color primaryColor,
+    Color? secondaryColor,
+    Color? tertiaryColor,
+    Color? primaryColorDark,
   }) {
-    assert(primaryColor != null);
-
     return buildFastThemeWithColors(
       baseTheme: kDarkFastTheme,
       primaryColor: primaryColor,
@@ -38,18 +34,15 @@ class FastThemeFactory {
   }
 
   static ThemeData buildFastThemeWithColors({
-    @required ThemeData baseTheme,
-    @required Color primaryColor,
-    Color secondaryColor,
-    Color tertiaryColor,
-    Color primaryColorDark,
+    required ThemeData baseTheme,
+    required Color primaryColor,
+    Color? secondaryColor,
+    Color? tertiaryColor,
+    Color? primaryColorDark,
   }) {
-    assert(baseTheme != null);
-    assert(primaryColor != null);
-
     final textTheme = baseTheme.textTheme;
     final _secondaryColor = secondaryColor ?? baseTheme.accentColor;
-    final _tertiaryColor = tertiaryColor ?? textTheme.overline.color;
+    final _tertiaryColor = tertiaryColor ?? textTheme.overline!.color;
 
     return baseTheme.copyWith(
       inputDecorationTheme: _buildInputDecorationTheme(baseTheme, primaryColor),
@@ -62,8 +55,8 @@ class FastThemeFactory {
         backgroundColor: primaryColor,
       ),
       textTheme: textTheme.copyWith(
-        caption: textTheme.caption.copyWith(color: _secondaryColor),
-        overline: textTheme.overline.copyWith(color: _tertiaryColor),
+        caption: textTheme.caption!.copyWith(color: _secondaryColor),
+        overline: textTheme.overline!.copyWith(color: _tertiaryColor),
       ),
     );
   }

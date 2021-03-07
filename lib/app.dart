@@ -7,45 +7,42 @@ import 'package:tbloc_dart/tbloc_dart.dart';
 import 'package:flutter/services.dart';
 
 class FastApp extends StatefulWidget {
-  final Iterable<LocalizationsDelegate> localizationsDelegates;
+  final Iterable<LocalizationsDelegate>? localizationsDelegates;
   final bool debugShowCheckedModeBanner;
   final Iterable<Locale> supportedLocales;
-  final FastThemeBloc themeBloc;
-  final ThemeData lightTheme;
-  final ThemeData darkTheme;
-  final String titleText;
-  final Locale locale;
+  final FastThemeBloc? themeBloc;
+  final ThemeData? lightTheme;
+  final ThemeData? darkTheme;
+  final String? titleText;
+  final Locale? locale;
   final Widget home;
 
   FastApp({
-    Key key,
-    @required this.home,
+    Key? key,
+    required this.home,
     this.localizationsDelegates,
     this.lightTheme,
     this.darkTheme,
     this.themeBloc,
     this.titleText,
     this.locale,
-    Iterable<Locale> supportedLocales = kFastSupportedLocales,
-    bool debugShowCheckedModeBanner = false,
-  })  : assert(home != null),
-        supportedLocales = supportedLocales ?? kFastSupportedLocales,
-        debugShowCheckedModeBanner = debugShowCheckedModeBanner ?? false,
-        super(key: key);
+    this.supportedLocales = kFastSupportedLocales,
+    this.debugShowCheckedModeBanner = false,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FastAppState();
 }
 
 class _FastAppState extends State<FastApp> {
-  FastThemeBloc _themeBloc;
+  late FastThemeBloc _themeBloc;
 
   @override
   void initState() {
     _themeBloc = widget.themeBloc ??
         FastThemeBloc(
           initialState: FastThemeBlocState(
-            brightness: WidgetsBinding.instance.window.platformBrightness,
+            brightness: WidgetsBinding.instance!.window.platformBrightness,
             themeMode: ThemeMode.system,
           ),
         );
@@ -88,7 +85,7 @@ class _FastAppState extends State<FastApp> {
 
   void _hideKeyboard() {
     if (Platform.isIOS || Platform.isAndroid) {
-      FocusManager.instance.primaryFocus.unfocus();
+      FocusManager.instance.primaryFocus!.unfocus();
       SystemChannels.textInput.invokeMethod('TextInput.hide');
     }
   }

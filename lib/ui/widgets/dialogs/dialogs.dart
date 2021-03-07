@@ -5,18 +5,18 @@ export './alert_dialog.widget.dart';
 export './dialog.widget.dart';
 
 Future<void> showFastAlertDialog({
-  @required BuildContext context,
-  @required String titleText,
+  required BuildContext context,
+  required String titleText,
   bool barrierDismissible = true,
-  String messageText,
-  String cancelText,
-  String validText,
-  Color titleColor,
-  List<Widget> actions,
-  List<Widget> widgets,
-  Color backgroundColor,
-  VoidCallback onValid,
-  VoidCallback onCancel,
+  String? messageText,
+  String? cancelText,
+  String? validText,
+  Color? titleColor,
+  List<Widget>? actions,
+  List<Widget>? widgets,
+  Color? backgroundColor,
+  VoidCallback? onValid,
+  VoidCallback? onCancel,
 }) async {
   return showDialog<void>(
     context: context,

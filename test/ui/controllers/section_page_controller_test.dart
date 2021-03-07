@@ -7,8 +7,8 @@ const _kLoading = 'LOADING';
 const _kError = 'ERROR';
 
 FastApp _buildApp({
-  Future<bool> loadingFuture,
-  Duration loadingTimeout,
+  Future<bool>? loadingFuture,
+  Duration? loadingTimeout,
 }) {
   return FastApp(
     home: FastSectionPageController(

@@ -4,26 +4,24 @@ import 'package:flutter/material.dart';
 const _kSearchPlaceholderText = 'Search...';
 
 class FastSearchField extends StatelessWidget {
-  final String placeholderText;
+  final String? placeholderText;
   final bool isReadOnly;
-  final ValueChanged<String> onValueChanged;
-  final TextEditingController textEditingController;
-  final EdgeInsets margin;
-  final TextAlign textAlign;
+  final ValueChanged<String>? onValueChanged;
+  final TextEditingController? textEditingController;
+  final EdgeInsets? margin;
+  final TextAlign? textAlign;
   final bool allowAutocorrect;
 
   FastSearchField({
-    Key key,
+    Key? key,
     this.placeholderText,
     this.onValueChanged,
     this.textEditingController,
-    bool isReadOnly = false,
+    this.isReadOnly = false,
     this.margin,
     this.textAlign,
-    bool allowAutocorrect = false,
-  })  : isReadOnly = isReadOnly ?? false,
-        allowAutocorrect = allowAutocorrect ?? false,
-        super(key: key);
+    this.allowAutocorrect = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

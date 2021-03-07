@@ -5,8 +5,8 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 
 void main() {
   group('FastListItemDescriptor', () {
-    FastListItemDescriptor itemDescriptor;
-    FastListItemDescriptor itemDescriptor2;
+    late FastListItemDescriptor itemDescriptor;
+    late FastListItemDescriptor itemDescriptor2;
     Widget trailing = Text('trailing');
     Widget leading = Text('leading');
 
@@ -20,10 +20,6 @@ void main() {
 
     group('#constructor()', () {
       test('isDense should be equal to true by default', () {
-        expect(itemDescriptor.isDense, equals(true));
-
-        itemDescriptor = FastListItemDescriptor(isDense: null);
-
         expect(itemDescriptor.isDense, equals(true));
       });
 

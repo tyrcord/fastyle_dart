@@ -6,12 +6,10 @@ class FastPadding extends StatelessWidget {
   final EdgeInsets padding;
 
   const FastPadding({
-    Key key,
-    @required this.child,
-    @required this.padding,
-  })  : assert(child != null),
-        assert(padding != null),
-        super(key: key);
+    Key? key,
+    required this.child,
+    required this.padding,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,48 +19,48 @@ class FastPadding extends StatelessWidget {
 
 class FastPadding24 extends FastPadding {
   FastPadding24({
-    Key key,
-    Widget child,
+    Key? key,
+    required Widget child,
     EdgeInsets padding = kFastEdgeInsets24,
   }) : super(
           key: key,
           child: child,
-          padding: padding ?? kFastEdgeInsets24,
+          padding: padding,
         );
 }
 
 class FastPadding16 extends FastPadding {
   FastPadding16({
-    Key key,
-    Widget child,
+    Key? key,
+    required Widget child,
     EdgeInsets padding = kFastEdgeInsets16,
   }) : super(
           key: key,
           child: child,
-          padding: padding ?? kFastEdgeInsets16,
+          padding: padding,
         );
 }
 
 class FastPadding12 extends FastPadding {
   FastPadding12({
-    Key key,
-    Widget child,
+    Key? key,
+    required Widget child,
     EdgeInsets padding = kFastEdgeInsets12,
   }) : super(
           key: key,
           child: child,
-          padding: padding ?? kFastEdgeInsets12,
+          padding: padding,
         );
 }
 
 class FastPadding8 extends FastPadding {
   FastPadding8({
-    Key key,
-    Widget child,
+    Key? key,
+    required Widget child,
     EdgeInsets padding = kFastEdgeInsets8,
   }) : super(
           key: key,
           child: child,
-          padding: padding ?? kFastEdgeInsets8,
+          padding: padding,
         );
 }

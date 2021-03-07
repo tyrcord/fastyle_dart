@@ -5,15 +5,11 @@ import 'package:tbloc_dart/tbloc_dart.dart';
 
 class ThemeColorHelper {
   Color getColorWithBestConstrast({
-    @required BuildContext context,
-    @required Color darkColor,
-    @required Color lightColor,
-    Color backgroundColor,
+    required BuildContext context,
+    required Color darkColor,
+    required Color lightColor,
+    Color? backgroundColor,
   }) {
-    assert(context != null);
-    assert(darkColor != null);
-    assert(lightColor != null);
-
     final theme = Theme.of(context);
     final primaryColor = backgroundColor ?? theme.primaryColor;
 
@@ -125,7 +121,7 @@ class ThemeColorHelper {
   }
 
   Color getTertiaryColor(BuildContext context) {
-    return Theme.of(context).textTheme.overline.color;
+    return Theme.of(context).textTheme.overline!.color!;
   }
 
   Color getHintColor(BuildContext context) {

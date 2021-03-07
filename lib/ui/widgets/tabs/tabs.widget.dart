@@ -4,32 +4,28 @@ import 'package:flutter/material.dart';
 class FastTabs extends StatelessWidget {
   final List<Tab> tabs;
   final List<Widget> views;
-  final double indicatorWeight;
-  final Color indicatorColor;
-  final Color labelColor;
-  final TextStyle labelStyle;
-  final Color unselectedLabelColor;
-  final TextStyle unselectedLabelStyle;
+  final double? indicatorWeight;
+  final Color? indicatorColor;
+  final Color? labelColor;
+  final TextStyle? labelStyle;
+  final Color? unselectedLabelColor;
+  final TextStyle? unselectedLabelStyle;
   final bool isViewScrollable;
   final int initialIndex;
 
   FastTabs({
-    Key key,
-    @required this.tabs,
-    @required this.views,
+    Key? key,
+    required this.tabs,
+    required this.views,
     this.indicatorWeight,
     this.indicatorColor,
     this.labelColor,
     this.labelStyle,
     this.unselectedLabelColor,
     this.unselectedLabelStyle,
-    bool isViewScrollable = true,
-    int initialIndex,
-  })  : assert(tabs != null),
-        assert(views != null),
-        initialIndex = initialIndex ?? 0,
-        isViewScrollable = isViewScrollable ?? true,
-        super(key: key);
+    this.isViewScrollable = true,
+    this.initialIndex = 0,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

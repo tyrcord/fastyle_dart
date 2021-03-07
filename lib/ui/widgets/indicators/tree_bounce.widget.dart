@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastThreeBounceIndicator extends StatelessWidget {
-  final Color color;
+  final Color? color;
 
-  FastThreeBounceIndicator({Key key, this.color}) : super(key: key);
+  FastThreeBounceIndicator({Key? key, this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

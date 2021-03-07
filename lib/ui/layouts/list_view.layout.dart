@@ -11,9 +11,9 @@ const kFastListTileCategoryAll = FastCategory(
 
 class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   final FastListItemBuilder<T> listItemBuilder;
-  final List<FastCategory> categories;
+  final List<FastCategory>? categories;
   final bool shouldGroupByCategory;
-  final String tabAllCategoryText;
+  final String? tabAllCategoryText;
   final bool isViewScrollable;
   final bool shouldSortItems;
   final bool showItemDivider;
@@ -21,23 +21,17 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   final List<T> items;
 
   FastListViewLayout({
-    Key key,
-    @required this.listItemBuilder,
-    @required this.items,
+    Key? key,
+    required this.listItemBuilder,
+    required this.items,
     this.tabAllCategoryText,
-    this.intialTabIndex,
+    this.intialTabIndex = 0,
     this.categories,
-    bool shouldGroupByCategory = false,
-    bool isViewScrollable = true,
-    bool shouldSortItems = true,
-    bool showItemDivider = false,
-  })  : shouldGroupByCategory = shouldGroupByCategory ?? false,
-        isViewScrollable = isViewScrollable ?? true,
-        shouldSortItems = shouldSortItems ?? true,
-        showItemDivider = showItemDivider ?? false,
-        assert(listItemBuilder != null),
-        assert(items != null),
-        super(key: key);
+    this.shouldGroupByCategory = false,
+    this.isViewScrollable = true,
+    this.shouldSortItems = true,
+    this.showItemDivider = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -65,13 +59,13 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
 
   Widget _buildListView(BuildContext context, List<T> items) {
     if (isViewScrollable || shouldGroupByCategory) {
-      return _buildScrollableContent(context);
+      return _buildScrollableContent(context, items);
     }
 
-    return _buildFixedContent(context);
+    return _buildFixedContent(context, items);
   }
 
-  Widget _buildScrollableContent(BuildContext context) {
+  Widget _buildScrollableContent(BuildContext context, List<T> items) {
     final dividerDecoration = _buildDividerDecorationIdNeeded(context);
     final rows = _sortItemIfNeeded(items);
     final lastIndex = rows.length - 1;
@@ -91,7 +85,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     );
   }
 
-  Widget _buildFixedContent(BuildContext context) {
+  Widget _buildFixedContent(BuildContext context, List<T> items) {
     final dividerDecoration = _buildDividerDecorationIdNeeded(context);
     final rows = _sortItemIfNeeded(items);
     final lastIndex = rows.length - 1;
@@ -110,7 +104,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     );
   }
 
-  BoxDecoration _buildDividerDecorationIdNeeded(BuildContext context) {
+  BoxDecoration? _buildDividerDecorationIdNeeded(BuildContext context) {
     return showItemDivider
         ? BoxDecoration(
             border: Border(
@@ -130,7 +124,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
       }).toList();
 
       items.sort(
-        (a, b) => a.normalizedLabelText.compareTo(b.normalizedLabelText),
+        (a, b) => a.normalizedLabelText!.compareTo(b.normalizedLabelText!),
       );
     }
 
@@ -146,7 +140,8 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
       ),
     };
 
-    final allCategory = categoriesMap[kFastListTileCategoryAll.valueText].items;
+    final allCategory =
+        categoriesMap[kFastListTileCategoryAll.valueText]!.items;
 
     items.forEach((T item) {
       item.categories?.forEach((FastCategory category) {
@@ -158,7 +153,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
           allCategory.add(item);
         }
 
-        categoriesMap[category.valueText].items.add(item);
+        categoriesMap[category.valueText]!.items.add(item);
       });
     });
 
@@ -178,11 +173,11 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   }
 
   Widget _buildListItem({
-    BoxDecoration decoration,
-    BuildContext context,
-    bool isLastItem,
-    int index,
-    T item,
+    required bool isLastItem,
+    required T item,
+    required BuildContext context,
+    required int index,
+    BoxDecoration? decoration,
   }) {
     final listItem = listItemBuilder(context, item, index);
 

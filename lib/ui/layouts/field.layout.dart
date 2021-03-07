@@ -5,18 +5,18 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastFieldLayout extends StatelessWidget {
   final bool showHelperBoundaries;
-  final String placeholderText;
-  final Color helperTextColor;
-  final String captionText;
-  final String helperText;
-  final EdgeInsets margin;
-  final Widget suffixIcon;
-  final String labelText;
+  final String? placeholderText;
+  final Color? helperTextColor;
+  final String? captionText;
+  final String? helperText;
+  final EdgeInsets? margin;
+  final Widget? suffixIcon;
+  final String? labelText;
   final Widget control;
 
   FastFieldLayout({
-    Key key,
-    @required this.control,
+    Key? key,
+    required this.control,
     this.helperTextColor,
     this.placeholderText,
     this.captionText,
@@ -24,10 +24,8 @@ class FastFieldLayout extends StatelessWidget {
     this.suffixIcon,
     this.labelText,
     this.margin,
-    bool showHelperBoundaries = true,
-  })  : showHelperBoundaries = showHelperBoundaries ?? true,
-        assert(control != null),
-        super(key: key);
+    this.showHelperBoundaries = true,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,10 +53,10 @@ class FastFieldLayout extends StatelessWidget {
 
   Widget _buildSuffixIcon() {
     return Positioned(
-      child: suffixIcon,
       bottom: 0,
       right: 0,
       top: 0,
+      child: suffixIcon!,
     );
   }
 
@@ -70,13 +68,13 @@ class FastFieldLayout extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 1.0),
             child: FastBody2(
-              text: toBeginningOfSentenceCase(labelText),
+              text: toBeginningOfSentenceCase(labelText)!,
               textColor: ThemeHelper.texts.getBodyTextStyle(context).color,
             ),
           ),
         ),
         if (captionText != null)
-          FastCaption(text: toBeginningOfSentenceCase(captionText)),
+          FastCaption(text: toBeginningOfSentenceCase(captionText)!),
       ],
     );
   }
@@ -91,7 +89,7 @@ class FastFieldLayout extends StatelessWidget {
         child: FastHelper(
           textColor: helperTextColor,
           text: hasHelper
-              ? toBeginningOfSentenceCase(helperText)
+              ? toBeginningOfSentenceCase(helperText)!
               : kFastEmptyString,
         ),
       ),

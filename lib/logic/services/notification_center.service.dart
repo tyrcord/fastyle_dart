@@ -1,12 +1,12 @@
 import 'dart:collection';
 
-import 'package:flushbar/flushbar.dart';
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastNotificationCenter {
-  static BuildContext get _context => navigatorKey.currentContext;
+  static BuildContext get _context => navigatorKey.currentContext!;
   static const _animationDuration = Duration(milliseconds: 750);
   static const _notificationDuration = Duration(seconds: 2);
   static final navigatorKey = GlobalKey<NavigatorState>();
@@ -16,7 +16,7 @@ class FastNotificationCenter {
 
   static void error(
     String message, {
-    FastNotificationCenterOptions options,
+    FastNotificationCenterOptions? options,
   }) {
     _buildNotification(
       message,
@@ -29,7 +29,7 @@ class FastNotificationCenter {
 
   static void warn(
     String message, {
-    FastNotificationCenterOptions options,
+    FastNotificationCenterOptions? options,
   }) {
     _buildNotification(
       message,
@@ -42,7 +42,7 @@ class FastNotificationCenter {
 
   static void info(
     String message, {
-    FastNotificationCenterOptions options,
+    FastNotificationCenterOptions? options,
   }) {
     _buildNotification(
       message,
@@ -55,7 +55,7 @@ class FastNotificationCenter {
 
   static void success(
     String message, {
-    FastNotificationCenterOptions options,
+    FastNotificationCenterOptions? options,
   }) {
     _buildNotification(
       message,
@@ -66,16 +66,16 @@ class FastNotificationCenter {
     );
   }
 
-  static FastNotificationCenterOptions _mergeIconColors(
-    FastNotificationCenterOptions options,
+  static FastNotificationCenterOptions? _mergeIconColors(
+    FastNotificationCenterOptions? options,
     Color color,
   ) {
-    return options?.copyWith(iconColor: options?.iconColor ?? color);
+    return options?.copyWith(iconColor: options.iconColor ?? color);
   }
 
   static void _buildNotification(
     String message, {
-    FastNotificationCenterOptions options,
+    FastNotificationCenterOptions? options,
   }) {
     _addNotification(
       Flushbar(
@@ -88,18 +88,19 @@ class FastNotificationCenter {
         borderRadius: kFastBorderRadius,
         icon: _buildIcon(options),
         margin: kFastEdgeInsets8,
+        onStatusChanged: _onNotificationStatusChanged,
       ),
     );
   }
 
-  static Widget _buildIcon(FastNotificationCenterOptions options) {
+  static Widget? _buildIcon(FastNotificationCenterOptions? options) {
     if (options != null && options.leadingIcon != null) {
       return IconTheme.merge(
         data: IconThemeData(
-          size: options?.iconSize ?? kFastIconSizeMedium,
-          color: options?.iconColor,
+          size: options.iconSize ?? kFastIconSizeMedium,
+          color: options.iconColor,
         ),
-        child: options?.leadingIcon,
+        child: options.leadingIcon!,
       );
     }
 
@@ -124,14 +125,13 @@ class FastNotificationCenter {
 
       final notification = _queue.removeFirst();
 
-      notification.onStatusChanged = _onNotificationStatusChanged;
       notification.show(_context);
     } else {
       _isShowingNotification = false;
     }
   }
 
-  static void _onNotificationStatusChanged(FlushbarStatus status) {
+  static void _onNotificationStatusChanged(FlushbarStatus? status) {
     if (status == FlushbarStatus.DISMISSED) {
       _nextNotification();
     }

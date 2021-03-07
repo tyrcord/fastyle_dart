@@ -10,7 +10,7 @@ enum FastThemeBlocEventType {
 
 class FastThemeBlocEvent extends BlocEvent<FastThemeBlocEventType, dynamic> {
   const FastThemeBlocEvent({
-    @required FastThemeBlocEventType type,
+    required FastThemeBlocEventType type,
   }) : super(type: type);
 
   FastThemeBlocEvent.system() : this(type: FastThemeBlocEventType.system);

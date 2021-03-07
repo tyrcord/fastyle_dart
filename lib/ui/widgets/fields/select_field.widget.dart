@@ -5,68 +5,60 @@ import 'package:flutter/material.dart';
 const _kIconSize = 24.0;
 
 class FastSelectField<T> extends StatefulWidget {
-  final ValueChanged<FastItem<T>> onSelectionChanged;
+  final ValueChanged<FastItem<T>?> onSelectionChanged;
   final String labelText;
-  final String captionText;
-  final String placeholderText;
-  final String helperText;
+  final String? captionText;
+  final String? placeholderText;
+  final String? helperText;
   final bool isReadOnly;
-  final FastItem<T> selection;
+  final FastItem<T>? selection;
   final List<FastItem<T>> items;
-  final List<FastCategory> categories;
+  final List<FastCategory>? categories;
   final bool shouldGroupByCategory;
   final bool shouldUseFuzzySearch;
   final bool shouldSortItems;
-  final String titleText;
-  final String searchPlaceholderText;
+  final String? titleText;
+  final String? searchPlaceholderText;
   final int intialTabIndex;
-  final String tabAllCategoryText;
-  final Widget clearSearchIcon;
-  final Widget closeIcon;
-  final Widget backIcon;
+  final String? tabAllCategoryText;
+  final Widget? clearSearchIcon;
+  final Widget? closeIcon;
+  final Widget? backIcon;
   final bool canClearSelection;
-  final String clearSelectionText;
+  final String? clearSelectionText;
 
   FastSelectField({
-    Key key,
-    @required this.onSelectionChanged,
-    @required this.labelText,
-    @required this.items,
+    Key? key,
+    required this.onSelectionChanged,
+    required this.labelText,
+    required this.items,
     this.selection,
     this.captionText,
     this.placeholderText,
     this.helperText,
-    bool isReadOnly = false,
-    bool shouldGroupByCategory = false,
-    bool shouldUseFuzzySearch = false,
-    bool shouldSortItems = true,
+    this.isReadOnly = false,
+    this.shouldGroupByCategory = false,
+    this.shouldUseFuzzySearch = false,
+    this.shouldSortItems = true,
     this.titleText,
     this.categories,
     this.searchPlaceholderText,
-    this.intialTabIndex,
+    this.intialTabIndex = 0,
     this.tabAllCategoryText,
     this.clearSearchIcon,
     this.closeIcon,
     this.backIcon,
-    bool canClearSelection = true,
+    this.canClearSelection = true,
     this.clearSelectionText,
-  })  : assert(labelText != null),
-        assert(items != null),
-        assert(onSelectionChanged != null),
-        canClearSelection = canClearSelection ?? true,
-        shouldSortItems = shouldSortItems ?? true,
-        isReadOnly = isReadOnly ?? false,
-        shouldGroupByCategory = shouldGroupByCategory ?? false,
-        shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
-        super(key: key);
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FastSelectFieldState<T>();
 }
 
 class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
-  FocusNode _focusNode;
-  FastItem<T> _selection;
+  late FocusNode _focusNode;
+  FastItem<T>? _selection;
 
   @override
   void initState() {
@@ -93,17 +85,11 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: FastFieldLayout(
-        labelText: widget.labelText,
-        captionText: widget.captionText,
-        helperText: widget.helperText,
-        control: _buildControl(context),
-      ),
       onTap: () async {
         var items = widget.items;
 
-        if (!widget.isReadOnly && items != null && items.isNotEmpty) {
-          FocusManager.instance.primaryFocus.unfocus();
+        if (!widget.isReadOnly && items.isNotEmpty) {
+          FocusManager.instance.primaryFocus!.unfocus();
           _focusNode.requestFocus();
 
           final response = await Navigator.push(
@@ -128,7 +114,7 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
               ),
               fullscreenDialog: true,
             ),
-          ) as FastItem<T>;
+          ) as FastItem<T>?;
 
           setState(() {
             _selection = response;
@@ -136,15 +122,21 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
           });
         }
       },
+      child: FastFieldLayout(
+        labelText: widget.labelText,
+        captionText: widget.captionText,
+        helperText: widget.helperText,
+        control: _buildControl(context),
+      ),
     );
   }
 
   Widget _buildControl(BuildContext context) {
     final text = _selection != null
-        ? FastBody(text: _selection.labelText, fontWeight: FontWeight.w700)
+        ? FastBody(text: _selection!.labelText, fontWeight: FontWeight.w700)
         : widget.placeholderText != null
             ? FastPlaceholder(
-                text: widget.placeholderText,
+                text: widget.placeholderText!,
                 fontWeight: FontWeight.w700,
               )
             : const FastBody(
@@ -153,6 +145,19 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
               );
 
     return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: Divider.createBorderSide(
+            context,
+            color: Theme.of(context)
+                .inputDecorationTheme
+                .enabledBorder!
+                .borderSide
+                .color,
+            width: kFastBorderSize,
+          ),
+        ),
+      ),
       child: Row(
         children: <Widget>[
           Expanded(child: text),
@@ -162,19 +167,6 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
             size: _kIconSize,
           ),
         ],
-      ),
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: Divider.createBorderSide(
-            context,
-            color: Theme.of(context)
-                .inputDecorationTheme
-                .enabledBorder
-                .borderSide
-                .color,
-            width: kFastBorderSize,
-          ),
-        ),
       ),
     );
   }

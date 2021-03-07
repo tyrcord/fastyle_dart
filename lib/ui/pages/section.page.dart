@@ -11,28 +11,30 @@ const _kBottomPaddingMin = 16.0;
 const _kElevation = 0.0;
 
 class FastSectionPage extends StatelessWidget {
-  final String titleText;
-  final Color titleColor;
-  final EdgeInsets contentPadding;
-  final Widget child;
-  final Widget footer;
-  final Widget leading;
-  final List<Widget> actions;
+  final String? titleText;
+  final Color? titleColor;
+  final EdgeInsets? contentPadding;
+  final Widget? child;
+  final Widget? footer;
+  final Widget? leading;
+  final List<Widget>? actions;
   final bool isViewScrollable;
-  final Widget floatingActionButton;
-  final Color appBarbackgroundColor;
+  final Widget? floatingActionButton;
+  final Color? appBarbackgroundColor;
   final bool isTitlePositionBelowAppBar;
-  final Size appBarHeightSize;
-  final Widget closeButton;
-  final Widget backButton;
-  final Future<bool> loadingFuture;
-  final WidgetBuilder loadingBuilder;
-  final WidgetBuilder errorBuilder;
-  final WidgetBuilder contentBuilder;
-  final WidgetBuilder footerBuilder;
+  final Size? appBarHeightSize;
+  final Widget? closeButton;
+  final Widget? backButton;
+  final Future<bool>? loadingFuture;
+  final WidgetBuilder? loadingBuilder;
+  final WidgetBuilder? errorBuilder;
+  final WidgetBuilder? contentBuilder;
+  final WidgetBuilder? footerBuilder;
 
   FastSectionPage({
-    Key key,
+    Key? key,
+    this.isTitlePositionBelowAppBar = true,
+    this.isViewScrollable = false,
     this.titleColor,
     this.contentPadding,
     this.titleText,
@@ -40,8 +42,6 @@ class FastSectionPage extends StatelessWidget {
     this.leading,
     this.floatingActionButton,
     this.appBarbackgroundColor,
-    bool isTitlePositionBelowAppBar = true,
-    bool isViewScrollable = false,
     this.appBarHeightSize,
     this.closeButton,
     this.backButton,
@@ -57,8 +57,6 @@ class FastSectionPage extends StatelessWidget {
           'contentBuilder and child properties '
           'should not be initialized together',
         ),
-        isTitlePositionBelowAppBar = isTitlePositionBelowAppBar ?? true,
-        isViewScrollable = isViewScrollable ?? false,
         super(key: key);
 
   @override
@@ -68,7 +66,7 @@ class FastSectionPage extends StatelessWidget {
     brightness = brightness == Brightness.dark
         ? Brightness.dark
         : (appBarbackgroundColor != null &&
-                    appBarbackgroundColor.computeLuminance() > 0.5) ||
+                    appBarbackgroundColor!.computeLuminance() > 0.5) ||
                 appBarbackgroundColor == null
             ? Brightness.light
             : Brightness.dark;
@@ -98,7 +96,7 @@ class FastSectionPage extends StatelessWidget {
     brightness = brightness == Brightness.dark
         ? Brightness.dark
         : (appBarbackgroundColor != null &&
-                    appBarbackgroundColor.computeLuminance() > 0.5) ||
+                    appBarbackgroundColor!.computeLuminance() > 0.5) ||
                 appBarbackgroundColor == null
             ? Brightness.light
             : Brightness.dark;
@@ -115,9 +113,9 @@ class FastSectionPage extends StatelessWidget {
       backgroundColor: appBarbackgroundColor ?? Colors.transparent,
       elevation: _kElevation,
       actions: actions,
-      title: !isTitlePositionBelowAppBar
+      title: !isTitlePositionBelowAppBar && titleText != null
           ? FastTitle(
-              text: titleText,
+              text: titleText!,
               textColor: titleColor,
               fontSize: 28.0,
             )
@@ -126,12 +124,12 @@ class FastSectionPage extends StatelessWidget {
     );
   }
 
-  Widget _buildLeadingIcon(BuildContext context) {
-    final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
+  Widget? _buildLeadingIcon(BuildContext context) {
+    final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
     final canPop = parentRoute?.canPop ?? false;
     final useCloseButton =
         parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
-    Widget leading;
+    Widget? leading;
 
     if (canPop) {
       leading = useCloseButton
@@ -164,12 +162,12 @@ class FastSectionPage extends StatelessWidget {
       children: <Widget>[
         if (titleText != null && isTitlePositionBelowAppBar)
           Container(
-            child: FastHeadline(
-              text: titleText,
-              textColor: titleColor,
-            ),
             padding: _kHeaderPadding,
             margin: _kMargin,
+            child: FastHeadline(
+              textColor: titleColor,
+              text: titleText!,
+            ),
           ),
         content,
         if (!isViewScrollable && (footer != null || footerBuilder != null))
@@ -198,7 +196,7 @@ class FastSectionPage extends StatelessWidget {
       padding: footer == null
           ? padding.copyWith(bottom: _getBottomPadding(context))
           : padding.copyWith(bottom: 0.0),
-      child: contentBuilder != null ? Builder(builder: contentBuilder) : child,
+      child: contentBuilder != null ? Builder(builder: contentBuilder!) : child,
     );
   }
 
@@ -211,7 +209,7 @@ class FastSectionPage extends StatelessWidget {
         top: 0.0,
         bottom: mediaQueryData.padding.bottom + _kBottomPaddingMin,
       ),
-      child: footerBuilder != null ? Builder(builder: footerBuilder) : footer,
+      child: footerBuilder != null ? Builder(builder: footerBuilder!) : footer,
     );
   }
 

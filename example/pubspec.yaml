@@ -1,16 +1,17 @@
 name: fastyle_dart_example
 version: 1.0.0+1
+publish_to: none
 environment:
-  sdk: ">=2.10.0 <3.0.0"
-  flutter: ">=1.22.0 <2.0.0"
+  sdk: '>=2.12.0 <3.0.0'
+  flutter: ">=2.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.0
-  rxdart: ^0.24.1
-  tbloc_dart: ^0.13.1
+  cupertino_icons: ^1.0.2
+  rxdart: ^0.26.0
+  tbloc_dart: ^0.14.0-nullsafety.0
   fastyle_dart:
     path: ../
 

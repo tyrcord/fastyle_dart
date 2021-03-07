@@ -93,7 +93,7 @@ class FieldsPage extends StatelessWidget {
             shouldGroupByCategory: true,
             selection: demoItems[3],
             categories: demoCategories,
-            onSelectionChanged: (FastItem<String> value) {},
+            onSelectionChanged: (FastItem<String>? value) {},
           ),
           FastTextField(
             labelText: 'Text 2',

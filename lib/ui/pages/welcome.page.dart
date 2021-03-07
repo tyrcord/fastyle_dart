@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 
 class FastWelcomePage extends StatelessWidget {
   final String titleText;
-  final List<Widget> children;
+  final List<Widget>? children;
 
   const FastWelcomePage({
-    Key key,
-    @required this.titleText,
+    Key? key,
+    required this.titleText,
     this.children,
-  })  : assert(titleText != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class FastWelcomePage extends StatelessWidget {
           children: <Widget>[
             kFastSizedBox16,
             FastHeadline(text: titleText),
-            if (children != null) ...children,
+            if (children != null) ...children!,
             kFastSizedBox16,
           ],
         ),

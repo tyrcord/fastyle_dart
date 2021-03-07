@@ -10,12 +10,12 @@ class FastThemeScheme {
   final ThemeData yellow;
 
   FastThemeScheme({
-    this.blue,
-    this.orange,
-    this.indigo,
-    this.pink,
-    this.purple,
-    this.teal,
-    this.yellow,
+    required this.blue,
+    required this.orange,
+    required this.indigo,
+    required this.pink,
+    required this.purple,
+    required this.teal,
+    required this.yellow,
   });
 }

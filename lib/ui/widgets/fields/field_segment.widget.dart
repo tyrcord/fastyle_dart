@@ -3,33 +3,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FastSegmentField<T> extends StatefulWidget {
-  final ValueChanged<FastItem<T>> onValueChanged;
+  final ValueChanged<FastItem<T>>? onValueChanged;
   final List<FastItem<T>> options;
   final String labelText;
-  final String captionText;
+  final String? captionText;
   final bool isReadOnly;
   final int selectedIndex;
 
   FastSegmentField({
-    Key key,
-    @required this.labelText,
-    @required this.options,
+    Key? key,
+    required this.labelText,
+    required this.options,
     this.captionText,
     this.onValueChanged,
-    bool isReadOnly = false,
+    this.isReadOnly = false,
     this.selectedIndex = 0,
-  })  : isReadOnly = isReadOnly ?? false,
-        assert(options != null),
-        assert(labelText != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FastSegmentFieldState<T>();
 }
 
 class _FastSegmentFieldState<T> extends State<FastSegmentField<T>> {
-  Map<int, FastItem<T>> _options;
-  int _selectedIndex;
+  late Map<int, FastItem<T>> _options;
+  int? _selectedIndex;
 
   @override
   void initState() {
@@ -73,7 +70,10 @@ class _FastSegmentFieldState<T> extends State<FastSegmentField<T>> {
         onValueChanged: (int index) {
           setState(() {
             _selectedIndex = index;
-            widget.onValueChanged(_options[index]);
+
+            if (widget.onValueChanged != null) {
+              widget.onValueChanged!(_options[index]!);
+            }
           });
         },
       ),

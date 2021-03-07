@@ -5,16 +5,15 @@ const _kTitleMargin = EdgeInsets.symmetric(vertical: 16.0);
 
 class FastArticle extends StatelessWidget {
   final String titleText;
-  final EdgeInsets titleMargin;
-  final Iterable<Widget> children;
+  final EdgeInsets? titleMargin;
+  final Iterable<Widget>? children;
 
   const FastArticle({
-    Key key,
-    @required this.titleText,
+    Key? key,
+    required this.titleText,
     this.titleMargin,
     this.children,
-  })  : assert(titleText != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,7 @@ class FastArticle extends StatelessWidget {
           margin: titleMargin ?? _kTitleMargin,
           child: FastTitle(text: titleText, fontWeight: FontWeight.w700),
         ),
-        if (children != null) ...children,
+        if (children != null) ...children!,
       ],
     );
   }

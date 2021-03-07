@@ -4,11 +4,11 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastTextButton extends StatefulWidget implements IFastButton {
   final FastButtonEmphasis emphasis;
-  final EdgeInsetsGeometry padding;
-  final Color highlightColor;
-  final Color textColor;
-  final Widget child;
-  final String text;
+  final EdgeInsetsGeometry? padding;
+  final Color? highlightColor;
+  final Color? textColor;
+  final Widget? child;
+  final String? text;
 
   @override
   final bool shouldTrottleTime;
@@ -20,23 +20,18 @@ class FastTextButton extends StatefulWidget implements IFastButton {
   final bool isEnabled;
 
   const FastTextButton({
-    Key key,
-    @required this.onTap,
-    FastButtonEmphasis emphasis = FastButtonEmphasis.low,
-    bool isEnabled = true,
+    Key? key,
+    required this.onTap,
+    this.emphasis = FastButtonEmphasis.low,
+    this.isEnabled = true,
     this.highlightColor,
     this.textColor,
     this.padding,
     this.child,
     this.text,
-    bool shouldTrottleTime = false,
-    Duration trottleTimeDuration = kFastTrottleTimeDuration,
-  })  : isEnabled = isEnabled ?? true,
-        emphasis = emphasis ?? FastButtonEmphasis.low,
-        shouldTrottleTime = shouldTrottleTime ?? false,
-        trottleTimeDuration = trottleTimeDuration ?? kFastTrottleTimeDuration,
-        assert(onTap != null),
-        super(key: key);
+    this.shouldTrottleTime = false,
+    this.trottleTimeDuration = kFastTrottleTimeDuration,
+  }) : super(key: key);
 
   @override
   _FastTextButtonState createState() => _FastTextButtonState();
@@ -71,8 +66,8 @@ class _FastTextButtonState extends State<FastTextButton>
         highlightColor: widget.highlightColor,
         child: widget.child ??
             FastButtonLabel(
-              text: widget.text,
-              textColor: widget.isEnabled ? _color : _color.withAlpha(155),
+              text: widget.text ?? kFastButtonLabel,
+              textColor: widget.isEnabled ? _color : _color!.withAlpha(155),
             ),
       ),
     );

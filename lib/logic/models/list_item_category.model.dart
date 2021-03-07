@@ -1,5 +1,4 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:flutter/material.dart';
 
 import 'package:tmodel_dart/tmodel_dart.dart';
 
@@ -10,21 +9,18 @@ class FastListItemCategory<T extends FastItem> extends TModel {
   final double weight;
 
   const FastListItemCategory({
-    @required this.labelText,
-    @required this.valueText,
-    @required this.items,
-    double weight = 0,
-  })  : assert(items != null),
-        assert(labelText != null),
-        assert(valueText != null),
-        weight = weight ?? 0;
+    required this.labelText,
+    required this.valueText,
+    required this.items,
+    this.weight = 0,
+  });
 
   @override
   FastListItemCategory<T> copyWith({
-    String labelText,
-    String valueText,
-    List<T> items,
-    double weight,
+    String? labelText,
+    String? valueText,
+    List<T>? items,
+    double? weight,
   }) {
     return FastListItemCategory(
       labelText: labelText ?? this.labelText,
@@ -45,11 +41,11 @@ class FastListItemCategory<T extends FastItem> extends TModel {
   }
 
   @override
-  FastListItemCategory<T> merge({@required FastListItemCategory<T> category}) {
+  FastListItemCategory<T> merge({FastListItemCategory<T>? category}) {
     assert(category != null);
 
     return copyWith(
-      labelText: category.labelText,
+      labelText: category!.labelText,
       valueText: category.valueText,
       weight: category.weight,
       items: category.items,

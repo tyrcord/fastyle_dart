@@ -9,16 +9,16 @@ class FastDisplay extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
   const FastDisplay({
-    Key key,
-    @required String text,
-    Color textColor,
-    TextAlign textAlign,
-    double fontSize,
-    FontWeight fontWeight,
-    int maxLines,
-    TextOverflow overflow,
+    Key? key,
+    required String text,
+    Color? textColor,
+    TextAlign textAlign = TextAlign.left,
+    double? fontSize,
+    FontWeight? fontWeight,
+    int? maxLines,
+    TextOverflow? overflow,
     bool useFontForNumber = false,
-    double lineHeight,
+    double? lineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -31,7 +31,7 @@ class FastDisplay extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
-          enableInteractiveSelection: enableInteractiveSelection ?? false,
+          enableInteractiveSelection: enableInteractiveSelection,
         );
 
   @override
@@ -48,16 +48,16 @@ class FastHeadline extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
   const FastHeadline({
-    Key key,
-    @required String text,
-    Color textColor,
-    TextAlign textAlign,
-    double fontSize,
-    FontWeight fontWeight,
-    int maxLines,
-    TextOverflow overflow,
+    Key? key,
+    required String text,
+    Color? textColor,
+    TextAlign textAlign = TextAlign.left,
+    double? fontSize,
+    FontWeight? fontWeight,
+    int? maxLines,
+    TextOverflow? overflow,
     bool useFontForNumber = false,
-    double lineHeight,
+    double? lineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -70,7 +70,7 @@ class FastHeadline extends FastBaseTypography {
           overflow: overflow,
           lineHeight: lineHeight,
           useFontForNumber: useFontForNumber,
-          enableInteractiveSelection: enableInteractiveSelection ?? false,
+          enableInteractiveSelection: enableInteractiveSelection,
         );
 
   @override
@@ -87,16 +87,16 @@ class FastPlaceHolderHeadline extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
   const FastPlaceHolderHeadline({
-    Key key,
-    @required String text,
-    Color textColor,
-    TextAlign textAlign,
-    double fontSize,
-    FontWeight fontWeight,
-    int maxLines,
-    TextOverflow overflow,
+    Key? key,
+    required String text,
+    Color? textColor,
+    TextAlign textAlign = TextAlign.left,
+    double? fontSize,
+    FontWeight? fontWeight,
+    int? maxLines,
+    TextOverflow? overflow,
     bool useFontForNumber = false,
-    double lineHeight,
+    double? lineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -109,7 +109,7 @@ class FastPlaceHolderHeadline extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
-          enableInteractiveSelection: enableInteractiveSelection ?? false,
+          enableInteractiveSelection: enableInteractiveSelection,
         );
 
   @override
@@ -124,16 +124,16 @@ class FastPlaceHolderHeadline extends FastBaseTypography {
 /// uppercase
 class FastSubhead extends FastBaseTypography {
   FastSubhead({
-    Key key,
-    @required String text,
-    Color textColor,
-    TextAlign textAlign,
-    double fontSize,
-    FontWeight fontWeight,
-    int maxLines,
-    TextOverflow overflow,
+    Key? key,
+    required String text,
+    Color? textColor,
+    TextAlign textAlign = TextAlign.left,
+    double? fontSize,
+    FontWeight? fontWeight,
+    int? maxLines,
+    TextOverflow? overflow,
     bool useFontForNumber = false,
-    double lineHeight,
+    double? lineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -146,7 +146,7 @@ class FastSubhead extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
-          enableInteractiveSelection: enableInteractiveSelection ?? false,
+          enableInteractiveSelection: enableInteractiveSelection,
         );
 
   @override
@@ -163,16 +163,16 @@ class FastTitle extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
   const FastTitle({
-    Key key,
-    @required String text,
-    Color textColor,
-    TextAlign textAlign,
-    double fontSize,
-    FontWeight fontWeight,
-    int maxLines,
-    TextOverflow overflow,
+    Key? key,
+    required String text,
+    Color? textColor,
+    TextAlign textAlign = TextAlign.left,
+    double? fontSize,
+    FontWeight? fontWeight,
+    int? maxLines,
+    TextOverflow? overflow,
     bool useFontForNumber = false,
-    double lineHeight,
+    double? lineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -186,7 +186,7 @@ class FastTitle extends FastBaseTypography {
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
           letterSpacing: 1.2,
-          enableInteractiveSelection: enableInteractiveSelection ?? false,
+          enableInteractiveSelection: enableInteractiveSelection,
         );
 
   @override
@@ -203,16 +203,16 @@ class FastPlaceholderTitle extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
   const FastPlaceholderTitle({
-    Key key,
-    @required String text,
-    Color textColor,
-    TextAlign textAlign,
-    double fontSize,
-    FontWeight fontWeight,
-    int maxLines,
-    TextOverflow overflow,
+    Key? key,
+    required String text,
+    Color? textColor,
+    TextAlign textAlign = TextAlign.left,
+    double? fontSize,
+    FontWeight? fontWeight,
+    int? maxLines,
+    TextOverflow? overflow,
     bool useFontForNumber = false,
-    double lineHeight,
+    double? lineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -225,7 +225,7 @@ class FastPlaceholderTitle extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
-          enableInteractiveSelection: enableInteractiveSelection ?? false,
+          enableInteractiveSelection: enableInteractiveSelection,
         );
 
   @override
@@ -240,16 +240,16 @@ class FastPlaceholderTitle extends FastBaseTypography {
 /// uppercase
 class FastSubtitle extends FastBaseTypography {
   FastSubtitle({
-    Key key,
-    @required String text,
-    Color textColor,
-    TextAlign textAlign,
-    double fontSize,
-    FontWeight fontWeight,
-    int maxLines,
-    TextOverflow overflow,
+    Key? key,
+    required String text,
+    Color? textColor,
+    TextAlign textAlign = TextAlign.left,
+    double? fontSize,
+    FontWeight? fontWeight,
+    int? maxLines,
+    TextOverflow? overflow,
     bool useFontForNumber = false,
-    double lineHeight,
+    double? lineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -262,7 +262,7 @@ class FastSubtitle extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
-          enableInteractiveSelection: enableInteractiveSelection ?? false,
+          enableInteractiveSelection: enableInteractiveSelection,
         );
 
   @override
@@ -279,17 +279,17 @@ class FastBody extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
   const FastBody({
-    Key key,
-    @required String text,
-    Color textColor,
-    TextAlign textAlign,
-    double fontSize,
-    FontWeight fontWeight,
-    int maxLines,
-    TextOverflow overflow,
+    Key? key,
+    required String text,
+    Color? textColor,
+    TextAlign textAlign = TextAlign.left,
+    double? fontSize,
+    FontWeight? fontWeight,
+    int? maxLines,
+    TextOverflow? overflow,
     bool useFontForNumber = false,
     bool enableInteractiveSelection = false,
-    double lineHeight,
+    double? lineHeight,
   }) : super(
           key: key,
           text: text,
@@ -299,8 +299,8 @@ class FastBody extends FastBaseTypography {
           fontWeight: fontWeight,
           maxLines: maxLines,
           overflow: overflow,
-          useFontForNumber: useFontForNumber ?? false,
-          enableInteractiveSelection: enableInteractiveSelection ?? false,
+          useFontForNumber: useFontForNumber,
+          enableInteractiveSelection: enableInteractiveSelection,
           lineHeight: lineHeight,
         );
 
@@ -318,16 +318,16 @@ class FastBody2 extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
   const FastBody2({
-    Key key,
-    @required String text,
-    Color textColor,
-    TextAlign textAlign,
-    double fontSize,
-    FontWeight fontWeight,
-    int maxLines,
-    TextOverflow overflow,
+    Key? key,
+    required String text,
+    Color? textColor,
+    TextAlign textAlign = TextAlign.left,
+    double? fontSize,
+    FontWeight? fontWeight,
+    int? maxLines,
+    TextOverflow? overflow,
     bool useFontForNumber = false,
-    double lineHeight,
+    double? lineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -340,7 +340,7 @@ class FastBody2 extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
-          enableInteractiveSelection: enableInteractiveSelection ?? false,
+          enableInteractiveSelection: enableInteractiveSelection,
         );
 
   @override
@@ -357,16 +357,16 @@ class FastPlaceholder extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
   const FastPlaceholder({
-    Key key,
-    @required String text,
-    Color textColor,
-    TextAlign textAlign,
-    double fontSize,
-    FontWeight fontWeight,
-    int maxLines,
-    TextOverflow overflow,
+    Key? key,
+    required String text,
+    Color? textColor,
+    TextAlign textAlign = TextAlign.left,
+    double? fontSize,
+    FontWeight? fontWeight,
+    int? maxLines,
+    TextOverflow? overflow,
     bool useFontForNumber = false,
-    double lineHeight,
+    double? lineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -379,7 +379,7 @@ class FastPlaceholder extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
-          enableInteractiveSelection: enableInteractiveSelection ?? false,
+          enableInteractiveSelection: enableInteractiveSelection,
         );
 
   @override
@@ -394,16 +394,16 @@ class FastPlaceholder extends FastBaseTypography {
 /// uppercase
 class FastButtonLabel extends FastBaseTypography {
   FastButtonLabel({
-    Key key,
-    @required String text,
-    Color textColor,
-    TextAlign textAlign,
-    double fontSize,
-    FontWeight fontWeight,
-    int maxLines,
-    TextOverflow overflow,
+    Key? key,
+    required String text,
+    Color? textColor,
+    TextAlign textAlign = TextAlign.left,
+    double? fontSize,
+    FontWeight? fontWeight,
+    int? maxLines,
+    TextOverflow? overflow,
     bool useFontForNumber = false,
-    double lineHeight,
+    double? lineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -416,7 +416,7 @@ class FastButtonLabel extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
-          enableInteractiveSelection: enableInteractiveSelection ?? false,
+          enableInteractiveSelection: enableInteractiveSelection,
         );
 
   @override
@@ -433,16 +433,16 @@ class FastCaption extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
   const FastCaption({
-    Key key,
-    @required String text,
-    Color textColor,
-    TextAlign textAlign,
-    double fontSize,
-    FontWeight fontWeight,
-    int maxLines,
-    TextOverflow overflow,
+    Key? key,
+    required String text,
+    Color? textColor,
+    TextAlign textAlign = TextAlign.left,
+    double? fontSize,
+    FontWeight? fontWeight,
+    int? maxLines,
+    TextOverflow? overflow,
     bool useFontForNumber = false,
-    double lineHeight,
+    double? lineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -455,7 +455,7 @@ class FastCaption extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
-          enableInteractiveSelection: enableInteractiveSelection ?? false,
+          enableInteractiveSelection: enableInteractiveSelection,
         );
 
   @override
@@ -472,16 +472,16 @@ class FastHelper extends FastBaseTypography {
   // FIXME!
   // https://github.com/dart-lang/sdk/issues/9468
   const FastHelper({
-    Key key,
-    @required String text,
-    Color textColor,
-    TextAlign textAlign,
-    double fontSize,
-    FontWeight fontWeight,
-    int maxLines,
-    TextOverflow overflow,
+    Key? key,
+    required String text,
+    Color? textColor,
+    TextAlign textAlign = TextAlign.left,
+    double? fontSize,
+    FontWeight? fontWeight,
+    int? maxLines,
+    TextOverflow? overflow,
     bool useFontForNumber = false,
-    double lineHeight,
+    double? lineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -494,7 +494,7 @@ class FastHelper extends FastBaseTypography {
           overflow: overflow,
           useFontForNumber: useFontForNumber,
           lineHeight: lineHeight,
-          enableInteractiveSelection: enableInteractiveSelection ?? false,
+          enableInteractiveSelection: enableInteractiveSelection,
         );
 
   @override

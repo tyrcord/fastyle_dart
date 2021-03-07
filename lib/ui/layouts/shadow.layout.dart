@@ -3,21 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastShadowLayout extends StatelessWidget {
-  final Color backgroundColor;
-  final double borderRadius;
-  final Color shadowColor;
-  final double blurRadius;
+  final Color? backgroundColor;
+  final double? borderRadius;
+  final Color? shadowColor;
+  final double? blurRadius;
   final Widget child;
 
   FastShadowLayout({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
     this.backgroundColor,
     this.borderRadius,
     this.shadowColor,
     this.blurRadius,
-  })  : assert(child != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

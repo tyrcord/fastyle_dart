@@ -5,12 +5,12 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 class FastIconButton extends StatefulWidget implements IFastButton {
   final Widget icon;
 
-  final Color iconColor;
-  final Color highlightColor;
+  final Color? iconColor;
+  final Color? highlightColor;
   final EdgeInsetsGeometry padding;
-  final double iconSize;
+  final double? iconSize;
   final FastButtonEmphasis emphasis;
-  final String tooltip;
+  final String? tooltip;
 
   @override
   final bool shouldTrottleTime;
@@ -25,26 +25,19 @@ class FastIconButton extends StatefulWidget implements IFastButton {
   final bool isEnabled;
 
   const FastIconButton({
-    Key key,
-    @required this.onTap,
-    @required this.icon,
+    Key? key,
+    required this.onTap,
+    required this.icon,
     this.iconColor,
     this.highlightColor,
     this.iconSize,
-    bool isEnabled = true,
-    EdgeInsetsGeometry padding = kFastEdgeInsets8,
-    FastButtonEmphasis emphasis = FastButtonEmphasis.low,
+    this.isEnabled = true,
+    this.padding = kFastEdgeInsets8,
+    this.emphasis = FastButtonEmphasis.low,
     this.tooltip,
-    bool shouldTrottleTime = false,
-    Duration trottleTimeDuration = kFastTrottleTimeDuration,
-  })  : isEnabled = isEnabled ?? true,
-        padding = padding ?? kFastEdgeInsets8,
-        emphasis = emphasis ?? FastButtonEmphasis.low,
-        shouldTrottleTime = shouldTrottleTime ?? false,
-        trottleTimeDuration = trottleTimeDuration ?? kFastTrottleTimeDuration,
-        assert(onTap != null),
-        assert(icon != null),
-        super(key: key);
+    this.shouldTrottleTime = false,
+    this.trottleTimeDuration = kFastTrottleTimeDuration,
+  }) : super(key: key);
 
   @override
   _FastIconButtonState createState() => _FastIconButtonState();
@@ -70,7 +63,7 @@ class _FastIconButtonState extends State<FastIconButton>
     final _color = widget.iconColor ??
         (widget.emphasis == FastButtonEmphasis.high
             ? ThemeHelper.colors.getPrimaryColor(context)
-            : ThemeHelper.texts.getButtonTextStyle(context).color);
+            : ThemeHelper.texts.getButtonTextStyle(context).color!);
 
     return FastButtonLayout(
       child: IconButton(

@@ -2,37 +2,33 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 class FastToggleListItem<T extends FastItem> extends StatefulWidget {
-  final T item;
-  final String titleText;
-  final String descriptionText;
+  final T? item;
+  final String? titleText;
+  final String? descriptionText;
   final ValueChanged<bool> onValueChanged;
-  final Widget leading;
+  final Widget? leading;
   final bool isEnabled;
   final bool isChecked;
   final bool isDense;
 
   FastToggleListItem({
-    Key key,
-    @required this.onValueChanged,
+    Key? key,
+    required this.onValueChanged,
     this.item,
     this.titleText,
     this.descriptionText,
     this.leading,
-    bool isEnabled = true,
-    bool isDense = true,
-    bool isChecked = false,
-  })  : assert(onValueChanged != null),
-        isEnabled = isEnabled ?? true,
-        isDense = isDense ?? true,
-        isChecked = isChecked ?? false,
-        super(key: key);
+    this.isEnabled = true,
+    this.isDense = true,
+    this.isChecked = false,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FastToggleListItemState();
 }
 
 class _FastToggleListItemState extends State<FastToggleListItem> {
-  bool _value;
+  late bool _value;
 
   @override
   void didUpdateWidget(covariant FastToggleListItem<FastItem> oldWidget) {
@@ -58,11 +54,12 @@ class _FastToggleListItemState extends State<FastToggleListItem> {
         inactiveTrackColor: ThemeHelper.colors.getHintColor(context),
         dense: widget.isDense,
         title: FastBody(
-          text: widget.titleText ?? widget.item?.labelText,
+          text: (widget.titleText ?? widget.item?.labelText)!,
         ),
         subtitle: widget.descriptionText != null
             ? FastBody2(
-                text: widget.descriptionText ?? widget.item?.descriptionText,
+                text:
+                    (widget.descriptionText ?? widget.item?.descriptionText!)!,
               )
             : null,
         onChanged: (bool value) {

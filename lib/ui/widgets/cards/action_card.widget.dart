@@ -2,20 +2,20 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 class FastActionCard extends StatelessWidget {
-  final Widget child;
-  final EdgeInsets padding;
+  final Widget? child;
+  final EdgeInsets? padding;
   final String titleText;
-  final List<Widget> headerActions;
-  final List<Widget> footerActions;
-  final Color shadowColor;
-  final Color backgroundColor;
+  final List<Widget>? headerActions;
+  final List<Widget>? footerActions;
+  final Color? shadowColor;
+  final Color? backgroundColor;
   final VoidCallback onTap;
-  final Color titleTextColor;
+  final Color? titleTextColor;
 
   FastActionCard({
-    Key key,
-    @required this.onTap,
-    @required this.titleText,
+    Key? key,
+    required this.onTap,
+    required this.titleText,
     this.child,
     this.padding,
     this.headerActions,
@@ -23,9 +23,7 @@ class FastActionCard extends StatelessWidget {
     this.shadowColor,
     this.backgroundColor,
     this.titleTextColor,
-  })  : assert(onTap != null),
-        assert(titleText != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +32,12 @@ class FastActionCard extends StatelessWidget {
       child: FastCard(
         titleText: titleText,
         titleTextColor: titleTextColor,
-        child: child,
         padding: padding,
         headerActions: headerActions,
         footerActions: footerActions,
         shadowColor: shadowColor,
         backgroundColor: backgroundColor,
+        child: child,
       ),
     );
   }

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 const _kMargin = EdgeInsets.symmetric(vertical: 8.0);
 
 class FastParagraph extends StatelessWidget {
-  final String text;
-  final EdgeInsets margin;
-  final Widget child;
+  final String? text;
+  final EdgeInsets? margin;
+  final Widget? child;
 
   const FastParagraph({
-    Key key,
+    Key? key,
     this.text,
     this.margin,
     this.child,
@@ -20,7 +20,7 @@ class FastParagraph extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin ?? _kMargin,
-      child: child ?? FastBody(text: text),
+      child: child ?? FastBody(text: text!),
     );
   }
 }

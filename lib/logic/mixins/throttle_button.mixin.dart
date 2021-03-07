@@ -8,13 +8,17 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 mixin FastThrottleButtonMixin<T extends IFastButton> on State<T> {
   @protected
   final trottler = PublishSubject<Function>();
-  @protected
-  StreamSubscription<Function> subscriptionStream;
 
   @protected
-  VoidCallback throttleOnTapIfNeeded() {
-    if (widget.isEnabled && widget.onTap != null) {
-      if (widget.shouldTrottleTime) {
+  // ignore: cancel_subscriptions
+  StreamSubscription<Function?>? subscriptionStream;
+
+  @protected
+  VoidCallback? throttleOnTapIfNeeded() {
+    if (widget.isEnabled! &&
+        widget.onTap != null &&
+        widget.shouldTrottleTime != null) {
+      if (widget.shouldTrottleTime!) {
         return () => trottler.add(widget.onTap);
       }
 
@@ -28,15 +32,17 @@ mixin FastThrottleButtonMixin<T extends IFastButton> on State<T> {
   void subscribeToTrottlerEvents() {
     unsubscribeToTrottlerEventsIfNeeded();
 
-    subscriptionStream = trottler
-        .throttleTime(widget.trottleTimeDuration)
-        .listen((Function onTap) => onTap());
+    if (widget.trottleTimeDuration != null) {
+      subscriptionStream = trottler
+          .throttleTime(widget.trottleTimeDuration!)
+          .listen((Function onTap) => onTap());
+    }
   }
 
   @protected
   void unsubscribeToTrottlerEventsIfNeeded() {
     if (subscriptionStream != null) {
-      subscriptionStream.cancel();
+      subscriptionStream!.cancel();
     }
   }
 }

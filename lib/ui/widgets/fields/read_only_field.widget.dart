@@ -3,37 +3,33 @@ import 'package:flutter/material.dart';
 
 class FastReadOnlyTextField extends StatelessWidget {
   final String labelText;
-  final String captionText;
-  final String placeholderText;
-  final String helperText;
+  final String? captionText;
+  final String? placeholderText;
+  final String? helperText;
   final TextAlign textAlign;
-  final String valueText;
+  final String? valueText;
   final bool useFontForNumber;
-  final Widget child;
+  final Widget? child;
   final bool enableInteractiveSelection;
-  final Color valueTextColor;
+  final Color? valueTextColor;
   final bool showHelperBoundaries;
-  final Color helperTextColor;
+  final Color? helperTextColor;
 
   FastReadOnlyTextField({
-    Key key,
-    @required this.labelText,
+    Key? key,
+    required this.labelText,
     this.captionText,
     this.placeholderText,
     this.helperText,
     this.valueText,
-    this.textAlign,
-    bool useFontForNumber = false,
+    this.textAlign = TextAlign.left,
+    this.useFontForNumber = false,
     this.child,
-    bool enableInteractiveSelection = true,
-    bool showHelperBoundaries = true,
+    this.enableInteractiveSelection = true,
+    this.showHelperBoundaries = true,
     this.valueTextColor,
     this.helperTextColor,
-  })  : assert(labelText != null),
-        enableInteractiveSelection = enableInteractiveSelection ?? true,
-        useFontForNumber = useFontForNumber ?? false,
-        showHelperBoundaries = showHelperBoundaries ?? true,
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,29 +46,29 @@ class FastReadOnlyTextField extends StatelessWidget {
   Widget _buildControl(BuildContext context) {
     return Container(
       height: 37.0,
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: child ??
-            FastBody(
-              text: valueText ?? placeholderText,
-              enableInteractiveSelection: enableInteractiveSelection,
-              textAlign: textAlign,
-              fontWeight: FontWeight.w700,
-              textColor: valueText != null ? valueTextColor : null,
-            ),
-      ),
       decoration: BoxDecoration(
         border: Border(
           bottom: Divider.createBorderSide(
             context,
             color: Theme.of(context)
                 .inputDecorationTheme
-                .enabledBorder
+                .enabledBorder!
                 .borderSide
                 .color,
             width: kFastBorderSize,
           ),
         ),
+      ),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: child ??
+            FastBody(
+              text: valueText ?? placeholderText!,
+              enableInteractiveSelection: enableInteractiveSelection,
+              textAlign: textAlign,
+              fontWeight: FontWeight.w700,
+              textColor: valueText != null ? valueTextColor : null,
+            ),
       ),
     );
   }

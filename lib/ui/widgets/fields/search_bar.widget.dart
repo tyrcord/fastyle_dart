@@ -7,20 +7,20 @@ const _kIconSize = 24.0;
 
 class FastSearchBar<T extends FastItem> extends StatefulWidget {
   final List<T> items;
-  final String placeholderText;
-  final Widget closeIcon;
-  final Widget backIcon;
-  final Widget clearSearchIcon;
-  final bool Function(T option, String query) onSearchFilter;
-  final void Function(List<T> suggestions, String query) onSuggestions;
-  final VoidCallback onLeadingButtonTap;
+  final String? placeholderText;
+  final Widget? closeIcon;
+  final Widget? backIcon;
+  final Widget? clearSearchIcon;
+  final bool Function(T option, String? query)? onSearchFilter;
+  final void Function(List<T>? suggestions, String? query)? onSuggestions;
+  final VoidCallback? onLeadingButtonTap;
   final bool showLeadingIcon;
-  final TextEditingController textEditingController;
+  final TextEditingController? textEditingController;
   final bool shouldUseFuzzySearch;
   final bool showShowBottomBorder;
 
   FastSearchBar({
-    @required this.items,
+    required this.items,
     this.placeholderText,
     this.closeIcon,
     this.backIcon,
@@ -29,22 +29,18 @@ class FastSearchBar<T extends FastItem> extends StatefulWidget {
     this.onSuggestions,
     this.onLeadingButtonTap,
     this.textEditingController,
-    bool showLeadingIcon = true,
-    bool shouldUseFuzzySearch = false,
-    bool showShowBottomBorder = true,
-  })  : assert(items != null),
-        showShowBottomBorder = showShowBottomBorder ?? true,
-        showLeadingIcon = showLeadingIcon ?? true,
-        shouldUseFuzzySearch = shouldUseFuzzySearch ?? false,
-        super();
+    this.showLeadingIcon = true,
+    this.shouldUseFuzzySearch = false,
+    this.showShowBottomBorder = true,
+  }) : super();
 
   @override
   _FastSearchBarState createState() => _FastSearchBarState<T>();
 }
 
 class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
-  TextEditingController _textController;
-  String _searchQuery;
+  late TextEditingController _textController;
+  String? _searchQuery;
 
   @override
   void initState() {
@@ -88,7 +84,7 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
   }
 
   FastIconButton _buildLeadingIcon(BuildContext context) {
-    final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
+    final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
     final useCloseButton =
         parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
 
@@ -98,7 +94,9 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
     return FastIconButton(
       icon: useCloseButton ? closeIcon : backIcon,
       onTap: () {
-        widget?.onLeadingButtonTap();
+        if (widget.onLeadingButtonTap != null) {
+          widget.onLeadingButtonTap!();
+        }
       },
       iconSize: _kIconSize,
     );
@@ -130,33 +128,33 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
   void _handleSearchQueryChanges() {
     final queryText = _textController.text;
 
-    if (queryText != _searchQuery) {
+    if (queryText != _searchQuery && widget.onSuggestions != null) {
       setState(() {
         if (queryText.isEmpty) {
           _searchQuery = null;
-          widget?.onSuggestions(null, null);
+          widget.onSuggestions!(null, null);
         } else {
           _searchQuery = normalizeTextByRemovingDiacritics(queryText);
-          widget?.onSuggestions(_buildSuggestions(_searchQuery), _searchQuery);
+          widget.onSuggestions!(_buildSuggestions(_searchQuery), _searchQuery);
         }
       });
     }
   }
 
-  List<T> _buildSuggestions(String queryText) {
+  List<T> _buildSuggestions(String? queryText) {
     if (widget.shouldUseFuzzySearch) {
-      return _buildFuzzySuggestions(queryText);
+      return _buildFuzzySuggestions(queryText!);
     }
 
     return widget.items.where((T option) {
       if (widget.onSearchFilter != null) {
-        return widget.onSearchFilter(option, queryText);
+        return widget.onSearchFilter!(option, queryText);
       }
 
       return normalizeTextByRemovingDiacritics(option.labelText)
-              .contains(queryText) ||
+              .contains(queryText!) ||
           (option.descriptionText != null
-              ? normalizeTextByRemovingDiacritics(option.descriptionText)
+              ? normalizeTextByRemovingDiacritics(option.descriptionText!)
                   .contains(queryText)
               : false);
     }).toList();

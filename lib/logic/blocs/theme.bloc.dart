@@ -6,10 +6,10 @@ import 'package:tbloc_dart/tbloc_dart.dart';
 class FastThemeBloc
     extends BidirectionalBloc<FastThemeBlocEvent, FastThemeBlocState> {
   FastThemeBloc({
-    FastThemeBlocState initialState,
+    FastThemeBlocState? initialState,
   }) : super(initialState: initialState ?? FastThemeBlocState()) {
-    WidgetsBinding.instance.window
-      ..onPlatformBrightnessChanged = onPlatformBrightnessChanged;
+    WidgetsBinding.instance!.window.onPlatformBrightnessChanged =
+        onPlatformBrightnessChanged;
   }
 
   @override
@@ -26,7 +26,7 @@ class FastThemeBloc
       );
     } else {
       yield FastThemeBlocState(
-        brightness: WidgetsBinding.instance.window.platformBrightness,
+        brightness: WidgetsBinding.instance!.window.platformBrightness,
         themeMode: ThemeMode.system,
       );
     }
@@ -34,7 +34,7 @@ class FastThemeBloc
 
   @protected
   void onPlatformBrightnessChanged() {
-    final newBrightness = WidgetsBinding.instance.window.platformBrightness;
+    final newBrightness = WidgetsBinding.instance!.window.platformBrightness;
     final brightness = currentState.brightness;
     final themeMode = currentState.themeMode;
 

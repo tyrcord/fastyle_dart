@@ -25,7 +25,7 @@ class NumberInputFormatter extends TextInputFormatter {
   ) {
     var newValueText = newValue.text;
 
-    if (newValueText == '' || newValueText == null) {
+    if (newValueText == '') {
       return newValue;
     }
 
@@ -72,7 +72,7 @@ class NumberInputFormatter extends TextInputFormatter {
       return oldValue;
     }
 
-    num number;
+    num? number;
 
     try {
       number = defaultNumberFormat.parse(newValueText);
@@ -106,7 +106,7 @@ class NumberInputFormatter extends TextInputFormatter {
       }
 
       return TextEditingValue(
-        text: checkedNewValueText ?? '',
+        text: checkedNewValueText,
         selection: newValue.selection,
       );
     }

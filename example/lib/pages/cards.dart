@@ -21,7 +21,6 @@ class CardsPage extends StatelessWidget {
           kFastSizedBox16,
           FastCard(
             titleText: 'English',
-            child: FastBody2(text: 'Hello World!'),
             headerActions: <Widget>[
               FastIconButton(
                 onTap: () {
@@ -32,6 +31,7 @@ class CardsPage extends StatelessWidget {
                 ),
               ),
             ],
+            child: FastBody2(text: 'Hello World!'),
           ),
           kFastSizedBox16,
           FastCard(
@@ -47,7 +47,6 @@ class CardsPage extends StatelessWidget {
           kFastSizedBox16,
           FastCard(
             titleText: 'English',
-            child: FastBody(text: 'With Shadow ;)'),
             headerActions: <Widget>[
               FastIconButton(
                 onTap: () {},
@@ -69,6 +68,7 @@ class CardsPage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
               ),
             ],
+            child: FastBody(text: 'With Shadow ;)'),
           ),
           kFastSizedBox16,
           FastCard(

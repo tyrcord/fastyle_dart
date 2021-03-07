@@ -6,22 +6,21 @@ const _kPadding = EdgeInsets.symmetric(horizontal: 16.0);
 
 class FastListHeader extends StatelessWidget {
   final String categoryText;
-  final String captionText;
-  final Color categoryColor;
-  final Color captionColor;
-  final EdgeInsets margin;
-  final EdgeInsets padding;
+  final String? captionText;
+  final Color? categoryColor;
+  final Color? captionColor;
+  final EdgeInsets? margin;
+  final EdgeInsets? padding;
 
   FastListHeader({
-    Key key,
-    @required this.categoryText,
+    Key? key,
+    required this.categoryText,
     this.captionText,
     this.categoryColor,
     this.captionColor,
     this.margin,
     this.padding,
-  })  : assert(categoryText != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,7 @@ class FastListHeader extends StatelessWidget {
         children: <Widget>[
           FastSubhead(text: categoryText, textColor: categoryColor),
           if (captionText != null)
-            FastCaption(text: captionText, textColor: captionColor),
+            FastCaption(text: captionText!, textColor: captionColor),
         ],
       ),
     );
