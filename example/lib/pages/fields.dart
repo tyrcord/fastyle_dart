@@ -61,8 +61,8 @@ class FieldsPage extends StatelessWidget {
             suffixIcon: Container(
               child: PopupMenuButton(
                 itemBuilder: (context) => <PopupMenuItem>[
-                  PopupMenuItem(child: Text('Option 1'), value: 1),
-                  PopupMenuItem(child: Text('Option 2'), value: 2),
+                  PopupMenuItem(value: 1, child: Text('Option 1')),
+                  PopupMenuItem(value: 2, child: Text('Option 2')),
                 ],
                 padding: EdgeInsets.zero,
                 icon: Align(

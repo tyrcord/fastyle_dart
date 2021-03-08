@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'package:tbloc_dart/tbloc_dart.dart';
 
 enum FastThemeBlocEventType {
