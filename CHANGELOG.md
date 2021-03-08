@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## [0.12.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.12.0) (2021-03-08)
+
+### Enhancements
+
+- Supports sound null safety.
+- Minor fix and performance improvements.
+
+### Breaking Changes
+
+- Renames function normalizeText to normalizeTextByRemovingDiacritics.
+- Renames value property to valueText.
+
 ## [0.11.9](https://github.com/tyrcord/fastyle_dart/releases/tag/0.11.9) (2020-12-18)
 
 ### Enhancements
