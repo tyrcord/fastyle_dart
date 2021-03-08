@@ -76,7 +76,7 @@ class _FastTextButtonState extends State<FastTextButton>
             FastButtonLabel(
               text: widget.text ?? kFastButtonLabel,
               textColor:
-                  widget.isEnabled ? textColor : textColor!.withAlpha(155),
+                  widget.isEnabled ? textColor : textColor.withAlpha(155),
             ),
       ),
     );
