@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastOutlineButton extends StatefulWidget implements IFastButton {
-  final Color? highlightedBorderColor;
   final FastButtonEmphasis emphasis;
   final EdgeInsetsGeometry? padding;
   final Color? highlightColor;
@@ -24,7 +23,6 @@ class FastOutlineButton extends StatefulWidget implements IFastButton {
   const FastOutlineButton({
     Key? key,
     required this.onTap,
-    this.highlightedBorderColor,
     this.highlightColor,
     this.borderColor,
     this.textColor,
@@ -58,28 +56,48 @@ class _FastOutlineButtonState extends State<FastOutlineButton>
 
   @override
   Widget build(BuildContext context) {
-    final _color = widget.borderColor ??
+    final buttonTextStyle = ThemeHelper.texts.getButtonTextStyle(context);
+    final borderColor = widget.borderColor ??
         (widget.emphasis == FastButtonEmphasis.high
             ? ThemeHelper.colors.getPrimaryColor(context)
-            : ThemeHelper.texts.getButtonTextStyle(context).color!);
+            : buttonTextStyle.color!);
 
-    final disabledColor = _color.withAlpha(kDisabledAlpha);
+    final disabledColor = borderColor.withAlpha(kDisabledAlpha);
+    final textColor = widget.textColor ?? borderColor;
 
     return FastButtonLayout(
-      child: OutlinedButton(
-        // padding: widget.padding,
-        onPressed: throttleOnTapIfNeeded(),
-        // borderSide: BorderSide(color: _color),
-        // disabledBorderColor: disabledColor,
-        // textColor: widget.textColor ?? _color,
-        // highlightColor: widget.highlightColor,
-        // highlightedBorderColor: widget.highlightedBorderColor ?? disabledColor,
-        child: widget.child ??
-            FastButtonLabel(
-              text: widget.text ?? kFastButtonLabel,
-              textColor: widget.isEnabled ? _color : disabledColor,
-            ),
+      child: OutlinedButtonTheme(
+        data: OutlinedButtonThemeData(
+          style: ButtonStyle(),
+        ),
+        child: OutlinedButton(
+          onPressed: throttleOnTapIfNeeded(),
+          style: ButtonStyle(
+            overlayColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+              return widget.highlightColor ?? textColor.withOpacity(0.1);
+            }),
+            padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry?>(
+                (Set<MaterialState> states) {
+              return widget.padding;
+            }),
+            side: MaterialStateProperty.resolveWith<BorderSide>(
+                (Set<MaterialState> states) {
+              return BorderSide(
+                color: widget.isEnabled ? borderColor : disabledColor,
+              );
+            }),
+          ),
+          child: widget.child ?? _buildLabel(textColor, disabledColor),
+        ),
       ),
+    );
+  }
+
+  Widget _buildLabel(Color textColor, Color disabledTextColor) {
+    return FastButtonLabel(
+      text: widget.text ?? kFastButtonLabel,
+      textColor: widget.isEnabled ? textColor : disabledTextColor,
     );
   }
 }

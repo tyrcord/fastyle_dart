@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 
@@ -12,38 +14,54 @@ class ButtonsPage extends StatelessWidget {
         children: <Widget>[
           FastRaisedButton(
             text: 'raised button',
-            onTap: () {},
+            onTap: () {
+              log('raised button disabled');
+            },
           ),
           FastRaisedButton(
             text: 'raised button disabled',
-            onTap: () {},
+            onTap: () {
+              log('raised button disabled');
+            },
             isEnabled: false,
           ),
           FastOutlineButton(
             text: 'Outline button',
-            onTap: () {},
+            onTap: () {
+              log('Outline button');
+            },
           ),
           FastOutlineButton(
             text: 'Outline button disabled',
-            onTap: () {},
+            onTap: () {
+              log('Outline button disabled');
+            },
             isEnabled: false,
           ),
           FastTextButton(
             text: 'Text button',
-            onTap: () {},
+            onTap: () {
+              log('text button');
+            },
           ),
           FastTextButton(
             text: 'Text button disabled',
-            onTap: () {},
+            onTap: () {
+              log('text button disabled');
+            },
             isEnabled: false,
           ),
           FastIconButton(
             icon: Icon(Icons.android),
-            onTap: () {},
+            onTap: () {
+              log('icon button');
+            },
           ),
           FastIconButton(
             icon: Icon(Icons.android),
-            onTap: () {},
+            onTap: () {
+              log('icon button disabled');
+            },
             isEnabled: false,
           ),
         ],

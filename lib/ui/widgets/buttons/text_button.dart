@@ -54,20 +54,29 @@ class _FastTextButtonState extends State<FastTextButton>
 
   @override
   Widget build(BuildContext context) {
-    final _color = widget.textColor ??
+    final textColor = widget.textColor ??
         (widget.emphasis == FastButtonEmphasis.high
             ? ThemeHelper.colors.getPrimaryColor(context)
-            : ThemeHelper.texts.getButtonTextStyle(context).color);
+            : ThemeHelper.texts.getButtonTextStyle(context).color!);
 
     return FastButtonLayout(
-      child: FlatButton(
-        padding: widget.padding,
+      child: TextButton(
+        style: ButtonStyle(
+          padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry?>(
+              (Set<MaterialState> states) {
+            return widget.padding;
+          }),
+          overlayColor: MaterialStateProperty.resolveWith<Color>(
+              (Set<MaterialState> states) {
+            return widget.highlightColor ?? textColor.withOpacity(0.1);
+          }),
+        ),
         onPressed: widget.isEnabled ? widget.onTap : null,
-        highlightColor: widget.highlightColor,
         child: widget.child ??
             FastButtonLabel(
               text: widget.text ?? kFastButtonLabel,
-              textColor: widget.isEnabled ? _color : _color!.withAlpha(155),
+              textColor:
+                  widget.isEnabled ? textColor : textColor!.withAlpha(155),
             ),
       ),
     );

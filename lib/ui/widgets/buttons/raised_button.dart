@@ -53,29 +53,43 @@ class _FastRaisedButtonState extends State<FastRaisedButton>
 
   @override
   Widget build(BuildContext context) {
-    final _backgroundColor =
+    final backgroundColor =
         widget.backgroundColor ?? ThemeHelper.colors.getPrimaryColor(context);
-    final _textColor = widget.textColor ??
+    final textColor = widget.textColor ??
         ThemeHelper.colors.getColorWithBestConstrast(
           context: context,
           darkColor: ThemeHelper.texts.getButtonTextStyle(context).color!,
           lightColor: ThemeHelper.colors.getWhiteColor(context),
-          backgroundColor: _backgroundColor,
+          backgroundColor: backgroundColor,
         );
 
     return FastButtonLayout(
-      child: RaisedButton(
-        color: _backgroundColor,
-        padding: widget.padding,
+      child: ElevatedButton(
         onPressed: throttleOnTapIfNeeded(),
-        splashColor: Colors.transparent,
-        highlightColor: widget.highlightColor,
+        style: ButtonStyle(
+          padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry?>(
+              (Set<MaterialState> states) {
+            return widget.padding;
+          }),
+          backgroundColor: MaterialStateProperty.resolveWith<Color>(
+              (Set<MaterialState> states) {
+            if (states.contains(MaterialState.disabled)) {
+              return backgroundColor.withOpacity(0.5);
+            }
+
+            return backgroundColor;
+          }),
+          overlayColor: MaterialStateProperty.resolveWith<Color>(
+              (Set<MaterialState> states) {
+            return widget.highlightColor ?? textColor.withOpacity(0.1);
+          }),
+        ),
         child: widget.child ??
             FastButtonLabel(
               text: widget.text ?? kFastButtonLabel,
               textColor: widget.isEnabled
-                  ? _textColor
-                  : _textColor.withAlpha(kDisabledAlpha),
+                  ? textColor
+                  : textColor.withAlpha(kDisabledAlpha),
             ),
       ),
     );
