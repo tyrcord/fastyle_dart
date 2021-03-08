@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## [0.12.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.12.0) (2021-03-08)
+## [0.12.0-nullsafety.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.12.0-nullsafety.0) (2021-03-08)
 
 ### Enhancements
 
