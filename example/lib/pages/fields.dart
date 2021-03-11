@@ -87,6 +87,12 @@ class FieldsPage extends StatelessWidget {
             placeholderText: '100',
             captionText: 'required',
           ),
+          FastNumberField(
+            labelText: 'Number 4 (allow invalid number)',
+            placeholderText: '0',
+            captionText: 'required',
+            transformInvalidNumber: false,
+          ),
           FastSelectField(
             labelText: 'Favorite food',
             items: demoItems,

@@ -7,7 +7,7 @@ class FastNumberField extends StatelessWidget {
   final String? placeholderText;
   final String? helperText;
   final bool isReadOnly;
-  final bool shouldAcceptDecimalValue;
+  final bool acceptDecimal;
   final int maxLength;
   final int maxValue;
   final TextAlign? textAlign;
@@ -18,6 +18,7 @@ class FastNumberField extends StatelessWidget {
   final bool isEnabled;
   final Widget? suffixIcon;
   final BoxConstraints? suffixIconConstraints;
+  final bool transformInvalidNumber;
   final String? locale;
 
   FastNumberField({
@@ -26,10 +27,11 @@ class FastNumberField extends StatelessWidget {
     this.captionText,
     this.placeholderText,
     this.helperText,
-    this.maxLength = NumberInputFormatter.safeMaxLength,
+    this.maxLength = NumberInputFormatter.safeIntegerMaxLength,
     this.maxValue = NumberInputFormatter.safeInteger,
+    this.transformInvalidNumber = true,
     this.isReadOnly = false,
-    this.shouldAcceptDecimalValue = true,
+    this.acceptDecimal = true,
     this.allowAutocorrect = false,
     this.textAlign,
     this.initialValue,
@@ -65,7 +67,7 @@ class FastNumberField extends StatelessWidget {
       autocorrect: allowAutocorrect,
       cursorColor: ThemeHelper.colors.getPrimaryColor(context),
       keyboardType: TextInputType.numberWithOptions(
-        decimal: shouldAcceptDecimalValue,
+        decimal: acceptDecimal,
       ),
       decoration: InputDecoration(
         hintText: placeholderText,
@@ -82,7 +84,8 @@ class FastNumberField extends StatelessWidget {
         NumberInputFormatter(
           maxLength: maxLength,
           maxValue: maxValue,
-          shouldAcceptDecimalValue: shouldAcceptDecimalValue,
+          acceptDecimal: acceptDecimal,
+          transformInvalidNumber: transformInvalidNumber,
         ),
       ],
       onChanged: onValueChanged,

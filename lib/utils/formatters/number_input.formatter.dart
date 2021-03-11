@@ -1,81 +1,82 @@
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
+// FIXME: only support period decimal separator
 class NumberInputFormatter extends TextInputFormatter {
-  final bool shouldAcceptDecimalValue;
+  final bool transformInvalidNumber;
+  final bool acceptDecimal;
   final int maxLength;
   final int maxValue;
 
   static const int safeInteger = 9007199254740992; // 2^53
-  static const int safeMaxLength = 16;
+  static const int safeIntegerMaxLength = 16;
   static const String defaultLocale = 'en_US';
   static const String defaultDecimalSeparator = '.';
 
+  static const String _commaDecimalSeparator = ',';
+  static TextEditingValue? _zeroTextEditingValue;
+  static final _integerRegExp = RegExp(r'^\d*$');
+  static NumberFormat? _defaultNumberFormat;
+  static final _commaRegExp = RegExp(',');
+  static final _periodRegExp = RegExp('\\.');
+
+  static NumberFormat get defaultNumberFormat {
+    _defaultNumberFormat ??= NumberFormat.decimalPattern(defaultLocale);
+    return _defaultNumberFormat!;
+  }
+
+  static TextEditingValue get _prefixedDecimalSeprator {
+    _zeroTextEditingValue ??= TextEditingValue(
+      text: NumberFormat('0.', defaultLocale).format(0),
+      selection: TextSelection(baseOffset: 2, extentOffset: 2),
+    );
+
+    return _zeroTextEditingValue!;
+  }
+
   NumberInputFormatter({
-    this.maxLength = NumberInputFormatter.safeMaxLength,
-    this.shouldAcceptDecimalValue = true,
+    this.maxLength = NumberInputFormatter.safeIntegerMaxLength,
     this.maxValue = NumberInputFormatter.safeInteger,
+    this.acceptDecimal = true,
+    this.transformInvalidNumber = true,
   })  : assert(maxValue <= NumberInputFormatter.safeInteger),
-        assert(maxLength <= NumberInputFormatter.safeMaxLength);
+        assert(maxLength <= NumberInputFormatter.safeIntegerMaxLength);
 
   @override
   TextEditingValue formatEditUpdate(
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
-    var newValueText = newValue.text;
+    var valueText = newValue.text;
 
-    if (newValueText == '') {
+    if (valueText.isEmpty) {
       return newValue;
     }
 
-    // workaround for locale decimal separator
-    final defaultNumberFormat = NumberFormat.decimalPattern(defaultLocale);
+    valueText = _sanitizeDecimalSeparatorIfNeeded(valueText);
 
-    if (newValueText.contains(',')) {
-      newValueText = newValueText.replaceFirst(RegExp(','), '.');
+    if (acceptDecimal && valueText == defaultDecimalSeparator) {
+      return acceptDecimal ? _prefixedDecimalSeprator : oldValue;
     }
 
-    if (newValueText == defaultDecimalSeparator) {
-      return shouldAcceptDecimalValue
-          ? TextEditingValue(
-              text: NumberFormat(
-              '0.',
-              defaultLocale,
-            ).format(0))
-          : oldValue;
-    }
-
-    if (!_isValidNumber(
-      newValueText,
-      decimalSeparator: defaultDecimalSeparator,
-    )) {
+    if (!_isStringANumber(valueText)) {
       return oldValue;
     }
 
-    final dotRegExp = RegExp('\\$defaultDecimalSeparator');
-    final decimalMatches = dotRegExp.allMatches(newValueText);
+    final periods = _periodRegExp.allMatches(valueText);
 
-    if (decimalMatches.length > 1) {
+    if (periods.length > 1) {
       return oldValue;
     }
 
-    final decimalSeparatorPosition =
-        newValueText.indexOf(defaultDecimalSeparator);
-    var newValueTextLength = newValue.text.length;
-
-    if (decimalSeparatorPosition > -1 && decimalSeparatorPosition < maxLength) {
-      --newValueTextLength;
-    }
-
-    if (newValueTextLength > maxLength) {
+    if (_isStringTooLong(valueText)) {
       return oldValue;
     }
 
     num? number;
 
     try {
-      number = defaultNumberFormat.parse(newValueText);
+      number = defaultNumberFormat.parse(valueText);
       // ignore: empty_catches
     } catch (e) {}
 
@@ -84,29 +85,8 @@ class NumberInputFormatter extends TextInputFormatter {
         return oldValue;
       }
 
-      String checkedNewValueText;
-
-      if (shouldAcceptDecimalValue && decimalMatches.isNotEmpty) {
-        var fractionDigits = newValueText.length - decimalSeparatorPosition - 1;
-
-        if (fractionDigits > 0) {
-          // decimal number
-          fractionDigits = fractionDigits > 20 ? 20 : fractionDigits;
-          checkedNewValueText = _localizeNumber(
-            number.toStringAsFixed(fractionDigits),
-            decimalSeparator: defaultDecimalSeparator,
-          );
-        } else {
-          // close to a decimal number (\d+.) => 0.
-          checkedNewValueText = newValueText;
-        }
-      } else {
-        // integer
-        checkedNewValueText = number.toStringAsFixed(0);
-      }
-
       return TextEditingValue(
-        text: checkedNewValueText,
+        text: _formatNumberToString(number, valueText, periods.isNotEmpty),
         selection: newValue.selection,
       );
     }
@@ -114,28 +94,85 @@ class NumberInputFormatter extends TextInputFormatter {
     return oldValue;
   }
 
-  bool _isValidNumber(String number, {String decimalSeparator = '.'}) {
-    final regExp = shouldAcceptDecimalValue
+  bool _isStringTooLong(String text) {
+    final decimalSeparatorPosition = text.indexOf(
+      defaultDecimalSeparator,
+    );
+
+    var textLength = text.length;
+
+    if (decimalSeparatorPosition > -1 && decimalSeparatorPosition < maxLength) {
+      --textLength;
+    }
+
+    return textLength > maxLength;
+  }
+
+  bool _isStringANumber(
+    String number, {
+    String decimalSeparator = defaultDecimalSeparator,
+  }) {
+    final regExp = acceptDecimal
         ? RegExp('^\\d*(\\$decimalSeparator?\\d*)?\$')
-        : RegExp(r'^\d*$');
+        : _integerRegExp;
 
     return regExp.hasMatch(number);
   }
 
-  String _localizeNumber(String value, {String decimalSeparator = '.'}) {
-    if (decimalSeparator != defaultDecimalSeparator) {
-      final stringMedata = value.split(defaultDecimalSeparator);
+  String _sanitizeDecimalSeparatorIfNeeded(String text) {
+    if (acceptDecimal && text.contains(_commaDecimalSeparator)) {
+      text = text.replaceFirst(_commaRegExp, defaultDecimalSeparator);
+    }
 
-      if (stringMedata.length > 1) {
+    return text;
+  }
+
+  String _formatNumberToString(num number, String raw, bool isDecimal) {
+    if (transformInvalidNumber) {
+      if (isDecimal && acceptDecimal) {
+        final numberParts = raw.split(defaultDecimalSeparator);
+        final integerPart = numberParts[0];
+        final fractionalPart = numberParts[1];
+        final fractionalLength = fractionalPart.length;
+
+        if (fractionalLength > 0) {
+          // [integer].[fractional]
+          return _formatDecimalNumberToString(
+            number.toStringAsFixed(fractionalLength),
+            decimalSeparator: defaultDecimalSeparator,
+          );
+        } else {
+          // [integer].
+          return '${int.tryParse(integerPart) ?? 0}$defaultDecimalSeparator';
+        }
+      } else {
+        // [interger]
+        return number.toStringAsFixed(0);
+      }
+    }
+
+    return raw;
+  }
+
+  String _formatDecimalNumberToString(
+    String value, {
+    String decimalSeparator = defaultDecimalSeparator,
+  }) {
+    if (decimalSeparator != defaultDecimalSeparator) {
+      final numberParts = value.split(defaultDecimalSeparator);
+      final integerPart = numberParts[0];
+      final fractionalPart = numberParts[1];
+
+      if (numberParts.length > 1) {
         var pattern = '';
 
-        for (var i = 0; i < stringMedata[0].length; i++) {
+        for (var i = 0; i < integerPart.length; i++) {
           pattern += '0';
         }
 
         pattern += defaultDecimalSeparator;
 
-        for (var i = 0; i < stringMedata[1].length; i++) {
+        for (var i = 0; i < fractionalPart.length; i++) {
           pattern += '0';
         }
 
