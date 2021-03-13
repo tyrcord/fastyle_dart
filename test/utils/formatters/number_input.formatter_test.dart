@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:test/test.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
@@ -21,6 +22,12 @@ void main() {
       numberInputFormatter = NumberInputFormatter();
     });
 
+    group('#constructor()', () {
+      test('should be an instance of TextInputFormatter', () {
+        expect(numberInputFormatter, isA<TextInputFormatter>());
+      });
+    });
+
     group('#formatEditUpdate', () {
       test('should return an empty string when the new value is empty', () {
         expect(
@@ -29,12 +36,34 @@ void main() {
         );
       });
 
+      test('should replace commas to periods', () {
+        expect(
+          numberInputFormatter
+              .formatEditUpdate(
+                TextEditingValue(text: '0'),
+                TextEditingValue(text: '0,'),
+              )
+              .text,
+          equals('0.'),
+        );
+      });
+
       test('should prefix a decimal separator with 0', () {
         expect(
           numberInputFormatter
               .formatEditUpdate(
-                hundred,
+                empty,
                 TextEditingValue(text: '.'),
+              )
+              .text,
+          equals(zeroAndDecimalSeparator.text),
+        );
+
+        expect(
+          numberInputFormatter
+              .formatEditUpdate(
+                empty,
+                TextEditingValue(text: ','),
               )
               .text,
           equals(zeroAndDecimalSeparator.text),
@@ -43,7 +72,7 @@ void main() {
 
       test('should not format a decimal number when not allowed', () {
         numberInputFormatter = NumberInputFormatter(
-          acceptDecimal: false,
+          allowDecimals: false,
         );
 
         expect(

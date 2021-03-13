@@ -84,7 +84,7 @@ class FastNumberField extends StatelessWidget {
         NumberInputFormatter(
           maxLength: maxLength,
           maxValue: maxValue,
-          acceptDecimal: acceptDecimal,
+          allowDecimals: acceptDecimal,
           transformInvalidNumber: transformInvalidNumber,
         ),
       ],

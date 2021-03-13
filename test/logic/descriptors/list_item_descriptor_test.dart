@@ -24,15 +24,16 @@ void main() {
       test('should be an instance of FastDescriptor', () {
         expect(itemDescriptor, isA<FastDescriptor>());
       });
-      test('isDense should be equal to true by default', () {
+
+      test('property isDense should be equal to true by default', () {
         expect(itemDescriptor.isDense, equals(true));
       });
 
-      test('leading should be equal to null by default', () {
+      test('property leading should be equal to null by default', () {
         expect(itemDescriptor.leading, equals(null));
       });
 
-      test('trailing should be equal to null by default', () {
+      test('property trailing should be equal to null by default', () {
         expect(itemDescriptor.trailing, equals(null));
       });
     });
@@ -40,7 +41,7 @@ void main() {
     group('#copyWith()', () {
       test(
           'should return a copy of a FastListItemDescriptor object '
-          'with given parameters', () {
+          'according to the given parameters', () {
         final copy = itemDescriptor2.copyWith(isDense: false);
 
         expect(copy.isDense, equals(false));

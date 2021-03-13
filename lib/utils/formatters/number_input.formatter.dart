@@ -1,26 +1,46 @@
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
-// FIXME: only support period decimal separator
+///
+/// TextInputFormatter for numbers validation and formatting.
+///
+/// FIXME: Only support period decimal separator and english locale.
 class NumberInputFormatter extends TextInputFormatter {
+  ///
+  /// Specifies whether to allow transformation of invalid numbers.
+  ///
   final bool transformInvalidNumber;
-  final bool acceptDecimal;
+
+  ///
+  /// Specifies whether to allow decimal values.
+  ///
+  final bool allowDecimals;
+
+  ///
+  /// Specifies the maximum number of digits allowed.
+  ///
   final int maxLength;
+
+  ///
+  /// Represents the largest possible value.
+  ///
   final int maxValue;
 
   static const int safeInteger = 9007199254740992; // 2^53
-  static const int safeIntegerMaxLength = 16;
   static const String defaultLocale = 'en_US';
-  static const String defaultDecimalSeparator = '.';
+  static const int safeIntegerMaxLength = 16;
 
+  static const String _defaultDecimalSeparator = '.';
   static const String _commaDecimalSeparator = ',';
-  static TextEditingValue? _zeroTextEditingValue;
-  static final _integerRegExp = RegExp(r'^\d*$');
-  static NumberFormat? _defaultNumberFormat;
-  static final _commaRegExp = RegExp(',');
-  static final _periodRegExp = RegExp('\\.');
 
-  static NumberFormat get defaultNumberFormat {
+  static final RegExp _integerRegExp = RegExp(r'^\d*$');
+  static final RegExp _periodRegExp = RegExp('\\.');
+  static final RegExp _commaRegExp = RegExp(',');
+
+  static TextEditingValue? _zeroTextEditingValue;
+  static NumberFormat? _defaultNumberFormat;
+
+  static NumberFormat get _defaultNumberFormatter {
     _defaultNumberFormat ??= NumberFormat.decimalPattern(defaultLocale);
     return _defaultNumberFormat!;
   }
@@ -28,7 +48,7 @@ class NumberInputFormatter extends TextInputFormatter {
   static TextEditingValue get _prefixedDecimalSeprator {
     _zeroTextEditingValue ??= TextEditingValue(
       text: NumberFormat('0.', defaultLocale).format(0),
-      selection: TextSelection(baseOffset: 2, extentOffset: 2),
+      selection: const TextSelection(baseOffset: 2, extentOffset: 2),
     );
 
     return _zeroTextEditingValue!;
@@ -37,8 +57,8 @@ class NumberInputFormatter extends TextInputFormatter {
   NumberInputFormatter({
     this.maxLength = NumberInputFormatter.safeIntegerMaxLength,
     this.maxValue = NumberInputFormatter.safeInteger,
-    this.acceptDecimal = true,
     this.transformInvalidNumber = true,
+    this.allowDecimals = true,
   })  : assert(maxValue <= NumberInputFormatter.safeInteger),
         assert(maxLength <= NumberInputFormatter.safeIntegerMaxLength);
 
@@ -55,8 +75,8 @@ class NumberInputFormatter extends TextInputFormatter {
 
     valueText = _sanitizeDecimalSeparatorIfNeeded(valueText);
 
-    if (acceptDecimal && valueText == defaultDecimalSeparator) {
-      return acceptDecimal ? _prefixedDecimalSeprator : oldValue;
+    if (allowDecimals && valueText == _defaultDecimalSeparator) {
+      return allowDecimals ? _prefixedDecimalSeprator : oldValue;
     }
 
     if (!_isStringANumber(valueText)) {
@@ -76,7 +96,7 @@ class NumberInputFormatter extends TextInputFormatter {
     num? number;
 
     try {
-      number = defaultNumberFormat.parse(valueText);
+      number = _defaultNumberFormatter.parse(valueText);
       // ignore: empty_catches
     } catch (e) {}
 
@@ -96,7 +116,7 @@ class NumberInputFormatter extends TextInputFormatter {
 
   bool _isStringTooLong(String text) {
     final decimalSeparatorPosition = text.indexOf(
-      defaultDecimalSeparator,
+      _defaultDecimalSeparator,
     );
 
     var textLength = text.length;
@@ -110,9 +130,9 @@ class NumberInputFormatter extends TextInputFormatter {
 
   bool _isStringANumber(
     String number, {
-    String decimalSeparator = defaultDecimalSeparator,
+    String decimalSeparator = _defaultDecimalSeparator,
   }) {
-    final regExp = acceptDecimal
+    final regExp = allowDecimals
         ? RegExp('^\\d*(\\$decimalSeparator?\\d*)?\$')
         : _integerRegExp;
 
@@ -120,8 +140,8 @@ class NumberInputFormatter extends TextInputFormatter {
   }
 
   String _sanitizeDecimalSeparatorIfNeeded(String text) {
-    if (acceptDecimal && text.contains(_commaDecimalSeparator)) {
-      text = text.replaceFirst(_commaRegExp, defaultDecimalSeparator);
+    if (allowDecimals && text.contains(_commaDecimalSeparator)) {
+      text = text.replaceFirst(_commaRegExp, _defaultDecimalSeparator);
     }
 
     return text;
@@ -129,8 +149,8 @@ class NumberInputFormatter extends TextInputFormatter {
 
   String _formatNumberToString(num number, String raw, bool isDecimal) {
     if (transformInvalidNumber) {
-      if (isDecimal && acceptDecimal) {
-        final numberParts = raw.split(defaultDecimalSeparator);
+      if (isDecimal && allowDecimals) {
+        final numberParts = raw.split(_defaultDecimalSeparator);
         final integerPart = numberParts[0];
         final fractionalPart = numberParts[1];
         final fractionalLength = fractionalPart.length;
@@ -139,11 +159,11 @@ class NumberInputFormatter extends TextInputFormatter {
           // [integer].[fractional]
           return _formatDecimalNumberToString(
             number.toStringAsFixed(fractionalLength),
-            decimalSeparator: defaultDecimalSeparator,
+            decimalSeparator: _defaultDecimalSeparator,
           );
         } else {
           // [integer].
-          return '${int.tryParse(integerPart) ?? 0}$defaultDecimalSeparator';
+          return '${int.tryParse(integerPart) ?? 0}$_defaultDecimalSeparator';
         }
       } else {
         // [interger]
@@ -156,10 +176,10 @@ class NumberInputFormatter extends TextInputFormatter {
 
   String _formatDecimalNumberToString(
     String value, {
-    String decimalSeparator = defaultDecimalSeparator,
+    String decimalSeparator = _defaultDecimalSeparator,
   }) {
-    if (decimalSeparator != defaultDecimalSeparator) {
-      final numberParts = value.split(defaultDecimalSeparator);
+    if (decimalSeparator != _defaultDecimalSeparator) {
+      final numberParts = value.split(_defaultDecimalSeparator);
       final integerPart = numberParts[0];
       final fractionalPart = numberParts[1];
 
@@ -170,7 +190,7 @@ class NumberInputFormatter extends TextInputFormatter {
           pattern += '0';
         }
 
-        pattern += defaultDecimalSeparator;
+        pattern += _defaultDecimalSeparator;
 
         for (var i = 0; i < fractionalPart.length; i++) {
           pattern += '0';
