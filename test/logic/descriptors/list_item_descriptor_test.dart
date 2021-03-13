@@ -91,20 +91,33 @@ void main() {
       test(
           'should return true '
           'when two FastListItemDescriptor objects are equal ', () {
-        final copy = itemDescriptor2.copyWith(isDense: true);
+        itemDescriptor = FastListItemDescriptor(
+          leading: leading2,
+          trailing: trailing2,
+        );
 
-        expect(itemDescriptor2 == copy, equals(true));
+        itemDescriptor2 = FastListItemDescriptor(
+          leading: leading2,
+          trailing: trailing2,
+        );
+
+        expect(itemDescriptor == itemDescriptor2, equals(true));
       });
 
       test(
           'should return false '
           'when two FastListItemDescriptor objects are unequal ', () {
-        final copy = FastListItemDescriptor(
+        itemDescriptor = FastListItemDescriptor(
+          leading: leading,
+          trailing: trailing2,
+        );
+
+        itemDescriptor2 = FastListItemDescriptor(
           leading: leading2,
           trailing: trailing2,
         );
 
-        expect(itemDescriptor2 == copy, equals(false));
+        expect(itemDescriptor == itemDescriptor2, equals(false));
       });
     });
   });

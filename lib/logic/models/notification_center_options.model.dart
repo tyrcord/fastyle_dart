@@ -3,8 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:tmodel_dart/tmodel_dart.dart';
 
 class FastNotificationCenterOptions extends TModel {
+  ///
+  /// A widget to display before the notification title.
+  ///
   final Widget? leadingIcon;
+
+  ///
+  /// Represents the color to use when drawing an icon.
+  ///
   final Color? iconColor;
+
+  ///
+  /// Represents the size of the icon in logical pixels.
+  ///
   final double? iconSize;
 
   const FastNotificationCenterOptions({

@@ -2,18 +2,45 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:tmodel_dart/tmodel_dart.dart';
 
 class FastItem<T> extends TModel {
+  ///
+  /// Describes some additional visual aspects of an item.
+  ///
   final FastListItemDescriptor? descriptor;
+
+  ///
+  /// Describes a list of categories to which an item belongs.
+  ///
   final List<FastCategory>? categories;
+
+  ///
+  /// Represents a lowercase labelText without any diacritics.
+  ///
   final String? normalizedLabelText;
+
+  ///
+  /// Text that describes an item description.
+  ///
   final String? descriptionText;
+
+  ///
+  /// Text that describes an item label.
+  ///
   final String labelText;
+
+  ///
+  /// Indicates whether an item is enabled in the user interface.
+  ///
   final bool isEnabled;
+
+  ///
+  /// Represents an item value.
+  ///
   final T? value;
 
   const FastItem({
     required this.labelText,
-    this.normalizedLabelText,
     this.isEnabled = true,
+    this.normalizedLabelText,
     this.descriptionText,
     this.categories,
     this.descriptor,
@@ -45,10 +72,10 @@ class FastItem<T> extends TModel {
   @override
   FastItem<T> clone() {
     return FastItem<T>(
-      descriptor: descriptor != null ? descriptor!.clone() : null,
+      descriptor: descriptor?.clone(),
       normalizedLabelText: normalizedLabelText,
       descriptionText: descriptionText,
-      categories: categories,
+      categories: categories?.map((c) => c.clone()).toList(),
       isEnabled: isEnabled,
       labelText: labelText,
       value: value,

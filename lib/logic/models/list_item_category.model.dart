@@ -3,16 +3,31 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:tmodel_dart/tmodel_dart.dart';
 
 class FastListItemCategory<T extends FastItem> extends TModel {
+  ///
+  /// Text that describes an item label.
+  ///
   final String labelText;
+
+  ///
+  /// Text that describes an item value.
+  ///
   final String valueText;
+
+  ///
+  /// Text that describes an item label.
+  ///
   final List<T> items;
+
+  ///
+  /// Represents the weight of a category.
+  ///
   final double weight;
 
   const FastListItemCategory({
     required this.labelText,
     required this.valueText,
     required this.items,
-    this.weight = 0,
+    this.weight = 0.0,
   });
 
   @override

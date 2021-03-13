@@ -2,9 +2,23 @@ import 'package:flutter/material.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
 
+///
+/// Class that describes some visual aspects of an item.
+///
 class FastListItemDescriptor extends FastDescriptor {
+  ///
+  /// A widget to display after an item label.
+  ///
   final Widget? trailing;
+
+  ///
+  /// A widget to display before an item label.
+  ///
   final Widget? leading;
+
+  ///
+  /// Specifies Whether a item will have the vertically dense layout.
+  ///
   final bool isDense;
 
   const FastListItemDescriptor({

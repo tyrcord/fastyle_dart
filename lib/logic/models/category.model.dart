@@ -1,14 +1,25 @@
 import 'package:tmodel_dart/tmodel_dart.dart';
 
 class FastCategory extends TModel {
+  ///
+  /// Text that describes a category label.
+  ///
   final String labelText;
+
+  ///
+  /// Text that describes a category value.
+  ///
   final String valueText;
+
+  ///
+  /// Represents the weight of a category.
+  ///
   final double weight;
 
   const FastCategory({
     required this.labelText,
     required this.valueText,
-    this.weight = 0,
+    this.weight = 0.0,
   });
 
   @override
