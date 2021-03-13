@@ -39,8 +39,6 @@ mixin FastThrottleButtonMixin<T extends IFastButton> on State<T> {
 
   @protected
   void unsubscribeToTrottlerEventsIfNeeded() {
-    if (subscriptionStream != null) {
-      subscriptionStream!.cancel();
-    }
+    subscriptionStream?.cancel();
   }
 }
