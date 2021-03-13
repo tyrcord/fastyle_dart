@@ -39,7 +39,7 @@ class FastListItemDescriptor extends FastDescriptor {
   FastListItemDescriptor merge({FastListItemDescriptor? descriptor}) {
     assert((descriptor != null));
 
-    return FastListItemDescriptor(
+    return copyWith(
       trailing: descriptor!.trailing,
       isDense: descriptor.isDense,
       leading: descriptor.leading,

@@ -7,8 +7,10 @@ void main() {
   group('FastListItemDescriptor', () {
     late FastListItemDescriptor itemDescriptor;
     late FastListItemDescriptor itemDescriptor2;
-    Widget trailing = Text('trailing');
-    Widget leading = Text('leading');
+    final trailing = Text('trailing');
+    final leading = Text('leading');
+    final leading2 = Text('leading2');
+    final trailing2 = Text('trailing2');
 
     setUp(() {
       itemDescriptor = FastListItemDescriptor();
@@ -19,6 +21,9 @@ void main() {
     });
 
     group('#constructor()', () {
+      test('should be an instance of FastDescriptor', () {
+        expect(itemDescriptor, isA<FastDescriptor>());
+      });
       test('isDense should be equal to true by default', () {
         expect(itemDescriptor.isDense, equals(true));
       });
@@ -33,12 +38,26 @@ void main() {
     });
 
     group('#copyWith()', () {
-      test('should return a copy of a FastListItemDescriptor object', () {
+      test(
+          'should return a copy of a FastListItemDescriptor object '
+          'with given parameters', () {
         final copy = itemDescriptor2.copyWith(isDense: false);
 
         expect(copy.isDense, equals(false));
         expect(copy.trailing, equals(trailing));
         expect(copy.leading, equals(leading));
+
+        final copy2 = itemDescriptor2.copyWith(leading: leading2);
+
+        expect(copy2.isDense, equals(true));
+        expect(copy2.trailing, equals(trailing));
+        expect(copy2.leading, equals(leading2));
+
+        final copy3 = itemDescriptor2.copyWith(trailing: trailing2);
+
+        expect(copy3.isDense, equals(true));
+        expect(copy3.trailing, equals(trailing2));
+        expect(copy3.leading, equals(leading));
       });
     });
 
@@ -46,10 +65,45 @@ void main() {
       test('should return a copy of a FastListItemDescriptor object', () {
         final copy = itemDescriptor2.clone();
 
-        expect(itemDescriptor2 == copy, equals(true));
         expect(copy.isDense, equals(true));
         expect(copy.trailing, equals(trailing));
         expect(copy.leading, equals(leading));
+      });
+    });
+
+    group('#merge()', () {
+      test('should combine two FastListItemDescriptor objects', () {
+        final copy = itemDescriptor.copyWith(
+          isDense: false,
+          trailing: trailing2,
+        );
+
+        final merged = itemDescriptor2.merge(descriptor: copy);
+
+        expect(merged.isDense, equals(false));
+        expect(merged.trailing, equals(trailing2));
+        expect(merged.leading, equals(leading));
+      });
+    });
+
+    group('#operator ==', () {
+      test(
+          'should return true '
+          'when two FastListItemDescriptor objects are equal ', () {
+        final copy = itemDescriptor2.copyWith(isDense: true);
+
+        expect(itemDescriptor2 == copy, equals(true));
+      });
+
+      test(
+          'should return false '
+          'when two FastListItemDescriptor objects are unequal ', () {
+        final copy = FastListItemDescriptor(
+          leading: leading2,
+          trailing: trailing2,
+        );
+
+        expect(itemDescriptor2 == copy, equals(false));
       });
     });
   });
