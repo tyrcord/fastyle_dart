@@ -15,6 +15,9 @@ class FastNotificationCenter {
   static bool _isShowingNotification = false;
   static const int _maxNotification = 2;
 
+  ///
+  /// Displays an error notification.
+  ///
   static void error(
     String message, {
     Key? key,
@@ -29,6 +32,9 @@ class FastNotificationCenter {
     );
   }
 
+  ///
+  /// Displays an warn notification.
+  ///
   static void warn(
     String message, {
     Key? key,
@@ -43,6 +49,9 @@ class FastNotificationCenter {
     );
   }
 
+  ///
+  /// Displays an info notification.
+  ///
   static void info(
     String message, {
     Key? key,
@@ -57,6 +66,9 @@ class FastNotificationCenter {
     );
   }
 
+  ///
+  /// Displays an success notification.
+  ///
   static void success(
     String message, {
     Key? key,
