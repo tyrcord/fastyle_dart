@@ -6,16 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastNotificationCenter {
-  static BuildContext get _context => navigatorKey.currentContext!;
-  static const _animationDuration = Duration(milliseconds: 750);
-  static const _notificationDuration = Duration(seconds: 2);
   static final navigatorKey = GlobalKey<NavigatorState>();
-  static final _queue = ListQueue<Flushbar>();
+
+  static BuildContext get _context => navigatorKey.currentContext!;
+  static const Duration _animationDuration = Duration(milliseconds: 750);
+  static const Duration _notificationDuration = Duration(seconds: 2);
+  static final ListQueue<Flushbar> _queue = ListQueue<Flushbar>();
   static bool _isShowingNotification = false;
-  static const _maxNotification = 2;
+  static const int _maxNotification = 2;
 
   static void error(
     String message, {
+    Key? key,
     FastNotificationCenterOptions? options,
   }) {
     _buildNotification(
@@ -29,6 +31,7 @@ class FastNotificationCenter {
 
   static void warn(
     String message, {
+    Key? key,
     FastNotificationCenterOptions? options,
   }) {
     _buildNotification(
@@ -42,6 +45,7 @@ class FastNotificationCenter {
 
   static void info(
     String message, {
+    Key? key,
     FastNotificationCenterOptions? options,
   }) {
     _buildNotification(
@@ -55,6 +59,7 @@ class FastNotificationCenter {
 
   static void success(
     String message, {
+    Key? key,
     FastNotificationCenterOptions? options,
   }) {
     _buildNotification(
@@ -75,10 +80,12 @@ class FastNotificationCenter {
 
   static void _buildNotification(
     String message, {
+    Key? key,
     FastNotificationCenterOptions? options,
   }) {
     _addNotification(
       Flushbar(
+        key: key,
         backgroundColor: ThemeHelper.colors.getBackGroundColor(_context),
         boxShadows: [ThemeHelper.getDefaultBoxShadow(_context)],
         flushbarPosition: FlushbarPosition.TOP,
@@ -125,7 +132,7 @@ class FastNotificationCenter {
 
       final notification = _queue.removeFirst();
 
-      notification.show(_context);
+      Future.microtask(() => notification.show(_context));
     } else {
       _isShowingNotification = false;
     }
