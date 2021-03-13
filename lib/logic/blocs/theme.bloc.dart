@@ -7,7 +7,9 @@ class FastThemeBloc
     extends BidirectionalBloc<FastThemeBlocEvent, FastThemeBlocState> {
   FastThemeBloc({
     FastThemeBlocState? initialState,
-  }) : super(initialState: initialState ?? FastThemeBlocState()) {
+  })  : assert((initialState != null && initialState.brightness != null) ||
+            initialState == null),
+        super(initialState: initialState ?? FastThemeBlocState()) {
     WidgetsBinding.instance!.window.onPlatformBrightnessChanged =
         onPlatformBrightnessChanged;
   }
