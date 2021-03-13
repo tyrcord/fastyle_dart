@@ -13,21 +13,21 @@ class FastApp extends StatefulWidget {
   final FastThemeBloc? themeBloc;
   final ThemeData? lightTheme;
   final ThemeData? darkTheme;
-  final String? titleText;
+  final String titleText;
   final Locale? locale;
   final Widget home;
 
   FastApp({
     Key? key,
     required this.home,
+    this.supportedLocales = kFastSupportedLocales,
+    this.debugShowCheckedModeBanner = false,
+    this.titleText = kFastEmptyString,
     this.localizationsDelegates,
     this.lightTheme,
     this.darkTheme,
     this.themeBloc,
-    this.titleText,
     this.locale,
-    this.supportedLocales = kFastSupportedLocales,
-    this.debugShowCheckedModeBanner = false,
   }) : super(key: key);
 
   @override
@@ -68,7 +68,7 @@ class _FastAppState extends State<FastApp> {
             return MaterialApp(
               debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
               navigatorKey: FastNotificationCenter.navigatorKey,
-              title: widget.titleText ?? '',
+              title: widget.titleText,
               theme: widget.lightTheme,
               darkTheme: widget.darkTheme,
               themeMode: state.themeMode,
