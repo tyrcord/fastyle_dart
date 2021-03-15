@@ -8,19 +8,19 @@ class FastSearchField extends StatelessWidget {
   final bool isReadOnly;
   final ValueChanged<String>? onValueChanged;
   final TextEditingController? textEditingController;
-  final EdgeInsets? margin;
+  final EdgeInsets margin;
   final TextAlign? textAlign;
   final bool allowAutocorrect;
 
   FastSearchField({
     Key? key,
+    this.margin = const EdgeInsets.only(bottom: 8.0),
+    this.allowAutocorrect = false,
+    this.isReadOnly = false,
+    this.textEditingController,
     this.placeholderText,
     this.onValueChanged,
-    this.textEditingController,
-    this.isReadOnly = false,
-    this.margin,
     this.textAlign,
-    this.allowAutocorrect = false,
   }) : super(key: key);
 
   @override

@@ -1,27 +1,69 @@
 import 'package:flutter/material.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:intl/intl.dart';
 
 class FastListItemLayout extends StatefulWidget {
+  ///
+  /// Describes some additional visual aspects of an item.
+  ///
   final FastListItemDescriptor? descriptor;
+
+  ///
+  /// The padding for the input decoration's container.
+  ///
   final EdgeInsets? contentPadding;
+
+  ///
+  /// Allow to convert the label to beginning of sentence case.
+  ///
+  final bool capitalizeLabelText;
+
+  ///
+  /// Text that describes an item description.
+  ///
   final String? descriptionText;
+
+  ///
+  /// Called for each distinct tap.
+  ///
   final VoidCallback? onTap;
-  final String titleText;
+
+  ///
+  /// Text that describes an item label.
+  ///
+  final String labelText;
+
+  ///
+  /// A widget to display after an item label.
+  ///
   final Widget? trailing;
+
+  ///
+  /// A widget to display before an item label.
+  ///
   final Widget? leading;
+
+  ///
+  /// Indicates whether an item is enabled in the user interface.
+  ///
   final bool isEnabled;
-  final bool? isDense;
+
+  ///
+  /// Specifies whether an item will have the vertically dense layout.
+  ///
+  final bool isDense;
 
   FastListItemLayout({
     Key? key,
-    required this.titleText,
+    required this.labelText,
+    this.capitalizeLabelText = true,
     this.isEnabled = true,
+    this.isDense = true,
     this.descriptionText,
     this.contentPadding,
     this.descriptor,
     this.trailing,
-    this.isDense,
     this.leading,
     this.onTap,
   }) : super(key: key);
@@ -36,7 +78,7 @@ class _FastListItemLayoutState extends State<FastListItemLayout> {
   bool _isInitialized = false;
   double? _leadingOffsetX;
 
-  bool get isDense => widget.isDense ?? widget.descriptor?.isDense ?? true;
+  bool get isDense => widget.descriptor?.isDense ?? widget.isDense;
 
   // Material specifications.
   static const _minLeadingWidth = 40.0;
@@ -52,7 +94,7 @@ class _FastListItemLayoutState extends State<FastListItemLayout> {
     super.didChangeDependencies();
 
     if (!_isInitialized) {
-      _leading = widget.leading ?? widget.descriptor?.leading;
+      _leading = widget.descriptor?.leading ?? widget.leading;
       _isInitialized = true;
     }
   }
@@ -77,7 +119,7 @@ class _FastListItemLayoutState extends State<FastListItemLayout> {
     return ThemeHelper.getListTitleTheme(
       context: context,
       child: ListTile(
-        trailing: widget.trailing ?? widget.descriptor?.trailing,
+        trailing: widget.descriptor?.trailing ?? widget.trailing,
         contentPadding: widget.contentPadding,
         title: _buildTitle(transform),
         enabled: widget.isEnabled,
@@ -90,7 +132,11 @@ class _FastListItemLayoutState extends State<FastListItemLayout> {
   }
 
   Widget _buildTitle(Matrix4? transform) {
-    final title = FastBody(text: widget.titleText);
+    final labelText = widget.capitalizeLabelText
+        ? toBeginningOfSentenceCase(widget.labelText)!
+        : widget.labelText;
+
+    final title = FastBody(text: labelText);
 
     return transform != null
         ? Transform(transform: transform, child: title)

@@ -32,7 +32,7 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _color = ThemeHelper.colors.getPrimaryColor(context);
-    var _trailing = trailing ?? item?.descriptor?.trailing ?? _defaultIcon;
+    var _trailing = item?.descriptor?.trailing ?? trailing ?? _defaultIcon;
 
     if (_trailing is Icon) {
       final icon = _trailing;
@@ -41,7 +41,7 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
 
     return FastListItemLayout(
       contentPadding: contentPadding,
-      titleText: item?.labelText ?? titleText!,
+      labelText: item?.labelText ?? titleText!,
       descriptionText: item?.descriptionText ?? descriptionText,
       onTap: onTap,
       leading: item?.descriptor?.leading ?? leading,

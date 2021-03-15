@@ -17,7 +17,7 @@ class FastListItemDescriptor extends FastDescriptor {
   final Widget? leading;
 
   ///
-  /// Specifies Whether a item will have the vertically dense layout.
+  /// Specifies whether an item will have the vertically dense layout.
   ///
   final bool isDense;
 

@@ -3,10 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastShadowLayout extends StatelessWidget {
+  ///
+  /// Specifies the background color of this widget.
+  ///
   final Color? backgroundColor;
+
+  ///
+  /// If non-null, rounds the corners of this widget outer border edge.
+  ///
   final double borderRadius;
+
+  ///
+  /// Specifies the color of shadows.
+  ///
   final Color? shadowColor;
+
+  ///
+  /// Specifies the radius of the shadow's blur effect.
+  ///
   final double blurRadius;
+
+  ///
+  /// The child contained by the FastButtonLayout.
+  ///
   final Widget child;
 
   FastShadowLayout({
@@ -20,12 +39,14 @@ class FastShadowLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _shadowColor =
-        shadowColor ?? ThemeHelper.colors.getShadowColor(context);
-
     return Container(
       decoration: BoxDecoration(
-        boxShadow: [BoxShadow(color: _shadowColor, blurRadius: blurRadius)],
+        boxShadow: [
+          BoxShadow(
+            color: shadowColor ?? ThemeHelper.colors.getShadowColor(context),
+            blurRadius: blurRadius,
+          )
+        ],
         borderRadius: BorderRadius.circular(borderRadius),
         color: backgroundColor ??
             ThemeHelper.colors.getBackGroundColor(

@@ -4,36 +4,74 @@ import 'package:intl/intl.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastFieldLayout extends StatelessWidget {
+  ///
+  /// Force to keep the helper boundaries even if there is no helper.
+  ///
   final bool showHelperBoundaries;
+
+  ///
+  /// Allow to convert the label to beginning of sentence case.
+  ///
+  final bool capitalizeLabelText;
+
+  ///
+  /// Color for the helper.
+  ///
   final Color? helperTextColor;
+
+  ///
+  /// Short text for additional information.
+  ///
   final String? captionText;
+
+  ///
+  /// Text used to provide additional hints for the user in conjuction with
+  /// input elements.
+  ///
   final String? helperText;
-  final EdgeInsets? margin;
+
+  ///
+  /// An icon that appears after the editable part of the text field.
+  ///
   final Widget? suffixIcon;
+
+  ///
+  /// Empty space to surround the control.
+  ///
+  final EdgeInsets margin;
+
+  ///
+  /// Text that describes a field label.
+  ///
   final String? labelText;
+
+  ///
+  /// The control contained by the FastButtonLayout.
+  ///
   final Widget control;
 
   FastFieldLayout({
     Key? key,
     required this.control,
+    this.margin = const EdgeInsets.only(bottom: 8.0),
     this.showHelperBoundaries = true,
+    this.capitalizeLabelText = true,
     this.helperTextColor,
     this.captionText,
     this.helperText,
     this.suffixIcon,
     this.labelText,
-    this.margin,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: margin ?? const EdgeInsets.only(bottom: 8.0),
+      margin: margin,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          if (labelText != null) _buildLabel(context),
+          if (labelText != null || captionText != null) _buildLabel(context),
           Stack(
             children: <Widget>[
               _buildControl(),
@@ -70,7 +108,10 @@ class FastFieldLayout extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 1.0),
             child: FastBody2(
-              text: toBeginningOfSentenceCase(labelText)!,
+              text: (capitalizeLabelText
+                      ? toBeginningOfSentenceCase(labelText)
+                      : labelText) ??
+                  kFastEmptyString,
               textColor: ThemeHelper.texts.getBodyTextStyle(context).color,
             ),
           ),

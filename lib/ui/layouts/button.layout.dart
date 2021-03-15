@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class FastButtonLayout extends StatelessWidget {
+  ///
+  /// The child contained by the FastButtonLayout.
+  ///
   final Widget child;
 
   const FastButtonLayout({

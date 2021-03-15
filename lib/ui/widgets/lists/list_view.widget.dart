@@ -11,6 +11,7 @@ class FastListView<T extends FastItem> extends StatelessWidget {
   final bool shouldSortItems;
   final FastListItemBuilder<T>? listItemBuilder;
   final EdgeInsets? itemContentPadding;
+  final bool useDenseListItem;
 
   FastListView({
     Key? key,
@@ -21,6 +22,7 @@ class FastListView<T extends FastItem> extends StatelessWidget {
     this.isViewScrollable = true,
     this.shouldSortItems = true,
     this.showItemDivider = false,
+    this.useDenseListItem = true,
     this.listItemBuilder,
     this.itemContentPadding,
   }) : super(key: key);
@@ -38,19 +40,19 @@ class FastListView<T extends FastItem> extends StatelessWidget {
     );
   }
 
-  Widget _buildListItems(BuildContext context, T option, int index) {
+  Widget _buildListItems(BuildContext context, T item, int index) {
     if (listItemBuilder != null) {
-      return listItemBuilder!(context, option, index);
+      return listItemBuilder!(context, item, index);
     }
 
     return FastListItemLayout(
       contentPadding: itemContentPadding,
-      titleText: option.labelText,
-      descriptionText: option.descriptionText,
-      leading: option.descriptor?.leading,
-      trailing: option.descriptor?.trailing,
-      isEnabled: option.isEnabled,
-      isDense: option.descriptor?.isDense,
+      labelText: item.labelText,
+      descriptionText: item.descriptionText,
+      leading: item.descriptor?.leading,
+      trailing: item.descriptor?.trailing,
+      isEnabled: item.isEnabled,
+      isDense: item.descriptor?.isDense ?? useDenseListItem,
     );
   }
 }
