@@ -8,7 +8,7 @@ class FastSegmentField<T> extends StatefulWidget {
   final String labelText;
   final String? captionText;
   final bool isReadOnly;
-  final int selectedIndex;
+  final int? selectedIndex;
 
   FastSegmentField({
     Key? key,
