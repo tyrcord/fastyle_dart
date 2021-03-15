@@ -3,41 +3,41 @@ import 'package:intl/intl.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
 
-const kFastListTileCategoryAll = FastCategory(
+const kFastListTileCategoryAll = FastInternalCategory(
   labelText: kFastAllString,
   valueText: kFastAllString,
-  weight: 999,
+  weight: 1000,
 );
 
 class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   final FastListItemBuilder<T> listItemBuilder;
   final List<FastCategory>? categories;
-  final bool shouldGroupByCategory;
-  final String? tabAllCategoryText;
+  final String? allCategoryText;
   final bool isViewScrollable;
+  final bool groupByCategory;
   final bool shouldSortItems;
   final bool showItemDivider;
-  final int intialTabIndex;
+  final int intialCategoryIndex;
   final List<T> items;
 
   FastListViewLayout({
     Key? key,
     required this.listItemBuilder,
     required this.items,
-    this.tabAllCategoryText,
-    this.intialTabIndex = 0,
-    this.categories,
-    this.shouldGroupByCategory = false,
+    this.intialCategoryIndex = 0,
+    this.groupByCategory = false,
     this.isViewScrollable = true,
-    this.shouldSortItems = true,
     this.showItemDivider = false,
+    this.shouldSortItems = true,
+    this.allCategoryText,
+    this.categories,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final _items = [...items];
 
-    if (shouldGroupByCategory) {
+    if (groupByCategory) {
       return _buildTabViews(context, _items);
     }
 
@@ -54,11 +54,15 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
       views.add(_buildListView(context, listCategory.items));
     });
 
-    return FastTabs(tabs: tabs, views: views, initialIndex: intialTabIndex);
+    return FastTabs(
+      initialIndex: intialCategoryIndex,
+      tabs: tabs,
+      views: views,
+    );
   }
 
   Widget _buildListView(BuildContext context, List<T> items) {
-    if (isViewScrollable || shouldGroupByCategory) {
+    if (isViewScrollable || groupByCategory) {
       return _buildScrollableContent(context, items);
     }
 
@@ -135,7 +139,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     final categoriesMap = {
       kFastListTileCategoryAll.valueText: _buildListCategory(
         kFastListTileCategoryAll.copyWith(
-          labelText: tabAllCategoryText ?? kFastListTileCategoryAll.labelText,
+          labelText: allCategoryText ?? kFastListTileCategoryAll.labelText,
         ),
       ),
     };

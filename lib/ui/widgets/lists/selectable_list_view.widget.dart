@@ -65,9 +65,9 @@ class _FastSelectableListViewState<T extends FastItem>
       showItemDivider: widget.showItemDivider,
       shouldSortItems: widget.shouldSortItems,
       categories: widget.categories,
-      shouldGroupByCategory: widget.shouldGroupByCategory,
-      intialTabIndex: widget.intialTabIndex,
-      tabAllCategoryText: widget.tabAllCategoryText,
+      groupByCategory: widget.shouldGroupByCategory,
+      intialCategoryIndex: widget.intialTabIndex,
+      allCategoryText: widget.tabAllCategoryText,
     );
   }
 
