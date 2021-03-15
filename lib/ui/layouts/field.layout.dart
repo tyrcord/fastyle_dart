@@ -5,7 +5,6 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastFieldLayout extends StatelessWidget {
   final bool showHelperBoundaries;
-  final String? placeholderText;
   final Color? helperTextColor;
   final String? captionText;
   final String? helperText;
@@ -17,14 +16,13 @@ class FastFieldLayout extends StatelessWidget {
   FastFieldLayout({
     Key? key,
     required this.control,
+    this.showHelperBoundaries = true,
     this.helperTextColor,
-    this.placeholderText,
     this.captionText,
     this.helperText,
     this.suffixIcon,
     this.labelText,
     this.margin,
-    this.showHelperBoundaries = true,
   }) : super(key: key);
 
   @override
@@ -38,16 +36,20 @@ class FastFieldLayout extends StatelessWidget {
           if (labelText != null) _buildLabel(context),
           Stack(
             children: <Widget>[
-              ConstrainedBox(
-                constraints: const BoxConstraints(minHeight: 33.0),
-                child: control,
-              ),
+              _buildControl(),
               if (suffixIcon != null) _buildSuffixIcon(),
             ],
           ),
           if (showHelperBoundaries) _buildHelper(context),
         ],
       ),
+    );
+  }
+
+  Widget _buildControl() {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minHeight: 33.0),
+      child: control,
     );
   }
 

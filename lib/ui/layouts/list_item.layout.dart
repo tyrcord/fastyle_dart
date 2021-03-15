@@ -16,6 +16,7 @@ class FastListItemLayout extends StatefulWidget {
   FastListItemLayout({
     Key? key,
     required this.titleText,
+    this.isEnabled = true,
     this.descriptionText,
     this.contentPadding,
     this.descriptor,
@@ -23,7 +24,6 @@ class FastListItemLayout extends StatefulWidget {
     this.isDense,
     this.leading,
     this.onTap,
-    this.isEnabled = true,
   }) : super(key: key);
 
   @override
@@ -32,9 +32,9 @@ class FastListItemLayout extends StatefulWidget {
 
 class _FastListItemLayoutState extends State<FastListItemLayout> {
   final _leadingKey = GlobalKey();
+  late final Widget? _leading;
   bool _isInitialized = false;
   double? _leadingOffsetX;
-  Widget? _leading;
 
   bool get isDense => widget.isDense ?? widget.descriptor?.isDense ?? true;
 

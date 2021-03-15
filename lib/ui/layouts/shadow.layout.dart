@@ -4,33 +4,29 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastShadowLayout extends StatelessWidget {
   final Color? backgroundColor;
-  final double? borderRadius;
+  final double borderRadius;
   final Color? shadowColor;
-  final double? blurRadius;
+  final double blurRadius;
   final Widget child;
 
   FastShadowLayout({
     Key? key,
     required this.child,
+    this.borderRadius = kFastBorderRadius,
+    this.blurRadius = kFastBlurRadius,
     this.backgroundColor,
-    this.borderRadius,
     this.shadowColor,
-    this.blurRadius,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _blurRadius = blurRadius ?? kFastBlurRadius;
-    final _borderRadius = borderRadius ?? kFastBorderRadius;
-    final _shadowColor = shadowColor ??
-        ThemeHelper.colors.getShadowColor(
-          context,
-        );
+    final _shadowColor =
+        shadowColor ?? ThemeHelper.colors.getShadowColor(context);
 
     return Container(
       decoration: BoxDecoration(
-        boxShadow: [BoxShadow(color: _shadowColor, blurRadius: _blurRadius)],
-        borderRadius: BorderRadius.circular(_borderRadius),
+        boxShadow: [BoxShadow(color: _shadowColor, blurRadius: blurRadius)],
+        borderRadius: BorderRadius.circular(borderRadius),
         color: backgroundColor ??
             ThemeHelper.colors.getBackGroundColor(
               context,
