@@ -131,4 +131,11 @@ class ThemeColorHelper {
   Color getBackGroundColor(BuildContext context) {
     return Theme.of(context).backgroundColor;
   }
+
+  Brightness getBrightnessForColor({
+    required BuildContext context,
+    required Color color,
+  }) {
+    return color.computeLuminance() > 0.5 ? Brightness.light : Brightness.dark;
+  }
 }

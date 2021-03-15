@@ -14,4 +14,18 @@ class ThemeGradientHelper {
       ],
     );
   }
+
+  Brightness getBrightnessForGradient({
+    required BuildContext context,
+    required LinearGradient gradient,
+  }) {
+    final luminances = gradient.colors.map(
+      (Color color) => color.computeLuminance(),
+    );
+
+    final averageLuminance =
+        luminances.reduce((a, b) => a + b) / luminances.length;
+
+    return averageLuminance > 0.5 ? Brightness.light : Brightness.dark;
+  }
 }
