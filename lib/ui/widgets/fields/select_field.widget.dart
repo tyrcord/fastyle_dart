@@ -14,42 +14,42 @@ class FastSelectField<T> extends StatefulWidget {
   final FastItem<T>? selection;
   final List<FastItem<T>> items;
   final List<FastCategory>? categories;
-  final bool shouldGroupByCategory;
-  final bool shouldUseFuzzySearch;
-  final bool shouldSortItems;
-  final String? titleText;
+  final bool groupByCategory;
+  final bool useFuzzySearch;
+  final bool sortItems;
+  final String titleText;
   final String? searchPlaceholderText;
-  final int intialTabIndex;
-  final String? tabAllCategoryText;
+  final int intialCategoryIndex;
+  final String? allCategoryText;
   final Widget? clearSearchIcon;
   final Widget? closeIcon;
   final Widget? backIcon;
   final bool canClearSelection;
-  final String? clearSelectionText;
+  final String clearSelectionText;
 
   FastSelectField({
     Key? key,
     required this.onSelectionChanged,
     required this.labelText,
     required this.items,
-    this.selection,
-    this.captionText,
-    this.placeholderText,
-    this.helperText,
+    this.clearSelectionText = kFastClearSelectionText,
+    this.titleText = kFastSelectTitleText,
+    this.canClearSelection = true,
+    this.intialCategoryIndex = 0,
+    this.groupByCategory = false,
+    this.useFuzzySearch = false,
     this.isReadOnly = false,
-    this.shouldGroupByCategory = false,
-    this.shouldUseFuzzySearch = false,
-    this.shouldSortItems = true,
-    this.titleText,
-    this.categories,
+    this.sortItems = true,
     this.searchPlaceholderText,
-    this.intialTabIndex = 0,
-    this.tabAllCategoryText,
     this.clearSearchIcon,
+    this.allCategoryText,
+    this.placeholderText,
+    this.captionText,
+    this.helperText,
+    this.categories,
+    this.selection,
     this.closeIcon,
     this.backIcon,
-    this.canClearSelection = true,
-    this.clearSelectionText,
   }) : super(key: key);
 
   @override
@@ -98,14 +98,14 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
               builder: (BuildContext context) => FastSearchPage<FastItem<T>>(
                 titleText: widget.titleText,
                 items: widget.items,
-                shouldGroupByCategory: widget.shouldGroupByCategory,
+                groupByCategory: widget.groupByCategory,
                 categories: widget.categories,
                 selection: widget.selection,
-                shouldUseFuzzySearch: widget.shouldUseFuzzySearch,
-                shouldSortItems: widget.shouldSortItems,
+                useFuzzySearch: widget.useFuzzySearch,
+                sortItems: widget.sortItems,
                 placeholderText: widget.searchPlaceholderText,
-                intialTabIndex: widget.intialTabIndex,
-                tabAllCategoryText: widget.tabAllCategoryText,
+                intialCategoryIndex: widget.intialCategoryIndex,
+                allCategoryText: widget.allCategoryText,
                 clearSearchIcon: widget.clearSearchIcon,
                 backIcon: widget.backIcon,
                 closeIcon: widget.closeIcon,

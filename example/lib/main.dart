@@ -53,8 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 builder: (context) => FastSearchPage(
                   items: demoItems,
                   categories: demoCategories,
-                  shouldGroupByCategory: true,
-                  shouldUseFuzzySearch: true,
+                  groupByCategory: true,
+                  useFuzzySearch: true,
                 ),
                 fullscreenDialog: true,
               ),

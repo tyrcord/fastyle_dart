@@ -8,6 +8,8 @@ const kFastEmptyString = '';
 const kFastNoneString = 'none';
 const kFastAllString = 'all';
 const kFastButtonLabel = 'Button';
+const kFastClearSelectionText = 'Clear Selection';
+const kFastSelectTitleText = 'Select';
 
 // EdgeInsets
 

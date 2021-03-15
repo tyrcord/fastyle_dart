@@ -6,44 +6,42 @@ import 'package:tbloc_dart/tbloc_dart.dart';
 
 const _kIconSize = 28.0;
 const _kBlurRadius = 3.0;
-const _kSelectTitleText = 'Select';
-const _kClearSelectionText = 'Clear Selection';
 
 class FastSearchPage<T extends FastItem> extends StatefulWidget {
   final bool Function(T option, String query)? onSearch;
   final List<FastCategory>? categories;
-  final bool shouldGroupByCategory;
-  final bool shouldUseFuzzySearch;
+  final String? clearSelectionText;
+  final int intialCategoryIndex;
+  final String? allCategoryText;
   final String? placeholderText;
   final Widget? clearSearchIcon;
-  final bool shouldSortItems;
-  final Widget? closeIcon;
-  final List<T> items;
-  final Widget? backIcon;
-  final T? selection;
-  final String? titleText;
-  final int intialTabIndex;
-  final String? tabAllCategoryText;
   final bool canClearSelection;
-  final String? clearSelectionText;
+  final bool groupByCategory;
+  final bool useFuzzySearch;
+  final Widget? closeIcon;
+  final Widget? backIcon;
+  final String titleText;
+  final bool sortItems;
+  final List<T> items;
+  final T? selection;
 
   FastSearchPage({
     required this.items,
-    this.shouldGroupByCategory = false,
-    this.shouldUseFuzzySearch = false,
+    this.clearSelectionText = kFastClearSelectionText,
+    this.titleText = kFastSelectTitleText,
     this.canClearSelection = true,
-    this.shouldSortItems = true,
+    this.groupByCategory = false,
+    this.intialCategoryIndex = 0,
+    this.useFuzzySearch = false,
+    this.sortItems = true,
     this.clearSearchIcon,
     this.placeholderText,
+    this.allCategoryText,
     this.categories,
-    this.titleText,
     this.selection,
     this.closeIcon,
     this.backIcon,
     this.onSearch,
-    this.intialTabIndex = 0,
-    this.tabAllCategoryText,
-    this.clearSelectionText,
   }) : super();
 
   @override
@@ -79,7 +77,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
 
   Widget _buildHeader(BuildContext context) {
     return Container(
-      color: Theme.of(context).backgroundColor,
+      color: ThemeHelper.colors.getBackGroundColor(context),
       child: SafeArea(
         bottom: false,
         child: Column(
@@ -93,11 +91,11 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
                 right: 16.0,
                 bottom: 16.0,
               ),
-              child: FastHeadline(text: widget.titleText ?? _kSelectTitleText),
+              child: FastHeadline(text: widget.titleText),
             ),
             FastSearchBar(
               showShowBottomBorder: false,
-              shouldUseFuzzySearch: widget.shouldUseFuzzySearch,
+              shouldUseFuzzySearch: widget.useFuzzySearch,
               items: widget.items,
               placeholderText: widget.placeholderText,
               closeIcon: widget.closeIcon,
@@ -142,9 +140,9 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
         boxShadow: [BoxShadow(color: _shadowColor, blurRadius: _kBlurRadius)],
       ),
     );
-    final _shouldSortItems = _searchQuery != null && widget.shouldUseFuzzySearch
+    final _shouldSortItems = _searchQuery != null && widget.useFuzzySearch
         ? false
-        : widget.shouldSortItems;
+        : widget.sortItems;
 
     return ClipRect(
       child: Stack(
@@ -158,10 +156,10 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
                 onSelectionChanged: (T item) => _close(context, item),
                 categories: widget.categories,
                 shouldGroupByCategory:
-                    _searchQuery == null ? widget.shouldGroupByCategory : false,
+                    _searchQuery == null ? widget.groupByCategory : false,
                 selection: widget.selection,
-                intialTabIndex: widget.intialTabIndex,
-                tabAllCategoryText: widget.tabAllCategoryText,
+                intialTabIndex: widget.intialCategoryIndex,
+                tabAllCategoryText: widget.allCategoryText,
               ),
             ),
           ),
@@ -180,7 +178,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
         bottom: true,
         child: FastLink(
           textAlign: TextAlign.right,
-          text: widget.clearSelectionText ?? _kClearSelectionText,
+          text: widget.clearSelectionText!,
           onTap: () => _close(context, null),
         ),
       ),

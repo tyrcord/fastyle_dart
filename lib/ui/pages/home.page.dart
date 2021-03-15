@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:tbloc_dart/tbloc_dart.dart';
 
 const _kExpandedHeight = 160.0;
 const _kHeaderPadding = 16.0;
 const _kContentPadding = EdgeInsets.symmetric(vertical: _kHeaderPadding);
 
 class FastHomePage extends StatefulWidget {
-  final EdgeInsetsGeometry? contentPadding;
+  final EdgeInsetsGeometry contentPadding;
   final Widget? floatingActionButton;
   final List<Widget> children;
-  final double? expandedHeight;
+  final double expandedHeight;
   final List<Widget>? actions;
   final String? subtitleText;
   final String titleText;
@@ -21,14 +22,14 @@ class FastHomePage extends StatefulWidget {
     Key? key,
     required this.titleText,
     required this.children,
+    this.expandedHeight = _kExpandedHeight,
+    this.contentPadding = _kContentPadding,
     this.floatingActionButton,
-    this.expandedHeight,
-    this.contentPadding,
     this.subtitleText,
     this.actions,
     this.leading,
   })  : assert(
-          expandedHeight != null ? expandedHeight >= _kExpandedHeight : true,
+          expandedHeight >= _kExpandedHeight ? true : false,
         ),
         super(key: key);
 
@@ -37,22 +38,21 @@ class FastHomePage extends StatefulWidget {
 }
 
 class _FastHomePageState extends State<FastHomePage> {
+  final ScrollController _scrollController = ScrollController();
   final _leadingKey = GlobalKey();
   final _subtitleKey = GlobalKey();
 
-  double get _expandedHeight => widget.expandedHeight ?? _kExpandedHeight;
-  late ScrollController _scrollController;
   EdgeInsetsGeometry? _titlePadding;
   double _subtitleOpacity = 1.0;
   bool _showSubtitle = true;
-  Size? _leadingSize;
   Size? _subtitleSize;
+  Size? _leadingSize;
 
   @override
   void initState() {
     super.initState();
     SchedulerBinding.instance!.addPostFrameCallback(_onAfterLayout);
-    _scrollController = ScrollController()..addListener(_onScrollNoticiation);
+    _scrollController.addListener(_onScrollNoticiation);
   }
 
   @override
@@ -84,7 +84,7 @@ class _FastHomePageState extends State<FastHomePage> {
 
   void _onScrollNoticiation() {
     if (_scrollController.hasClients) {
-      final threshold = _expandedHeight - kToolbarHeight;
+      final threshold = widget.expandedHeight - kToolbarHeight;
       final offset = _scrollController.offset;
 
       if ((offset >= 0 && offset <= threshold) || _subtitleOpacity > 0) {
@@ -119,22 +119,27 @@ class _FastHomePageState extends State<FastHomePage> {
   }
 
   Widget _buildAppBar(BuildContext context) {
+    final themeBloc = BlocProvider.of<FastThemeBloc>(context);
+    final gradient = ThemeHelper.gradients.primaryLinearGradient(context);
+    final brightness = themeBloc.currentState.brightness;
+
     return SliverAppBar(
+      leading: Container(key: _leadingKey, child: widget.leading),
+      expandedHeight: widget.expandedHeight,
       backgroundColor: Colors.transparent,
-      expandedHeight: _expandedHeight,
+      actions: widget.actions,
       stretch: true,
       pinned: true,
-      leading: Container(
-        key: _leadingKey,
-        child: widget.leading,
-      ),
       flexibleSpace: Container(
-        decoration: BoxDecoration(
-          gradient: ThemeHelper.gradients.primaryLinearGradient(context),
-        ),
+        decoration: BoxDecoration(gradient: gradient),
         child: _buildFlexibleSpaceBar(context),
       ),
-      actions: widget.actions,
+      brightness: brightness == Brightness.dark
+          ? Brightness.dark
+          : ThemeHelper.gradients.getBrightnessForGradient(
+              context: context,
+              gradient: gradient,
+            ),
     );
   }
 
@@ -183,8 +188,8 @@ class _FastHomePageState extends State<FastHomePage> {
     return SliverSafeArea(
       top: false,
       sliver: SliverPadding(
-        padding: widget.contentPadding ?? _kContentPadding,
         sliver: SliverList(delegate: SliverChildListDelegate(widget.children)),
+        padding: widget.contentPadding,
       ),
     );
   }

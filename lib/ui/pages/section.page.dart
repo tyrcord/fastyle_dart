@@ -6,23 +6,22 @@ import 'package:flutter/services.dart';
 const _kHeaderPadding = EdgeInsets.symmetric(horizontal: 16.0);
 const _kAppBarHeightSize = Size.fromHeight(kToolbarHeight);
 const _kMargin = EdgeInsets.symmetric(vertical: 16.0);
-const _kContentPadding = kFastEdgeInsets16;
 const _kBottomPaddingMin = 16.0;
 const _kElevation = 0.0;
 
 class FastSectionPage extends StatelessWidget {
   final String? titleText;
   final Color? titleColor;
-  final EdgeInsets? contentPadding;
+  final EdgeInsets contentPadding;
   final Widget? child;
   final Widget? footer;
   final Widget? leading;
   final List<Widget>? actions;
   final bool isViewScrollable;
   final Widget? floatingActionButton;
-  final Color? appBarbackgroundColor;
+  final Color? appBarBackgroundColor;
   final bool isTitlePositionBelowAppBar;
-  final Size? appBarHeightSize;
+  final Size appBarHeightSize;
   final Widget? closeButton;
   final Widget? backButton;
   final Future<bool>? loadingFuture;
@@ -33,16 +32,16 @@ class FastSectionPage extends StatelessWidget {
 
   FastSectionPage({
     Key? key,
+    this.appBarHeightSize = _kAppBarHeightSize,
+    this.contentPadding = kFastEdgeInsets16,
     this.isTitlePositionBelowAppBar = true,
     this.isViewScrollable = false,
     this.titleColor,
-    this.contentPadding,
     this.titleText,
     this.actions,
     this.leading,
     this.floatingActionButton,
-    this.appBarbackgroundColor,
-    this.appBarHeightSize,
+    this.appBarBackgroundColor,
     this.closeButton,
     this.backButton,
     this.loadingBuilder,
@@ -61,19 +60,9 @@ class FastSectionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeBloc = BlocProvider.of<FastThemeBloc>(context);
-    var brightness = themeBloc.currentState.brightness;
-    brightness = brightness == Brightness.dark
-        ? Brightness.dark
-        : (appBarbackgroundColor != null &&
-                    appBarbackgroundColor!.computeLuminance() > 0.5) ||
-                appBarbackgroundColor == null
-            ? Brightness.light
-            : Brightness.dark;
-
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: appBarHeightSize ?? _kAppBarHeightSize,
+        preferredSize: appBarHeightSize,
         child: _buildAppBar(context),
       ),
       body: SafeArea(
@@ -95,11 +84,11 @@ class FastSectionPage extends StatelessWidget {
     var brightness = themeBloc.currentState.brightness;
     brightness = brightness == Brightness.dark
         ? Brightness.dark
-        : (appBarbackgroundColor != null &&
-                    appBarbackgroundColor!.computeLuminance() > 0.5) ||
-                appBarbackgroundColor == null
-            ? Brightness.light
-            : Brightness.dark;
+        : ThemeHelper.colors.getBrightnessForColor(
+            context: context,
+            color: appBarBackgroundColor ??
+                ThemeHelper.colors.getBackGroundColor(context),
+          );
 
     return AppBar(
       automaticallyImplyLeading: false,
@@ -110,7 +99,7 @@ class FastSectionPage extends StatelessWidget {
             ? ThemeHelper.texts.getBodyTextStyle(context).color
             : ThemeHelper.colors.getWhiteColor(context),
       ),
-      backgroundColor: appBarbackgroundColor ?? Colors.transparent,
+      backgroundColor: appBarBackgroundColor ?? Colors.transparent,
       elevation: _kElevation,
       actions: actions,
       title: !isTitlePositionBelowAppBar && titleText != null
@@ -190,22 +179,19 @@ class FastSectionPage extends StatelessWidget {
   }
 
   Widget _buildContent(BuildContext context) {
-    final padding = contentPadding ?? _kContentPadding;
-
     return Padding(
       padding: footer == null
-          ? padding.copyWith(bottom: _getBottomPadding(context))
-          : padding.copyWith(bottom: 0.0),
+          ? contentPadding.copyWith(bottom: _getBottomPadding(context))
+          : contentPadding.copyWith(bottom: 0.0),
       child: contentBuilder != null ? Builder(builder: contentBuilder!) : child,
     );
   }
 
   Widget _buildFooter(BuildContext context) {
-    final padding = contentPadding ?? _kContentPadding;
     final mediaQueryData = MediaQuery.of(context);
 
     return Padding(
-      padding: padding.copyWith(
+      padding: contentPadding.copyWith(
         top: 0.0,
         bottom: mediaQueryData.padding.bottom + _kBottomPaddingMin,
       ),

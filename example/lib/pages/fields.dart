@@ -96,7 +96,7 @@ class FieldsPage extends StatelessWidget {
           FastSelectField(
             labelText: 'Favorite food',
             items: demoItems,
-            shouldGroupByCategory: true,
+            groupByCategory: true,
             selection: demoItems[3],
             categories: demoCategories,
             onSelectionChanged: (FastItem<String>? value) {},
