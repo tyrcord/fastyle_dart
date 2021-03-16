@@ -5,13 +5,13 @@ const _kTitleMargin = EdgeInsets.symmetric(vertical: 16.0);
 
 class FastArticle extends StatelessWidget {
   final String titleText;
-  final EdgeInsets? titleMargin;
+  final EdgeInsets titleMargin;
   final Iterable<Widget>? children;
 
   const FastArticle({
     Key? key,
     required this.titleText,
-    this.titleMargin,
+    this.titleMargin = _kTitleMargin,
     this.children,
   }) : super(key: key);
 
@@ -21,7 +21,7 @@ class FastArticle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Container(
-          margin: titleMargin ?? _kTitleMargin,
+          margin: titleMargin,
           child: FastTitle(text: titleText, fontWeight: FontWeight.w700),
         ),
         if (children != null) ...children!,

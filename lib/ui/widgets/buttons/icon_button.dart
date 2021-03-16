@@ -3,20 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastIconButton extends StatefulWidget implements IFastButton {
-  final Widget icon;
-
-  final Color? iconColor;
-  final Color? highlightColor;
-  final EdgeInsetsGeometry padding;
-  final double? iconSize;
   final FastButtonEmphasis emphasis;
+  final EdgeInsetsGeometry padding;
+  final Color? highlightColor;
+  final Color? iconColor;
+  final double iconSize;
   final String? tooltip;
-
-  @override
-  final bool shouldTrottleTime;
+  final Widget icon;
 
   @override
   final Duration trottleTimeDuration;
+
+  @override
+  final bool shouldTrottleTime;
 
   @override
   final VoidCallback onTap;
@@ -28,15 +27,15 @@ class FastIconButton extends StatefulWidget implements IFastButton {
     Key? key,
     required this.onTap,
     required this.icon,
-    this.iconColor,
-    this.highlightColor,
-    this.iconSize,
-    this.isEnabled = true,
-    this.padding = kFastEdgeInsets8,
-    this.emphasis = FastButtonEmphasis.low,
-    this.tooltip,
-    this.shouldTrottleTime = false,
     this.trottleTimeDuration = kFastTrottleTimeDuration,
+    this.emphasis = FastButtonEmphasis.low,
+    this.padding = kFastEdgeInsets8,
+    this.shouldTrottleTime = false,
+    this.iconSize = kFastIconSize,
+    this.isEnabled = true,
+    this.highlightColor,
+    this.iconColor,
+    this.tooltip,
   }) : super(key: key);
 
   @override
@@ -71,7 +70,7 @@ class _FastIconButtonState extends State<FastIconButton>
         onPressed: widget.isEnabled ? widget.onTap : null,
         highlightColor: widget.highlightColor,
         icon: widget.icon,
-        iconSize: widget.iconSize ?? kFastIconSize,
+        iconSize: widget.iconSize,
         disabledColor: _color.withAlpha(kDisabledAlpha),
         color: _color,
         tooltip: widget.tooltip,

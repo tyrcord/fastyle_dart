@@ -2,29 +2,29 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 class FastListView<T extends FastItem> extends StatelessWidget {
-  final List<T> items;
-  final List<FastCategory>? categories;
-  final bool shouldGroupByCategory;
-  final bool isEnabled;
-  final bool isViewScrollable;
-  final bool showItemDivider;
-  final bool shouldSortItems;
   final FastListItemBuilder<T>? listItemBuilder;
   final EdgeInsets? itemContentPadding;
+  final List<FastCategory>? categories;
   final bool useDenseListItem;
+  final bool isViewScrollable;
+  final bool groupByCategory;
+  final bool showItemDivider;
+  final bool isEnabled;
+  final bool sortItems;
+  final List<T> items;
 
   FastListView({
     Key? key,
     required this.items,
-    this.categories,
-    this.shouldGroupByCategory = false,
-    this.isEnabled = true,
-    this.isViewScrollable = true,
-    this.shouldSortItems = true,
+    this.groupByCategory = false,
     this.showItemDivider = false,
     this.useDenseListItem = true,
-    this.listItemBuilder,
+    this.isViewScrollable = true,
+    this.sortItems = true,
+    this.isEnabled = true,
     this.itemContentPadding,
+    this.listItemBuilder,
+    this.categories,
   }) : super(key: key);
 
   @override
@@ -34,9 +34,9 @@ class FastListView<T extends FastItem> extends StatelessWidget {
       items: items,
       isViewScrollable: isViewScrollable,
       showItemDivider: showItemDivider,
-      sortItems: shouldSortItems,
+      sortItems: sortItems,
       categories: categories,
-      groupByCategory: shouldGroupByCategory,
+      groupByCategory: groupByCategory,
     );
   }
 

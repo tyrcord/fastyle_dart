@@ -44,12 +44,7 @@ class FastCard extends StatelessWidget {
     if (shadowColor != null) {
       return Container(
         decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: shadowColor!,
-              blurRadius: _kBlurRadius,
-            ),
-          ],
+          boxShadow: [BoxShadow(color: shadowColor!, blurRadius: _kBlurRadius)],
         ),
         child: card,
       );
@@ -63,7 +58,7 @@ class FastCard extends StatelessWidget {
     final customPadding = hasHeaderActions ? 8.0 : 16.0;
 
     return Container(
-      constraints: BoxConstraints(minHeight: 52.0),
+      constraints: const BoxConstraints(minHeight: 52.0),
       padding: EdgeInsets.only(
         left: 16.0,
         right: customPadding,
@@ -79,15 +74,11 @@ class FastCard extends StatelessWidget {
               padding: hasHeaderActions
                   ? const EdgeInsets.only(right: 8.0)
                   : EdgeInsets.zero,
-              child: FastTitle(
-                text: titleText,
-                textColor: titleTextColor,
-              ),
+              child: FastTitle(text: titleText, textColor: titleTextColor),
             ),
           ),
           if (headerActions != null)
             Flexible(
-              flex: 1,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[...headerActions!],

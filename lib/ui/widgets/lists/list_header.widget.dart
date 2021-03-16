@@ -5,28 +5,28 @@ const _kMargin = EdgeInsets.symmetric(vertical: 16.0);
 const _kPadding = EdgeInsets.symmetric(horizontal: 16.0);
 
 class FastListHeader extends StatelessWidget {
-  final String categoryText;
-  final String? captionText;
   final Color? categoryColor;
   final Color? captionColor;
-  final EdgeInsets? margin;
-  final EdgeInsets? padding;
+  final String categoryText;
+  final String? captionText;
+  final EdgeInsets padding;
+  final EdgeInsets margin;
 
   FastListHeader({
     Key? key,
     required this.categoryText,
-    this.captionText,
+    this.padding = _kPadding,
+    this.margin = _kMargin,
     this.categoryColor,
     this.captionColor,
-    this.margin,
-    this.padding,
+    this.captionText,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: margin ?? _kMargin,
-      padding: padding ?? _kPadding,
+      padding: padding,
+      margin: margin,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[

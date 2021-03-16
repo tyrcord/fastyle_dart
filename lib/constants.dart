@@ -25,6 +25,8 @@ const kFastIconSize = 20.0;
 const kFastIconSizeMedium = 24.0;
 const kFastIconSizeXl = 28.0;
 
+const kFastLineHeight = 1.2;
+
 const kFastSizedBox8 = SizedBox(height: 8.0);
 const kFastSizedBox16 = SizedBox(height: 16.0);
 const kFastSizedBox24 = SizedBox(height: 24.0);

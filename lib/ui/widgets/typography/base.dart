@@ -1,8 +1,6 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-const _kLineHeight = 1.2;
-
 class FastBaseTypography extends StatelessWidget {
   final String text;
   final Color? textColor;
@@ -12,7 +10,7 @@ class FastBaseTypography extends StatelessWidget {
   final int? maxLines;
   final TextOverflow? overflow;
   final bool useFontForNumber;
-  final double? lineHeight;
+  final double lineHeight;
   final double? letterSpacing;
   final bool enableInteractiveSelection;
 
@@ -21,7 +19,7 @@ class FastBaseTypography extends StatelessWidget {
     required this.text,
     this.textColor,
     this.fontSize,
-    this.lineHeight,
+    this.lineHeight = kFastLineHeight,
     this.fontWeight,
     this.maxLines,
     this.overflow,
@@ -34,7 +32,7 @@ class FastBaseTypography extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textStyle = getDefaultTextStyle(context).copyWith(
-      height: lineHeight ?? _kLineHeight,
+      height: lineHeight,
       fontSize: fontSize,
       color: textColor,
       letterSpacing: letterSpacing,

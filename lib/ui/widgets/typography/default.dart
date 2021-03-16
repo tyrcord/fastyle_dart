@@ -18,7 +18,7 @@ class FastDisplay extends FastBaseTypography {
     int? maxLines,
     TextOverflow? overflow,
     bool useFontForNumber = false,
-    double? lineHeight,
+    double lineHeight = kFastLineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -57,7 +57,7 @@ class FastHeadline extends FastBaseTypography {
     int? maxLines,
     TextOverflow? overflow,
     bool useFontForNumber = false,
-    double? lineHeight,
+    double lineHeight = kFastLineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -96,7 +96,7 @@ class FastPlaceHolderHeadline extends FastBaseTypography {
     int? maxLines,
     TextOverflow? overflow,
     bool useFontForNumber = false,
-    double? lineHeight,
+    double lineHeight = kFastLineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -133,7 +133,7 @@ class FastSubhead extends FastBaseTypography {
     int? maxLines,
     TextOverflow? overflow,
     bool useFontForNumber = false,
-    double? lineHeight,
+    double lineHeight = kFastLineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -172,7 +172,7 @@ class FastTitle extends FastBaseTypography {
     int? maxLines,
     TextOverflow? overflow,
     bool useFontForNumber = false,
-    double? lineHeight,
+    double lineHeight = kFastLineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -212,7 +212,7 @@ class FastPlaceholderTitle extends FastBaseTypography {
     int? maxLines,
     TextOverflow? overflow,
     bool useFontForNumber = false,
-    double? lineHeight,
+    double lineHeight = kFastLineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -249,7 +249,7 @@ class FastSubtitle extends FastBaseTypography {
     int? maxLines,
     TextOverflow? overflow,
     bool useFontForNumber = false,
-    double? lineHeight,
+    double lineHeight = kFastLineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -289,7 +289,7 @@ class FastBody extends FastBaseTypography {
     TextOverflow? overflow,
     bool useFontForNumber = false,
     bool enableInteractiveSelection = false,
-    double? lineHeight,
+    double lineHeight = kFastLineHeight,
   }) : super(
           key: key,
           text: text,
@@ -327,7 +327,7 @@ class FastBody2 extends FastBaseTypography {
     int? maxLines,
     TextOverflow? overflow,
     bool useFontForNumber = false,
-    double? lineHeight,
+    double lineHeight = kFastLineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -366,7 +366,7 @@ class FastPlaceholder extends FastBaseTypography {
     int? maxLines,
     TextOverflow? overflow,
     bool useFontForNumber = false,
-    double? lineHeight,
+    double lineHeight = kFastLineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -403,7 +403,7 @@ class FastButtonLabel extends FastBaseTypography {
     int? maxLines,
     TextOverflow? overflow,
     bool useFontForNumber = false,
-    double? lineHeight,
+    double lineHeight = kFastLineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -442,7 +442,7 @@ class FastCaption extends FastBaseTypography {
     int? maxLines,
     TextOverflow? overflow,
     bool useFontForNumber = false,
-    double? lineHeight,
+    double lineHeight = kFastLineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,
@@ -481,7 +481,7 @@ class FastHelper extends FastBaseTypography {
     int? maxLines,
     TextOverflow? overflow,
     bool useFontForNumber = false,
-    double? lineHeight,
+    double lineHeight = kFastLineHeight,
     bool enableInteractiveSelection = false,
   }) : super(
           key: key,

@@ -5,13 +5,13 @@ const _kMargin = EdgeInsets.symmetric(vertical: 8.0);
 
 class FastParagraph extends StatelessWidget {
   final String? text;
-  final EdgeInsets? margin;
+  final EdgeInsets margin;
   final Widget? child;
 
   const FastParagraph({
     Key? key,
     this.text,
-    this.margin,
+    this.margin = _kMargin,
     this.child,
   })  : assert(text != null || child != null),
         super(key: key);
@@ -19,7 +19,7 @@ class FastParagraph extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: margin ?? _kMargin,
+      margin: margin,
       child: child ?? FastBody(text: text!),
     );
   }
