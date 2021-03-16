@@ -64,7 +64,7 @@ class _FastNavigationListViewState<T extends FastItem>
             items: _suggestions ?? widget.items,
             isViewScrollable: widget.isViewScrollable,
             showItemDivider: widget.showItemDivider,
-            shouldSortItems:
+            sortItems:
                 widget.shouldUseFuzzySearch ? false : widget.shouldSortItems,
           ),
         ),

@@ -34,7 +34,7 @@ class FastListView<T extends FastItem> extends StatelessWidget {
       items: items,
       isViewScrollable: isViewScrollable,
       showItemDivider: showItemDivider,
-      shouldSortItems: shouldSortItems,
+      sortItems: shouldSortItems,
       categories: categories,
       groupByCategory: shouldGroupByCategory,
     );

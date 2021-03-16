@@ -17,14 +17,14 @@ class FastTabs extends StatelessWidget {
     Key? key,
     required this.tabs,
     required this.views,
+    this.isViewScrollable = true,
+    this.initialIndex = 0,
     this.indicatorWeight,
     this.indicatorColor,
     this.labelColor,
     this.labelStyle,
     this.unselectedLabelColor,
     this.unselectedLabelStyle,
-    this.isViewScrollable = true,
-    this.initialIndex = 0,
   }) : super(key: key);
 
   @override

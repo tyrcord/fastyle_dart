@@ -10,14 +10,51 @@ const kFastListTileCategoryAll = FastInternalCategory(
 );
 
 class FastListViewLayout<T extends FastItem> extends StatelessWidget {
+  ///
+  /// Function that creates a list item for a given index and item.
+  ///
   final FastListItemBuilder<T> listItemBuilder;
+
+  ///
+  /// List of categories.
+  ///
   final List<FastCategory>? categories;
+
+  ///
+  /// Text that describes the all category.
+  ///
   final String? allCategoryText;
-  final bool isViewScrollable;
-  final bool groupByCategory;
-  final bool shouldSortItems;
-  final bool showItemDivider;
+
+  ///
+  /// Indicates the initial category selected.
+  ///
   final int intialCategoryIndex;
+
+  ///
+  /// Indicates whether the view initial is scrollable.
+  ///
+  final bool isViewScrollable;
+
+  ///
+  /// Indicates whether the list should be displayed as a tab view
+  /// and grouped by categories.
+  ///
+  final bool groupByCategory;
+
+  ///
+  /// Indicates whether a thin horizontal line should be used as separator
+  /// between items.
+  ///
+  final bool showItemDivider;
+
+  ///
+  /// Indicates whether the list should sort the items.
+  ///
+  final bool sortItems;
+
+  ///
+  /// Items to display.
+  ///
   final List<T> items;
 
   FastListViewLayout({
@@ -28,10 +65,12 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     this.groupByCategory = false,
     this.isViewScrollable = true,
     this.showItemDivider = false,
-    this.shouldSortItems = true,
+    this.sortItems = true,
     this.allCategoryText,
     this.categories,
-  }) : super(key: key);
+  })  : assert((groupByCategory == true && categories != null) ||
+            (groupByCategory == false)),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +157,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   }
 
   List<T> _sortItemIfNeeded(List<T> items) {
-    if (shouldSortItems) {
+    if (sortItems) {
       items = items.map((T item) {
         return item.copyWith(
           normalizedLabelText: normalizeTextByRemovingDiacritics(
