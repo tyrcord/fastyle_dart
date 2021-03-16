@@ -9,23 +9,55 @@ const _kHeaderPadding = 16.0;
 const _kContentPadding = EdgeInsets.symmetric(vertical: _kHeaderPadding);
 
 class FastHomePage extends StatefulWidget {
+  ///
+  /// The padding for the page.
+  ///
   final EdgeInsetsGeometry contentPadding;
+
+  ///
+  /// A button displayed floating above body, in the bottom right corner.
+  ///
   final Widget? floatingActionButton;
+
+  ///
+  /// The widgets below the app bar in the tree.
+  ///
   final List<Widget> children;
+
+  ///
+  /// The size of the app bar when it is fully expanded.
+  ///
   final double expandedHeight;
+
+  ///
+  /// A list of Widgets to display in a row after the title.
+  ///
   final List<Widget>? actions;
+
+  ///
+  /// Text displayed below the title.
+  /// Typically, a description of the current contents of the app.
+  ///
   final String? subtitleText;
-  final String titleText;
+
+  ///
+  /// Title of the app.
+  ///
+  final String? titleText;
+
+  ///
+  /// A widget to display before the toolbar's title.
+  ///
   final Widget? leading;
 
   FastHomePage({
     Key? key,
-    required this.titleText,
     required this.children,
     this.expandedHeight = _kExpandedHeight,
     this.contentPadding = _kContentPadding,
     this.floatingActionButton,
     this.subtitleText,
+    this.titleText,
     this.actions,
     this.leading,
   })  : assert(
@@ -62,16 +94,16 @@ class _FastHomePageState extends State<FastHomePage> {
   }
 
   void _onAfterLayout(Duration duration) {
-    final leadingContext = _leadingKey.currentContext!;
-    final subtitleContext = _subtitleKey.currentContext!;
     RenderBox? leadingRenderBox;
     RenderBox? subtitleRenderBox;
 
     if (widget.leading != null) {
+      final leadingContext = _leadingKey.currentContext!;
       leadingRenderBox = leadingContext.findRenderObject() as RenderBox?;
     }
 
     if (widget.subtitleText != null) {
+      final subtitleContext = _subtitleKey.currentContext!;
       subtitleRenderBox = subtitleContext.findRenderObject() as RenderBox?;
     }
 
@@ -156,11 +188,13 @@ class _FastHomePageState extends State<FastHomePage> {
       child: FlexibleSpaceBar(
         centerTitle: false,
         titlePadding: _titlePadding,
-        title: FastTitle(
-          text: widget.titleText,
-          textColor: _textColor,
-          maxLines: 1,
-        ),
+        title: widget.titleText != null
+            ? FastTitle(
+                text: widget.titleText!,
+                textColor: _textColor,
+                maxLines: 1,
+              )
+            : null,
         background: widget.subtitleText != null
             ? _buildFlexibleSpaceBarBackground(_textColor)
             : null,
