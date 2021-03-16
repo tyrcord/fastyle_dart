@@ -75,7 +75,7 @@ void main() {
       await tester.pumpWidget(_buildApp(
         loadingFuture: Future.delayed(
           const Duration(milliseconds: 120),
-          () => throw _kError,
+          () => true,
         ),
         loadingTimeout: Duration(milliseconds: 60),
       ));
@@ -104,7 +104,7 @@ void main() {
       final text = find.text(_kLoading);
       expect(text, findsOneWidget);
 
-      await tester.pump(Duration(milliseconds: 40));
+      await tester.pumpAndSettle();
 
       final loadedText = find.text(_kLoaded);
       expect(loadedText, findsOneWidget);
