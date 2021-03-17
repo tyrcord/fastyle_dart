@@ -12,25 +12,25 @@ class FastNavigationListView<T extends FastItem> extends StatefulWidget {
   final FastListItemBuilder<T>? listItemBuilder;
   final EdgeInsets? itemContentPadding;
   final bool showSearchBar;
-  final String? placeholderSearchText;
-  final Icon? clearSearchIcon;
+  final String placeholderSearchText;
+  final Icon clearSearchIcon;
   final bool shouldUseFuzzySearch;
 
   FastNavigationListView({
     Key? key,
     required this.onSelectionChanged,
     required this.items,
-    this.selection,
-    this.listItemBuilder,
-    this.itemContentPadding,
-    this.placeholderSearchText,
-    this.clearSearchIcon,
-    this.isEnabled = true,
-    this.isViewScrollable = true,
-    this.shouldSortItems = true,
-    this.showItemDivider = false,
-    this.showSearchBar = false,
+    this.placeholderSearchText = kFastSearchPlaceholderText,
+    this.clearSearchIcon = kFastClearSearchIcon,
     this.shouldUseFuzzySearch = false,
+    this.isViewScrollable = true,
+    this.showItemDivider = false,
+    this.shouldSortItems = true,
+    this.showSearchBar = false,
+    this.isEnabled = true,
+    this.itemContentPadding,
+    this.listItemBuilder,
+    this.selection,
   }) : super(key: key);
 
   @override

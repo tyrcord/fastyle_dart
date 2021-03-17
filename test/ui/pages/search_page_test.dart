@@ -1,14 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter/material.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
 
-FastApp _buildApp(Widget child) {
-  return FastApp(
-    home: Material(
-      child: child,
-    ),
-  );
+FastApp _buildApp(FastSearchPage child) {
+  return FastApp(home: child);
 }
 
 void main() {
@@ -34,33 +29,29 @@ void main() {
 
   const categories = [numbersCategory, fruitsCategory];
 
-  group('FastListViewLayout', () {
-    testWidgets('should draw its items', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        _buildApp(FastListViewLayout(
-          items: items,
-          listItemBuilder: (BuildContext context, FastItem item, int index) {
-            return FastListItemLayout(labelText: item.labelText);
-          },
-        )),
-        Duration(milliseconds: 60),
-      );
+  group('FastSearchPage', () {
+    group('#items', () {
+      testWidgets('should draw its items', (WidgetTester tester) async {
+        await tester.pumpWidget(
+          _buildApp(FastSearchPage(
+            items: items,
+          )),
+          Duration(milliseconds: 60),
+        );
 
-      final listItems = find.byType(FastListItemLayout);
-      expect(listItems, findsNWidgets(7));
+        final listItems = find.byType(FastSelectableListItem);
+        expect(listItems, findsNWidgets(7));
+      });
     });
 
     group('#groupByCategory', () {
       testWidgets('should group items by categories when set to true',
           (WidgetTester tester) async {
         await tester.pumpWidget(
-          _buildApp(FastListViewLayout(
+          _buildApp(FastSearchPage(
             categories: categories,
             groupByCategory: true,
             items: items,
-            listItemBuilder: (BuildContext context, FastItem item, int index) {
-              return FastListItemLayout(labelText: item.labelText);
-            },
           )),
           Duration(milliseconds: 60),
         );
@@ -79,14 +70,11 @@ void main() {
       testWidgets('should be used for the "All" category',
           (WidgetTester tester) async {
         await tester.pumpWidget(
-          _buildApp(FastListViewLayout(
+          _buildApp(FastSearchPage(
             categories: categories,
             groupByCategory: true,
             allCategoryText: 'Toutes',
             items: items,
-            listItemBuilder: (BuildContext context, FastItem item, int index) {
-              return FastListItemLayout(labelText: item.labelText);
-            },
           )),
           Duration(milliseconds: 60),
         );
@@ -100,17 +88,86 @@ void main() {
       });
     });
 
+    group('#searchPlaceholderText', () {
+      testWidgets('should allow to set the search placeholder text',
+          (WidgetTester tester) async {
+        await tester.pumpWidget(
+          _buildApp(FastSearchPage(
+            categories: categories,
+            groupByCategory: true,
+            items: items,
+            searchPlaceholderText: 'Search',
+          )),
+          Duration(milliseconds: 60),
+        );
+
+        final searchField =
+            tester.firstWidget(find.byType(FastSearchField)) as FastSearchField;
+        expect(find.byType(FastSearchField), findsOneWidget);
+        expect(searchField.placeholderText, 'Search');
+      });
+    });
+
+    group('#canClearSelection', () {
+      testWidgets('should be set to true by default',
+          (WidgetTester tester) async {
+        await tester.pumpWidget(
+          _buildApp(FastSearchPage(
+            categories: categories,
+            groupByCategory: true,
+            items: items,
+          )),
+          Duration(milliseconds: 60),
+        );
+
+        final link = tester.firstWidget(find.byType(FastLink)) as FastLink;
+        expect(find.byType(FastLink), findsOneWidget);
+        expect(link.text, kFastClearSelectionText);
+      });
+
+      testWidgets('should not be visible whether set to false',
+          (WidgetTester tester) async {
+        await tester.pumpWidget(
+          _buildApp(FastSearchPage(
+            categories: categories,
+            groupByCategory: true,
+            items: items,
+            canClearSelection: false,
+          )),
+          Duration(milliseconds: 60),
+        );
+
+        expect(find.byType(FastLink), findsNothing);
+      });
+    });
+
+    group('#clearSelectionText', () {
+      testWidgets('should be used for the "clear selection" text',
+          (WidgetTester tester) async {
+        await tester.pumpWidget(
+          _buildApp(FastSearchPage(
+            categories: categories,
+            groupByCategory: true,
+            clearSelectionText: 'Nettoyer',
+            items: items,
+          )),
+          Duration(milliseconds: 60),
+        );
+
+        final link = tester.firstWidget(find.byType(FastLink)) as FastLink;
+        expect(find.byType(FastLink), findsOneWidget);
+        expect(link.text, 'Nettoyer');
+      });
+    });
+
     group('#intialCategoryIndex', () {
       testWidgets('The "All" category should be selected by default',
           (WidgetTester tester) async {
         await tester.pumpWidget(
-          _buildApp(FastListViewLayout(
+          _buildApp(FastSearchPage(
             categories: categories,
             groupByCategory: true,
             items: items,
-            listItemBuilder: (BuildContext context, FastItem item, int index) {
-              return FastListItemLayout(labelText: item.labelText);
-            },
           )),
           Duration(milliseconds: 60),
         );
@@ -122,14 +179,11 @@ void main() {
       testWidgets('should select a category for a given index',
           (WidgetTester tester) async {
         await tester.pumpWidget(
-          _buildApp(FastListViewLayout(
+          _buildApp(FastSearchPage(
             categories: categories,
             groupByCategory: true,
             intialCategoryIndex: 1,
             items: items,
-            listItemBuilder: (BuildContext context, FastItem item, int index) {
-              return FastListItemLayout(labelText: item.labelText);
-            },
           )),
           Duration(milliseconds: 60),
         );
@@ -142,14 +196,11 @@ void main() {
     group('#sortItems', () {
       testWidgets('should sort items by default', (WidgetTester tester) async {
         await tester.pumpWidget(
-          _buildApp(FastListViewLayout(
+          _buildApp(FastSearchPage(
             categories: categories,
             groupByCategory: true,
             intialCategoryIndex: 1,
             items: items,
-            listItemBuilder: (BuildContext context, FastItem item, int index) {
-              return FastListItemLayout(labelText: item.labelText);
-            },
           )),
           Duration(milliseconds: 60),
         );
@@ -162,15 +213,12 @@ void main() {
       testWidgets('should not sort items when set to false',
           (WidgetTester tester) async {
         await tester.pumpWidget(
-          _buildApp(FastListViewLayout(
+          _buildApp(FastSearchPage(
             categories: categories,
             groupByCategory: true,
             intialCategoryIndex: 1,
             sortItems: false,
             items: items,
-            listItemBuilder: (BuildContext context, FastItem item, int index) {
-              return FastListItemLayout(labelText: item.labelText);
-            },
           )),
           Duration(milliseconds: 60),
         );

@@ -2,8 +2,6 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-const _kIconSize = 24.0;
-
 class FastSelectField<T> extends StatefulWidget {
   final ValueChanged<FastItem<T>?> onSelectionChanged;
   final String labelText;
@@ -18,12 +16,12 @@ class FastSelectField<T> extends StatefulWidget {
   final bool useFuzzySearch;
   final bool sortItems;
   final String titleText;
-  final String? searchPlaceholderText;
+  final String searchPlaceholderText;
   final int intialCategoryIndex;
   final String? allCategoryText;
-  final Widget? clearSearchIcon;
-  final Widget? closeIcon;
-  final Widget? backIcon;
+  final Widget clearSearchIcon;
+  final Widget closeIcon;
+  final Widget backIcon;
   final bool canClearSelection;
   final String clearSelectionText;
 
@@ -33,23 +31,23 @@ class FastSelectField<T> extends StatefulWidget {
     required this.labelText,
     required this.items,
     this.clearSelectionText = kFastClearSelectionText,
+    this.placeholderText,
     this.titleText = kFastSelectTitleText,
+    this.closeIcon = kFastCloseIcon,
+    this.backIcon = kFastBackIcon,
     this.canClearSelection = true,
     this.intialCategoryIndex = 0,
     this.groupByCategory = false,
     this.useFuzzySearch = false,
     this.isReadOnly = false,
     this.sortItems = true,
-    this.searchPlaceholderText,
-    this.clearSearchIcon,
+    this.searchPlaceholderText = kFastSearchPlaceholderText,
+    this.clearSearchIcon = kFastClearSearchIcon,
     this.allCategoryText,
-    this.placeholderText,
     this.captionText,
     this.helperText,
     this.categories,
     this.selection,
-    this.closeIcon,
-    this.backIcon,
   }) : super(key: key);
 
   @override
@@ -103,7 +101,7 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
                 selection: widget.selection,
                 useFuzzySearch: widget.useFuzzySearch,
                 sortItems: widget.sortItems,
-                placeholderText: widget.searchPlaceholderText,
+                searchPlaceholderText: widget.searchPlaceholderText,
                 intialCategoryIndex: widget.intialCategoryIndex,
                 allCategoryText: widget.allCategoryText,
                 clearSearchIcon: widget.clearSearchIcon,
@@ -164,7 +162,7 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
           Icon(
             Icons.arrow_drop_down,
             color: ThemeHelper.texts.getBodyTextStyle(context).color,
-            size: _kIconSize,
+            size: kFastIconSizeMedium,
           ),
         ],
       ),

@@ -10,6 +10,7 @@ const kFastAllString = 'all';
 const kFastButtonLabel = 'Button';
 const kFastClearSelectionText = 'Clear Selection';
 const kFastSelectTitleText = 'Select';
+const kFastSearchPlaceholderText = 'Search...';
 
 // EdgeInsets
 
@@ -85,3 +86,9 @@ const kFastTrottleTimeDuration = Duration(seconds: 1);
 // Languages
 
 const kFastSupportedLocales = <Locale>[Locale('en', 'US')];
+
+// Icons
+
+const kFastCloseIcon = Icon(Icons.close);
+const kFastBackIcon = Icon(Icons.arrow_back);
+const kFastClearSearchIcon = Icon(Icons.delete_outline);

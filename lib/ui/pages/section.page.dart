@@ -200,11 +200,13 @@ class FastSectionPage extends StatelessWidget {
   Widget? _buildLeadingIcon(BuildContext context) {
     final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
     final canPop = parentRoute?.canPop ?? false;
-    final useCloseButton =
-        parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
+
     Widget? leading;
 
     if (canPop) {
+      final useCloseButton =
+          parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
+
       leading = useCloseButton
           ? closeButton ?? const CloseButton()
           : backButton ?? const BackButton();

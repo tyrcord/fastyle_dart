@@ -71,33 +71,33 @@ class _FastSelectableListViewState<T extends FastItem>
     );
   }
 
-  Widget _buildListItems(BuildContext context, T option, int index) {
+  Widget _buildListItems(BuildContext context, T item, int index) {
     if (widget.listItemBuilder != null) {
-      return widget.listItemBuilder!(context, option, index);
+      return widget.listItemBuilder!(context, item, index);
     }
 
-    return _buildSelectableListItem(option);
+    return _buildSelectableListItem(item);
   }
 
-  Widget _buildSelectableListItem(T option) {
+  Widget _buildSelectableListItem(T item) {
     return FastSelectableListItem(
       key: UniqueKey(),
       contentPadding: widget.itemContentPadding,
-      item: option,
+      item: item,
       onTap: () {
-        if (widget.isEnabled && option.isEnabled) {
-          _onSelectionChange(option);
+        if (widget.isEnabled && item.isEnabled) {
+          _onSelectionChange(item);
         }
       },
-      isSelected: option.value == _selection?.value,
+      isSelected: _selection != null ? item.value == _selection!.value : false,
     );
   }
 
-  void _onSelectionChange(T option) {
-    if (option != _selection) {
+  void _onSelectionChange(T item) {
+    if (item != _selection) {
       setState(() {
-        _selection = option;
-        widget.onSelectionChanged(option);
+        _selection = item;
+        widget.onSelectionChanged(item);
       });
     }
   }

@@ -1,10 +1,8 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-const _kSearchPlaceholderText = 'Search...';
-
 class FastSearchField extends StatelessWidget {
-  final String? placeholderText;
+  final String placeholderText;
   final bool isReadOnly;
   final ValueChanged<String>? onValueChanged;
   final TextEditingController? textEditingController;
@@ -14,11 +12,11 @@ class FastSearchField extends StatelessWidget {
 
   FastSearchField({
     Key? key,
+    this.placeholderText = kFastSearchPlaceholderText,
     this.margin = const EdgeInsets.only(bottom: 8.0),
     this.allowAutocorrect = false,
     this.isReadOnly = false,
     this.textEditingController,
-    this.placeholderText,
     this.onValueChanged,
     this.textAlign,
   }) : super(key: key);
@@ -42,7 +40,7 @@ class FastSearchField extends StatelessWidget {
       cursorColor: ThemeHelper.colors.getPrimaryColor(context),
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
-        hintText: placeholderText ?? _kSearchPlaceholderText,
+        hintText: placeholderText,
         border: InputBorder.none,
         enabledBorder: InputBorder.none,
         focusedBorder: InputBorder.none,

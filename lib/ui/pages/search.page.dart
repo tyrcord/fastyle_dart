@@ -4,44 +4,99 @@ import 'package:flutter/services.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 
-const _kIconSize = 28.0;
-const _kBlurRadius = 3.0;
-
 class FastSearchPage<T extends FastItem> extends StatefulWidget {
-  final bool Function(T option, String query)? onSearch;
+  ///
+  /// List of categories.
+  ///
   final List<FastCategory>? categories;
-  final String? clearSelectionText;
+
+  ///
+  /// Text that describes the clear selection action.
+  ///
+  final String clearSelectionText;
+
+  ///
+  /// Indicates the initial category selected.
+  ///
   final int intialCategoryIndex;
+
+  ///
+  /// Text that describes the all category.
+  ///
   final String? allCategoryText;
-  final String? placeholderText;
-  final Widget? clearSearchIcon;
+
+  ///
+  /// Text that describes the search placeholder.
+  ///
+  final String searchPlaceholderText;
+
+  ///
+  /// The widget used to clear the search query.
+  ///
+  final Widget clearSearchIcon;
+
+  ///
+  /// Indicates whether the selection can be cleared.
+  ///
   final bool canClearSelection;
+
+  ///
+  /// Indicates whether the list should be displayed as a tab view
+  /// and grouped by categories.
+  ///
   final bool groupByCategory;
+
+  ///
+  /// Indicates whether the search engine witll use fuzzy matching.
+  ///
   final bool useFuzzySearch;
-  final Widget? closeIcon;
-  final Widget? backIcon;
+
+  ///
+  /// The title of the page.
+  ///
   final String titleText;
+
+  ///
+  /// The widget used to close the page.
+  ///
+  final Widget closeIcon;
+
+  ///
+  /// The widget used to go back to the previous page.
+  ///
+  final Widget backIcon;
+
+  ///
+  /// Indicates whether the list should sort the items.
+  ///
   final bool sortItems;
+
+  ///
+  /// Items to display.
+  ///
   final List<T> items;
+
+  ///
+  /// The currently selected item.
+  ///
   final T? selection;
 
   FastSearchPage({
     required this.items,
+    this.searchPlaceholderText = kFastSearchPlaceholderText,
     this.clearSelectionText = kFastClearSelectionText,
+    this.clearSearchIcon = kFastClearSearchIcon,
     this.titleText = kFastSelectTitleText,
+    this.closeIcon = kFastCloseIcon,
+    this.backIcon = kFastBackIcon,
     this.canClearSelection = true,
     this.groupByCategory = false,
     this.intialCategoryIndex = 0,
     this.useFuzzySearch = false,
     this.sortItems = true,
-    this.clearSearchIcon,
-    this.placeholderText,
     this.allCategoryText,
     this.categories,
     this.selection,
-    this.closeIcon,
-    this.backIcon,
-    this.onSearch,
   }) : super();
 
   @override
@@ -93,42 +148,49 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
               ),
               child: FastHeadline(text: widget.titleText),
             ),
-            FastSearchBar(
-              showShowBottomBorder: false,
-              shouldUseFuzzySearch: widget.useFuzzySearch,
-              items: widget.items,
-              placeholderText: widget.placeholderText,
-              closeIcon: widget.closeIcon,
-              showLeadingIcon: false,
-              backIcon: widget.backIcon,
-              clearSearchIcon: widget.clearSearchIcon,
-              onSuggestions: (List<T>? suggestions, String? query) {
-                setState(() {
-                  _suggestions = suggestions;
-                  _searchQuery = query;
-                });
-              },
-              onLeadingButtonTap: () => _close(context, widget.selection),
-            ),
+            _buildSearchBar(),
           ],
         ),
       ),
     );
   }
 
-  FastIconButton _buildLeadingIcon(BuildContext context) {
-    final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
-    final useCloseButton =
-        parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
-
-    final closeIcon = widget.closeIcon ?? Icon(Icons.close);
-    final backIcon = widget.backIcon ?? Icon(Icons.arrow_back);
-
-    return FastIconButton(
-      icon: useCloseButton ? closeIcon : backIcon,
-      onTap: () => _close(context, widget.selection),
-      iconSize: _kIconSize,
+  Widget _buildSearchBar() {
+    return FastSearchBar(
+      showShowBottomBorder: false,
+      shouldUseFuzzySearch: widget.useFuzzySearch,
+      items: widget.items,
+      placeholderText: widget.searchPlaceholderText,
+      closeIcon: widget.closeIcon,
+      showLeadingIcon: false,
+      backIcon: widget.backIcon,
+      clearSearchIcon: widget.clearSearchIcon,
+      onSuggestions: (List<T>? suggestions, String? query) {
+        setState(() {
+          _suggestions = suggestions;
+          _searchQuery = query;
+        });
+      },
+      onLeadingButtonTap: () => _close(context, widget.selection),
     );
+  }
+
+  Widget _buildLeadingIcon(BuildContext context) {
+    final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
+    final canPop = parentRoute?.canPop ?? false;
+
+    if (canPop) {
+      final useCloseButton =
+          parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
+
+      return FastIconButton(
+        icon: useCloseButton ? widget.closeIcon : widget.backIcon,
+        onTap: () => _close(context, widget.selection),
+        iconSize: kFastIconSizeXl,
+      );
+    }
+
+    return Container();
   }
 
   Widget _buildListView(BuildContext context) {
@@ -137,7 +199,9 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
       height: 1.5,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        boxShadow: [BoxShadow(color: _shadowColor, blurRadius: _kBlurRadius)],
+        boxShadow: [
+          BoxShadow(color: _shadowColor, blurRadius: kFastBlurRadius),
+        ],
       ),
     );
     final _shouldSortItems = _searchQuery != null && widget.useFuzzySearch
@@ -178,7 +242,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
         bottom: true,
         child: FastLink(
           textAlign: TextAlign.right,
-          text: widget.clearSelectionText!,
+          text: widget.clearSelectionText,
           onTap: () => _close(context, null),
         ),
       ),

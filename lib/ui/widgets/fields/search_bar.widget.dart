@@ -7,10 +7,10 @@ const _kIconSize = 24.0;
 
 class FastSearchBar<T extends FastItem> extends StatefulWidget {
   final List<T> items;
-  final String? placeholderText;
-  final Widget? closeIcon;
-  final Widget? backIcon;
-  final Widget? clearSearchIcon;
+  final String placeholderText;
+  final Widget closeIcon;
+  final Widget backIcon;
+  final Widget clearSearchIcon;
   final bool Function(T option, String? query)? onSearchFilter;
   final void Function(List<T>? suggestions, String? query)? onSuggestions;
   final VoidCallback? onLeadingButtonTap;
@@ -21,10 +21,10 @@ class FastSearchBar<T extends FastItem> extends StatefulWidget {
 
   FastSearchBar({
     required this.items,
-    this.placeholderText,
-    this.closeIcon,
-    this.backIcon,
-    this.clearSearchIcon,
+    this.placeholderText = kFastSearchPlaceholderText,
+    this.clearSearchIcon = kFastClearSearchIcon,
+    this.closeIcon = kFastCloseIcon,
+    this.backIcon = kFastBackIcon,
     this.onSearchFilter,
     this.onSuggestions,
     this.onLeadingButtonTap,
@@ -88,11 +88,8 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
     final useCloseButton =
         parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
 
-    final closeIcon = widget.closeIcon ?? Icon(Icons.close);
-    final backIcon = widget.backIcon ?? Icon(Icons.arrow_back);
-
     return FastIconButton(
-      icon: useCloseButton ? closeIcon : backIcon,
+      icon: useCloseButton ? widget.closeIcon : widget.backIcon,
       onTap: () {
         if (widget.onLeadingButtonTap != null) {
           widget.onLeadingButtonTap!();
@@ -118,7 +115,7 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
     final theme = Theme.of(context);
 
     return FastIconButton(
-      icon: widget.clearSearchIcon ?? const Icon(Icons.delete_outline),
+      icon: widget.clearSearchIcon,
       iconColor: _searchQuery == null ? theme.hintColor : null,
       onTap: () => _textController.clear(),
       iconSize: _kIconSize,
