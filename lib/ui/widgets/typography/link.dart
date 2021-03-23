@@ -17,13 +17,9 @@ class FastLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // FIXME: https://github.com/flutter/flutter/issues/59316
-    // TODO: report a bug?
-    final scaleFactor = MediaQuery.of(context).textScaleFactor;
     final bodyTextStyle = ThemeHelper.texts.getBodyTextStyle(context);
-
     final linkTextStyle = bodyTextStyle.copyWith(
-      fontSize: bodyTextStyle.fontSize! * scaleFactor,
+      fontSize: bodyTextStyle.fontSize!,
       color: color ?? ThemeHelper.colors.getBlueColor(context),
     );
 
