@@ -67,7 +67,7 @@ class _FastIconButtonState extends State<FastIconButton>
     return FastButtonLayout(
       child: IconButton(
         padding: widget.padding,
-        onPressed: widget.isEnabled ? widget.onTap : null,
+        onPressed: throttleOnTapIfNeeded(),
         highlightColor: widget.highlightColor,
         icon: widget.icon,
         iconSize: widget.iconSize,

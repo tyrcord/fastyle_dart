@@ -33,7 +33,15 @@ class FastOutlineButton extends StatefulWidget implements IFastButton {
     this.trottleTimeDuration = kFastTrottleTimeDuration,
     this.shouldTrottleTime = false,
     this.isEnabled = true,
-  }) : super(key: key);
+  })  : assert(
+          child == null || text == null,
+          'child and text properties cannot be initialized at the same time',
+        ),
+        assert(
+          child != null || text != null,
+          'child or text properties must be initialized',
+        ),
+        super(key: key);
 
   @override
   _FastOutlineButtonState createState() => _FastOutlineButtonState();

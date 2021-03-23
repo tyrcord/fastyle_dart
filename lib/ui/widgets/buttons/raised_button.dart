@@ -30,7 +30,15 @@ class FastRaisedButton extends StatefulWidget implements IFastButton {
     this.text,
     this.shouldTrottleTime = false,
     this.trottleTimeDuration = kFastTrottleTimeDuration,
-  }) : super(key: key);
+  }) : assert(
+          child == null || text == null,
+          'child and text properties cannot be initialized at the same time',
+        ),
+        assert(
+          child != null || text != null,
+          'child or text properties must be initialized',
+        ),
+        super(key: key);
 
   @override
   _FastRaisedButtonState createState() => _FastRaisedButtonState();

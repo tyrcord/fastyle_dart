@@ -64,6 +64,13 @@ class ButtonsPage extends StatelessWidget {
             },
             isEnabled: false,
           ),
+          FastIconButton(
+            icon: Icon(Icons.android),
+            onTap: () {
+              log('icon button disabled');
+            },
+            emphasis: FastButtonEmphasis.high,
+          ),
         ],
       ),
     );

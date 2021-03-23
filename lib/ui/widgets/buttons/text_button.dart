@@ -31,7 +31,15 @@ class FastTextButton extends StatefulWidget implements IFastButton {
     this.text,
     this.shouldTrottleTime = false,
     this.trottleTimeDuration = kFastTrottleTimeDuration,
-  }) : super(key: key);
+  })  : assert(
+          child == null || text == null,
+          'child and text properties cannot be initialized at the same time',
+        ),
+        assert(
+          child != null || text != null,
+          'child or text properties must be initialized',
+        ),
+        super(key: key);
 
   @override
   _FastTextButtonState createState() => _FastTextButtonState();
@@ -71,7 +79,7 @@ class _FastTextButtonState extends State<FastTextButton>
             return widget.highlightColor ?? textColor.withOpacity(0.1);
           }),
         ),
-        onPressed: widget.isEnabled ? widget.onTap : null,
+        onPressed: throttleOnTapIfNeeded(),
         child: widget.child ??
             FastButtonLabel(
               text: widget.text ?? kFastButtonLabel,

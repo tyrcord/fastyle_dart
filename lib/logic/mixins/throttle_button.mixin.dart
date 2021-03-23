@@ -15,8 +15,8 @@ mixin FastThrottleButtonMixin<T extends IFastButton> on State<T> {
 
   @protected
   VoidCallback? throttleOnTapIfNeeded() {
-    if (widget.isEnabled! && widget.shouldTrottleTime != null) {
-      if (widget.shouldTrottleTime!) {
+    if (widget.isEnabled) {
+      if (widget.shouldTrottleTime) {
         return () => trottler.add(widget.onTap);
       }
 
@@ -30,9 +30,9 @@ mixin FastThrottleButtonMixin<T extends IFastButton> on State<T> {
   void subscribeToTrottlerEvents() {
     unsubscribeToTrottlerEventsIfNeeded();
 
-    if (widget.trottleTimeDuration != null) {
+    if (widget.isEnabled && widget.shouldTrottleTime) {
       subscriptionStream = trottler
-          .throttleTime(widget.trottleTimeDuration!)
+          .throttleTime(widget.trottleTimeDuration)
           .listen((Function onTap) => onTap());
     }
   }
