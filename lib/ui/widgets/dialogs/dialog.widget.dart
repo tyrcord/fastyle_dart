@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 const _kPaddingContent = EdgeInsets.symmetric(horizontal: 16.0);
 
 class FastDialog extends AlertDialog {
-  final String titleText;
-  final Color? titleColor;
   final List<Widget> widgets;
+  final Color? titleColor;
+  final String titleText;
 
   @override
   final List<Widget>? actions;
@@ -18,9 +18,9 @@ class FastDialog extends AlertDialog {
     Key? key,
     required this.titleText,
     required this.widgets,
+    this.backgroundColor,
     this.titleColor,
     this.actions,
-    this.backgroundColor,
   }) : super(key: key);
 
   @override

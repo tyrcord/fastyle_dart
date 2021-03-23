@@ -8,17 +8,17 @@ class FastCard extends StatelessWidget {
   final List<Widget>? headerActions;
   final List<Widget>? footerActions;
   final Color? backgroundColor;
+  final Color? titleTextColor;
   final EdgeInsets? padding;
   final Color? shadowColor;
   final String titleText;
-  final Color? titleTextColor;
   final Widget? child;
 
   FastCard({
     Key? key,
     required this.titleText,
-    this.titleTextColor,
     this.backgroundColor,
+    this.titleTextColor,
     this.headerActions,
     this.footerActions,
     this.shadowColor,

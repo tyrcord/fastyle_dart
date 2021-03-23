@@ -5,15 +5,15 @@ const _kValidText = 'valid';
 const _kCancelText = 'cancel';
 
 class FastAlertDialog extends AlertDialog {
-  final String titleText;
-  final String? cancelText;
-  final String? validText;
-  final String? messageText;
-  final Color? titleColor;
-  final Color? messageColor;
+  final VoidCallback? onCancel;
   final List<Widget>? widgets;
   final VoidCallback? onValid;
-  final VoidCallback? onCancel;
+  final String? messageText;
+  final Color? messageColor;
+  final String? cancelText;
+  final String? validText;
+  final Color? titleColor;
+  final String titleText;
 
   @override
   final Color? backgroundColor;
@@ -24,17 +24,18 @@ class FastAlertDialog extends AlertDialog {
   FastAlertDialog({
     Key? key,
     required this.titleText,
-    this.widgets,
-    this.titleColor,
-    this.messageText,
-    this.actions,
     this.backgroundColor,
+    this.messageColor,
+    this.messageText,
     this.cancelText,
+    this.titleColor,
     this.validText,
     this.onCancel,
+    this.widgets,
+    this.actions,
     this.onValid,
-    this.messageColor,
   })  : assert(messageText == null || widgets == null),
+        assert(messageText != null || widgets != null),
         assert(actions == null || cancelText == null),
         super(key: key);
 
