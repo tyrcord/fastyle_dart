@@ -21,6 +21,8 @@ class FastRaisedButton extends StatefulWidget implements IFastButton {
   const FastRaisedButton({
     Key? key,
     required this.onTap,
+    this.trottleTimeDuration = kFastTrottleTimeDuration,
+    this.shouldTrottleTime = false,
     this.isEnabled = true,
     this.backgroundColor,
     this.highlightColor,
@@ -28,9 +30,7 @@ class FastRaisedButton extends StatefulWidget implements IFastButton {
     this.padding,
     this.child,
     this.text,
-    this.shouldTrottleTime = false,
-    this.trottleTimeDuration = kFastTrottleTimeDuration,
-  }) : assert(
+  })  : assert(
           child == null || text == null,
           'child and text properties cannot be initialized at the same time',
         ),

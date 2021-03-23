@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 class FastRoundedIcon extends StatelessWidget {
   final IconData iconData;
   final Color? iconColor;
-  final double? iconSize;
+  final double iconSize;
   final Color? backgroundColor;
 
   const FastRoundedIcon({
     Key? key,
     required this.iconData,
-    this.iconColor,
-    this.iconSize,
+    this.iconSize = kFastIconSize,
     this.backgroundColor,
+    this.iconColor,
   }) : super(key: key);
 
   @override
@@ -25,7 +25,7 @@ class FastRoundedIcon extends StatelessWidget {
       ),
       child: Icon(
         iconData,
-        size: iconSize ?? kFastIconSize,
+        size: iconSize,
         color: iconColor ?? ThemeHelper.colors.getWhiteColor(context),
       ),
     );

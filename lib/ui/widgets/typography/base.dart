@@ -2,31 +2,31 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 class FastBaseTypography extends StatelessWidget {
-  final String text;
-  final Color? textColor;
-  final FontWeight? fontWeight;
-  final double? fontSize;
-  final TextAlign textAlign;
-  final int? maxLines;
-  final TextOverflow? overflow;
-  final bool useFontForNumber;
-  final double lineHeight;
-  final double? letterSpacing;
   final bool enableInteractiveSelection;
+  final TextOverflow? overflow;
+  final FontWeight? fontWeight;
+  final bool useFontForNumber;
+  final double? letterSpacing;
+  final TextAlign textAlign;
+  final double lineHeight;
+  final Color? textColor;
+  final double? fontSize;
+  final int? maxLines;
+  final String text;
 
   const FastBaseTypography({
     Key? key,
     required this.text,
+    this.enableInteractiveSelection = false,
+    this.lineHeight = kFastLineHeight,
+    this.textAlign = TextAlign.left,
+    this.useFontForNumber = false,
     this.textColor,
     this.fontSize,
-    this.lineHeight = kFastLineHeight,
     this.fontWeight,
     this.maxLines,
     this.overflow,
     this.letterSpacing,
-    this.textAlign = TextAlign.left,
-    this.useFontForNumber = false,
-    this.enableInteractiveSelection = false,
   }) : super(key: key);
 
   @override

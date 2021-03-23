@@ -22,15 +22,15 @@ class FastTextButton extends StatefulWidget implements IFastButton {
   const FastTextButton({
     Key? key,
     required this.onTap,
+    this.trottleTimeDuration = kFastTrottleTimeDuration,
     this.emphasis = FastButtonEmphasis.low,
+    this.shouldTrottleTime = false,
     this.isEnabled = true,
     this.highlightColor,
     this.textColor,
     this.padding,
     this.child,
     this.text,
-    this.shouldTrottleTime = false,
-    this.trottleTimeDuration = kFastTrottleTimeDuration,
   })  : assert(
           child == null || text == null,
           'child and text properties cannot be initialized at the same time',

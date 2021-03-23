@@ -1,17 +1,15 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-const _kMargin = EdgeInsets.symmetric(vertical: 8.0);
-
 class FastParagraph extends StatelessWidget {
-  final String? text;
   final EdgeInsets margin;
   final Widget? child;
+  final String? text;
 
   const FastParagraph({
     Key? key,
+    this.margin = const EdgeInsets.symmetric(vertical: 8.0),
     this.text,
-    this.margin = _kMargin,
     this.child,
   })  : assert(text != null || child != null),
         super(key: key);

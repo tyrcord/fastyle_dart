@@ -1,17 +1,15 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-const _kTitleMargin = EdgeInsets.symmetric(vertical: 16.0);
-
 class FastArticle extends StatelessWidget {
-  final String titleText;
-  final EdgeInsets titleMargin;
   final Iterable<Widget>? children;
+  final EdgeInsets titleMargin;
+  final String titleText;
 
   const FastArticle({
     Key? key,
     required this.titleText,
-    this.titleMargin = _kTitleMargin,
+    this.titleMargin = const EdgeInsets.symmetric(vertical: 16.0),
     this.children,
   }) : super(key: key);
 

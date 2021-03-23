@@ -10,10 +10,11 @@ class FastThreeBounceIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = color ?? ThemeHelper.colors.getPrimaryColor(context);
-
     return Center(
-      child: SpinKitThreeBounce(color: primaryColor, size: kFastIconSize),
+      child: SpinKitThreeBounce(
+        color: color ?? ThemeHelper.colors.getPrimaryColor(context),
+        size: kFastIconSize,
+      ),
     );
   }
 }

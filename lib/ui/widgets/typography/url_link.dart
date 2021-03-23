@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 typedef UrlLinkCallback = void Function(String url);
 
 class FastUrlLink extends StatelessWidget {
-  final String text;
-  final String url;
   final UrlLinkCallback onTap;
   final Color? color;
+  final String text;
+  final String url;
 
   const FastUrlLink({
     Key? key,

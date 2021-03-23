@@ -2,17 +2,17 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 class FastLink extends StatelessWidget {
-  final String text;
+  final TextAlign textAlign;
   final VoidCallback onTap;
   final Color? color;
-  final TextAlign? textAlign;
+  final String text;
 
   const FastLink({
     Key? key,
     required this.text,
     required this.onTap,
+    this.textAlign = TextAlign.left,
     this.color,
-    this.textAlign,
   }) : super(key: key);
 
   @override
@@ -32,7 +32,7 @@ class FastLink extends StatelessWidget {
       child: ConstrainedBox(
         constraints: const BoxConstraints(minHeight: 34.0),
         child: RichText(
-          textAlign: textAlign ?? TextAlign.left,
+          textAlign: textAlign,
           text: TextSpan(style: linkTextStyle, text: text),
         ),
       ),
