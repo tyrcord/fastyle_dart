@@ -8,15 +8,15 @@ Future<void> showFastAlertDialog({
   required BuildContext context,
   required String titleText,
   bool barrierDismissible = true,
+  Color? backgroundColor,
+  List<Widget>? children,
+  VoidCallback? onCancel,
+  List<Widget>? actions,
+  VoidCallback? onValid,
   String? messageText,
   String? cancelText,
   String? validText,
   Color? titleColor,
-  List<Widget>? actions,
-  List<Widget>? widgets,
-  Color? backgroundColor,
-  VoidCallback? onValid,
-  VoidCallback? onCancel,
 }) async {
   return showDialog<void>(
     context: context,
@@ -28,11 +28,11 @@ Future<void> showFastAlertDialog({
         validText: validText,
         titleColor: titleColor,
         actions: actions,
-        widgets: widgets,
         backgroundColor: backgroundColor,
         onValid: onValid,
         onCancel: onCancel,
         messageText: messageText,
+        children: children,
       );
     },
   );

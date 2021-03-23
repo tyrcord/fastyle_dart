@@ -1,12 +1,9 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-const _kValidText = 'valid';
-const _kCancelText = 'cancel';
-
 class FastAlertDialog extends AlertDialog {
   final VoidCallback? onCancel;
-  final List<Widget>? widgets;
+  final List<Widget>? children;
   final VoidCallback? onValid;
   final String? messageText;
   final Color? messageColor;
@@ -31,11 +28,11 @@ class FastAlertDialog extends AlertDialog {
     this.titleColor,
     this.validText,
     this.onCancel,
-    this.widgets,
+    this.children,
     this.actions,
     this.onValid,
-  })  : assert(messageText == null || widgets == null),
-        assert(messageText != null || widgets != null),
+  })  : assert(messageText == null || children == null),
+        assert(messageText != null || children != null),
         assert(actions == null || cancelText == null),
         super(key: key);
 
@@ -43,10 +40,10 @@ class FastAlertDialog extends AlertDialog {
   Widget build(BuildContext context) {
     return FastDialog(
       titleText: titleText,
-      widgets: widgets ?? _buildDefaultContent(),
       titleColor: titleColor,
       backgroundColor: backgroundColor,
       actions: actions ?? _buildDefaultActions(context),
+      children: children ?? _buildDefaultContent(),
     );
   }
 
@@ -58,7 +55,7 @@ class FastAlertDialog extends AlertDialog {
     return [
       if (onCancel != null)
         FastTextButton(
-          text: cancelText ?? _kCancelText,
+          text: cancelText ?? kFastCancelText,
           onTap: onCancel!,
         ),
       FastTextButton(
@@ -69,7 +66,7 @@ class FastAlertDialog extends AlertDialog {
             Navigator.pop(context);
           }
         },
-        text: validText ?? _kValidText,
+        text: validText ?? kFastValidText,
         emphasis: FastButtonEmphasis.high,
       ),
     ];

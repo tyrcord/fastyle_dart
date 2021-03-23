@@ -4,13 +4,15 @@ import 'package:fuzzy/fuzzy.dart';
 
 // Strings
 
-const kFastEmptyString = '';
-const kFastNoneString = 'none';
-const kFastAllString = 'all';
-const kFastButtonLabel = 'Button';
 const kFastClearSelectionText = 'Clear Selection';
-const kFastSelectTitleText = 'Select';
 const kFastSearchPlaceholderText = 'Search...';
+const kFastSelectTitleText = 'Select';
+const kFastButtonLabel = 'Button';
+const kFastCancelText = 'cancel';
+const kFastNoneString = 'none';
+const kFastValidText = 'valid';
+const kFastAllString = 'all';
+const kFastEmptyString = '';
 
 // EdgeInsets
 

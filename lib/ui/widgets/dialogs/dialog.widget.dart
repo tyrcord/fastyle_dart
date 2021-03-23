@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 const _kPaddingContent = EdgeInsets.symmetric(horizontal: 16.0);
 
 class FastDialog extends AlertDialog {
-  final List<Widget> widgets;
+  final List<Widget> children;
   final Color? titleColor;
   final String titleText;
 
@@ -17,7 +17,7 @@ class FastDialog extends AlertDialog {
   FastDialog({
     Key? key,
     required this.titleText,
-    required this.widgets,
+    required this.children,
     this.backgroundColor,
     this.titleColor,
     this.actions,
@@ -29,7 +29,7 @@ class FastDialog extends AlertDialog {
       title: FastTitle(text: titleText, textColor: titleColor),
       titlePadding: kFastEdgeInsets16,
       contentPadding: _kPaddingContent,
-      content: SingleChildScrollView(child: ListBody(children: widgets)),
+      content: SingleChildScrollView(child: ListBody(children: children)),
       actions: actions,
       backgroundColor: backgroundColor,
     );
