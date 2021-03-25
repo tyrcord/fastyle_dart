@@ -5,42 +5,39 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 
 const _kStepDotSize = 10.0;
-const _kDoneText = 'done';
-const _kNextText = 'next';
-const _kSkipText = 'skip';
 
 typedef BoolCallback = bool Function();
 
 class FastWelcomeView extends StatefulWidget {
-  final List<Widget> slides;
-  final bool allowToSkip;
-  final double stepDotSize;
-  final Color? stepDotColor;
+  final FastWelcomeViewController? controller;
+
+  ///
+  /// Main widget when the application starts up.
+  ///
   final WidgetBuilder homeBuilder;
-  final BoolCallback? canSkip;
-  final BoolCallback? canTerminate;
   final VoidCallback? onDone;
   final VoidCallback? onSkip;
+  final Color? stepDotColor;
+  final List<Widget> slides;
+  final double stepDotSize;
+  final bool allowToSkip;
   final String doneText;
   final String nextText;
   final String skipText;
-  final FastWelcomeViewController? controller;
 
   const FastWelcomeView({
     Key? key,
     required this.homeBuilder,
     required this.slides,
-    this.allowToSkip = false,
-    this.canSkip,
-    this.canTerminate,
     this.stepDotSize = _kStepDotSize,
-    this.doneText = _kDoneText,
-    this.nextText = _kNextText,
-    this.skipText = _kSkipText,
+    this.doneText = kFastDoneText,
+    this.nextText = kFastNextText,
+    this.skipText = kFastSkipText,
+    this.allowToSkip = false,
     this.stepDotColor,
+    this.controller,
     this.onDone,
     this.onSkip,
-    this.controller,
   }) : super(key: key);
 
   @override
@@ -50,8 +47,8 @@ class FastWelcomeView extends StatefulWidget {
 class _FastWelcomeViewState extends State<FastWelcomeView> {
   final PageController _pageViewController = PageController();
   late FastWelcomeViewController _controller;
-  int _pageCursor = 0;
   int _slidesLength = 0;
+  int _pageCursor = 0;
 
   bool get hasReachEnd => _pageCursor + 1 == _slidesLength;
 
@@ -89,6 +86,7 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
               return IgnorePointer(
                 ignoring: isPending,
                 child: Column(
+                  // crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Expanded(
                       child: PageView.builder(
@@ -111,31 +109,35 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
   }
 
   Widget _buildStepper(BuildContext context, bool isPending) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    final canShowSkipButton = widget.allowToSkip && !hasReachEnd;
+
+    return Stack(
       children: <Widget>[
-        Opacity(
-          opacity: widget.allowToSkip && !hasReachEnd ? 1 : 0,
-          child: FastTextButton(onTap: _onSkip, text: widget.skipText),
+        Positioned.fill(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: _buildSteps(context),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: _buildSteps(context),
+        Align(
+          alignment: Alignment.centerRight,
+          child: FastTextButton(
+            onTap: () {
+              if (hasReachEnd) {
+                _onDone();
+              } else {
+                _pageViewController.nextPage(
+                  duration: kTabScrollDuration,
+                  curve: Curves.ease,
+                );
+              }
+            },
+            text: hasReachEnd ? widget.doneText : widget.nextText,
+            isEnabled: !isPending,
+          ),
         ),
-        FastTextButton(
-          onTap: () {
-            if (hasReachEnd) {
-              _onDone();
-            } else {
-              _pageViewController.nextPage(
-                duration: kTabScrollDuration,
-                curve: Curves.ease,
-              );
-            }
-          },
-          text: hasReachEnd ? widget.doneText : widget.nextText,
-          isEnabled: !isPending,
-        ),
+        if (canShowSkipButton)
+          FastTextButton(onTap: _onSkip, text: widget.skipText),
       ],
     );
   }

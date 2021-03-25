@@ -13,6 +13,9 @@ const kFastNoneString = 'none';
 const kFastValidText = 'valid';
 const kFastAllString = 'all';
 const kFastEmptyString = '';
+const kFastDoneText = 'done';
+const kFastNextText = 'next';
+const kFastSkipText = 'skip';
 
 // EdgeInsets
 

@@ -41,7 +41,28 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return FastHomePage(
       leading: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          const slideText1 = 'slide 1';
+          const slideText2 = 'slide 2';
+          const homeText = 'Home';
+          const slide1 = Text(slideText1);
+          const slide2 = Text(slideText2);
+          final home = FastHomePage(
+            children: [Text(homeText)],
+          );
+
+          Navigator.push(
+            context,
+            CupertinoPageRoute(
+              builder: (context) => FastWelcomeView(
+                homeBuilder: (_) => home,
+                slides: [slide1, slide2],
+                allowToSkip: true,
+              ),
+              fullscreenDialog: true,
+            ),
+          );
+        },
         icon: Icon(Icons.account_circle),
       ),
       actions: [
