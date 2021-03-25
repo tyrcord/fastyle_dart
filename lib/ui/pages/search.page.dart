@@ -215,15 +215,15 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
             child: Container(
               color: Theme.of(context).scaffoldBackgroundColor,
               child: FastSelectableListView(
-                shouldSortItems: _shouldSortItems,
+                sortItems: _shouldSortItems,
                 items: _suggestions ?? widget.items,
                 onSelectionChanged: (T item) => _close(context, item),
                 categories: widget.categories,
-                shouldGroupByCategory:
+                groupByCategory:
                     _searchQuery == null ? widget.groupByCategory : false,
                 selection: widget.selection,
-                intialTabIndex: widget.intialCategoryIndex,
-                tabAllCategoryText: widget.allCategoryText,
+                intialCategoryIndex: widget.intialCategoryIndex,
+                allCategoryText: widget.allCategoryText,
               ),
             ),
           ),

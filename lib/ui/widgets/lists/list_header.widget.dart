@@ -1,9 +1,6 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-const _kMargin = EdgeInsets.symmetric(vertical: 16.0);
-const _kPadding = EdgeInsets.symmetric(horizontal: 16.0);
-
 class FastListHeader extends StatelessWidget {
   final Color? categoryColor;
   final Color? captionColor;
@@ -15,8 +12,8 @@ class FastListHeader extends StatelessWidget {
   FastListHeader({
     Key? key,
     required this.categoryText,
-    this.padding = _kPadding,
-    this.margin = _kMargin,
+    this.padding = const EdgeInsets.symmetric(horizontal: 16.0),
+    this.margin = const EdgeInsets.symmetric(vertical: 16.0),
     this.categoryColor,
     this.captionColor,
     this.captionText,

@@ -1,10 +1,13 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-const _kDefaultTrailing = Icon(Icons.keyboard_arrow_right);
-
 class FastNavigationListItem<T extends FastItem> extends StatelessWidget {
   final EdgeInsets? contentPadding;
+
+  ///
+  /// Allow to convert the label to beginning of sentence case.
+  ///
+  final bool capitalizeLabelText;
   final String? descriptionText;
   final VoidCallback onTap;
   final String? titleText;
@@ -17,7 +20,8 @@ class FastNavigationListItem<T extends FastItem> extends StatelessWidget {
   FastNavigationListItem({
     Key? key,
     required this.onTap,
-    this.trailing = _kDefaultTrailing,
+    this.trailing = const Icon(Icons.keyboard_arrow_right),
+    this.capitalizeLabelText = true,
     this.isEnabled = true,
     this.isDense = true,
     this.descriptionText,
@@ -34,6 +38,7 @@ class FastNavigationListItem<T extends FastItem> extends StatelessWidget {
       contentPadding: contentPadding,
       labelText: item?.labelText ?? titleText!,
       descriptionText: item?.descriptionText ?? descriptionText,
+      capitalizeLabelText: capitalizeLabelText,
       onTap: onTap,
       leading: item?.descriptor?.leading ?? leading,
       trailing: item?.descriptor?.trailing ?? trailing,

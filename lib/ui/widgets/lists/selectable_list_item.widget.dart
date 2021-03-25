@@ -4,48 +4,61 @@ import 'package:flutter/material.dart';
 const _defaultIcon = Icon(Icons.done);
 
 class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
-  final T? item;
-  final String? titleText;
-  final String? descriptionText;
-  final VoidCallback onTap;
-  final bool? isSelected;
-  final bool isDense;
-  final Widget? trailing;
-  final Widget? leading;
   final EdgeInsets? contentPadding;
+
+  ///
+  /// Allow to convert the label to beginning of sentence case.
+  ///
+  final bool capitalizeLabelText;
+  final String? descriptionText;
+  final Color? selectionColor;
+  final VoidCallback onTap;
+  final String? titleText;
+  final Widget? trailing;
+  final bool isSelected;
+  final Widget? leading;
   final bool isEnabled;
+  final bool isDense;
+  final T? item;
 
   FastSelectableListItem({
     Key? key,
     required this.onTap,
-    this.item,
-    this.titleText,
+    this.capitalizeLabelText = true,
+    this.isSelected = false,
+    this.isEnabled = true,
+    this.isDense = true,
     this.descriptionText,
-    this.isSelected,
+    this.contentPadding,
+    this.selectionColor,
+    this.titleText,
     this.trailing,
     this.leading,
-    this.isDense = true,
-    this.isEnabled = true,
-    this.contentPadding,
-  }) : super(key: key);
+    this.item,
+  })  : assert(item?.labelText != null || titleText != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _color = ThemeHelper.colors.getPrimaryColor(context);
     var _trailing = item?.descriptor?.trailing ?? trailing ?? _defaultIcon;
 
     if (_trailing is Icon) {
       final icon = _trailing;
-      _trailing = Icon(icon.icon, color: _color, size: icon.size);
+      _trailing = Icon(
+        icon.icon,
+        color: selectionColor ?? ThemeHelper.colors.getPrimaryColor(context),
+        size: icon.size,
+      );
     }
 
     return FastListItemLayout(
       contentPadding: contentPadding,
       labelText: item?.labelText ?? titleText!,
       descriptionText: item?.descriptionText ?? descriptionText,
+      capitalizeLabelText: capitalizeLabelText,
       onTap: onTap,
       leading: item?.descriptor?.leading ?? leading,
-      trailing: isSelected! ? _trailing : null,
+      trailing: isSelected ? _trailing : null,
       isEnabled: item?.isEnabled ?? isEnabled,
       isDense: item?.descriptor?.isDense ?? isDense,
     );

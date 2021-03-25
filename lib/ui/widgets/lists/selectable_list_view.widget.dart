@@ -2,35 +2,35 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 class FastSelectableListView<T extends FastItem> extends StatefulWidget {
+  final FastListItemBuilder<T>? listItemBuilder;
   final ValueChanged<T> onSelectionChanged;
-  final List<T> items;
-  final T? selection;
+  final EdgeInsets? itemContentPadding;
   final List<FastCategory>? categories;
-  final bool shouldGroupByCategory;
-  final bool isEnabled;
+  final String? allCategoryText;
+  final int intialCategoryIndex;
   final bool isViewScrollable;
   final bool showItemDivider;
-  final bool shouldSortItems;
-  final FastListItemBuilder<T>? listItemBuilder;
-  final EdgeInsets? itemContentPadding;
-  final int intialTabIndex;
-  final String? tabAllCategoryText;
+  final bool groupByCategory;
+  final bool sortItems;
+  final bool isEnabled;
+  final List<T> items;
+  final T? selection;
 
   FastSelectableListView({
     Key? key,
     required this.onSelectionChanged,
     required this.items,
+    this.groupByCategory = false,
+    this.isViewScrollable = true,
+    this.showItemDivider = false,
+    this.intialCategoryIndex = 0,
+    this.sortItems = true,
+    this.isEnabled = true,
+    this.itemContentPadding,
+    this.allCategoryText,
+    this.listItemBuilder,
     this.categories,
     this.selection,
-    this.shouldGroupByCategory = false,
-    this.isEnabled = true,
-    this.isViewScrollable = true,
-    this.shouldSortItems = true,
-    this.showItemDivider = false,
-    this.listItemBuilder,
-    this.itemContentPadding,
-    this.intialTabIndex = 0,
-    this.tabAllCategoryText,
   }) : super(key: key);
 
   @override
@@ -63,11 +63,11 @@ class _FastSelectableListViewState<T extends FastItem>
       items: widget.items,
       isViewScrollable: widget.isViewScrollable,
       showItemDivider: widget.showItemDivider,
-      sortItems: widget.shouldSortItems,
+      sortItems: widget.sortItems,
       categories: widget.categories,
-      groupByCategory: widget.shouldGroupByCategory,
-      intialCategoryIndex: widget.intialTabIndex,
-      allCategoryText: widget.tabAllCategoryText,
+      groupByCategory: widget.groupByCategory,
+      intialCategoryIndex: widget.intialCategoryIndex,
+      allCategoryText: widget.allCategoryText,
     );
   }
 

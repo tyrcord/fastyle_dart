@@ -2,35 +2,33 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 class FastNavigationListView<T extends FastItem> extends StatefulWidget {
-  final ValueChanged<T> onSelectionChanged;
-  final List<T> items;
-  final T? selection;
-  final bool isEnabled;
-  final bool isViewScrollable;
-  final bool showItemDivider;
-  final bool shouldSortItems;
   final FastListItemBuilder<T>? listItemBuilder;
+  final ValueChanged<T> onSelectionChanged;
   final EdgeInsets? itemContentPadding;
-  final bool showSearchBar;
-  final String placeholderSearchText;
-  final Icon clearSearchIcon;
+  final String searchPlaceholderText;
   final bool shouldUseFuzzySearch;
+  final bool isViewScrollable;
+  final Icon clearSearchIcon;
+  final bool showItemDivider;
+  final bool sortItems;
+  final bool showSearchBar;
+  final bool isEnabled;
+  final List<T> items;
 
   FastNavigationListView({
     Key? key,
     required this.onSelectionChanged,
     required this.items,
-    this.placeholderSearchText = kFastSearchPlaceholderText,
+    this.searchPlaceholderText = kFastSearchPlaceholderText,
     this.clearSearchIcon = kFastClearSearchIcon,
     this.shouldUseFuzzySearch = false,
     this.isViewScrollable = true,
     this.showItemDivider = false,
-    this.shouldSortItems = true,
+    this.sortItems = true,
     this.showSearchBar = false,
     this.isEnabled = true,
     this.itemContentPadding,
     this.listItemBuilder,
-    this.selection,
   }) : super(key: key);
 
   @override
@@ -55,7 +53,7 @@ class _FastNavigationListViewState<T extends FastItem>
             onSuggestions: (List<T>? suggestions, String? query) {
               setState(() => _suggestions = suggestions);
             },
-            placeholderText: widget.placeholderSearchText,
+            placeholderText: widget.searchPlaceholderText,
             clearSearchIcon: widget.clearSearchIcon,
           ),
         Expanded(
@@ -64,8 +62,7 @@ class _FastNavigationListViewState<T extends FastItem>
             items: _suggestions ?? widget.items,
             isViewScrollable: widget.isViewScrollable,
             showItemDivider: widget.showItemDivider,
-            sortItems:
-                widget.shouldUseFuzzySearch ? false : widget.shouldSortItems,
+            sortItems: widget.shouldUseFuzzySearch ? false : widget.sortItems,
           ),
         ),
       ],

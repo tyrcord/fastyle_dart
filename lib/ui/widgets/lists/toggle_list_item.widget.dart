@@ -2,26 +2,27 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 class FastToggleListItem<T extends FastItem> extends StatefulWidget {
-  final T? item;
-  final String? titleText;
-  final String? descriptionText;
   final ValueChanged<bool> onValueChanged;
+  final String? descriptionText;
+  final String? titleText;
   final Widget? leading;
   final bool isEnabled;
   final bool isChecked;
   final bool isDense;
+  final T? item;
 
   FastToggleListItem({
     Key? key,
     required this.onValueChanged,
-    this.item,
-    this.titleText,
-    this.descriptionText,
-    this.leading,
+    this.isChecked = false,
     this.isEnabled = true,
     this.isDense = true,
-    this.isChecked = false,
-  }) : super(key: key);
+    this.descriptionText,
+    this.titleText,
+    this.leading,
+    this.item,
+  })  : assert(item?.labelText != null || titleText != null),
+        super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FastToggleListItemState();
@@ -53,26 +54,32 @@ class _FastToggleListItemState extends State<FastToggleListItem> {
         activeColor: ThemeHelper.colors.getPrimaryColor(context),
         inactiveTrackColor: ThemeHelper.colors.getHintColor(context),
         dense: widget.isDense,
-        title: FastBody(
-          text: (widget.titleText ?? widget.item?.labelText)!,
-        ),
-        subtitle: widget.descriptionText != null
-            ? FastBody2(
-                text:
-                    (widget.descriptionText ?? widget.item?.descriptionText!)!,
-              )
-            : null,
-        onChanged: (bool value) {
-          if (widget.item?.isEnabled ?? true && widget.isEnabled) {
-            setState(() {
-              _value = value;
-              widget.onValueChanged(value);
-            });
-          }
-        },
-        secondary: widget.leading,
+        title: _buildLabel(),
+        subtitle: _buildDescription(),
+        onChanged: _onChanged,
+        secondary: widget.item?.descriptor?.leading ?? widget.leading,
         value: _value,
       ),
     );
+  }
+
+  Widget _buildLabel() {
+    return FastBody(text: (widget.item?.labelText ?? widget.titleText)!);
+  }
+
+  Widget? _buildDescription() {
+    final item = widget.item;
+    final descriptionText = item?.descriptionText ?? widget.descriptionText;
+
+    return descriptionText != null ? FastBody2(text: descriptionText) : null;
+  }
+
+  void _onChanged(bool value) {
+    if (widget.item?.isEnabled ?? widget.isEnabled) {
+      setState(() {
+        _value = value;
+        widget.onValueChanged(value);
+      });
+    }
   }
 }
