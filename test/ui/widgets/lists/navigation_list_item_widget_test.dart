@@ -14,14 +14,20 @@ void main() {
   const labelText = 'label';
   const descriptionText = 'description';
   const itemIcon = Icon(Icons.icecream);
-  const item = FastItem(
-      labelText: 'label 2',
-      descriptionText: 'description 2',
-      isEnabled: false,
-      descriptor: FastListItemDescriptor(leading: itemIcon));
+  const trailingIcon = Icon(Icons.radio);
 
-  group('FastListHeader', () {
-    group('#onValueChanged()', () {
+  const item = FastItem(
+    labelText: 'label 2',
+    descriptionText: 'description 2',
+    isEnabled: false,
+    descriptor: FastListItemDescriptor(
+      leading: itemIcon,
+      trailing: trailingIcon,
+    ),
+  );
+
+  group('FastNavigationListItem', () {
+    group('#onTap()', () {
       testWidgets('should be called when the toggle switch is used',
           (WidgetTester tester) async {
         var called = false;
@@ -29,67 +35,43 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastToggleListItem(
-                onValueChanged: (bool checked) => called = true,
-                titleText: labelText,
+              FastNavigationListItem(
+                onTap: () => called = true,
+                labelText: labelText,
               ),
             ],
           )),
           Duration(milliseconds: 60),
         );
 
-        await tester.tap(find.byType(SwitchListTile));
+        await tester.tap(find.byType(FastNavigationListItem));
         await tester.pumpAndSettle();
 
         expect(called, isTrue);
       });
     });
 
-    group('#isChecked', () {
-      testWidgets('should be set to false by default',
-          (WidgetTester tester) async {
-        var oldValue;
-
-        await tester.pumpWidget(
-          _buildApp(Column(
-            children: [
-              FastToggleListItem(
-                onValueChanged: (bool checked) => oldValue = !checked,
-                titleText: labelText,
-              ),
-            ],
-          )),
-          Duration(milliseconds: 60),
-        );
-
-        await tester.tap(find.byType(SwitchListTile));
-        await tester.pumpAndSettle();
-
-        expect(oldValue, isFalse);
-      });
-    });
-
     group('#isEnabled', () {
       testWidgets('should be set to true by default',
           (WidgetTester tester) async {
-        var value;
+        var called = false;
 
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastToggleListItem(
-                onValueChanged: (bool checked) => value = checked,
-                titleText: labelText,
+              FastNavigationListItem(
+                onTap: () => called = true,
+                labelText: labelText,
               ),
             ],
           )),
           Duration(milliseconds: 60),
         );
 
-        await tester.tap(find.byType(SwitchListTile));
+        await tester.tap(find.byType(FastNavigationListItem));
         await tester.pumpAndSettle();
 
-        expect(value, isTrue);
+        expect(called, isTrue);
       });
 
       testWidgets('should not allow to use the switch toggle when set to false',
@@ -99,9 +81,9 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastToggleListItem(
-                onValueChanged: (bool checked) => called = true,
-                titleText: labelText,
+              FastNavigationListItem(
+                onTap: () => called = true,
+                labelText: labelText,
                 isEnabled: false,
               ),
             ],
@@ -109,7 +91,7 @@ void main() {
           Duration(milliseconds: 60),
         );
 
-        await tester.tap(find.byType(SwitchListTile));
+        await tester.tap(find.byType(FastNavigationListItem));
         await tester.pumpAndSettle();
 
         expect(called, isFalse);
@@ -121,9 +103,10 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastToggleListItem(
-                onValueChanged: (bool checked) {},
-                titleText: labelText,
+              FastNavigationListItem(
+                onTap: () {},
+                labelText: labelText,
+                capitalizeLabelText: false,
               ),
             ],
           )),
@@ -139,9 +122,9 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastToggleListItem(
-                onValueChanged: (bool checked) {},
-                titleText: labelText,
+              FastNavigationListItem(
+                onTap: () {},
+                labelText: labelText,
                 descriptionText: descriptionText,
               ),
             ],
@@ -160,9 +143,9 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastToggleListItem(
-                onValueChanged: (bool checked) {},
-                titleText: labelText,
+              FastNavigationListItem(
+                onTap: () {},
+                labelText: labelText,
                 descriptionText: descriptionText,
                 leading: icon,
               ),
@@ -175,6 +158,31 @@ void main() {
       });
     });
 
+    group('#trailing', () {
+      testWidgets('should draw it when set', (WidgetTester tester) async {
+        final icon = Icon(Icons.pages);
+
+        await tester.pumpWidget(
+          _buildApp(Column(
+            children: [
+              FastNavigationListItem(
+                onTap: () {},
+                labelText: labelText,
+                descriptionText: descriptionText,
+                trailing: icon,
+              ),
+            ],
+          )),
+          Duration(milliseconds: 60),
+        );
+
+        expect(
+          find.widgetWithIcon(FastNavigationListItem, Icons.pages),
+          findsOneWidget,
+        );
+      });
+    });
+
     group('#item', () {
       testWidgets('should be used when titleText is set',
           (WidgetTester tester) async {
@@ -183,10 +191,11 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastToggleListItem(
-                onValueChanged: (bool checked) {},
-                titleText: labelText,
+              FastNavigationListItem(
+                onTap: () {},
+                labelText: labelText,
                 descriptionText: descriptionText,
+                capitalizeLabelText: false,
                 leading: icon,
                 item: item,
               ),
@@ -205,9 +214,9 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastToggleListItem(
-                onValueChanged: (bool checked) {},
-                titleText: labelText,
+              FastNavigationListItem(
+                onTap: () {},
+                labelText: labelText,
                 descriptionText: descriptionText,
                 leading: icon,
                 item: item,
@@ -228,9 +237,9 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastToggleListItem(
-                onValueChanged: (bool checked) => called = true,
-                titleText: labelText,
+              FastNavigationListItem(
+                onTap: () => called = true,
+                labelText: labelText,
                 descriptionText: descriptionText,
                 leading: icon,
                 item: item,
@@ -241,7 +250,7 @@ void main() {
           Duration(milliseconds: 60),
         );
 
-        await tester.tap(find.byType(SwitchListTile));
+        await tester.tap(find.byType(FastNavigationListItem));
         await tester.pumpAndSettle();
 
         expect(called, isFalse);
@@ -254,9 +263,9 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastToggleListItem(
-                onValueChanged: (bool checked) {},
-                titleText: labelText,
+              FastNavigationListItem(
+                onTap: () {},
+                labelText: labelText,
                 descriptionText: descriptionText,
                 leading: icon,
                 item: item,
@@ -267,6 +276,31 @@ void main() {
         );
 
         expect(find.byWidget(itemIcon), findsOneWidget);
+      });
+
+      testWidgets('should be used when descriptor\'s trailing is set',
+          (WidgetTester tester) async {
+        final icon = Icon(Icons.pages);
+
+        await tester.pumpWidget(
+          _buildApp(Column(
+            children: [
+              FastNavigationListItem(
+                onTap: () {},
+                labelText: labelText,
+                descriptionText: descriptionText,
+                trailing: icon,
+                item: item,
+              ),
+            ],
+          )),
+          Duration(milliseconds: 60),
+        );
+
+        expect(
+          find.widgetWithIcon(FastNavigationListItem, Icons.radio),
+          findsOneWidget,
+        );
       });
     });
   });

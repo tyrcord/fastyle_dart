@@ -26,7 +26,7 @@ void main() {
     ),
   );
 
-  group('FastNavigationListItem', () {
+  group('FastSelectableListItem', () {
     group('#onTap()', () {
       testWidgets('should be called when the toggle switch is used',
           (WidgetTester tester) async {
@@ -35,19 +35,40 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastNavigationListItem(
+              FastSelectableListItem(
                 onTap: () => called = true,
-                titleText: labelText,
+                labelText: labelText,
               ),
             ],
           )),
           Duration(milliseconds: 60),
         );
 
-        await tester.tap(find.byType(FastNavigationListItem));
+        await tester.tap(find.byType(FastSelectableListItem));
         await tester.pumpAndSettle();
 
         expect(called, isTrue);
+      });
+    });
+
+    group('#isSelected', () {
+      testWidgets('should be set to false by default',
+          (WidgetTester tester) async {
+        var item = FastSelectableListItem(
+          onTap: () {},
+          labelText: labelText,
+        );
+
+        await tester.pumpWidget(
+          _buildApp(Column(
+            children: [
+              item,
+            ],
+          )),
+          Duration(milliseconds: 60),
+        );
+
+        expect(item.isSelected, isFalse);
       });
     });
 
@@ -59,16 +80,16 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastNavigationListItem(
+              FastSelectableListItem(
                 onTap: () => called = true,
-                titleText: labelText,
+                labelText: labelText,
               ),
             ],
           )),
           Duration(milliseconds: 60),
         );
 
-        await tester.tap(find.byType(FastNavigationListItem));
+        await tester.tap(find.byType(FastSelectableListItem));
         await tester.pumpAndSettle();
 
         expect(called, isTrue);
@@ -81,9 +102,9 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastNavigationListItem(
+              FastSelectableListItem(
                 onTap: () => called = true,
-                titleText: labelText,
+                labelText: labelText,
                 isEnabled: false,
               ),
             ],
@@ -91,7 +112,7 @@ void main() {
           Duration(milliseconds: 60),
         );
 
-        await tester.tap(find.byType(FastNavigationListItem));
+        await tester.tap(find.byType(FastSelectableListItem));
         await tester.pumpAndSettle();
 
         expect(called, isFalse);
@@ -103,9 +124,9 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastNavigationListItem(
+              FastSelectableListItem(
                 onTap: () {},
-                titleText: labelText,
+                labelText: labelText,
                 capitalizeLabelText: false,
               ),
             ],
@@ -122,9 +143,9 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastNavigationListItem(
+              FastSelectableListItem(
                 onTap: () {},
-                titleText: labelText,
+                labelText: labelText,
                 descriptionText: descriptionText,
               ),
             ],
@@ -143,9 +164,9 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastNavigationListItem(
+              FastSelectableListItem(
                 onTap: () {},
-                titleText: labelText,
+                labelText: labelText,
                 descriptionText: descriptionText,
                 leading: icon,
               ),
@@ -165,11 +186,12 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastNavigationListItem(
+              FastSelectableListItem(
                 onTap: () {},
-                titleText: labelText,
+                labelText: labelText,
                 descriptionText: descriptionText,
                 trailing: icon,
+                isSelected: true,
               ),
             ],
           )),
@@ -177,7 +199,7 @@ void main() {
         );
 
         expect(
-          find.widgetWithIcon(FastNavigationListItem, Icons.pages),
+          find.widgetWithIcon(FastSelectableListItem, Icons.pages),
           findsOneWidget,
         );
       });
@@ -191,9 +213,9 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastNavigationListItem(
+              FastSelectableListItem(
                 onTap: () {},
-                titleText: labelText,
+                labelText: labelText,
                 descriptionText: descriptionText,
                 capitalizeLabelText: false,
                 leading: icon,
@@ -214,9 +236,9 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastNavigationListItem(
+              FastSelectableListItem(
                 onTap: () {},
-                titleText: labelText,
+                labelText: labelText,
                 descriptionText: descriptionText,
                 leading: icon,
                 item: item,
@@ -237,9 +259,9 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastNavigationListItem(
+              FastSelectableListItem(
                 onTap: () => called = true,
-                titleText: labelText,
+                labelText: labelText,
                 descriptionText: descriptionText,
                 leading: icon,
                 item: item,
@@ -250,7 +272,7 @@ void main() {
           Duration(milliseconds: 60),
         );
 
-        await tester.tap(find.byType(FastNavigationListItem));
+        await tester.tap(find.byType(FastSelectableListItem));
         await tester.pumpAndSettle();
 
         expect(called, isFalse);
@@ -263,9 +285,9 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastNavigationListItem(
+              FastSelectableListItem(
                 onTap: () {},
-                titleText: labelText,
+                labelText: labelText,
                 descriptionText: descriptionText,
                 leading: icon,
                 item: item,
@@ -285,11 +307,12 @@ void main() {
         await tester.pumpWidget(
           _buildApp(Column(
             children: [
-              FastNavigationListItem(
+              FastSelectableListItem(
                 onTap: () {},
-                titleText: labelText,
+                labelText: labelText,
                 descriptionText: descriptionText,
                 trailing: icon,
+                isSelected: true,
                 item: item,
               ),
             ],
@@ -298,7 +321,7 @@ void main() {
         );
 
         expect(
-          find.widgetWithIcon(FastNavigationListItem, Icons.radio),
+          find.widgetWithIcon(FastSelectableListItem, Icons.radio),
           findsOneWidget,
         );
       });

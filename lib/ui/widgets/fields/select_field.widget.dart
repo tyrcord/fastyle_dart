@@ -14,11 +14,11 @@ class FastSelectField<T> extends StatefulWidget {
   final FastItem<T>? selection;
   final Widget clearSearchIcon;
   final bool canClearSelection;
+  final String searchTitleText;
   final bool groupByCategory;
   final bool useFuzzySearch;
   final String? captionText;
   final String? helperText;
-  final String titleText;
   final String labelText;
   final Widget closeIcon;
   final Widget backIcon;
@@ -33,7 +33,7 @@ class FastSelectField<T> extends StatefulWidget {
     this.searchPlaceholderText = kFastSearchPlaceholderText,
     this.clearSelectionText = kFastClearSelectionText,
     this.clearSearchIcon = kFastClearSearchIcon,
-    this.titleText = kFastSelectTitleText,
+    this.searchTitleText = kFastSelectTitleText,
     this.closeIcon = kFastCloseIcon,
     this.backIcon = kFastBackIcon,
     this.canClearSelection = true,
@@ -94,7 +94,7 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
             context,
             CupertinoPageRoute(
               builder: (BuildContext context) => FastSearchPage<FastItem<T>>(
-                titleText: widget.titleText,
+                titleText: widget.searchTitleText,
                 items: widget.items,
                 groupByCategory: widget.groupByCategory,
                 categories: widget.categories,
@@ -143,19 +143,7 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
               );
 
     return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: Divider.createBorderSide(
-            context,
-            color: Theme.of(context)
-                .inputDecorationTheme
-                .enabledBorder!
-                .borderSide
-                .color,
-            width: kFastBorderSize,
-          ),
-        ),
-      ),
+      decoration: ThemeHelper.createBorderSide(context),
       child: Row(
         children: <Widget>[
           Expanded(child: text),

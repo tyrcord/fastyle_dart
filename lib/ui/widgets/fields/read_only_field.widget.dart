@@ -46,19 +46,7 @@ class FastReadOnlyTextField extends StatelessWidget {
   Widget _buildControl(BuildContext context) {
     return Container(
       height: 37.0,
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: Divider.createBorderSide(
-            context,
-            color: Theme.of(context)
-                .inputDecorationTheme
-                .enabledBorder!
-                .borderSide
-                .color,
-            width: kFastBorderSize,
-          ),
-        ),
-      ),
+      decoration: ThemeHelper.createBorderSide(context),
       child: Align(
         alignment: Alignment.centerLeft,
         child: child ??

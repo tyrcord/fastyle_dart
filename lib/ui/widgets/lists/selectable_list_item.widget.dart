@@ -11,7 +11,7 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
   final String? descriptionText;
   final Color? selectionColor;
   final VoidCallback onTap;
-  final String? titleText;
+  final String? labelText;
   final Widget? trailing;
   final bool isSelected;
   final Widget? leading;
@@ -29,11 +29,11 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
     this.descriptionText,
     this.contentPadding,
     this.selectionColor,
-    this.titleText,
+    this.labelText,
     this.trailing,
     this.leading,
     this.item,
-  })  : assert(item?.labelText != null || titleText != null),
+  })  : assert(item?.labelText != null || labelText != null),
         super(key: key);
 
   @override
@@ -51,7 +51,7 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
 
     return FastListItemLayout(
       contentPadding: contentPadding,
-      labelText: item?.labelText ?? titleText!,
+      labelText: item?.labelText ?? labelText!,
       descriptionText: item?.descriptionText ?? descriptionText,
       capitalizeLabelText: capitalizeLabelText,
       onTap: onTap,

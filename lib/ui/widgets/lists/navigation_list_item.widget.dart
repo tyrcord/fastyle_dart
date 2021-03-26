@@ -10,7 +10,7 @@ class FastNavigationListItem<T extends FastItem> extends StatelessWidget {
   final bool capitalizeLabelText;
   final String? descriptionText;
   final VoidCallback onTap;
-  final String? titleText;
+  final String? labelText;
   final Widget? leading;
   final Widget trailing;
   final bool isEnabled;
@@ -26,17 +26,17 @@ class FastNavigationListItem<T extends FastItem> extends StatelessWidget {
     this.isDense = true,
     this.descriptionText,
     this.contentPadding,
-    this.titleText,
+    this.labelText,
     this.leading,
     this.item,
-  })  : assert(item != null || titleText != null),
+  })  : assert(item != null || labelText != null),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FastListItemLayout(
       contentPadding: contentPadding,
-      labelText: item?.labelText ?? titleText!,
+      labelText: item?.labelText ?? labelText!,
       descriptionText: item?.descriptionText ?? descriptionText,
       capitalizeLabelText: capitalizeLabelText,
       onTap: onTap,

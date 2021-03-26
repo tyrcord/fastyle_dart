@@ -43,4 +43,16 @@ class ThemeHelper {
       blurRadius: kFastBlurRadius,
     );
   }
+
+  static BoxDecoration createBorderSide(BuildContext context) {
+    return BoxDecoration(
+      border: Border(
+        bottom: Divider.createBorderSide(
+          context,
+          color: Theme.of(context).dividerColor,
+          width: kFastBorderSize,
+        ),
+      ),
+    );
+  }
 }

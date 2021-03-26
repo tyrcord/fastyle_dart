@@ -109,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       FastToggleListItem(
         leading: const Icon(Icons.brightness_2),
-        titleText: 'Dark Mode',
+        labelText: 'Dark Mode',
         isChecked: themeBloc.currentState.brightness == Brightness.dark,
         onValueChanged: (bool shouldSwitchToDarkMode) {
           if (shouldSwitchToDarkMode) {
@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
           iconData: Icons.radio_button_checked,
           backgroundColor: ThemeHelper.colors.getPurpleColor(context),
         ),
-        titleText: 'Buttons',
+        labelText: 'Buttons',
         descriptionText: 'Raised, icon buttons',
         onTap: () {
           Navigator.push(
@@ -141,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
           iconData: Icons.text_fields,
           backgroundColor: ThemeHelper.colors.getGreenColor(context),
         ),
-        titleText: 'Typography',
+        labelText: 'Typography',
         descriptionText: 'Title, subhead...',
         onTap: () {
           Navigator.push(
@@ -155,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
           iconData: Icons.table_chart,
           backgroundColor: ThemeHelper.colors.getBlueColor(context),
         ),
-        titleText: 'Tabs',
+        labelText: 'Tabs',
         onTap: () {
           Navigator.push(
             context,
@@ -168,7 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
           iconData: Icons.view_agenda,
           backgroundColor: ThemeHelper.colors.getPinkColor(context),
         ),
-        titleText: 'Cards',
+        labelText: 'Cards',
         onTap: () {
           Navigator.push(
             context,
@@ -181,7 +181,7 @@ class _MyHomePageState extends State<MyHomePage> {
           iconData: Icons.view_list,
           backgroundColor: ThemeHelper.colors.getIndigoColor(context),
         ),
-        titleText: 'List',
+        labelText: 'List',
         onTap: () {
           Navigator.push(
             context,
@@ -194,7 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
           iconData: Icons.edit,
           backgroundColor: ThemeHelper.colors.getTealColor(context),
         ),
-        titleText: 'Fields',
+        labelText: 'Fields',
         onTap: () {
           Navigator.push(
             context,
@@ -207,7 +207,7 @@ class _MyHomePageState extends State<MyHomePage> {
           iconData: Icons.message,
           backgroundColor: ThemeHelper.colors.getOrangeColor(context),
         ),
-        titleText: 'Notifications',
+        labelText: 'Notifications',
         onTap: () {
           Navigator.push(
             context,
@@ -220,7 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
           iconData: Icons.colorize,
           backgroundColor: ThemeHelper.colors.getRedColor(context),
         ),
-        titleText: 'Colors',
+        labelText: 'Colors',
         onTap: () {
           Navigator.push(
             context,

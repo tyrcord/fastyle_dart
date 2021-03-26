@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class FastPendingReadOnlyTextField extends StatefulWidget {
   final bool enableInteractiveSelection;
   final bool showHelperBoundaries;
-  final String? placeholderText;
+  final String placeholderText;
   final Color? helperTextColor;
   final Color? valueTextColor;
   final bool useFontForNumber;
@@ -17,24 +17,22 @@ class FastPendingReadOnlyTextField extends StatefulWidget {
   final String? valueText;
   final String labelText;
   final bool isPending;
-  final Widget? child;
 
   FastPendingReadOnlyTextField({
     Key? key,
     required this.labelText,
+    this.placeholderText = kFastEmptyString,
     this.enableInteractiveSelection = true,
     this.showHelperBoundaries = true,
     this.textAlign = TextAlign.left,
     this.useFontForNumber = false,
     this.isPending = false,
     this.helperTextColor,
-    this.placeholderText,
     this.valueTextColor,
     this.pendingText,
     this.captionText,
     this.helperText,
     this.valueText,
-    this.child,
   }) : super(key: key);
 
   @override
@@ -121,7 +119,7 @@ class _FastPendingReadOnlyTextFieldState
             child: FastBody(
               text: widget.isPending && widget.pendingText != null
                   ? widget.pendingText!
-                  : widget.valueText ?? widget.placeholderText!,
+                  : widget.valueText ?? widget.placeholderText,
               textColor: widget.valueTextColor,
               enableInteractiveSelection: widget.enableInteractiveSelection,
               textAlign: widget.textAlign,

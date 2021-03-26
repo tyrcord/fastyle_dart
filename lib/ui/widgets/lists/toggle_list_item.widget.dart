@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class FastToggleListItem<T extends FastItem> extends StatefulWidget {
   final ValueChanged<bool> onValueChanged;
   final String? descriptionText;
-  final String? titleText;
+  final String? labelText;
   final Widget? leading;
   final bool isEnabled;
   final bool isChecked;
@@ -18,10 +18,10 @@ class FastToggleListItem<T extends FastItem> extends StatefulWidget {
     this.isEnabled = true,
     this.isDense = true,
     this.descriptionText,
-    this.titleText,
+    this.labelText,
     this.leading,
     this.item,
-  })  : assert(item?.labelText != null || titleText != null),
+  })  : assert(item?.labelText != null || labelText != null),
         super(key: key);
 
   @override
@@ -64,7 +64,7 @@ class _FastToggleListItemState extends State<FastToggleListItem> {
   }
 
   Widget _buildLabel() {
-    return FastBody(text: (widget.item?.labelText ?? widget.titleText)!);
+    return FastBody(text: (widget.item?.labelText ?? widget.labelText)!);
   }
 
   Widget? _buildDescription() {

@@ -148,12 +148,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   }
 
   BoxDecoration? _buildDividerDecorationIdNeeded(BuildContext context) {
-    return showItemDivider
-        ? BoxDecoration(
-            border: Border(
-            bottom: Divider.createBorderSide(context),
-          ))
-        : null;
+    return showItemDivider ? ThemeHelper.createBorderSide(context) : null;
   }
 
   List<T> _sortItemIfNeeded(List<T> items) {
