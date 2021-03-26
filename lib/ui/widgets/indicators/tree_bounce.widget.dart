@@ -13,7 +13,7 @@ class FastThreeBounceIndicator extends StatelessWidget {
     return Center(
       child: SpinKitThreeBounce(
         color: color ?? ThemeHelper.colors.getPrimaryColor(context),
-        size: kFastIconSize,
+        size: kFastIconSizeSmall,
       ),
     );
   }

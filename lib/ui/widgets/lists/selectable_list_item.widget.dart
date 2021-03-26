@@ -1,8 +1,6 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-const _defaultIcon = Icon(Icons.done);
-
 class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
   final EdgeInsets? contentPadding;
 
@@ -40,7 +38,7 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _trailing = item?.descriptor?.trailing ?? trailing ?? _defaultIcon;
+    var _trailing = item?.descriptor?.trailing ?? trailing ?? kFastDoneIcon;
 
     if (_trailing is Icon) {
       final icon = _trailing;

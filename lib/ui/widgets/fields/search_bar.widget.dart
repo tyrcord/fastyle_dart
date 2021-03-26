@@ -3,35 +3,33 @@ import 'package:flutter/material.dart';
 import 'package:fuzzy/data/result.dart';
 import 'package:fuzzy/fuzzy.dart';
 
-const _kIconSize = 24.0;
-
 class FastSearchBar<T extends FastItem> extends StatefulWidget {
-  final List<T> items;
-  final String placeholderText;
-  final Widget closeIcon;
-  final Widget backIcon;
-  final Widget clearSearchIcon;
-  final bool Function(T option, String? query)? onSearchFilter;
   final void Function(List<T>? suggestions, String? query)? onSuggestions;
-  final VoidCallback? onLeadingButtonTap;
-  final bool showLeadingIcon;
+  final bool Function(T option, String? query)? onSearchFilter;
   final TextEditingController? textEditingController;
+  final VoidCallback? onLeadingButtonTap;
   final bool shouldUseFuzzySearch;
   final bool showShowBottomBorder;
+  final String placeholderText;
+  final Widget clearSearchIcon;
+  final bool showLeadingIcon;
+  final Widget closeIcon;
+  final Widget backIcon;
+  final List<T> items;
 
   FastSearchBar({
     required this.items,
     this.placeholderText = kFastSearchPlaceholderText,
     this.clearSearchIcon = kFastClearSearchIcon,
-    this.closeIcon = kFastCloseIcon,
-    this.backIcon = kFastBackIcon,
-    this.onSearchFilter,
-    this.onSuggestions,
-    this.onLeadingButtonTap,
-    this.textEditingController,
-    this.showLeadingIcon = true,
     this.shouldUseFuzzySearch = false,
     this.showShowBottomBorder = true,
+    this.closeIcon = kFastCloseIcon,
+    this.backIcon = kFastBackIcon,
+    this.showLeadingIcon = true,
+    this.textEditingController,
+    this.onLeadingButtonTap,
+    this.onSearchFilter,
+    this.onSuggestions,
   }) : super();
 
   @override
@@ -95,7 +93,7 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
           widget.onLeadingButtonTap!();
         }
       },
-      iconSize: _kIconSize,
+      iconSize: kFastIconSizeMedium,
     );
   }
 
@@ -118,7 +116,7 @@ class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
       icon: widget.clearSearchIcon,
       iconColor: _searchQuery == null ? theme.hintColor : null,
       onTap: () => _textController.clear(),
-      iconSize: _kIconSize,
+      iconSize: kFastIconSizeMedium,
     );
   }
 

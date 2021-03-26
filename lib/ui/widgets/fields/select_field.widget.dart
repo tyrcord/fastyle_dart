@@ -4,34 +4,35 @@ import 'package:flutter/material.dart';
 
 class FastSelectField<T> extends StatefulWidget {
   final ValueChanged<FastItem<T>?> onSelectionChanged;
-  final String labelText;
-  final String? captionText;
-  final String? placeholderText;
-  final String? helperText;
-  final bool isReadOnly;
-  final FastItem<T>? selection;
-  final List<FastItem<T>> items;
   final List<FastCategory>? categories;
-  final bool groupByCategory;
-  final bool useFuzzySearch;
-  final bool sortItems;
-  final String titleText;
   final String searchPlaceholderText;
+  final String clearSelectionText;
+  final String? placeholderText;
+  final List<FastItem<T>> items;
   final int intialCategoryIndex;
   final String? allCategoryText;
+  final FastItem<T>? selection;
   final Widget clearSearchIcon;
+  final bool canClearSelection;
+  final bool groupByCategory;
+  final bool useFuzzySearch;
+  final String? captionText;
+  final String? helperText;
+  final String titleText;
+  final String labelText;
   final Widget closeIcon;
   final Widget backIcon;
-  final bool canClearSelection;
-  final String clearSelectionText;
+  final bool isReadOnly;
+  final bool sortItems;
 
   FastSelectField({
     Key? key,
     required this.onSelectionChanged,
     required this.labelText,
     required this.items,
+    this.searchPlaceholderText = kFastSearchPlaceholderText,
     this.clearSelectionText = kFastClearSelectionText,
-    this.placeholderText,
+    this.clearSearchIcon = kFastClearSearchIcon,
     this.titleText = kFastSelectTitleText,
     this.closeIcon = kFastCloseIcon,
     this.backIcon = kFastBackIcon,
@@ -41,8 +42,7 @@ class FastSelectField<T> extends StatefulWidget {
     this.useFuzzySearch = false,
     this.isReadOnly = false,
     this.sortItems = true,
-    this.searchPlaceholderText = kFastSearchPlaceholderText,
-    this.clearSearchIcon = kFastClearSearchIcon,
+    this.placeholderText,
     this.allCategoryText,
     this.captionText,
     this.helperText,

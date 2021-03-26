@@ -4,37 +4,37 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 class FastPendingReadOnlyTextField extends StatefulWidget {
-  final String labelText;
-  final String? captionText;
-  final String? placeholderText;
-  final String? helperText;
-  final TextAlign textAlign;
-  final String? valueText;
-  final String? pendingText;
-  final bool useFontForNumber;
-  final Widget? child;
   final bool enableInteractiveSelection;
-  final bool isPending;
-  final Color? valueTextColor;
   final bool showHelperBoundaries;
+  final String? placeholderText;
   final Color? helperTextColor;
+  final Color? valueTextColor;
+  final bool useFontForNumber;
+  final TextAlign textAlign;
+  final String? captionText;
+  final String? pendingText;
+  final String? helperText;
+  final String? valueText;
+  final String labelText;
+  final bool isPending;
+  final Widget? child;
 
   FastPendingReadOnlyTextField({
     Key? key,
     required this.labelText,
-    this.captionText,
-    this.placeholderText,
-    this.helperText,
-    this.valueText,
+    this.enableInteractiveSelection = true,
+    this.showHelperBoundaries = true,
     this.textAlign = TextAlign.left,
     this.useFontForNumber = false,
-    this.child,
-    this.enableInteractiveSelection = true,
     this.isPending = false,
-    this.pendingText,
-    this.valueTextColor,
-    this.showHelperBoundaries = true,
     this.helperTextColor,
+    this.placeholderText,
+    this.valueTextColor,
+    this.pendingText,
+    this.captionText,
+    this.helperText,
+    this.valueText,
+    this.child,
   }) : super(key: key);
 
   @override
@@ -116,10 +116,7 @@ class _FastPendingReadOnlyTextFieldState
           AnimatedBuilder(
             animation: _animation,
             builder: (BuildContext context, Widget? child) {
-              return Opacity(
-                opacity: _animation.value,
-                child: child,
-              );
+              return Opacity(opacity: _animation.value, child: child);
             },
             child: FastBody(
               text: widget.isPending && widget.pendingText != null

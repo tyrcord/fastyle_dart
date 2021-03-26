@@ -27,7 +27,7 @@ const kFastEdgeInsets6 = EdgeInsets.all(6.0);
 
 // Sizes
 
-const kFastIconSize = 20.0;
+const kFastIconSizeSmall = 20.0;
 const kFastIconSizeMedium = 24.0;
 const kFastIconSizeXl = 28.0;
 
@@ -96,4 +96,6 @@ const kFastSupportedLocales = <Locale>[Locale('en', 'US')];
 
 const kFastCloseIcon = Icon(Icons.close);
 const kFastBackIcon = Icon(Icons.arrow_back);
+const kFastDoneIcon = Icon(Icons.done);
 const kFastClearSearchIcon = Icon(Icons.delete_outline);
+const kFastNavigationTrailingIcon = Icon(Icons.keyboard_arrow_right);

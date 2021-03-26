@@ -2,33 +2,33 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 class FastReadOnlyTextField extends StatelessWidget {
-  final String labelText;
-  final String? captionText;
-  final String? placeholderText;
-  final String? helperText;
-  final TextAlign textAlign;
-  final String? valueText;
-  final bool useFontForNumber;
-  final Widget? child;
   final bool enableInteractiveSelection;
-  final Color? valueTextColor;
   final bool showHelperBoundaries;
   final Color? helperTextColor;
+  final String placeholderText;
+  final bool useFontForNumber;
+  final Color? valueTextColor;
+  final String? captionText;
+  final TextAlign textAlign;
+  final String? helperText;
+  final String? valueText;
+  final String labelText;
+  final Widget? child;
 
   FastReadOnlyTextField({
     Key? key,
     required this.labelText,
-    this.captionText,
-    this.placeholderText,
-    this.helperText,
-    this.valueText,
-    this.textAlign = TextAlign.left,
-    this.useFontForNumber = false,
-    this.child,
+    this.placeholderText = kFastEmptyString,
     this.enableInteractiveSelection = true,
     this.showHelperBoundaries = true,
-    this.valueTextColor,
+    this.textAlign = TextAlign.left,
+    this.useFontForNumber = false,
     this.helperTextColor,
+    this.valueTextColor,
+    this.captionText,
+    this.helperText,
+    this.valueText,
+    this.child,
   }) : super(key: key);
 
   @override
@@ -63,7 +63,7 @@ class FastReadOnlyTextField extends StatelessWidget {
         alignment: Alignment.centerLeft,
         child: child ??
             FastBody(
-              text: valueText ?? placeholderText!,
+              text: valueText ?? placeholderText,
               enableInteractiveSelection: enableInteractiveSelection,
               textAlign: textAlign,
               fontWeight: FontWeight.w700,

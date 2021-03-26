@@ -5,19 +5,19 @@ import 'package:flutter/material.dart';
 class FastSegmentField<T> extends StatefulWidget {
   final ValueChanged<FastItem<T>>? onValueChanged;
   final List<FastItem<T>> options;
-  final String labelText;
   final String? captionText;
-  final bool isReadOnly;
   final int? selectedIndex;
+  final String labelText;
+  final bool isReadOnly;
 
   FastSegmentField({
     Key? key,
     required this.labelText,
     required this.options,
-    this.captionText,
-    this.onValueChanged,
     this.isReadOnly = false,
     this.selectedIndex = 0,
+    this.onValueChanged,
+    this.captionText,
   }) : super(key: key);
 
   @override

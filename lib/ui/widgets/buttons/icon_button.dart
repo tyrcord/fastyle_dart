@@ -31,7 +31,7 @@ class FastIconButton extends StatefulWidget implements IFastButton {
     this.emphasis = FastButtonEmphasis.low,
     this.padding = kFastEdgeInsets8,
     this.shouldTrottleTime = false,
-    this.iconSize = kFastIconSize,
+    this.iconSize = kFastIconSizeSmall,
     this.isEnabled = true,
     this.highlightColor,
     this.iconColor,

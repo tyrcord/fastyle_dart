@@ -20,7 +20,7 @@ class FastNavigationListItem<T extends FastItem> extends StatelessWidget {
   FastNavigationListItem({
     Key? key,
     required this.onTap,
-    this.trailing = const Icon(Icons.keyboard_arrow_right),
+    this.trailing = kFastNavigationTrailingIcon,
     this.capitalizeLabelText = true,
     this.isEnabled = true,
     this.isDense = true,

@@ -10,7 +10,7 @@ class FastRoundedIcon extends StatelessWidget {
   const FastRoundedIcon({
     Key? key,
     required this.iconData,
-    this.iconSize = kFastIconSize,
+    this.iconSize = kFastIconSizeSmall,
     this.backgroundColor,
     this.iconColor,
   }) : super(key: key);

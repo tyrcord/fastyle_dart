@@ -1,45 +1,48 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
+const _kSuffixIcon = SizedBox(width: 40, height: 33);
+const _kSuffixIconConstraints = BoxConstraints(maxWidth: 40, maxHeight: 33);
+
 class FastNumberField extends StatelessWidget {
-  final String labelText;
-  final String? captionText;
+  final TextEditingController? textEditingController;
+  final BoxConstraints? suffixIconConstraints;
+  final Function(String)? onValueChanged;
+  final bool transformInvalidNumber;
   final String? placeholderText;
-  final String? helperText;
-  final bool isReadOnly;
-  final bool acceptDecimal;
-  final int maxLength;
-  final int maxValue;
-  final TextAlign? textAlign;
   final bool allowAutocorrect;
   final String? initialValue;
-  final Function(String)? onValueChanged;
-  final TextEditingController? textEditingController;
-  final bool isEnabled;
+  final TextAlign textAlign;
+  final String? captionText;
   final Widget? suffixIcon;
-  final BoxConstraints? suffixIconConstraints;
-  final bool transformInvalidNumber;
+  final bool acceptDecimal;
+  final String? helperText;
+  final String labelText;
+  final bool isReadOnly;
+  final bool isEnabled;
   final String? locale;
+  final int maxLength;
+  final int maxValue;
 
   FastNumberField({
     Key? key,
     required this.labelText,
-    this.captionText,
-    this.placeholderText,
-    this.helperText,
     this.maxLength = NumberInputFormatter.safeIntegerMaxLength,
     this.maxValue = NumberInputFormatter.safeInteger,
     this.transformInvalidNumber = true,
-    this.isReadOnly = false,
-    this.acceptDecimal = true,
+    this.textAlign = TextAlign.start,
     this.allowAutocorrect = false,
-    this.textAlign,
-    this.initialValue,
-    this.onValueChanged,
-    this.textEditingController,
+    this.acceptDecimal = true,
+    this.isReadOnly = false,
     this.isEnabled = true,
-    this.suffixIcon,
+    this.textEditingController,
     this.suffixIconConstraints,
+    this.placeholderText,
+    this.onValueChanged,
+    this.initialValue,
+    this.captionText,
+    this.helperText,
+    this.suffixIcon,
     this.locale,
   })  : assert(initialValue == null || textEditingController == null),
         super(key: key);
@@ -62,7 +65,7 @@ class FastNumberField extends StatelessWidget {
       initialValue: initialValue,
       readOnly: isReadOnly,
       enabled: isEnabled,
-      textAlign: textAlign ?? TextAlign.start,
+      textAlign: textAlign,
       textInputAction: TextInputAction.done,
       autocorrect: allowAutocorrect,
       cursorColor: ThemeHelper.colors.getPrimaryColor(context),
@@ -71,10 +74,8 @@ class FastNumberField extends StatelessWidget {
       ),
       decoration: InputDecoration(
         hintText: placeholderText,
-        suffixIcon:
-            suffixIcon != null ? const SizedBox(width: 40, height: 33) : null,
-        suffixIconConstraints:
-            const BoxConstraints(maxWidth: 40, maxHeight: 33),
+        suffixIcon: suffixIcon != null ? _kSuffixIcon : null,
+        suffixIconConstraints: _kSuffixIconConstraints,
       ),
       style: bodyTextStyle.copyWith(
         fontFamily: kFastFontForNumber,

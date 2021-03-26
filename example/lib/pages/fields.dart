@@ -69,7 +69,7 @@ class FieldsPage extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: Icon(
                     Icons.more_vert,
-                    size: kFastIconSize,
+                    size: kFastIconSizeSmall,
                     color: ThemeHelper.texts.getBodyTextStyle(context).color,
                   ),
                 ),
