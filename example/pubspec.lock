@@ -7,7 +7,7 @@ packages:
       name: another_flushbar
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.10.13"
+    version: "1.10.17"
   async:
     dependency: transitive
     description:
@@ -91,7 +91,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.12.0-nullsafety.0"
+    version: "0.20.0"
   ffi:
     dependency: transitive
     description:
@@ -123,11 +123,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_web_plugins:
-    dependency: transitive
-    description: flutter
-    source: sdk
-    version: "0.0.0"
   fuzzy:
     dependency: transitive
     description:
@@ -148,7 +143,7 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.0"
+    version: "0.13.1"
   http_parser:
     dependency: transitive
     description:
@@ -163,13 +158,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.0"
-  js:
-    dependency: transitive
-    description:
-      name: js
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.6.3"
   latinize:
     dependency: transitive
     description:
@@ -183,7 +171,7 @@ packages:
       name: logger
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0-nullsafety.0"
+    version: "1.0.0"
   matcher:
     dependency: transitive
     description:
@@ -274,7 +262,7 @@ packages:
       name: process
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.0"
+    version: "4.2.1"
   provider:
     dependency: transitive
     description:
@@ -335,14 +323,14 @@ packages:
       name: subx
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0"
+    version: "1.0.0"
   tbloc_dart:
     dependency: "direct main"
     description:
       name: tbloc_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.14.0-nullsafety.0"
+    version: "0.14.0"
   term_glyph:
     dependency: transitive
     description:
@@ -370,7 +358,7 @@ packages:
       name: tuple
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0-nullsafety.0"
+    version: "2.0.0"
   typed_data:
     dependency: transitive
     description:
@@ -391,7 +379,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.5"
   xdg_directories:
     dependency: transitive
     description:

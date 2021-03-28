@@ -104,7 +104,9 @@ class FastNotificationCenter {
         animationDuration: _animationDuration,
         messageText: FastBody(text: message),
         duration: _notificationDuration,
-        borderRadius: kFastBorderRadius,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(kFastBorderRadius),
+        ),
         icon: _buildIcon(options),
         margin: kFastEdgeInsets8,
         onStatusChanged: _onNotificationStatusChanged,
