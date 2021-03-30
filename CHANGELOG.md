@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.20.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.20.1) (2021-03-30)
+
+### Enhancements
+
+- Add app default theme.
+
 ## [0.20.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.20.0) (2021-03-28)
 
 ### Enhancements
