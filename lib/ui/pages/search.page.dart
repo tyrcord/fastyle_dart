@@ -240,10 +240,12 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
       child: SafeArea(
         top: false,
         bottom: true,
-        child: FastLink(
-          textAlign: TextAlign.right,
-          text: widget.clearSelectionText,
-          onTap: () => _close(context, null),
+        child: Align(
+          alignment: Alignment.centerRight,
+          child: FastLink(
+            text: widget.clearSelectionText,
+            onTap: () => _close(context, null),
+          ),
         ),
       ),
     );
