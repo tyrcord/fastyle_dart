@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
@@ -84,6 +85,8 @@ class _FastAppState extends State<FastApp> {
   }
 
   void _hideKeyboard() {
+    if (kIsWeb) return;
+
     if (Platform.isIOS || Platform.isAndroid) {
       FocusManager.instance.primaryFocus!.unfocus();
       SystemChannels.textInput.invokeMethod('TextInput.hide');
