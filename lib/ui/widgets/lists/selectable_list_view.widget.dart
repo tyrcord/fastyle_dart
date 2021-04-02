@@ -64,7 +64,6 @@ class _FastSelectableListViewState<T extends FastItem>
       isViewScrollable: widget.isViewScrollable,
       showItemDivider: widget.showItemDivider,
       sortItems: widget.sortItems,
-      categories: widget.categories,
       groupByCategory: widget.groupByCategory,
       intialCategoryIndex: widget.intialCategoryIndex,
       allCategoryText: widget.allCategoryText,

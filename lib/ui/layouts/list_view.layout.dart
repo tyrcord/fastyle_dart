@@ -16,11 +16,6 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   final FastListItemBuilder<T> listItemBuilder;
 
   ///
-  /// List of categories.
-  ///
-  final List<FastCategory>? categories;
-
-  ///
   /// Text that describes the all category.
   ///
   final String? allCategoryText;
@@ -67,10 +62,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     this.showItemDivider = false,
     this.sortItems = true,
     this.allCategoryText,
-    this.categories,
-  })  : assert((groupByCategory == true && categories != null) ||
-            (groupByCategory == false)),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

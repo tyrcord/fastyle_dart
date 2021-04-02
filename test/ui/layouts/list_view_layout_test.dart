@@ -55,7 +55,6 @@ void main() {
           (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(FastListViewLayout(
-            categories: categories,
             groupByCategory: true,
             items: items,
             listItemBuilder: (BuildContext context, FastItem item, int index) {
@@ -80,7 +79,6 @@ void main() {
           (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(FastListViewLayout(
-            categories: categories,
             groupByCategory: true,
             allCategoryText: 'Toutes',
             items: items,
@@ -105,7 +103,6 @@ void main() {
           (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(FastListViewLayout(
-            categories: categories,
             groupByCategory: true,
             items: items,
             listItemBuilder: (BuildContext context, FastItem item, int index) {
@@ -123,7 +120,6 @@ void main() {
           (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(FastListViewLayout(
-            categories: categories,
             groupByCategory: true,
             intialCategoryIndex: 1,
             items: items,
@@ -143,7 +139,6 @@ void main() {
       testWidgets('should sort items by default', (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(FastListViewLayout(
-            categories: categories,
             groupByCategory: true,
             intialCategoryIndex: 1,
             items: items,
@@ -163,7 +158,6 @@ void main() {
           (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(FastListViewLayout(
-            categories: categories,
             groupByCategory: true,
             intialCategoryIndex: 1,
             sortItems: false,
