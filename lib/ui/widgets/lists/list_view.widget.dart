@@ -12,10 +12,12 @@ class FastListView<T extends FastItem> extends StatelessWidget {
   final bool isEnabled;
   final bool sortItems;
   final List<T> items;
+  final EdgeInsets padding;
 
   FastListView({
     Key? key,
     required this.items,
+    this.padding = EdgeInsets.zero,
     this.groupByCategory = false,
     this.showItemDivider = false,
     this.useDenseListItem = true,
@@ -36,6 +38,7 @@ class FastListView<T extends FastItem> extends StatelessWidget {
       showItemDivider: showItemDivider,
       sortItems: sortItems,
       groupByCategory: groupByCategory,
+      padding: padding,
     );
   }
 

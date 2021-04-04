@@ -10,8 +10,9 @@ class FastNavigationListView<T extends FastItem> extends StatefulWidget {
   final bool isViewScrollable;
   final Icon clearSearchIcon;
   final bool showItemDivider;
-  final bool sortItems;
+  final EdgeInsets padding;
   final bool showSearchBar;
+  final bool sortItems;
   final bool isEnabled;
   final List<T> items;
 
@@ -22,10 +23,11 @@ class FastNavigationListView<T extends FastItem> extends StatefulWidget {
     this.searchPlaceholderText = kFastSearchPlaceholderText,
     this.clearSearchIcon = kFastClearSearchIcon,
     this.shouldUseFuzzySearch = false,
+    this.padding = EdgeInsets.zero,
     this.isViewScrollable = true,
     this.showItemDivider = false,
-    this.sortItems = true,
     this.showSearchBar = false,
+    this.sortItems = true,
     this.isEnabled = true,
     this.itemContentPadding,
     this.listItemBuilder,
@@ -63,6 +65,7 @@ class _FastNavigationListViewState<T extends FastItem>
             isViewScrollable: widget.isViewScrollable,
             showItemDivider: widget.showItemDivider,
             sortItems: widget.shouldUseFuzzySearch ? false : widget.sortItems,
+            padding: widget.padding,
           ),
         ),
       ],

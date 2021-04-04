@@ -11,6 +11,7 @@ class FastSelectableListView<T extends FastItem> extends StatefulWidget {
   final bool isViewScrollable;
   final bool showItemDivider;
   final bool groupByCategory;
+  final EdgeInsets padding;
   final bool sortItems;
   final bool isEnabled;
   final List<T> items;
@@ -20,6 +21,7 @@ class FastSelectableListView<T extends FastItem> extends StatefulWidget {
     Key? key,
     required this.onSelectionChanged,
     required this.items,
+    this.padding = EdgeInsets.zero,
     this.groupByCategory = false,
     this.isViewScrollable = true,
     this.showItemDivider = false,
@@ -67,6 +69,7 @@ class _FastSelectableListViewState<T extends FastItem>
       groupByCategory: widget.groupByCategory,
       intialCategoryIndex: widget.intialCategoryIndex,
       allCategoryText: widget.allCategoryText,
+      padding: widget.padding,
     );
   }
 

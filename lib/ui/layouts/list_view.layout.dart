@@ -52,10 +52,13 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   ///
   final List<T> items;
 
+  final EdgeInsets padding;
+
   FastListViewLayout({
     Key? key,
     required this.listItemBuilder,
     required this.items,
+    this.padding = EdgeInsets.zero,
     this.intialCategoryIndex = 0,
     this.groupByCategory = false,
     this.isViewScrollable = true,
@@ -106,7 +109,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     final lastIndex = rows.length - 1;
 
     return ListView.builder(
-      padding: EdgeInsets.zero,
+      padding: padding,
       itemCount: rows.length,
       itemBuilder: (BuildContext context, int index) {
         return _buildListItem(
@@ -125,17 +128,20 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     final rows = _sortItemIfNeeded(items);
     final lastIndex = rows.length - 1;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: rows.asMap().entries.map((MapEntry<int, T> entry) {
-        return _buildListItem(
-          context: context,
-          item: entry.value,
-          index: entry.key,
-          isLastItem: entry.key < lastIndex,
-          decoration: dividerDecoration,
-        );
-      }).toList(),
+    return Padding(
+      padding: padding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: rows.asMap().entries.map((MapEntry<int, T> entry) {
+          return _buildListItem(
+            context: context,
+            item: entry.value,
+            index: entry.key,
+            isLastItem: entry.key < lastIndex,
+            decoration: dividerDecoration,
+          );
+        }).toList(),
+      ),
     );
   }
 
