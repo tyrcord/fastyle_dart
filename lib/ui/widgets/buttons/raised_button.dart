@@ -47,12 +47,6 @@ class FastRaisedButton extends StatefulWidget implements IFastButton {
 class _FastRaisedButtonState extends State<FastRaisedButton>
     with FastThrottleButtonMixin {
   @override
-  void initState() {
-    super.initState();
-    subscribeToTrottlerEvents();
-  }
-
-  @override
   void dispose() {
     unsubscribeToTrottlerEventsIfNeeded();
     trottler.close();

@@ -17,11 +17,17 @@ mixin FastThrottleButtonMixin<T extends IFastButton> on State<T> {
   VoidCallback? throttleOnTapIfNeeded() {
     if (widget.isEnabled) {
       if (widget.shouldTrottleTime) {
+        subscribeToTrottlerEvents();
+
         return () => trottler.add(widget.onTap);
       }
 
+      unsubscribeToTrottlerEventsIfNeeded();
+
       return widget.onTap;
     }
+
+    unsubscribeToTrottlerEventsIfNeeded();
 
     return null;
   }
