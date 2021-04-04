@@ -27,6 +27,7 @@ const kFastEdgeInsets6 = EdgeInsets.all(6.0);
 
 // Sizes
 
+const kFastIconSizeXs = 18.0;
 const kFastIconSizeSmall = 20.0;
 const kFastIconSizeMedium = 24.0;
 const kFastIconSizeXl = 28.0;
