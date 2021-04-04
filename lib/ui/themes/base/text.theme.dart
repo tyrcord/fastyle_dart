@@ -31,7 +31,7 @@ final kFastTextTheme = TextTheme(
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
   headline6: GoogleFonts.robotoCondensed(
     fontSize: _kFontSize24,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w400,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
   subtitle2: GoogleFonts.robotoCondensed(
     fontSize: _kFontSize16,
