@@ -121,23 +121,27 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
         ),
         Align(
           alignment: Alignment.centerRight,
-          child: FastTextButton(
-            onTap: () {
-              if (hasReachEnd) {
-                _onDone();
-              } else {
-                _pageViewController.nextPage(
-                  duration: kTabScrollDuration,
-                  curve: Curves.ease,
-                );
-              }
-            },
-            text: hasReachEnd ? widget.doneText : widget.nextText,
-            isEnabled: !isPending,
+          child: _buildButtonLayout(
+            FastTextButton(
+              onTap: () {
+                if (hasReachEnd) {
+                  _onDone();
+                } else {
+                  _pageViewController.nextPage(
+                    duration: kTabScrollDuration,
+                    curve: Curves.ease,
+                  );
+                }
+              },
+              text: hasReachEnd ? widget.doneText : widget.nextText,
+              isEnabled: !isPending,
+            ),
           ),
         ),
         if (canShowSkipButton)
-          FastTextButton(onTap: _onSkip, text: widget.skipText),
+          _buildButtonLayout(
+            FastTextButton(onTap: _onSkip, text: widget.skipText),
+          ),
       ],
     );
   }
@@ -159,6 +163,13 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
           borderRadius: BorderRadius.circular(widget.stepDotSize),
         ),
       ),
+    );
+  }
+
+  Widget _buildButtonLayout(Widget child) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: child,
     );
   }
 
