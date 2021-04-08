@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [0.21.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.21.4) (2021-04-08)
+
+### Features
+
+- Allow to add some padding to FastShadowLayout.
+- Add FastDivider Widget.
+
 ## [0.20.4](https://github.com/tyrcord/fastyle_dart/releases/tag/0.20.4) (2021-04-04)
 
 ### Enhancements
