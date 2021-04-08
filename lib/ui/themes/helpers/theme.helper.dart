@@ -44,12 +44,12 @@ class ThemeHelper {
     );
   }
 
-  static BoxDecoration createBorderSide(BuildContext context) {
+  static BoxDecoration createBorderSide(BuildContext context, {Color? color}) {
     return BoxDecoration(
       border: Border(
         bottom: Divider.createBorderSide(
           context,
-          color: Theme.of(context).dividerColor,
+          color: color ?? Theme.of(context).dividerColor,
           width: kFastBorderSize,
         ),
       ),
