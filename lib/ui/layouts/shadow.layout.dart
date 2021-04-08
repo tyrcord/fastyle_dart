@@ -28,6 +28,8 @@ class FastShadowLayout extends StatelessWidget {
   ///
   final Widget child;
 
+  final EdgeInsets? padding;
+
   FastShadowLayout({
     Key? key,
     required this.child,
@@ -35,11 +37,13 @@ class FastShadowLayout extends StatelessWidget {
     this.blurRadius = kFastBlurRadius,
     this.backgroundColor,
     this.shadowColor,
+    this.padding,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: padding,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
