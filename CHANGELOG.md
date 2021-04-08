@@ -1,6 +1,12 @@
 # CHANGELOG
 
-## [0.21.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.21.4) (2021-04-08)
+## [0.22.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.22.0-beta.0) (2021-04-08)
+
+### Enhancements
+
+- Support tbloc_dart 0.15.0-beta.0
+
+## [0.21.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.21.0) (2021-04-08)
 
 ### Features
 
