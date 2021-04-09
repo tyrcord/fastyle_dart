@@ -25,9 +25,11 @@ class FastLink extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
+      behavior: HitTestBehavior.opaque,
       child: ConstrainedBox(
         constraints: const BoxConstraints(minHeight: 34.0),
-        child: Center(
+        child: Align(
+          alignment: _getAlignment(),
           child: RichText(
             textAlign: textAlign,
             text: TextSpan(style: linkTextStyle, text: text),
@@ -35,5 +37,15 @@ class FastLink extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Alignment _getAlignment() {
+    if (textAlign == TextAlign.center) {
+      return Alignment.center;
+    } else if (textAlign == TextAlign.center) {
+      return Alignment.centerRight;
+    }
+
+    return Alignment.centerLeft;
   }
 }
