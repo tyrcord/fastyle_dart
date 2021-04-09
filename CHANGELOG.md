@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.22.0-beta.2](https://github.com/tyrcord/fastyle_dart/releases/tag/0.22.0-beta.2) (2021-04-09)
+
+### Fixes
+
+- Fix regression #a5feb00289de0125811dab5737b45c7c1e52198e
+
 ## [0.22.0-beta.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.22.0-beta.1) (2021-04-09)
 
 ### Fixes
