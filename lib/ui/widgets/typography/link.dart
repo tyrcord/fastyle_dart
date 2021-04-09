@@ -27,9 +27,11 @@ class FastLink extends StatelessWidget {
       onTap: onTap,
       child: ConstrainedBox(
         constraints: const BoxConstraints(minHeight: 34.0),
-        child: RichText(
-          textAlign: textAlign,
-          text: TextSpan(style: linkTextStyle, text: text),
+        child: Center(
+          child: RichText(
+            textAlign: textAlign,
+            text: TextSpan(style: linkTextStyle, text: text),
+          ),
         ),
       ),
     );
