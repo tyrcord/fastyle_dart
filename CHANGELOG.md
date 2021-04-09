@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.22.0-beta.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.22.0-beta.1) (2021-04-09)
+
+### Fixes
+
+- Center vertically Fastlink text.
+
 ## [0.22.0-beta.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.22.0-beta.0) (2021-04-08)
 
 ### Enhancements
