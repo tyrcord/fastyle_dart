@@ -53,7 +53,7 @@ class FastShadowLayout extends StatelessWidget {
         ],
         borderRadius: BorderRadius.circular(borderRadius),
         color: backgroundColor ??
-            ThemeHelper.colors.getBackGroundColor(
+            ThemeHelper.colors.getSecondaryBackgroundColor(
               context,
             ),
       ),

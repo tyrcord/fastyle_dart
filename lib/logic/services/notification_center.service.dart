@@ -98,7 +98,8 @@ class FastNotificationCenter {
     _addNotification(
       Flushbar(
         key: key,
-        backgroundColor: ThemeHelper.colors.getBackGroundColor(_context),
+        backgroundColor:
+            ThemeHelper.colors.getSecondaryBackgroundColor(_context),
         boxShadows: [ThemeHelper.getDefaultBoxShadow(_context)],
         flushbarPosition: FlushbarPosition.TOP,
         animationDuration: _animationDuration,

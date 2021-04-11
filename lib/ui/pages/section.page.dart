@@ -175,7 +175,7 @@ class FastSectionPage extends StatelessWidget {
         : ThemeHelper.colors.getBrightnessForColor(
             context: context,
             color: appBarBackgroundColor ??
-                ThemeHelper.colors.getBackGroundColor(context),
+                ThemeHelper.colors.getSecondaryBackgroundColor(context),
           );
 
     return AppBar(

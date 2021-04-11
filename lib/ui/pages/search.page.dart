@@ -132,7 +132,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
 
   Widget _buildHeader(BuildContext context) {
     return Container(
-      color: ThemeHelper.colors.getBackGroundColor(context),
+      color: ThemeHelper.colors.getSecondaryBackgroundColor(context),
       child: SafeArea(
         bottom: false,
         child: Column(
@@ -213,7 +213,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
         children: [
           Positioned.fill(
             child: Container(
-              color: Theme.of(context).scaffoldBackgroundColor,
+              color: ThemeHelper.colors.getPrimaryBackgroundColor(context),
               child: FastSelectableListView(
                 sortItems: _shouldSortItems,
                 items: _suggestions ?? widget.items,
@@ -237,6 +237,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
   Widget _buildFooter(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+      color: ThemeHelper.colors.getSecondaryBackgroundColor(context),
       child: SafeArea(
         top: false,
         bottom: true,
