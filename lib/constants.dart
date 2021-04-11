@@ -100,3 +100,5 @@ const kFastBackIcon = Icon(Icons.arrow_back);
 const kFastDoneIcon = Icon(Icons.done);
 const kFastClearSearchIcon = Icon(Icons.delete_outline);
 const kFastNavigationTrailingIcon = Icon(Icons.keyboard_arrow_right);
+
+const kFastExpandedHeight = 200.0;

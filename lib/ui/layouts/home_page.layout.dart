@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 const _kHeaderPadding = 16.0;
 const _kContentPadding = EdgeInsets.symmetric(vertical: _kHeaderPadding);
 
-class FastHomePage extends StatelessWidget {
+class FastHomePageLayout extends StatefulWidget {
   ///
   /// The padding for the page.
   ///
@@ -54,7 +54,7 @@ class FastHomePage extends StatelessWidget {
 
   final ScrollController? scrollController;
 
-  FastHomePage({
+  FastHomePageLayout({
     Key? key,
     required this.children,
     this.appBarExpandedHeight = kFastExpandedHeight,
@@ -74,18 +74,56 @@ class FastHomePage extends StatelessWidget {
         super(key: key);
 
   @override
+  _FastHomePageLayoutState createState() => _FastHomePageLayoutState();
+}
+
+class _FastHomePageLayoutState extends State<FastHomePageLayout> {
+  late final ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = widget.scrollController ?? ScrollController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return FastHomePageLayout(
-      appBarBackgroundLinearGradient: appBarBackgroundLinearGradient,
-      appBarBackgroundColor: appBarBackgroundColor,
-      appBarExpandedHeight: appBarExpandedHeight,
-      appBarDecoration: appBarDecoration,
-      subtitleText: subtitleText,
-      titleText: titleText,
-      actions: actions,
-      leading: leading,
-      floatingActionButton: floatingActionButton,
-      children: children,
+    return Scaffold(
+      body: CustomScrollView(
+        controller: _scrollController,
+        physics: const AlwaysScrollableScrollPhysics(),
+        slivers: <Widget>[
+          FastAppBarLayout(
+            backgroundLinearGradient: widget.appBarBackgroundLinearGradient,
+            backgroundColor: widget.appBarBackgroundColor,
+            expandedHeight: widget.appBarExpandedHeight,
+            decoration: widget.appBarDecoration,
+            subtitleText: widget.subtitleText,
+            titleText: widget.titleText,
+            actions: widget.actions,
+            leading: widget.leading,
+            scrollController: _scrollController,
+          ),
+          _buildContent(),
+        ],
+      ),
+      floatingActionButton: widget.floatingActionButton,
+    );
+  }
+
+  Widget _buildContent() {
+    return SliverSafeArea(
+      top: false,
+      sliver: SliverPadding(
+        sliver: SliverList(delegate: SliverChildListDelegate(widget.children)),
+        padding: widget.contentPadding,
+      ),
     );
   }
 }

@@ -83,14 +83,14 @@ void main() {
           (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(FastHomePage(
-            expandedHeight: 200,
+            appBarExpandedHeight: 240,
             children: [child1, child2],
           )),
           Duration(milliseconds: 60),
         );
 
-        final size = tester.getSize(find.byType(FlexibleSpaceBar));
-        expect(size.height, equals(200));
+        final size = tester.getSize(find.byType(AppBar));
+        expect(size.height, equals(240));
       });
     });
 
