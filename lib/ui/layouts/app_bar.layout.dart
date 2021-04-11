@@ -175,7 +175,7 @@ class _FastAppBarLayoutState extends State<FastAppBarLayout> {
       );
     }
 
-    return Brightness.light;
+    return Brightness.dark;
   }
 
   void _onScrollNoticiation() {
