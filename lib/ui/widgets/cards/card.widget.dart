@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
 
-const _kBlurRadius = 4.0;
-
 class FastCard extends StatelessWidget {
   final List<Widget>? headerActions;
   final List<Widget>? footerActions;
@@ -28,7 +26,7 @@ class FastCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final card = FastShadowLayout(
+    return FastShadowLayout(
       shadowColor: shadowColor,
       backgroundColor: backgroundColor,
       child: Column(
@@ -40,17 +38,6 @@ class FastCard extends StatelessWidget {
         ],
       ),
     );
-
-    if (shadowColor != null) {
-      return Container(
-        decoration: BoxDecoration(
-          boxShadow: [BoxShadow(color: shadowColor!, blurRadius: _kBlurRadius)],
-        ),
-        child: card,
-      );
-    }
-
-    return card;
   }
 
   Widget _buildHeader() {

@@ -49,13 +49,11 @@ class FastShadowLayout extends StatelessWidget {
           BoxShadow(
             color: shadowColor ?? ThemeHelper.colors.getShadowColor(context),
             blurRadius: blurRadius,
-          )
+          ),
         ],
         borderRadius: BorderRadius.circular(borderRadius),
         color: backgroundColor ??
-            ThemeHelper.colors.getSecondaryBackgroundColor(
-              context,
-            ),
+            ThemeHelper.colors.getSecondaryBackgroundColor(context),
       ),
       child: child,
     );
