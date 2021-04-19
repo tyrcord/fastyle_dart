@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class FastTextField extends StatelessWidget {
   final TextEditingController? textEditingController;
   final ValueChanged<String>? onValueChanged;
+  final bool showHelperBoundaries;
   final String? placeholderText;
   final bool allowAutocorrect;
   final bool useFontForNumber;
@@ -18,6 +19,7 @@ class FastTextField extends StatelessWidget {
     Key? key,
     required this.labelText,
     this.textAlign = TextAlign.start,
+    this.showHelperBoundaries = true,
     this.allowAutocorrect = false,
     this.useFontForNumber = false,
     this.isReadOnly = false,
@@ -32,10 +34,11 @@ class FastTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FastFieldLayout(
-      labelText: labelText,
+      showHelperBoundaries: showHelperBoundaries,
+      control: _buildControl(context),
       captionText: captionText,
       helperText: helperText,
-      control: _buildControl(context),
+      labelText: labelText,
     );
   }
 

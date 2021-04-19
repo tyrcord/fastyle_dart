@@ -9,6 +9,7 @@ class FastNumberField extends StatelessWidget {
   final BoxConstraints? suffixIconConstraints;
   final Function(String)? onValueChanged;
   final bool transformInvalidNumber;
+  final bool showHelperBoundaries;
   final String? placeholderText;
   final bool allowAutocorrect;
   final String? initialValue;
@@ -29,6 +30,7 @@ class FastNumberField extends StatelessWidget {
     required this.labelText,
     this.maxLength = NumberInputFormatter.safeIntegerMaxLength,
     this.maxValue = NumberInputFormatter.safeInteger,
+    this.showHelperBoundaries = true,
     this.transformInvalidNumber = true,
     this.textAlign = TextAlign.start,
     this.allowAutocorrect = false,
@@ -55,6 +57,7 @@ class FastNumberField extends StatelessWidget {
       helperText: helperText,
       control: _buildControl(context),
       suffixIcon: suffixIcon,
+      showHelperBoundaries: showHelperBoundaries,
     );
   }
 

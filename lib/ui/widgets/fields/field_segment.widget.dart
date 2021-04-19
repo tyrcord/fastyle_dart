@@ -8,6 +8,7 @@ class FastSegmentField<T> extends StatefulWidget {
   final String? captionText;
   final int? selectedIndex;
   final String labelText;
+  final bool showHelperBoundaries;
 
   /// TODO
   final bool isReadOnly;
@@ -16,6 +17,7 @@ class FastSegmentField<T> extends StatefulWidget {
     Key? key,
     required this.labelText,
     required this.options,
+    this.showHelperBoundaries = true,
     this.isReadOnly = false,
     this.selectedIndex = 0,
     this.onValueChanged,
@@ -49,9 +51,9 @@ class _FastSegmentFieldState<T> extends State<FastSegmentField<T>> {
   @override
   Widget build(BuildContext context) {
     return FastFieldLayout(
+      showHelperBoundaries: widget.showHelperBoundaries,
       labelText: widget.labelText,
       captionText: widget.captionText,
-      showHelperBoundaries: true,
       control: _buildControl(context),
     );
   }

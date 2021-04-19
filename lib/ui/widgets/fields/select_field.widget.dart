@@ -7,6 +7,7 @@ class FastSelectField<T> extends StatefulWidget {
   final List<FastCategory>? categories;
   final String searchPlaceholderText;
   final String clearSelectionText;
+  final bool showHelperBoundaries;
   final String? placeholderText;
   final List<FastItem<T>> items;
   final int intialCategoryIndex;
@@ -34,6 +35,7 @@ class FastSelectField<T> extends StatefulWidget {
     this.clearSelectionText = kFastClearSelectionText,
     this.clearSearchIcon = kFastClearSearchIcon,
     this.searchTitleText = kFastSelectTitleText,
+    this.showHelperBoundaries = true,
     this.closeIcon = kFastCloseIcon,
     this.backIcon = kFastBackIcon,
     this.canClearSelection = true,
@@ -121,6 +123,7 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
         }
       },
       child: FastFieldLayout(
+        showHelperBoundaries: widget.showHelperBoundaries,
         labelText: widget.labelText,
         captionText: widget.captionText,
         helperText: widget.helperText,
