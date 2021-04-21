@@ -95,6 +95,24 @@ class CardsPage extends StatelessWidget {
               ),
             ],
           ),
+          kFastSizedBox16,
+          FastCard(
+            titleText: 'Calculator',
+            child: Column(
+              children: [
+                FastBody2(text: 'Content 1'),
+                FastBody2(text: 'Content 2'),
+                kFastSizedBox16,
+                FastExpansionPanel(
+                  titleText: 'More...',
+                  bodyBuilder: (_) => Container(
+                    height: 200,
+                    color: Colors.blue,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

@@ -11,11 +11,12 @@ const kFastButtonLabel = 'Button';
 const kFastCancelText = 'cancel';
 const kFastNoneString = 'none';
 const kFastValidText = 'valid';
+const kFastPanelText = 'panel';
 const kFastAllString = 'all';
-const kFastEmptyString = '';
 const kFastDoneText = 'done';
 const kFastNextText = 'next';
 const kFastSkipText = 'skip';
+const kFastEmptyString = '';
 
 // EdgeInsets
 
