@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 class FastExpansionPanel extends StatefulWidget {
   final Duration animationDuration;
   final WidgetBuilder bodyBuilder;
+  final GestureTapCallback? onTap;
+  final Color? titleTextColor;
   final IconData headerIcon;
   final String titleText;
-  final Color? textColor;
   final bool isExpanded;
   final bool isEnabled;
 
@@ -18,7 +19,8 @@ class FastExpansionPanel extends StatefulWidget {
     this.titleText = kFastPanelText,
     this.isExpanded = false,
     this.isEnabled = true,
-    this.textColor,
+    this.titleTextColor,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -51,7 +53,7 @@ class _FastExpansionPanelState extends State<FastExpansionPanel>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _buildHeader(),
+        _buildInteractiveHeader(context),
         AnimatedCrossFade(
           duration: widget.animationDuration,
           firstChild: Container(),
@@ -63,11 +65,7 @@ class _FastExpansionPanelState extends State<FastExpansionPanel>
     );
   }
 
-  Widget _buildHeader() {
-    final textColor = widget.textColor ??
-        ThemeHelper.texts.getButtonTextStyle(context).color!;
-    final color = widget.isEnabled ? textColor : textColor.withAlpha(155);
-
+  Widget _buildInteractiveHeader(BuildContext context) {
     return GestureDetector(
       onTap: () {
         if (widget.isEnabled && !_rotationController.isAnimating) {
@@ -79,36 +77,49 @@ class _FastExpansionPanelState extends State<FastExpansionPanel>
             }
 
             isExpanded = !isExpanded;
+
+            if (widget.onTap != null) {
+              widget.onTap!();
+            }
           });
         }
       },
       behavior: HitTestBehavior.opaque,
-      child: FastButtonLayout(
-        child: Stack(
-          children: [
-            Container(
-              constraints: BoxConstraints(minHeight: kFastIconSizeMedium),
-              child: Center(
-                child: FastButtonLabel(
-                  text: widget.titleText,
-                  textColor: color,
-                ),
-              ),
+      child: _buildHeader(context),
+    );
+  }
+
+  Widget _buildHeader(BuildContext context) {
+    final textColor = widget.titleTextColor ??
+        ThemeHelper.texts.getButtonTextStyle(context).color!;
+    final color = widget.isEnabled ? textColor : textColor.withAlpha(155);
+
+    return FastButtonLayout(
+      child: Stack(
+        children: [
+          Container(
+            constraints: BoxConstraints(minHeight: kFastIconSizeMedium),
+            child: Center(
+              child: FastButtonLabel(text: widget.titleText, textColor: color),
             ),
-            Positioned(
-              top: 0,
-              right: 0,
-              child: RotationTransition(
-                turns: _animation,
-                child: Icon(
-                  widget.headerIcon,
-                  size: kFastIconSizeMedium,
-                  color: color,
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+          Positioned(
+            top: 0,
+            right: 0,
+            child: _buildHeaderIcon(color),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildHeaderIcon(Color color) {
+    return RotationTransition(
+      turns: _animation,
+      child: Icon(
+        widget.headerIcon,
+        size: kFastIconSizeMedium,
+        color: color,
       ),
     );
   }
