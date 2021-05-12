@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 final kLightBlueFastTheme = FastThemeFactory.buildLightThemeWithColors(
   primaryColor: kFastLightBlueColor,
   primaryColorDark: CupertinoColors.systemBlue.highContrastColor,
-  secondaryColor: kFastLightIndigoColor,
-  tertiaryColor: kFastLightTealColor,
+  secondaryColor: kFastLightTealColor,
+  tertiaryColor: kFastLightIndigoColor,
 );
 
 final kLightIndigoFastTheme = FastThemeFactory.buildLightThemeWithColors(

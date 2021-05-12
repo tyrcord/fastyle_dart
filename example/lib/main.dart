@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return FastApp(
       titleText: 'Fastyle Demo',
-      lightTheme: FastTheme.light.indigo,
-      darkTheme: FastTheme.dark.indigo,
+      lightTheme: FastTheme.light.blue,
+      darkTheme: FastTheme.dark.blue,
       home: MyHomePage(),
     );
   }
