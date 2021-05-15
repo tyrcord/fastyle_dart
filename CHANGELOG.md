@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## [0.22.0-beta.8](https://github.com/tyrcord/fastyle_dart/releases/tag/0.22.0-beta.8) (2021-04-11)
+## [0.22.0-beta.8](https://github.com/tyrcord/fastyle_dart/releases/tag/0.22.0-beta.8) (2021-05-15)
 
 ### Enhancements
 
