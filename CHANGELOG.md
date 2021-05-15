@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [0.22.0-beta.8](https://github.com/tyrcord/fastyle_dart/releases/tag/0.22.0-beta.8) (2021-04-11)
+
+### Enhancements
+
+- Changed teal colors.
+- Refactor button layout.
+
 ## [0.22.0-beta.7](https://github.com/tyrcord/fastyle_dart/releases/tag/0.22.0-beta.7) (2021-04-11)
 
 ### Enhancements
