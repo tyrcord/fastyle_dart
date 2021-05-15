@@ -65,35 +65,33 @@ class _FastRaisedButtonState extends State<FastRaisedButton>
           backgroundColor: backgroundColor,
         );
 
-    return FastButtonLayout(
-      child: ElevatedButton(
-        onPressed: throttleOnTapIfNeeded(),
-        style: ButtonStyle(
-          padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry?>(
-              (Set<MaterialState> states) {
-            return widget.padding;
-          }),
-          backgroundColor: MaterialStateProperty.resolveWith<Color>(
-              (Set<MaterialState> states) {
-            if (states.contains(MaterialState.disabled)) {
-              return backgroundColor.withOpacity(0.5);
-            }
+    return ElevatedButton(
+      onPressed: throttleOnTapIfNeeded(),
+      style: ButtonStyle(
+        padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry?>(
+            (Set<MaterialState> states) {
+          return widget.padding;
+        }),
+        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) {
+          if (states.contains(MaterialState.disabled)) {
+            return backgroundColor.withOpacity(0.5);
+          }
 
-            return backgroundColor;
-          }),
-          overlayColor: MaterialStateProperty.resolveWith<Color>(
-              (Set<MaterialState> states) {
-            return widget.highlightColor ?? textColor.withOpacity(0.1);
-          }),
-        ),
-        child: widget.child ??
-            FastButtonLabel(
-              text: widget.text ?? kFastButtonLabel,
-              textColor: widget.isEnabled
-                  ? textColor
-                  : textColor.withAlpha(kDisabledAlpha),
-            ),
+          return backgroundColor;
+        }),
+        overlayColor: MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) {
+          return widget.highlightColor ?? textColor.withOpacity(0.1);
+        }),
       ),
+      child: widget.child ??
+          FastButtonLabel(
+            text: widget.text ?? kFastButtonLabel,
+            textColor: widget.isEnabled
+                ? textColor
+                : textColor.withAlpha(kDisabledAlpha),
+          ),
     );
   }
 }

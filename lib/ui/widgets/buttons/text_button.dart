@@ -61,26 +61,23 @@ class _FastTextButtonState extends State<FastTextButton>
             ? ThemeHelper.colors.getPrimaryColor(context)
             : ThemeHelper.texts.getButtonTextStyle(context).color!);
 
-    return FastButtonLayout(
-      child: TextButton(
-        style: ButtonStyle(
-          padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry?>(
-              (Set<MaterialState> states) {
-            return widget.padding;
-          }),
-          overlayColor: MaterialStateProperty.resolveWith<Color>(
-              (Set<MaterialState> states) {
-            return widget.highlightColor ?? textColor.withOpacity(0.1);
-          }),
-        ),
-        onPressed: throttleOnTapIfNeeded(),
-        child: widget.child ??
-            FastButtonLabel(
-              text: widget.text ?? kFastButtonLabel,
-              textColor:
-                  widget.isEnabled ? textColor : textColor.withAlpha(155),
-            ),
+    return TextButton(
+      style: ButtonStyle(
+        padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry?>(
+            (Set<MaterialState> states) {
+          return widget.padding;
+        }),
+        overlayColor: MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) {
+          return widget.highlightColor ?? textColor.withOpacity(0.1);
+        }),
       ),
+      onPressed: throttleOnTapIfNeeded(),
+      child: widget.child ??
+          FastButtonLabel(
+            text: widget.text ?? kFastButtonLabel,
+            textColor: widget.isEnabled ? textColor : textColor.withAlpha(155),
+          ),
     );
   }
 }

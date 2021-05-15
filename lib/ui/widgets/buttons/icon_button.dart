@@ -58,17 +58,15 @@ class _FastIconButtonState extends State<FastIconButton>
             ? ThemeHelper.colors.getPrimaryColor(context)
             : ThemeHelper.texts.getButtonTextStyle(context).color!);
 
-    return FastButtonLayout(
-      child: IconButton(
-        padding: widget.padding,
-        onPressed: throttleOnTapIfNeeded(),
-        highlightColor: widget.highlightColor,
-        icon: widget.icon,
-        iconSize: widget.iconSize,
-        disabledColor: _color.withAlpha(kDisabledAlpha),
-        color: _color,
-        tooltip: widget.tooltip,
-      ),
+    return IconButton(
+      padding: widget.padding,
+      onPressed: throttleOnTapIfNeeded(),
+      highlightColor: widget.highlightColor,
+      icon: widget.icon,
+      iconSize: widget.iconSize,
+      disabledColor: _color.withAlpha(kDisabledAlpha),
+      color: _color,
+      tooltip: widget.tooltip,
     );
   }
 }

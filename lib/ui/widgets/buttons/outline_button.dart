@@ -67,31 +67,29 @@ class _FastOutlineButtonState extends State<FastOutlineButton>
     final disabledColor = borderColor.withAlpha(kDisabledAlpha);
     final textColor = widget.textColor ?? borderColor;
 
-    return FastButtonLayout(
-      child: OutlinedButtonTheme(
-        data: OutlinedButtonThemeData(
-          style: ButtonStyle(),
+    return OutlinedButtonTheme(
+      data: OutlinedButtonThemeData(
+        style: ButtonStyle(),
+      ),
+      child: OutlinedButton(
+        onPressed: throttleOnTapIfNeeded(),
+        style: ButtonStyle(
+          overlayColor: MaterialStateProperty.resolveWith<Color>(
+              (Set<MaterialState> states) {
+            return widget.highlightColor ?? textColor.withOpacity(0.1);
+          }),
+          padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry?>(
+              (Set<MaterialState> states) {
+            return widget.padding;
+          }),
+          side: MaterialStateProperty.resolveWith<BorderSide>(
+              (Set<MaterialState> states) {
+            return BorderSide(
+              color: widget.isEnabled ? borderColor : disabledColor,
+            );
+          }),
         ),
-        child: OutlinedButton(
-          onPressed: throttleOnTapIfNeeded(),
-          style: ButtonStyle(
-            overlayColor: MaterialStateProperty.resolveWith<Color>(
-                (Set<MaterialState> states) {
-              return widget.highlightColor ?? textColor.withOpacity(0.1);
-            }),
-            padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry?>(
-                (Set<MaterialState> states) {
-              return widget.padding;
-            }),
-            side: MaterialStateProperty.resolveWith<BorderSide>(
-                (Set<MaterialState> states) {
-              return BorderSide(
-                color: widget.isEnabled ? borderColor : disabledColor,
-              );
-            }),
-          ),
-          child: widget.child ?? _buildLabel(textColor, disabledColor),
-        ),
+        child: widget.child ?? _buildLabel(textColor, disabledColor),
       ),
     );
   }

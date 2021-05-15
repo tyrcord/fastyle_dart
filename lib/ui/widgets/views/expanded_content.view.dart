@@ -94,8 +94,10 @@ class _FastExpansionPanelState extends State<FastExpansionPanel>
         ThemeHelper.texts.getButtonTextStyle(context).color!;
     final color = widget.isEnabled ? textColor : textColor.withAlpha(155);
 
-    return FastButtonLayout(
+    return Container(
+      constraints: const BoxConstraints(minHeight: 40.0, minWidth: 44.0),
       child: Stack(
+        alignment: AlignmentDirectional.center,
         children: [
           Container(
             constraints: BoxConstraints(minHeight: kFastIconSizeMedium),
@@ -103,9 +105,8 @@ class _FastExpansionPanelState extends State<FastExpansionPanel>
               child: FastButtonLabel(text: widget.titleText, textColor: color),
             ),
           ),
-          Positioned(
-            top: 0,
-            right: 0,
+          Align(
+            alignment: Alignment.centerRight,
             child: _buildHeaderIcon(color),
           ),
         ],
