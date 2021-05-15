@@ -11,7 +11,7 @@ const kFastDarkOrangeColor = Color(0xFFFF8D63);
 const kFastDarkPinkColor = Color(0xFFFF54C0);
 const kFastDarkPurpleColor = Color(0xFFB37DFF);
 const kFastDarkRedColor = Color(0xFFFF4F4D);
-final kFastDarkTealColor = CupertinoColors.systemTeal.darkColor;
+final kFastDarkTealColor = Color(0xFF56D4E8);
 const kFastDarkYellowColor = Color(0xFFFFDA24);
 
 // Background Colors

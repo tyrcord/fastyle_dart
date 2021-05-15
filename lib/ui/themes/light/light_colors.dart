@@ -12,7 +12,7 @@ const kFastLightPurpleColor = Color(0xFFC95EFF);
 const kFastLightRedColor = Color(0xFFF23B27);
 const kFastLightYellowColor = Color(0xFFFCD93A);
 final kFastLightPinkColor = CupertinoColors.systemPink.color;
-final kFastLightTealColor = CupertinoColors.systemTeal.color;
+final kFastLightTealColor = Color(0xFF39D0FA);
 
 // Background Colors
 const kFastLightPrimaryBackgroundColor = kFastLightWhiteColor;
