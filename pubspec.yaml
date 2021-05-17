@@ -21,7 +21,7 @@ dependencies:
   rxdart: ^0.27.0
   another_flushbar: ^1.10.22
   meta: ^1.3.0
-  tbloc_dart: ^0.15.0
+  tbloc_dart: ^0.16.0
   tmodel_dart: ^0.2.1
 
 dev_dependencies:
