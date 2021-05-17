@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [0.22.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.22.1) (2021-05-17)
+
+### Enhancements
+
+- Fixed clear selection boundaries.
+- Minor improvements.
+
 ## [0.22.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.22.0) (2021-05-16)
 
 ### Enhancements
