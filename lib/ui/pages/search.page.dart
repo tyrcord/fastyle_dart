@@ -235,18 +235,25 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
   }
 
   Widget _buildFooter(BuildContext context) {
+    final bottomPadding = MediaQuery.of(context).padding.bottom;
+
     return Container(
-      padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+      padding: bottomPadding > 0
+          ? const EdgeInsets.only(top: 8, left: 16, right: 16)
+          : const EdgeInsets.only(top: 8, left: 16, right: 16, bottom: 8),
       color: ThemeHelper.colors.getSecondaryBackgroundColor(context),
       child: SafeArea(
         top: false,
         bottom: true,
-        child: Align(
-          alignment: Alignment.centerRight,
-          child: FastLink(
-            text: widget.clearSelectionText,
-            onTap: () => _close(context, null),
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FastTextButton(
+              textColor: ThemeHelper.colors.getBlueColor(context),
+              text: widget.clearSelectionText,
+              onTap: () => _close(context, null),
+            )
+          ],
         ),
       ),
     );
