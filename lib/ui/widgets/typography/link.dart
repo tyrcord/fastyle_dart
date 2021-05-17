@@ -42,7 +42,7 @@ class FastLink extends StatelessWidget {
   Alignment _getAlignment() {
     if (textAlign == TextAlign.center) {
       return Alignment.center;
-    } else if (textAlign == TextAlign.center) {
+    } else if (textAlign == TextAlign.right) {
       return Alignment.centerRight;
     }
 
