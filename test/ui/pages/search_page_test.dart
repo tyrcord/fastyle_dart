@@ -120,8 +120,9 @@ void main() {
           Duration(milliseconds: 60),
         );
 
-        final link = tester.firstWidget(find.byType(FastLink)) as FastLink;
-        expect(find.byType(FastLink), findsOneWidget);
+        final link =
+            tester.firstWidget(find.byType(FastTextButton)) as FastTextButton;
+        expect(find.byType(FastTextButton), findsOneWidget);
         expect(link.text, kFastClearSelectionText);
       });
 
@@ -137,7 +138,7 @@ void main() {
           Duration(milliseconds: 60),
         );
 
-        expect(find.byType(FastLink), findsNothing);
+        expect(find.byType(FastTextButton), findsNothing);
       });
     });
 
@@ -154,8 +155,9 @@ void main() {
           Duration(milliseconds: 60),
         );
 
-        final link = tester.firstWidget(find.byType(FastLink)) as FastLink;
-        expect(find.byType(FastLink), findsOneWidget);
+        final link =
+            tester.firstWidget(find.byType(FastTextButton)) as FastTextButton;
+        expect(find.byType(FastTextButton), findsOneWidget);
         expect(link.text, 'Nettoyer');
       });
     });

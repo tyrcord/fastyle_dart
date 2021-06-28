@@ -227,11 +227,12 @@ void main() {
         await tester.pumpAndSettle();
         expect(find.byType(FastSelectableListItem), findsNWidgets(7));
 
-        final link = tester.firstWidget(find.byType(FastLink)) as FastLink;
-        expect(find.byType(FastLink), findsOneWidget);
+        final link =
+            tester.firstWidget(find.byType(FastTextButton)) as FastTextButton;
+        expect(find.byType(FastTextButton), findsOneWidget);
         expect(link.text, kFastClearSelectionText);
 
-        await tester.tap(find.byType(FastLink));
+        await tester.tap(find.byType(FastTextButton));
         await tester.pumpAndSettle();
 
         expect(find.text('0'), findsNothing);
@@ -276,8 +277,9 @@ void main() {
         await tester.tap(find.byType(FastSelectField));
         await tester.pumpAndSettle();
 
-        final link = tester.firstWidget(find.byType(FastLink)) as FastLink;
-        expect(find.byType(FastLink), findsOneWidget);
+        final link =
+            tester.firstWidget(find.byType(FastTextButton)) as FastTextButton;
+        expect(find.byType(FastTextButton), findsOneWidget);
         expect(link.text, 'Nettoyer');
       });
     });
