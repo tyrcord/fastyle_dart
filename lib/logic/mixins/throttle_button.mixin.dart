@@ -11,7 +11,7 @@ mixin FastThrottleButtonMixin<T extends IFastButton> on State<T> {
 
   @protected
   // ignore: cancel_subscriptions
-  StreamSubscription<Function?>? subscriptionStream;
+  StreamSubscription<Function>? subscriptionStream;
 
   @protected
   VoidCallback? throttleOnTapIfNeeded() {

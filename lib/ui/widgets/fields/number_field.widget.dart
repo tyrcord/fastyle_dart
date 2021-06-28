@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 const _kSuffixIcon = SizedBox(width: 40, height: 33);
 const _kSuffixIconConstraints = BoxConstraints(maxWidth: 40, maxHeight: 33);
 
-class FastNumberField extends StatelessWidget {
+class FastNumberField extends StatefulWidget implements IFastInput {
   final TextEditingController? textEditingController;
   final BoxConstraints? suffixIconConstraints;
-  final Function(String)? onValueChanged;
+  final VoidCallback? onEditingCompleted;
   final bool transformInvalidNumber;
   final bool showHelperBoundaries;
   final String? placeholderText;
@@ -20,25 +20,39 @@ class FastNumberField extends StatelessWidget {
   final String? helperText;
   final String labelText;
   final bool isReadOnly;
-  final bool isEnabled;
   final String? locale;
   final int maxLength;
   final int maxValue;
+
+  @override
+  final ValueChanged<String>? onValueChanged;
+
+  @override
+  final Duration debounceTimeDuration;
+
+  @override
+  final bool shouldDebounceTime;
+
+  @override
+  final bool isEnabled;
 
   FastNumberField({
     Key? key,
     required this.labelText,
     this.maxLength = NumberInputFormatter.safeIntegerMaxLength,
+    this.debounceTimeDuration = kFastDebounceTimeDuration,
     this.maxValue = NumberInputFormatter.safeInteger,
-    this.showHelperBoundaries = true,
     this.transformInvalidNumber = true,
+    this.showHelperBoundaries = true,
     this.textAlign = TextAlign.start,
+    this.shouldDebounceTime = false,
     this.allowAutocorrect = false,
     this.acceptDecimal = true,
     this.isReadOnly = false,
     this.isEnabled = true,
     this.textEditingController,
     this.suffixIconConstraints,
+    this.onEditingCompleted,
     this.placeholderText,
     this.onValueChanged,
     this.initialValue,
@@ -50,14 +64,27 @@ class FastNumberField extends StatelessWidget {
         super(key: key);
 
   @override
+  _FastNumberFieldState createState() => _FastNumberFieldState();
+}
+
+class _FastNumberFieldState extends State<FastNumberField>
+    with FastDebounceInputMixin {
+  @override
+  void dispose() {
+    super.dispose();
+    unsubscribeToDebouncerEventsIfNeeded();
+    debouncer.close();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return FastFieldLayout(
-      labelText: labelText,
-      captionText: captionText,
-      helperText: helperText,
+      labelText: widget.labelText,
+      captionText: widget.captionText,
+      helperText: widget.helperText,
       control: _buildControl(context),
-      suffixIcon: suffixIcon,
-      showHelperBoundaries: showHelperBoundaries,
+      suffixIcon: widget.suffixIcon,
+      showHelperBoundaries: widget.showHelperBoundaries,
     );
   }
 
@@ -65,19 +92,19 @@ class FastNumberField extends StatelessWidget {
     final bodyTextStyle = ThemeHelper.texts.getBodyTextStyle(context);
 
     return TextFormField(
-      initialValue: initialValue,
-      readOnly: isReadOnly,
-      enabled: isEnabled,
-      textAlign: textAlign,
+      initialValue: widget.initialValue,
+      readOnly: widget.isReadOnly,
+      enabled: widget.isEnabled,
+      textAlign: widget.textAlign,
       textInputAction: TextInputAction.done,
-      autocorrect: allowAutocorrect,
+      autocorrect: widget.allowAutocorrect,
       cursorColor: ThemeHelper.colors.getPrimaryColor(context),
       keyboardType: TextInputType.numberWithOptions(
-        decimal: acceptDecimal,
+        decimal: widget.acceptDecimal,
       ),
       decoration: InputDecoration(
-        hintText: placeholderText,
-        suffixIcon: suffixIcon != null ? _kSuffixIcon : null,
+        hintText: widget.placeholderText,
+        suffixIcon: widget.suffixIcon != null ? _kSuffixIcon : null,
         suffixIconConstraints: _kSuffixIconConstraints,
       ),
       style: bodyTextStyle.copyWith(
@@ -86,14 +113,15 @@ class FastNumberField extends StatelessWidget {
       ),
       inputFormatters: [
         NumberInputFormatter(
-          maxLength: maxLength,
-          maxValue: maxValue,
-          allowDecimals: acceptDecimal,
-          transformInvalidNumber: transformInvalidNumber,
+          maxLength: widget.maxLength,
+          maxValue: widget.maxValue,
+          allowDecimals: widget.acceptDecimal,
+          transformInvalidNumber: widget.transformInvalidNumber,
         ),
       ],
-      onChanged: onValueChanged,
-      controller: textEditingController,
+      onEditingComplete: widget.onEditingCompleted,
+      controller: widget.textEditingController,
+      onChanged: debounceOnValueChangedIfNeeded(),
     );
   }
 }

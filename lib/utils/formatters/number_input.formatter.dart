@@ -42,6 +42,7 @@ class NumberInputFormatter extends TextInputFormatter {
 
   static NumberFormat get _defaultNumberFormatter {
     _defaultNumberFormat ??= NumberFormat.decimalPattern(defaultLocale);
+
     return _defaultNumberFormat!;
   }
 
@@ -79,7 +80,7 @@ class NumberInputFormatter extends TextInputFormatter {
       return allowDecimals ? _prefixedDecimalSeprator : oldValue;
     }
 
-    if (!_isStringANumber(valueText)) {
+    if (!_isNumber(valueText)) {
       return oldValue;
     }
 
@@ -128,7 +129,7 @@ class NumberInputFormatter extends TextInputFormatter {
     return textLength > maxLength;
   }
 
-  bool _isStringANumber(
+  bool _isNumber(
     String number, {
     String decimalSeparator = _defaultDecimalSeparator,
   }) {
@@ -197,6 +198,7 @@ class NumberInputFormatter extends TextInputFormatter {
         }
 
         final numberFormatter = NumberFormat(pattern, defaultLocale);
+
         return numberFormatter.format(double.tryParse(value));
       }
     }

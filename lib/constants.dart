@@ -88,6 +88,7 @@ const kDisabledAlpha = 155;
 
 // Duration
 
+const kFastDebounceTimeDuration = Duration(milliseconds: 300);
 const kFastTrottleTimeDuration = Duration(seconds: 1);
 
 // Languages

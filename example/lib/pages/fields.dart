@@ -86,12 +86,21 @@ class FieldsPage extends StatelessWidget {
             labelText: 'Number 3',
             placeholderText: '100',
             captionText: 'required',
+            onValueChanged: (String value) => log('Length: ${value.length}'),
           ),
           FastNumberField(
             labelText: 'Number 4 (allow invalid number)',
             placeholderText: '0',
             captionText: 'required',
             transformInvalidNumber: false,
+            onValueChanged: (String value) => log(value),
+          ),
+          FastNumberField(
+            labelText: 'Number 5 (debounced)',
+            placeholderText: '0',
+            captionText: 'required',
+            onValueChanged: (String value) => log('Length: ${value.length}'),
+            shouldDebounceTime: true,
           ),
           FastSelectField(
             labelText: 'Favorite food',
