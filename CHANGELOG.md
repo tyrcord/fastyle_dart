@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.24.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.24.0) (2021-07-01)
+
+### Breaking Changes
+
+- Update tmodel dependency.
+
 ## [0.23.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.23.0) (2021-06-28)
 
 ### Features
