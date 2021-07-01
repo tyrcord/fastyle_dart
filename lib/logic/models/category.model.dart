@@ -47,11 +47,9 @@ class FastCategory extends TModel {
   }
 
   @override
-  FastCategory merge({FastCategory? category}) {
-    assert(category != null);
-
+  FastCategory merge(covariant FastCategory category) {
     return copyWith(
-      labelText: category!.labelText,
+      labelText: category.labelText,
       valueText: category.valueText,
       weight: category.weight,
     );
@@ -75,7 +73,7 @@ class FastInternalCategory extends FastCategory {
     required String labelText,
     required String valueText,
     required this.weight,
-  })   : assert(weight >= 1000),
+  })  : assert(weight >= 1000),
         super(labelText: labelText, valueText: valueText);
 
   @override

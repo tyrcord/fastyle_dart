@@ -47,13 +47,11 @@ class FastNotificationCenterOptions extends TModel {
   }
 
   @override
-  FastNotificationCenterOptions merge({
-    FastNotificationCenterOptions? options,
-  }) {
-    assert(options != null);
-
+  FastNotificationCenterOptions merge(
+    covariant FastNotificationCenterOptions options,
+  ) {
     return copyWith(
-      leadingIcon: options!.leadingIcon,
+      leadingIcon: options.leadingIcon,
       iconColor: options.iconColor,
       iconSize: options.iconSize,
     );

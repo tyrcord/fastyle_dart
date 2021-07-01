@@ -83,11 +83,9 @@ class FastItem<T> extends TModel {
   }
 
   @override
-  FastItem<T> merge({FastItem<T>? item}) {
-    assert(item != null);
-
+  FastItem<T> merge(covariant FastItem<T> item) {
     return copyWith(
-      normalizedLabelText: item!.normalizedLabelText,
+      normalizedLabelText: item.normalizedLabelText,
       descriptionText: item.descriptionText,
       categories: item.categories,
       descriptor: item.descriptor,

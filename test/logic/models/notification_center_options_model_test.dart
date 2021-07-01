@@ -81,7 +81,7 @@ void main() {
           iconSize: 42,
         );
 
-        final merged = options2.merge(options: options);
+        final merged = options2.merge(options);
 
         expect(merged.iconSize, equals(42));
         expect(merged.leadingIcon, equals(leadingIcon));

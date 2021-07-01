@@ -79,7 +79,7 @@ void main() {
           trailing: trailing2,
         );
 
-        final merged = itemDescriptor2.merge(descriptor: copy);
+        final merged = itemDescriptor2.merge(copy);
 
         expect(merged.isDense, equals(false));
         expect(merged.trailing, equals(trailing2));

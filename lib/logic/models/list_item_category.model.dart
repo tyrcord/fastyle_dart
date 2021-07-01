@@ -56,11 +56,9 @@ class FastListItemCategory<T extends FastItem> extends TModel {
   }
 
   @override
-  FastListItemCategory<T> merge({FastListItemCategory<T>? category}) {
-    assert(category != null);
-
+  FastListItemCategory<T> merge(covariant FastListItemCategory<T> category) {
     return copyWith(
-      labelText: category!.labelText,
+      labelText: category.labelText,
       valueText: category.valueText,
       weight: category.weight,
       items: category.items,

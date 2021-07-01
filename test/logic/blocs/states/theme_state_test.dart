@@ -66,7 +66,7 @@ void main() {
           themeMode: ThemeMode.dark,
         );
 
-        final merged = state2.merge(state: state);
+        final merged = state2.merge(state);
 
         expect(merged.themeMode, equals(ThemeMode.dark));
         expect(merged.brightness, equals(Brightness.light));

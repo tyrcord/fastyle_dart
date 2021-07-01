@@ -80,7 +80,7 @@ void main() {
           valueText: category2Text,
         );
 
-        final merged = category2.merge(category: copy);
+        final merged = category2.merge(copy);
 
         expect(merged.weight, equals(0));
         expect(merged.labelText, equals('foo'));

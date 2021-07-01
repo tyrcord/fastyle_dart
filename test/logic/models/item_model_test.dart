@@ -168,7 +168,7 @@ void main() {
           categories: [category],
         );
 
-        final merged = item2.merge(item: copy);
+        final merged = item2.merge(copy);
 
         expect(merged.labelText, equals(label2));
         expect(merged.isEnabled, equals(true));
