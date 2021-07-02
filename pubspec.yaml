@@ -19,7 +19,7 @@ dependencies:
   fuzzy: ^0.4.0-nullsafety.0
   rxdart: ^0.27.1
   another_flushbar: ^1.10.23
-  tbloc_dart: ^0.17.0
+  tbloc_dart: ^0.17.1
   tmodel_dart: ^0.3.0
 
 dev_dependencies:
