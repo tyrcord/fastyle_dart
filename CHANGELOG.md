@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.25.2](https://github.com/tyrcord/fastyle_dart/releases/tag/0.25.2) (2021-07-04)
+
+### Features
+
+- Added `FastAnimatedRotationIconButton` widget.
+
 ## [0.25.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.25.1) (2021-07-04)
 
 ### Enhancements
