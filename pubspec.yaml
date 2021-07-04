@@ -21,6 +21,7 @@ dependencies:
   another_flushbar: ^1.10.23
   tbloc_dart: ^0.17.1
   tmodel_dart: ^0.3.0
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:

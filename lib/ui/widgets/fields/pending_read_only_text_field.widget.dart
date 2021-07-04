@@ -2,14 +2,16 @@ import 'dart:ui';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class FastPendingReadOnlyTextField extends StatefulWidget {
   final bool enableInteractiveSelection;
   final bool showHelperBoundaries;
   final String placeholderText;
   final Color? helperTextColor;
-  final Color? valueTextColor;
   final bool useFontForNumber;
+  final Color? valueTextColor;
+  final Color? highlightColor;
   final TextAlign textAlign;
   final String? captionText;
   final String? pendingText;
@@ -28,6 +30,7 @@ class FastPendingReadOnlyTextField extends StatefulWidget {
     this.useFontForNumber = false,
     this.isPending = false,
     this.helperTextColor,
+    this.highlightColor,
     this.valueTextColor,
     this.pendingText,
     this.captionText,
@@ -41,66 +44,7 @@ class FastPendingReadOnlyTextField extends StatefulWidget {
 }
 
 class _FastPendingReadOnlyTextFieldState
-    extends State<FastPendingReadOnlyTextField>
-    with SingleTickerProviderStateMixin {
-  static const _animationDuration = Duration(milliseconds: 750);
-  static final _blurWidget = Positioned(
-    height: 37,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    child: BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 0.5, sigmaY: 0.5),
-      child: Container(color: Colors.transparent),
-    ),
-  );
-
-  late AnimationController _controller;
-  late Animation<double> _animation;
-  bool _initialized = false;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = AnimationController(
-      vsync: this,
-      duration: _animationDuration,
-    );
-
-    final curve = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    );
-
-    _animation = Tween(begin: 1.0, end: 0.25).animate(curve);
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    if (!_initialized) {
-      _animate(widget.isPending);
-      _initialized = true;
-    }
-  }
-
-  @override
-  void didUpdateWidget(FastPendingReadOnlyTextField oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    if (widget.isPending != oldWidget.isPending) {
-      _animate(widget.isPending);
-    }
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
+    extends State<FastPendingReadOnlyTextField> {
   @override
   Widget build(BuildContext context) {
     return FastReadOnlyTextField(
@@ -109,34 +53,35 @@ class _FastPendingReadOnlyTextFieldState
       helperText: widget.helperText,
       helperTextColor: widget.helperTextColor,
       showHelperBoundaries: widget.showHelperBoundaries,
-      child: Stack(
-        children: <Widget>[
-          AnimatedBuilder(
-            animation: _animation,
-            builder: (BuildContext context, Widget? child) {
-              return Opacity(opacity: _animation.value, child: child);
-            },
-            child: FastBody(
-              text: widget.isPending && widget.pendingText != null
-                  ? widget.pendingText!
-                  : widget.valueText ?? widget.placeholderText,
-              textColor: widget.valueTextColor,
-              enableInteractiveSelection: widget.enableInteractiveSelection,
-              textAlign: widget.textAlign,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          if (widget.isPending) _blurWidget,
-        ],
-      ),
+      child: _buidText(context),
     );
   }
 
-  void _animate(bool shouldAnimate) {
-    if (shouldAnimate) {
-      _controller.repeat(reverse: true);
-    } else {
-      _controller.reset();
+  Widget _buidText(BuildContext context) {
+    if (widget.isPending && widget.pendingText != null) {
+      final baseColor = widget.valueTextColor ??
+          ThemeHelper.texts.getBodyTextStyle(context).color!;
+      final _highlightColor =
+          widget.highlightColor ?? baseColor.withOpacity(0.1);
+
+      return Shimmer.fromColors(
+        highlightColor: _highlightColor,
+        baseColor: baseColor,
+        child: FastBody(
+          textColor: baseColor,
+          textAlign: widget.textAlign,
+          fontWeight: FontWeight.w700,
+          text: widget.pendingText!,
+        ),
+      );
     }
+
+    return FastBody(
+      enableInteractiveSelection: widget.enableInteractiveSelection,
+      text: widget.valueText ?? widget.placeholderText,
+      textColor: widget.valueTextColor,
+      textAlign: widget.textAlign,
+      fontWeight: FontWeight.w700,
+    );
   }
 }
