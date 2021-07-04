@@ -1,10 +1,8 @@
-import 'dart:ui';
-
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class FastPendingReadOnlyTextField extends StatefulWidget {
+class FastPendingReadOnlyTextField extends StatelessWidget {
   final bool enableInteractiveSelection;
   final bool showHelperBoundaries;
   final String placeholderText;
@@ -12,6 +10,7 @@ class FastPendingReadOnlyTextField extends StatefulWidget {
   final bool useFontForNumber;
   final Color? valueTextColor;
   final Color? highlightColor;
+  final FontWeight fontWeight;
   final TextAlign textAlign;
   final String? captionText;
   final String? pendingText;
@@ -25,6 +24,7 @@ class FastPendingReadOnlyTextField extends StatefulWidget {
     required this.labelText,
     this.placeholderText = kFastEmptyString,
     this.enableInteractiveSelection = true,
+    this.fontWeight = FontWeight.w700,
     this.showHelperBoundaries = true,
     this.textAlign = TextAlign.left,
     this.useFontForNumber = false,
@@ -39,49 +39,41 @@ class FastPendingReadOnlyTextField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _FastPendingReadOnlyTextFieldState createState() =>
-      _FastPendingReadOnlyTextFieldState();
-}
-
-class _FastPendingReadOnlyTextFieldState
-    extends State<FastPendingReadOnlyTextField> {
-  @override
   Widget build(BuildContext context) {
     return FastReadOnlyTextField(
-      labelText: widget.labelText,
-      captionText: widget.captionText,
-      helperText: widget.helperText,
-      helperTextColor: widget.helperTextColor,
-      showHelperBoundaries: widget.showHelperBoundaries,
+      labelText: labelText,
+      captionText: captionText,
+      helperText: helperText,
+      helperTextColor: helperTextColor,
+      showHelperBoundaries: showHelperBoundaries,
       child: _buidText(context),
     );
   }
 
   Widget _buidText(BuildContext context) {
-    if (widget.isPending && widget.pendingText != null) {
-      final baseColor = widget.valueTextColor ??
-          ThemeHelper.texts.getBodyTextStyle(context).color!;
-      final _highlightColor =
-          widget.highlightColor ?? baseColor.withOpacity(0.1);
+    if (isPending && pendingText != null) {
+      final baseColor =
+          valueTextColor ?? ThemeHelper.texts.getBodyTextStyle(context).color!;
+      final _highlightColor = highlightColor ?? baseColor.withOpacity(0.1);
 
       return Shimmer.fromColors(
         highlightColor: _highlightColor,
         baseColor: baseColor,
         child: FastBody(
           textColor: baseColor,
-          textAlign: widget.textAlign,
-          fontWeight: FontWeight.w700,
-          text: widget.pendingText!,
+          textAlign: textAlign,
+          fontWeight: fontWeight,
+          text: pendingText!,
         ),
       );
     }
 
     return FastBody(
-      enableInteractiveSelection: widget.enableInteractiveSelection,
-      text: widget.valueText ?? widget.placeholderText,
-      textColor: widget.valueTextColor,
-      textAlign: widget.textAlign,
-      fontWeight: FontWeight.w700,
+      enableInteractiveSelection: enableInteractiveSelection,
+      text: valueText ?? placeholderText,
+      textColor: valueTextColor,
+      textAlign: textAlign,
+      fontWeight: fontWeight,
     );
   }
 }
