@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [0.25.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.25.0) (2021-07-04)
+
+### Features
+
+- Added a shimmer effect to the pending text field.
+- Added `valueText` property to the number field.
+
 ## [0.24.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.24.1) (2021-07-02)
 
 ### Enhancements
