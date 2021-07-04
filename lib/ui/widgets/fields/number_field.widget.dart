@@ -12,13 +12,13 @@ class FastNumberField extends StatefulWidget implements IFastInput {
   final bool showHelperBoundaries;
   final String? placeholderText;
   final bool allowAutocorrect;
-  final String? initialValue;
   final TextAlign textAlign;
   final String? captionText;
   final Widget? suffixIcon;
   final bool acceptDecimal;
   final String? helperText;
   final String labelText;
+  final String valueText;
   final bool isReadOnly;
   final String? locale;
   final int maxLength;
@@ -50,18 +50,17 @@ class FastNumberField extends StatefulWidget implements IFastInput {
     this.acceptDecimal = true,
     this.isReadOnly = false,
     this.isEnabled = true,
+    this.valueText = '',
     this.textEditingController,
     this.suffixIconConstraints,
     this.onEditingCompleted,
     this.placeholderText,
     this.onValueChanged,
-    this.initialValue,
     this.captionText,
     this.helperText,
     this.suffixIcon,
     this.locale,
-  })  : assert(initialValue == null || textEditingController == null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   _FastNumberFieldState createState() => _FastNumberFieldState();
@@ -69,11 +68,37 @@ class FastNumberField extends StatefulWidget implements IFastInput {
 
 class _FastNumberFieldState extends State<FastNumberField>
     with FastDebounceInputMixin {
+  late TextEditingController _controller;
+  bool _isInitialized = false;
+
   @override
   void dispose() {
     super.dispose();
     unsubscribeToDebouncerEventsIfNeeded();
     debouncer.close();
+    _controller.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (!_isInitialized) {
+      _controller = widget.textEditingController ??
+          TextEditingController(text: widget.valueText);
+
+      _isInitialized = true;
+    }
+  }
+
+  @override
+  void didUpdateWidget(FastNumberField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.valueText != widget.valueText ||
+        _controller.text != widget.valueText) {
+      _controller.value = TextEditingValue(text: widget.valueText);
+    }
   }
 
   @override
@@ -92,13 +117,15 @@ class _FastNumberFieldState extends State<FastNumberField>
     final bodyTextStyle = ThemeHelper.texts.getBodyTextStyle(context);
 
     return TextFormField(
-      initialValue: widget.initialValue,
-      readOnly: widget.isReadOnly,
-      enabled: widget.isEnabled,
-      textAlign: widget.textAlign,
+      cursorColor: ThemeHelper.colors.getPrimaryColor(context),
+      onEditingComplete: widget.onEditingCompleted,
+      onChanged: debounceOnValueChangedIfNeeded(),
       textInputAction: TextInputAction.done,
       autocorrect: widget.allowAutocorrect,
-      cursorColor: ThemeHelper.colors.getPrimaryColor(context),
+      textAlign: widget.textAlign,
+      readOnly: widget.isReadOnly,
+      enabled: widget.isEnabled,
+      controller: _controller,
       keyboardType: TextInputType.numberWithOptions(
         decimal: widget.acceptDecimal,
       ),
@@ -119,9 +146,6 @@ class _FastNumberFieldState extends State<FastNumberField>
           transformInvalidNumber: widget.transformInvalidNumber,
         ),
       ],
-      onEditingComplete: widget.onEditingCompleted,
-      controller: widget.textEditingController,
-      onChanged: debounceOnValueChangedIfNeeded(),
     );
   }
 }
