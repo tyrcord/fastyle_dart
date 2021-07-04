@@ -1,6 +1,6 @@
 name: fastyle_dart
 description: A new Flutter package project.
-version: 0.25.0
+version: 0.25.1
 homepage: https://github.com/tyrcord/fastyle_dart
 
 environment:
@@ -19,7 +19,7 @@ dependencies:
   fuzzy: ^0.4.0-nullsafety.0
   rxdart: ^0.27.1
   another_flushbar: ^1.10.23
-  tbloc_dart: ^0.17.1
+  tbloc_dart: ^0.18.1
   tmodel_dart: ^0.3.0
   shimmer: ^2.0.0
 

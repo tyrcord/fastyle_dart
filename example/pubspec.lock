@@ -84,7 +84,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.25.0"
+    version: "0.25.1"
   ffi:
     dependency: transitive
     description:
@@ -158,13 +158,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.0-nullsafety.0"
-  logger:
-    dependency: transitive
-    description:
-      name: logger
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   matcher:
     dependency: transitive
     description:
@@ -330,7 +323,7 @@ packages:
       name: tbloc_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.17.1"
+    version: "0.18.1"
   term_glyph:
     dependency: transitive
     description:

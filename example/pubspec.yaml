@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  tbloc_dart: ^0.17.0
+  tbloc_dart: ^0.18.1
   
   fastyle_dart:
     path: ../
