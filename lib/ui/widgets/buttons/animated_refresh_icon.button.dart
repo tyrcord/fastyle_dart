@@ -5,7 +5,7 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 class FastAnimatedRotationIconButton extends StatefulWidget {
   final AnimationController? animationController;
   final EdgeInsetsGeometry padding;
-  final Alignment? iconAlignment;
+  final Alignment iconAlignment;
   final bool shouldTrottleTime;
   final VoidCallback onTap;
   final Color? iconColor;
@@ -17,13 +17,13 @@ class FastAnimatedRotationIconButton extends StatefulWidget {
   const FastAnimatedRotationIconButton({
     Key? key,
     required this.onTap,
+    this.iconAlignment = Alignment.center,
     this.iconSize = kFastIconSizeSmall,
     this.padding = kFastEdgeInsets8,
     this.shouldTrottleTime = false,
     this.isEnabled = true,
     this.rotate = false,
     this.animationController,
-    this.iconAlignment,
     this.iconColor,
     this.icon,
   }) : super(key: key);
@@ -68,17 +68,15 @@ class _FastAnimatedRotationIconButtonState
   Widget build(BuildContext context) {
     return FastIconButton(
       shouldTrottleTime: widget.shouldTrottleTime,
+      iconAlignment: widget.iconAlignment,
       iconColor: widget.iconColor,
       isEnabled: widget.isEnabled,
       iconSize: widget.iconSize,
       padding: widget.padding,
       onTap: widget.onTap,
-      icon: Align(
-        alignment: widget.iconAlignment ?? Alignment.center,
-        child: RotationTransition(
-          turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
-          child: widget.icon ?? const Icon(Icons.sync),
-        ),
+      icon: RotationTransition(
+        turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
+        child: widget.icon ?? const Icon(Icons.sync),
       ),
     );
   }
