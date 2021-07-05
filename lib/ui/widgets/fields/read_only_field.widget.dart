@@ -10,6 +10,7 @@ class FastReadOnlyTextField extends StatelessWidget {
   final Color? valueTextColor;
   final String? captionText;
   final TextAlign textAlign;
+  final Widget? suffixIcon;
   final String? helperText;
   final String? valueText;
   final String labelText;
@@ -26,6 +27,7 @@ class FastReadOnlyTextField extends StatelessWidget {
     this.helperTextColor,
     this.valueTextColor,
     this.captionText,
+    this.suffixIcon,
     this.helperText,
     this.valueText,
     this.child,
@@ -40,6 +42,7 @@ class FastReadOnlyTextField extends StatelessWidget {
       helperTextColor: helperTextColor,
       control: _buildControl(context),
       showHelperBoundaries: showHelperBoundaries,
+      suffixIcon: suffixIcon,
     );
   }
 

@@ -14,6 +14,7 @@ class FastPendingReadOnlyTextField extends StatelessWidget {
   final TextAlign textAlign;
   final String? captionText;
   final String? pendingText;
+  final Widget? suffixIcon;
   final String? helperText;
   final String? valueText;
   final String labelText;
@@ -34,6 +35,7 @@ class FastPendingReadOnlyTextField extends StatelessWidget {
     this.valueTextColor,
     this.pendingText,
     this.captionText,
+    this.suffixIcon,
     this.helperText,
     this.valueText,
   }) : super(key: key);
@@ -46,6 +48,7 @@ class FastPendingReadOnlyTextField extends StatelessWidget {
       helperText: helperText,
       helperTextColor: helperTextColor,
       showHelperBoundaries: showHelperBoundaries,
+      suffixIcon: suffixIcon,
       child: _buidText(context),
     );
   }
