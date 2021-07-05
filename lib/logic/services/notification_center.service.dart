@@ -5,6 +5,21 @@ import 'package:flutter/material.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
 
+const _kDefaultErrorOptions = FastNotificationCenterOptions(
+  leadingIcon: Icon(Icons.cancel),
+);
+
+const _kDefaultWarnOptions = FastNotificationCenterOptions(
+  leadingIcon: Icon(Icons.report_problem),
+);
+
+const _kDefaultInfoOptions = FastNotificationCenterOptions(
+  leadingIcon: Icon(Icons.info),
+);
+const _kDefaultSuccessOptions = FastNotificationCenterOptions(
+  leadingIcon: Icon(Icons.done),
+);
+
 class FastNotificationCenter {
   static final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -21,7 +36,7 @@ class FastNotificationCenter {
   static void error(
     String message, {
     Key? key,
-    FastNotificationCenterOptions? options,
+    FastNotificationCenterOptions options = _kDefaultErrorOptions,
   }) {
     _buildNotification(
       message,
@@ -38,7 +53,7 @@ class FastNotificationCenter {
   static void warn(
     String message, {
     Key? key,
-    FastNotificationCenterOptions? options,
+    FastNotificationCenterOptions options = _kDefaultWarnOptions,
   }) {
     _buildNotification(
       message,
@@ -55,7 +70,7 @@ class FastNotificationCenter {
   static void info(
     String message, {
     Key? key,
-    FastNotificationCenterOptions? options,
+    FastNotificationCenterOptions options = _kDefaultInfoOptions,
   }) {
     _buildNotification(
       message,
@@ -72,7 +87,7 @@ class FastNotificationCenter {
   static void success(
     String message, {
     Key? key,
-    FastNotificationCenterOptions? options,
+    FastNotificationCenterOptions options = _kDefaultSuccessOptions,
   }) {
     _buildNotification(
       message,
