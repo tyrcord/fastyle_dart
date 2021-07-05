@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [0.26.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.26.0) (2021-07-05)
+
+### Enhancements
+
+- Added default icons to notifications.
+- [FastIconButton] Allow to change the alignement of the icon.
+- Expose `suffixIcon` property to read only fields.
+
 ## [0.25.2](https://github.com/tyrcord/fastyle_dart/releases/tag/0.25.2) (2021-07-04)
 
 ### Features
