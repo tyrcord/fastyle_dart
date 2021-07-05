@@ -57,7 +57,10 @@ class _FastExpansionPanelState extends State<FastExpansionPanel>
         AnimatedCrossFade(
           duration: widget.animationDuration,
           firstChild: Container(),
-          secondChild: Builder(builder: widget.bodyBuilder),
+          secondChild: Container(
+            padding: const EdgeInsets.only(top: 16),
+            child: Builder(builder: widget.bodyBuilder),
+          ),
           crossFadeState:
               isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
         ),
