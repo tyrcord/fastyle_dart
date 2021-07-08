@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +10,12 @@ import 'package:flutter/services.dart';
 
 class FastApp extends StatefulWidget {
   final Iterable<LocalizationsDelegate>? localizationsDelegates;
-  final bool debugShowCheckedModeBanner;
+  final FastAppLoaderErrorBuilder? errorBuilder;
+  final FastAppLoaderBuilder? loaderBuilder;
   final Iterable<Locale> supportedLocales;
+  final Duration delayBeforeShowingLoader;
+  final bool debugShowCheckedModeBanner;
+  final Iterable<FastJob>? loaderJobs;
   final FastThemeBloc? themeBloc;
   final ThemeData? lightTheme;
   final ThemeData? darkTheme;
@@ -21,10 +26,14 @@ class FastApp extends StatefulWidget {
   FastApp({
     Key? key,
     required this.home,
+    this.delayBeforeShowingLoader = const Duration(seconds: 1),
     this.supportedLocales = kFastSupportedLocales,
     this.debugShowCheckedModeBanner = false,
     this.titleText = kFastEmptyString,
     this.localizationsDelegates,
+    this.loaderBuilder,
+    this.errorBuilder,
+    this.loaderJobs,
     this.lightTheme,
     this.darkTheme,
     this.themeBloc,
@@ -40,6 +49,8 @@ class _FastAppState extends State<FastApp> {
 
   @override
   void initState() {
+    WidgetsFlutterBinding.ensureInitialized();
+
     _themeBloc = widget.themeBloc ??
         FastThemeBloc(
           initialState: FastThemeBlocState(
@@ -65,18 +76,25 @@ class _FastAppState extends State<FastApp> {
         bloc: _themeBloc,
         child: BlocBuilderWidget(
           bloc: _themeBloc,
+          waitForData: true,
           builder: (context, FastThemeBlocState state) {
             return MaterialApp(
               debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
-              navigatorKey: FastNotificationCenter.navigatorKey,
-              title: widget.titleText,
-              theme: widget.lightTheme ?? FastTheme.light.blue,
-              darkTheme: widget.darkTheme ?? FastTheme.dark.blue,
-              themeMode: state.themeMode,
-              home: widget.home,
               localizationsDelegates: widget.localizationsDelegates,
+              darkTheme: widget.darkTheme ?? FastTheme.dark.blue,
+              theme: widget.lightTheme ?? FastTheme.light.blue,
+              navigatorKey: FastNotificationCenter.navigatorKey,
               supportedLocales: widget.supportedLocales,
+              themeMode: state.themeMode,
+              title: widget.titleText,
               locale: widget.locale,
+              home: FastAppLoader(
+                delayBeforeShowingLoader: widget.delayBeforeShowingLoader,
+                appBuilder: (context) => widget.home,
+                loaderBuilder: widget.loaderBuilder,
+                errorBuilder: widget.errorBuilder,
+                loaderJobs: widget.loaderJobs,
+              ),
             );
           },
         ),

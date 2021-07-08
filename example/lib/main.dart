@@ -15,6 +15,27 @@ import 'package:fastyle_dart_example/pages/lists.dart';
 import 'package:fastyle_dart_example/pages/tabs.dart';
 import 'package:fastyle_dart_example/pages/typography.dart';
 
+class DummyLoaderJob extends FastJob {
+  @override
+  Future<void> initialize(
+    BuildContext context, {
+    Map<String, dynamic>? details,
+  }) {
+    return Future.delayed(Duration(milliseconds: 500));
+  }
+}
+
+class DummyCrashLoaderJob extends FastJob {
+  @override
+  Future<void> initialize(
+    BuildContext context, {
+    Map<String, dynamic>? details,
+  }) async {
+    await Future.delayed(Duration(milliseconds: 250));
+    throw ErrorDescription('Demo');
+  }
+}
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -25,6 +46,32 @@ class MyApp extends StatelessWidget {
       lightTheme: FastTheme.light.blue,
       darkTheme: FastTheme.dark.blue,
       home: MyHomePage(),
+      loaderJobs: [
+        DummyLoaderJob(),
+        DummyLoaderJob(),
+        DummyLoaderJob(),
+        // DummyCrashLoaderJob(),
+        DummyLoaderJob(),
+      ],
+      errorBuilder: (context, error) => Center(
+        child: FastBody(
+          textColor: ThemeHelper.colors.getRedColor(context),
+          text: 'Oops! An error occured while launching the app',
+        ),
+      ),
+      loaderBuilder: (context, progress) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FastProgressBarIndicator(
+              showProgressLabel: true,
+              value: progress,
+            ),
+            kFastSizedBox16,
+            FastBody(text: 'Please wait while the application is loading...'),
+          ],
+        );
+      },
     );
   }
 }
