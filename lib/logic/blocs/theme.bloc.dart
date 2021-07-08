@@ -9,7 +9,7 @@ class FastThemeBloc
     FastThemeBlocState? initialState,
   })  : assert((initialState != null && initialState.brightness != null) ||
             initialState == null),
-        super(initialState: initialState ?? FastThemeBlocState()) {
+        super(initialState: initialState ?? const FastThemeBlocState()) {
     WidgetsBinding.instance!.window.onPlatformBrightnessChanged =
         onPlatformBrightnessChanged;
   }
