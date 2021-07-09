@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:async/async.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:tbloc_dart/tbloc_dart.dart';
 
 abstract class FastJob {
   @protected
@@ -30,33 +31,41 @@ abstract class FastJob {
     IFastErrorReporter? errorReporter,
   }) {
     final completer = Completer<bool>();
-    final operationAsync = initialize(context, errorReporter: errorReporter);
+    var operationAsync = initialize(context, errorReporter: errorReporter);
+
+    if (!requestUserInteraction) {
+      operationAsync = operationAsync.timeout(timeLimit);
+    }
+
     final blocInitializationOperation = CancelableOperation.fromFuture(
       operationAsync,
     );
 
-    if (!requestUserInteraction) {
-      operationAsync.timeout(timeLimit);
-    }
-
-    operationAsync
-      ..catchError((dynamic error, StackTrace? stackTrace) {
-        blocInitializationOperation.cancel();
-
-        completer.completeError(
-          FastJobError(
-            stackTrace: stackTrace ?? StackTrace.current,
-            debugLabel: debugLabel,
-            source: error,
-          ),
-        );
-      })
-      ..whenComplete(() {
-        if (!completer.isCompleted) {
-          completer.complete(true);
-        }
-      });
+    operationAsync.catchError((dynamic error, StackTrace? stackTrace) {
+      blocInitializationOperation.cancel();
+      completer.completeError(_transformError(error, stackTrace));
+    }).whenComplete(() {
+      if (!completer.isCompleted) {
+        completer.complete(true);
+      }
+    });
 
     return completer.future;
+  }
+
+  FastJobError _transformError(dynamic error, StackTrace? stackTrace) {
+    if (error is BlocError) {
+      return FastJobError(
+        stackTrace: error.stackTrace,
+        debugLabel: debugLabel,
+        source: error.source,
+      );
+    }
+
+    return FastJobError(
+      stackTrace: stackTrace ?? StackTrace.current,
+      debugLabel: debugLabel,
+      source: error,
+    );
   }
 }

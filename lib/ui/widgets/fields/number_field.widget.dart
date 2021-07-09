@@ -76,7 +76,10 @@ class _FastNumberFieldState extends State<FastNumberField>
     super.dispose();
     unsubscribeToDebouncerEventsIfNeeded();
     debouncer.close();
-    _controller.dispose();
+
+    if (_controller != widget.textEditingController) {
+      _controller.dispose();
+    }
   }
 
   @override
