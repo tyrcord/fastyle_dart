@@ -31,12 +31,17 @@ class FastAppLoaderBloc
         !isInitialized &&
         !isInitializing) {
       var jobs = eventPayload!.jobs;
+      var errorReporter = eventPayload.errorReporter;
       isInitializing = true;
 
       yield currentState.copyWith(isLoading: isInitializing);
 
       if (jobs != null && jobs.isNotEmpty) {
-        yield* _runJobs(eventPayload.context!, jobs);
+        yield* _runJobs(
+          eventPayload.context!,
+          jobs,
+          errorReporter: errorReporter,
+        );
       } else {
         addEvent(FastAppLoaderBlocEvent.initialized());
       }
@@ -65,12 +70,14 @@ class FastAppLoaderBloc
 
   Stream<FastAppLoaderBlocState> _runJobs(
     BuildContext context,
-    Iterable<FastJob> jobs,
-  ) async* {
+    Iterable<FastJob> jobs, {
+    IFastErrorReporter? errorReporter,
+  }) async* {
     final jobRunner = FastJobRunner(context, jobs);
+    final stream = jobRunner.run(errorReporter: errorReporter);
 
     try {
-      await for (final currentProgress in jobRunner.run()) {
+      await for (final currentProgress in stream) {
         yield currentState.copyWith(progress: currentProgress);
       }
 

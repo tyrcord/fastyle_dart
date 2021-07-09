@@ -9,6 +9,7 @@ enum FastAppLoaderBlocEventType {
 }
 
 class FastAppLoaderBlocEventPayload {
+  final IFastErrorReporter? errorReporter;
   final Iterable<FastJob>? jobs;
   final BuildContext? context;
   final Object? error;
@@ -17,6 +18,7 @@ class FastAppLoaderBlocEventPayload {
     this.context,
     this.error,
     this.jobs,
+    this.errorReporter,
   });
 }
 
@@ -28,11 +30,16 @@ class FastAppLoaderBlocEvent extends BlocEvent<FastAppLoaderBlocEventType,
   }) : super(type: type, payload: payload);
 
   FastAppLoaderBlocEvent.init(
-    BuildContext context,
+    BuildContext context, {
     Iterable<FastJob>? jobs,
-  ) : this(
+    IFastErrorReporter? errorReporter,
+  }) : this(
           type: FastAppLoaderBlocEventType.init,
-          payload: FastAppLoaderBlocEventPayload(jobs: jobs, context: context),
+          payload: FastAppLoaderBlocEventPayload(
+            jobs: jobs,
+            context: context,
+            errorReporter: errorReporter,
+          ),
         );
 
   FastAppLoaderBlocEvent.initialized()

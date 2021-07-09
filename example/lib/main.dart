@@ -19,9 +19,9 @@ class DummyLoaderJob extends FastJob {
   @override
   Future<void> initialize(
     BuildContext context, {
-    Map<String, dynamic>? details,
+    IFastErrorReporter? errorReporter,
   }) {
-    return Future.delayed(Duration(milliseconds: 500));
+    return Future.delayed(const Duration(milliseconds: 500));
   }
 }
 
@@ -29,9 +29,9 @@ class DummyCrashLoaderJob extends FastJob {
   @override
   Future<void> initialize(
     BuildContext context, {
-    Map<String, dynamic>? details,
+    IFastErrorReporter? errorReporter,
   }) async {
-    await Future.delayed(Duration(milliseconds: 250));
+    await Future.delayed(const Duration(milliseconds: 250));
     throw ErrorDescription('Demo');
   }
 }

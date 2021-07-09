@@ -7,27 +7,30 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 
 abstract class FastJob {
   @protected
-  final Map<String, dynamic>? details;
   final bool requestUserInteraction;
+  @protected
   final String? debugLabel;
+  @protected
   final Duration timeLimit;
 
   FastJob({
     this.timeLimit = const Duration(seconds: 15),
     this.requestUserInteraction = false,
     this.debugLabel,
-    this.details,
   });
 
   @protected
   Future<void> initialize(
     BuildContext context, {
-    Map<String, dynamic>? details,
+    IFastErrorReporter? errorReporter,
   });
 
-  Future<bool> run(BuildContext context) {
+  Future<bool> run(
+    BuildContext context, {
+    IFastErrorReporter? errorReporter,
+  }) {
     final completer = Completer<bool>();
-    final operationAsync = initialize(context, details: details);
+    final operationAsync = initialize(context, errorReporter: errorReporter);
     final blocInitializationOperation = CancelableOperation.fromFuture(
       operationAsync,
     );

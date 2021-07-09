@@ -18,6 +18,7 @@ typedef FastAppLoaderErrorBuilder = Widget Function(
 class FastAppLoader extends StatefulWidget {
   final FastAppLoaderErrorBuilder? errorBuilder;
   final FastAppLoaderBuilder? loaderBuilder;
+  final IFastErrorReporter? errorReporter;
   final Duration delayBeforeShowingLoader;
   final Iterable<FastJob>? loaderJobs;
   final WidgetBuilder appBuilder;
@@ -27,6 +28,7 @@ class FastAppLoader extends StatefulWidget {
     required this.appBuilder,
     this.delayBeforeShowingLoader = const Duration(seconds: 1),
     this.loaderBuilder,
+    this.errorReporter,
     this.errorBuilder,
     this.loaderJobs,
   }) : super(key: key);
@@ -50,7 +52,8 @@ class _FastAppLoaderState extends State<FastAppLoader> {
       _isInitializing = true;
       _bloc.addEvent(FastAppLoaderBlocEvent.init(
         context,
-        widget.loaderJobs,
+        errorReporter: widget.errorReporter,
+        jobs: widget.loaderJobs,
       ));
 
       _delayTimer = Timer(widget.delayBeforeShowingLoader, () {

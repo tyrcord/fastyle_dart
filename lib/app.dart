@@ -14,6 +14,7 @@ class FastApp extends StatefulWidget {
   final FastAppLoaderBuilder? loaderBuilder;
   final Iterable<Locale> supportedLocales;
   final Duration delayBeforeShowingLoader;
+  final IFastErrorReporter? errorReporter;
   final bool debugShowCheckedModeBanner;
   final Iterable<FastJob>? loaderJobs;
   final FastThemeBloc? themeBloc;
@@ -31,6 +32,7 @@ class FastApp extends StatefulWidget {
     this.debugShowCheckedModeBanner = false,
     this.titleText = kFastEmptyString,
     this.localizationsDelegates,
+    this.errorReporter,
     this.loaderBuilder,
     this.errorBuilder,
     this.loaderJobs,
@@ -91,6 +93,7 @@ class _FastAppState extends State<FastApp> {
               home: FastAppLoader(
                 delayBeforeShowingLoader: widget.delayBeforeShowingLoader,
                 appBuilder: (context) => widget.home,
+                errorReporter: widget.errorReporter,
                 loaderBuilder: widget.loaderBuilder,
                 errorBuilder: widget.errorBuilder,
                 loaderJobs: widget.loaderJobs,

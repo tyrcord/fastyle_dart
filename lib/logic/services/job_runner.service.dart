@@ -17,7 +17,9 @@ class FastJobRunner {
 
   FastJobRunner(this.context, [this.jobs = const <FastJob>[]]);
 
-  Stream<double> run() {
+  Stream<double> run({
+    IFastErrorReporter? errorReporter,
+  }) {
     if (!_isRunning) {
       final progresStep = Decimal.one / Decimal.fromInt(jobs.length);
       var progress = Decimal.zero;
@@ -26,7 +28,9 @@ class FastJobRunner {
 
       _runner = Stream.fromIterable(jobs)
           .takeWhile((FastJob job) => !hasError)
-          .asyncExpand((FastJob job) => Stream.fromFuture(job.run(context)))
+          .asyncExpand((FastJob job) => Stream.fromFuture(
+                job.run(context, errorReporter: errorReporter),
+              ))
           .map((_) {
             progress += progresStep;
 
@@ -34,6 +38,20 @@ class FastJobRunner {
           })
           .handleError((error) {
             hasError = true;
+
+            if (error is FastJobError) {
+              errorReporter?.recordError(
+                error.source,
+                error.stackTrace,
+                reason: error.debugLabel,
+              );
+            } else {
+              errorReporter?.recordError(
+                error,
+                StackTrace.current,
+              );
+            }
+
             throw error as Object;
           })
           .doOnDone(() => _isRunning = false)
