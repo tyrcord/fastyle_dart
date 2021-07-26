@@ -20,8 +20,9 @@ void main() {
           _buildApp(FastSectionPage(
             child: child1,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final child1Widget = find.byWidget(child1);
         expect(child1Widget, findsOneWidget);
@@ -37,8 +38,9 @@ void main() {
               return child2;
             },
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final child2Widget = find.byWidget(child2);
         expect(child2Widget, findsOneWidget);
@@ -53,8 +55,9 @@ void main() {
             footerBuilder: (_) => Text('footer'),
             child: child1,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         expect(find.text('footer'), findsOneWidget);
       });
@@ -69,9 +72,9 @@ void main() {
             ),
             child: child1,
           )),
-          Duration(milliseconds: 60),
         );
 
+        await tester.pumpAndSettle();
         final fab = find.byType(FloatingActionButton);
         expect(fab, findsOneWidget);
       });
@@ -86,8 +89,9 @@ void main() {
             leading: icon,
             child: child1,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         expect(find.byWidget(icon), findsOneWidget);
       });
@@ -102,9 +106,9 @@ void main() {
             actions: [icon],
             child: child1,
           )),
-          Duration(milliseconds: 60),
         );
 
+        await tester.pumpAndSettle();
         expect(find.byWidget(icon), findsOneWidget);
       });
     });
@@ -118,8 +122,9 @@ void main() {
             footer: Container(key: key),
             child: child1,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         expect(find.byKey(key), findsOneWidget);
       });
@@ -132,8 +137,9 @@ void main() {
             titleText: 'title',
             child: child1,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         expect(find.text('title'), findsOneWidget);
       });
@@ -146,19 +152,19 @@ void main() {
           _buildApp(FastSectionPage(
             loadingBuilder: (_) => Text('loading'),
             loadingFuture: Future.delayed(
-              const Duration(milliseconds: 80),
+              const Duration(milliseconds: 300),
               () => true,
             ),
             child: child1,
           )),
         );
 
-        await tester.pump(Duration(milliseconds: 60));
+        await tester.pumpAndSettle();
 
         final text = find.text('loading');
         expect(text, findsOneWidget);
 
-        await tester.pumpAndSettle();
+        await tester.pumpAndSettle(const Duration(milliseconds: 300));
 
         final child1Widget = find.byWidget(child1);
         expect(child1Widget, findsOneWidget);

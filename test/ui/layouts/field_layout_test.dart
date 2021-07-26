@@ -24,8 +24,9 @@ void main() {
             labelText: labelText,
             control: control,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final field = find.byType(FastFieldLayout);
         expect(field, findsOneWidget);
@@ -40,8 +41,9 @@ void main() {
             labelText: labelText,
             control: control,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final text = find.text(labelTextCapitalized);
         expect(text, findsOneWidget);
@@ -58,8 +60,9 @@ void main() {
               capitalizeLabelText: false,
               control: control,
             )),
-            Duration(milliseconds: 60),
           );
+
+          await tester.pumpAndSettle();
 
           final text = find.text(labelText);
           expect(text, findsOneWidget);
@@ -75,8 +78,9 @@ void main() {
             captionText: captionText,
             control: control,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final text = find.text(captionTextCapitalized);
         expect(text, findsOneWidget);
@@ -90,8 +94,9 @@ void main() {
             helperText: helperText,
             control: control,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final text = find.text(helperTextCapitalized);
         expect(text, findsOneWidget);
@@ -107,8 +112,9 @@ void main() {
             suffixIcon: icon,
             control: control,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final iconFound = find.byWidget(icon);
         expect(iconFound, findsOneWidget);
@@ -123,8 +129,9 @@ void main() {
             helperTextColor: Colors.red,
             control: control,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final text = find.text(helperTextCapitalized);
         final helper = tester.firstWidget(text) as Text;

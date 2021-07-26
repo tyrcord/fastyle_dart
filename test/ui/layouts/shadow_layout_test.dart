@@ -16,9 +16,9 @@ void main() {
         _buildApp(FastShadowLayout(
           child: Text(cardText),
         )),
-        Duration(milliseconds: 60),
       );
 
+      await tester.pumpAndSettle();
       final button = find.byType(FastShadowLayout);
       final text = find.text(cardText);
 

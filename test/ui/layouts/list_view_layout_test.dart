@@ -43,8 +43,9 @@ void main() {
             return FastListItemLayout(labelText: item.labelText);
           },
         )),
-        Duration(milliseconds: 60),
       );
+
+      await tester.pumpAndSettle();
 
       final listItems = find.byType(FastListItemLayout);
       expect(listItems, findsNWidgets(7));
@@ -61,8 +62,9 @@ void main() {
               return FastListItemLayout(labelText: item.labelText);
             },
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final allText = find.text('All');
         final fruitsText = find.text('Fruits');
@@ -86,8 +88,9 @@ void main() {
               return FastListItemLayout(labelText: item.labelText);
             },
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final allText = find.text('Toutes');
         final fruitsText = find.text('Fruits');
@@ -109,8 +112,9 @@ void main() {
               return FastListItemLayout(labelText: item.labelText);
             },
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final listItems = find.byType(FastListItemLayout);
         expect(listItems, findsNWidgets(7));
@@ -127,8 +131,9 @@ void main() {
               return FastListItemLayout(labelText: item.labelText);
             },
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final listItems = find.byType(FastListItemLayout);
         expect(listItems, findsNWidgets(3));
@@ -146,8 +151,9 @@ void main() {
               return FastListItemLayout(labelText: item.labelText);
             },
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
         final listItems = find.byType(FastListItemLayout);
         final item = tester.firstWidget(listItems) as FastListItemLayout;
         expect(listItems, findsNWidgets(3));
@@ -166,8 +172,9 @@ void main() {
               return FastListItemLayout(labelText: item.labelText);
             },
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
         final listItems = find.byType(FastListItemLayout);
         final item = tester.firstWidget(listItems) as FastListItemLayout;
         expect(listItems, findsNWidgets(3));

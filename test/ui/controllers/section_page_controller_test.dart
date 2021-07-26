@@ -25,7 +25,8 @@ void main() {
   testWidgets(
     'FastSectionPageController should use contentBuilder by default',
     (WidgetTester tester) async {
-      await tester.pumpWidget(_buildApp(), Duration(milliseconds: 60));
+      await tester.pumpWidget(_buildApp());
+      await tester.pumpAndSettle();
 
       final text = find.text(_kLoaded);
       expect(text, findsOneWidget);
@@ -43,7 +44,7 @@ void main() {
         ),
       ));
 
-      await tester.pump(Duration(milliseconds: 100));
+      await tester.pumpAndSettle();
 
       final text = find.text(_kLoaded);
       expect(text, findsOneWidget);

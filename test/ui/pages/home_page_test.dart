@@ -20,8 +20,9 @@ void main() {
           _buildApp(FastHomePage(
             children: [child1, child2],
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final child1Widget = find.byWidget(child1);
         final child2Widget = find.byWidget(child2);
@@ -40,9 +41,9 @@ void main() {
             ),
             children: [child1, child2],
           )),
-          Duration(milliseconds: 60),
         );
 
+        await tester.pumpAndSettle();
         final fab = find.byType(FloatingActionButton);
         expect(fab, findsOneWidget);
       });
@@ -55,8 +56,9 @@ void main() {
             subtitleText: 'subtitle',
             children: [child1, child2],
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final text = find.text('subtitle');
         expect(text, findsOneWidget);
@@ -70,9 +72,9 @@ void main() {
             titleText: 'title',
             children: [child1, child2],
           )),
-          Duration(milliseconds: 60),
         );
 
+        await tester.pumpAndSettle();
         final text = find.text('title');
         expect(text, findsOneWidget);
       });
@@ -86,9 +88,9 @@ void main() {
             appBarExpandedHeight: 240,
             children: [child1, child2],
           )),
-          Duration(milliseconds: 60),
         );
 
+        await tester.pumpAndSettle();
         final size = tester.getSize(find.byType(AppBar));
         expect(size.height, equals(240));
       });
@@ -103,9 +105,9 @@ void main() {
             leading: icon,
             children: [child1, child2],
           )),
-          Duration(milliseconds: 60),
         );
 
+        await tester.pumpAndSettle();
         expect(find.byWidget(icon), findsOneWidget);
       });
     });
@@ -119,8 +121,9 @@ void main() {
             actions: [icon],
             children: [child1, child2],
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         expect(find.byWidget(icon), findsOneWidget);
       });

@@ -23,8 +23,9 @@ void main() {
           _buildApp(FastListItemLayout(
             labelText: itemText,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final text = find.text(itemTextCapitalized);
         expect(text, findsOneWidget);
@@ -38,8 +39,9 @@ void main() {
             labelText: itemText,
             descriptionText: 'description',
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final text = find.text('description');
         expect(text, findsOneWidget);
@@ -53,8 +55,9 @@ void main() {
             labelText: itemText,
             leading: leading,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final widget = find.byWidget(leading);
         expect(widget, findsOneWidget);
@@ -68,9 +71,9 @@ void main() {
             labelText: itemText,
             trailing: trailing,
           )),
-          Duration(milliseconds: 60),
         );
 
+        await tester.pumpAndSettle();
         final widget = find.byWidget(trailing);
         expect(widget, findsOneWidget);
       });
@@ -86,8 +89,9 @@ void main() {
             labelText: itemText,
             onTap: () => tapped = true,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastListItemLayout));
         expect(tapped, isTrue);
@@ -105,9 +109,9 @@ void main() {
             onTap: () => tapped = true,
             isEnabled: false,
           )),
-          Duration(milliseconds: 60),
         );
 
+        await tester.pumpAndSettle();
         await tester.tap(find.byType(FastListItemLayout));
         expect(tapped, isFalse);
       });
@@ -121,9 +125,9 @@ void main() {
             labelText: itemText,
             descriptor: FastListItemDescriptor(leading: leading),
           )),
-          Duration(milliseconds: 60),
         );
 
+        await tester.pumpAndSettle();
         final widget = find.byWidget(leading);
         expect(widget, findsOneWidget);
       });
@@ -136,8 +140,9 @@ void main() {
             leading: leading,
             descriptor: FastListItemDescriptor(leading: leading2),
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final widget = find.byWidget(leading2);
         expect(widget, findsOneWidget);
@@ -150,9 +155,9 @@ void main() {
             labelText: itemText,
             descriptor: FastListItemDescriptor(trailing: trailing),
           )),
-          Duration(milliseconds: 60),
         );
 
+        await tester.pumpAndSettle();
         final widget = find.byWidget(trailing);
         expect(widget, findsOneWidget);
       });
@@ -165,9 +170,9 @@ void main() {
             trailing: trailing,
             descriptor: FastListItemDescriptor(trailing: trailing2),
           )),
-          Duration(milliseconds: 60),
         );
 
+        await tester.pumpAndSettle();
         final widget = find.byWidget(trailing2);
         expect(widget, findsOneWidget);
       });

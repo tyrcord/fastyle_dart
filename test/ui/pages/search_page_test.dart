@@ -36,8 +36,9 @@ void main() {
           _buildApp(FastSearchPage(
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final listItems = find.byType(FastSelectableListItem);
         expect(listItems, findsNWidgets(7));
@@ -53,8 +54,9 @@ void main() {
             groupByCategory: true,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final allText = find.text('All');
         final fruitsText = find.text('Fruits');
@@ -76,8 +78,9 @@ void main() {
             allCategoryText: 'Toutes',
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final allText = find.text('Toutes');
         final fruitsText = find.text('Fruits');
@@ -98,8 +101,9 @@ void main() {
             items: items,
             searchPlaceholderText: 'Search',
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final searchField =
             tester.firstWidget(find.byType(FastSearchField)) as FastSearchField;
@@ -117,8 +121,9 @@ void main() {
             groupByCategory: true,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final link =
             tester.firstWidget(find.byType(FastTextButton)) as FastTextButton;
@@ -135,8 +140,9 @@ void main() {
             items: items,
             canClearSelection: false,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         expect(find.byType(FastTextButton), findsNothing);
       });
@@ -152,8 +158,9 @@ void main() {
             clearSelectionText: 'Nettoyer',
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final link =
             tester.firstWidget(find.byType(FastTextButton)) as FastTextButton;
@@ -171,8 +178,9 @@ void main() {
             groupByCategory: true,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final listItems = find.byType(FastListItemLayout);
         expect(listItems, findsNWidgets(7));
@@ -187,9 +195,9 @@ void main() {
             intialCategoryIndex: 1,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
 
+        await tester.pumpAndSettle();
         final listItems = find.byType(FastListItemLayout);
         expect(listItems, findsNWidgets(3));
       });
@@ -204,8 +212,9 @@ void main() {
             intialCategoryIndex: 1,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
         final listItems = find.byType(FastListItemLayout);
         final item = tester.firstWidget(listItems) as FastListItemLayout;
         expect(listItems, findsNWidgets(3));
@@ -222,8 +231,9 @@ void main() {
             sortItems: false,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
         final listItems = find.byType(FastListItemLayout);
         final item = tester.firstWidget(listItems) as FastListItemLayout;
         expect(listItems, findsNWidgets(3));

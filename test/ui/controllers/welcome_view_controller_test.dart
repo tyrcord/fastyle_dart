@@ -34,9 +34,9 @@ void main() {
       (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(controller),
-          Duration(milliseconds: 60),
         );
 
+        await tester.pumpAndSettle();
         final text = find.text(_kResumed);
         expect(text, findsOneWidget);
       },
@@ -47,8 +47,9 @@ void main() {
       (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(controller),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         controller.pause();
         await tester.pumpAndSettle();
@@ -63,9 +64,9 @@ void main() {
       (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(controller),
-          Duration(milliseconds: 60),
         );
 
+        await tester.pumpAndSettle();
         controller.resume();
         await tester.pumpAndSettle();
 
