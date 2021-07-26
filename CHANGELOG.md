@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## [0.27.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.27.0) (2021-07-09)
+
+### Features
+
+- Added FastProgressBarIndicator Widget.
+- Added App Loader logic.
+
+### Enhancements
+
+- Minor improvements.
+- Updated tbloc dependency.
+
 ## [0.26.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.26.0) (2021-07-05)
 
 ### Enhancements
