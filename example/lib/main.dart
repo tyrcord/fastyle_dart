@@ -275,6 +275,36 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         },
       ),
+      FastNavigationListItem(
+        leading: FastRoundedIcon(
+          iconData: Icons.description,
+          backgroundColor: ThemeHelper.colors.getBlueColor(context),
+        ),
+        labelText: 'Page',
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => FastSectionPage(
+                loadingBuilder: (_) {
+                  return Text('loading...');
+                },
+                errorBuilder: (_) {
+                  return Text('An error occured');
+                },
+                loadingFuture: Future.delayed(
+                  const Duration(milliseconds: 2500),
+                  () => true,
+                ),
+                loadingTimeout: Duration(milliseconds: 300),
+                child: Container(
+                  child: Text('done'),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     ];
   }
 }
