@@ -25,8 +25,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final text = find.text('42');
         expect(text, findsOneWidget);
@@ -44,8 +44,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final text = find.text('42');
         expect(text, findsOneWidget);
@@ -65,30 +65,11 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final text = find.text('42');
         expect(text, findsNothing);
-      });
-
-      testWidgets('should draw it when set and is pending',
-          (WidgetTester tester) async {
-        await tester.pumpWidget(
-          _buildApp(Column(
-            children: [
-              FastPendingReadOnlyTextField(
-                labelText: labelText,
-                pendingText: '42',
-                isPending: true,
-              ),
-            ],
-          )),
-          Duration(milliseconds: 60),
-        );
-
-        final text = find.text('42');
-        expect(text, findsOneWidget);
       });
     });
   });

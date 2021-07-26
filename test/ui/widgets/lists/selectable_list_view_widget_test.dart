@@ -37,9 +37,8 @@ void main() {
             items: items,
             onSelectionChanged: (FastItem item) {},
           )),
-          Duration(milliseconds: 60),
         );
-
+        await tester.pumpAndSettle();
         final listItems = find.byType(FastSelectableListItem);
         expect(listItems, findsNWidgets(7));
       });
@@ -59,8 +58,8 @@ void main() {
               selection = item;
             },
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final listItems = find.byType(FastSelectableListItem);
         await tester.tap(listItems.first);
@@ -84,8 +83,8 @@ void main() {
               return FastLink(text: item.labelText, onTap: () {});
             },
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final listItems = find.byType(FastLink);
         expect(listItems, findsNWidgets(7));
@@ -102,8 +101,8 @@ void main() {
             categories: categories,
             groupByCategory: true,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final allText = find.text('All');
         final fruitsText = find.text('Fruits');
@@ -126,8 +125,8 @@ void main() {
             allCategoryText: 'Toutes',
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final allText = find.text('Toutes');
         final fruitsText = find.text('Fruits');
@@ -148,8 +147,8 @@ void main() {
             groupByCategory: true,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final listItems = find.byType(FastListItemLayout);
         expect(listItems, findsNWidgets(7));
@@ -165,8 +164,8 @@ void main() {
             intialCategoryIndex: 1,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final listItems = find.byType(FastListItemLayout);
         expect(listItems, findsNWidgets(3));
@@ -186,8 +185,8 @@ void main() {
             intialCategoryIndex: 1,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectableListItem).first);
         await tester.pumpAndSettle();
@@ -208,8 +207,8 @@ void main() {
             items: items,
             isEnabled: false,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectableListItem).first);
         await tester.pumpAndSettle();
@@ -225,8 +224,8 @@ void main() {
             items: items,
             onSelectionChanged: (FastItem item) {},
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
         final listItems = find.byType(FastSelectableListItem);
         final selection =
             tester.firstWidget(listItems) as FastSelectableListItem;
@@ -242,8 +241,8 @@ void main() {
             onSelectionChanged: (FastItem item) {},
             sortItems: false,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
         final listItems = find.byType(FastSelectableListItem);
         final selection =
             tester.firstWidget(listItems) as FastSelectableListItem;

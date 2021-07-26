@@ -26,8 +26,8 @@ void main() {
             items: items,
             onSelectionChanged: (FastItem item) {},
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final listItems = find.byType(FastListItemLayout);
         expect(listItems, findsNWidgets(7));
@@ -48,8 +48,8 @@ void main() {
               selection = item;
             },
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final listItems = find.byType(FastListItemLayout);
         await tester.tap(listItems.first);
@@ -70,8 +70,8 @@ void main() {
             items: items,
             onSelectionChanged: (FastItem item) {},
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.byType(FastSearchBar), findsNothing);
       });
@@ -84,8 +84,8 @@ void main() {
             onSelectionChanged: (FastItem item) {},
             showSearchBar: true,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.byType(FastSearchBar), findsOneWidget);
       });
@@ -102,8 +102,8 @@ void main() {
               return FastLink(text: item.labelText, onTap: () {});
             },
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final listItems = find.byType(FastLink);
         expect(listItems, findsNWidgets(7));
@@ -120,8 +120,8 @@ void main() {
             searchPlaceholderText: 'Recherche',
             showSearchBar: true,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final searchField =
             tester.firstWidget(find.byType(FastSearchField)) as FastSearchField;
@@ -137,8 +137,8 @@ void main() {
             items: items,
             onSelectionChanged: (FastItem item) {},
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
         final listItems = find.byType(FastListItemLayout);
         final item = tester.firstWidget(listItems) as FastListItemLayout;
         expect(listItems, findsNWidgets(7));
@@ -153,8 +153,8 @@ void main() {
             onSelectionChanged: (FastItem item) {},
             sortItems: false,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
         final listItems = find.byType(FastListItemLayout);
         final item = tester.firstWidget(listItems) as FastListItemLayout;
         expect(listItems, findsNWidgets(7));

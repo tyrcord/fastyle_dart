@@ -20,8 +20,9 @@ void main() {
             titleText: titleText,
             children: children,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final text = find.text(titleText);
 
@@ -38,8 +39,9 @@ void main() {
             titleText: titleText,
             children: children,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final dialog = find.byType(FastAlertDialog);
 
@@ -54,8 +56,9 @@ void main() {
             titleText: titleText,
             messageText: '42',
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final message = find.text('42');
         expect(message, findsOneWidget);
@@ -74,8 +77,9 @@ void main() {
             onCancel: () => cancel = true,
             children: children,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final dialog = find.byType(FastAlertDialog);
         final cancelText = find.text(kFastCancelText.toUpperCase());
@@ -101,8 +105,9 @@ void main() {
             onValid: () => valid = true,
             children: children,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final dialog = find.byType(FastAlertDialog);
         final validText = find.text(kFastValidText.toUpperCase());
@@ -129,8 +134,9 @@ void main() {
             validText: 'ok',
             children: children,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final dialog = find.byType(FastAlertDialog);
         final validText = find.text('OK');
@@ -157,8 +163,9 @@ void main() {
             cancelText: 'nope',
             children: children,
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final dialog = find.byType(FastAlertDialog);
         final cancelText = find.text('NOPE');

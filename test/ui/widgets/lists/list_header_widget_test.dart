@@ -18,8 +18,8 @@ void main() {
           _buildApp(FastListHeader(
             categoryText: labelText,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final text = find.text(labelText.toUpperCase());
         expect(text, findsOneWidget);
@@ -33,8 +33,8 @@ void main() {
             categoryText: labelText,
             captionText: captionText,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final text = find.text(labelText.toUpperCase());
         final caption = find.text(captionText);

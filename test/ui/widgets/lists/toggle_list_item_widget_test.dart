@@ -35,8 +35,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(SwitchListTile));
         await tester.pumpAndSettle();
@@ -59,8 +59,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(SwitchListTile));
         await tester.pumpAndSettle();
@@ -83,8 +83,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(SwitchListTile));
         await tester.pumpAndSettle();
@@ -106,8 +106,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(SwitchListTile));
         await tester.pumpAndSettle();
@@ -127,8 +127,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.text(labelText), findsOneWidget);
       });
@@ -146,8 +146,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.text(descriptionText), findsOneWidget);
       });
@@ -168,8 +168,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.byWidget(icon), findsOneWidget);
       });
@@ -192,8 +192,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.text(item.labelText), findsOneWidget);
       });
@@ -214,8 +214,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.text(item.descriptionText!), findsOneWidget);
       });
@@ -238,8 +238,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(SwitchListTile));
         await tester.pumpAndSettle();
@@ -263,8 +263,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.byWidget(itemIcon), findsOneWidget);
       });

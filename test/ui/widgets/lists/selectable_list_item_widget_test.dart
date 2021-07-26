@@ -41,8 +41,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectableListItem));
         await tester.pumpAndSettle();
@@ -65,8 +65,8 @@ void main() {
               item,
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(item.isSelected, isFalse);
       });
@@ -86,8 +86,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectableListItem));
         await tester.pumpAndSettle();
@@ -109,8 +109,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectableListItem));
         await tester.pumpAndSettle();
@@ -131,8 +131,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.text(labelText), findsOneWidget);
       });
@@ -150,8 +150,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.text(descriptionText), findsOneWidget);
       });
@@ -172,8 +172,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.byWidget(icon), findsOneWidget);
       });
@@ -195,8 +195,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(
           find.widgetWithIcon(FastSelectableListItem, Icons.pages),
@@ -223,8 +223,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.text(item.labelText), findsOneWidget);
       });
@@ -245,8 +245,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.text(item.descriptionText!), findsOneWidget);
       });
@@ -269,8 +269,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectableListItem));
         await tester.pumpAndSettle();
@@ -294,8 +294,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.byWidget(itemIcon), findsOneWidget);
       });
@@ -317,8 +317,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(
           find.widgetWithIcon(FastSelectableListItem, Icons.radio),

@@ -17,8 +17,9 @@ void main() {
           icon: pageviewIcon,
           onTap: () {},
         )),
-        Duration(milliseconds: 60),
       );
+
+      await tester.pumpAndSettle();
 
       final button = find.byType(FastIconButton);
       final icon = find.byWidget(pageviewIcon);
@@ -38,8 +39,9 @@ void main() {
             tapped = true;
           },
         )),
-        Duration(milliseconds: 60),
       );
+
+      await tester.pumpAndSettle();
 
       final button = find.byType(FastIconButton);
       expect(button, findsOneWidget);
@@ -62,8 +64,9 @@ void main() {
           },
           isEnabled: false,
         )),
-        Duration(milliseconds: 60),
       );
+
+      await tester.pumpAndSettle();
 
       final button = find.byType(FastIconButton);
       expect(button, findsOneWidget);
@@ -86,8 +89,9 @@ void main() {
           },
           shouldTrottleTime: true,
         )),
-        Duration(milliseconds: 60),
       );
+
+      await tester.pumpAndSettle();
 
       final button = find.byType(FastIconButton);
       expect(button, findsOneWidget);
@@ -113,8 +117,8 @@ void main() {
           shouldTrottleTime: true,
           trottleTimeDuration: Duration(milliseconds: 500),
         )),
-        Duration(milliseconds: 60),
       );
+      await tester.pumpAndSettle();
 
       final button = find.byType(FastIconButton);
       expect(button, findsOneWidget);

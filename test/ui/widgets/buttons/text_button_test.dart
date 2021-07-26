@@ -17,8 +17,8 @@ void main() {
           onTap: () {},
           text: buttonText,
         )),
-        Duration(milliseconds: 60),
       );
+      await tester.pumpAndSettle();
 
       final button = find.byType(FastTextButton);
       final text = find.text(buttonText);
@@ -33,8 +33,9 @@ void main() {
           onTap: () {},
           child: Text(buttonText),
         )),
-        Duration(milliseconds: 60),
       );
+
+      await tester.pumpAndSettle();
 
       final button = find.byType(FastTextButton);
       final text = find.text(buttonText);
@@ -54,8 +55,9 @@ void main() {
             tapped = true;
           },
         )),
-        Duration(milliseconds: 60),
       );
+
+      await tester.pumpAndSettle();
 
       final button = find.byType(FastTextButton);
       expect(button, findsOneWidget);
@@ -78,8 +80,9 @@ void main() {
           },
           isEnabled: false,
         )),
-        Duration(milliseconds: 60),
       );
+
+      await tester.pumpAndSettle();
 
       final button = find.byType(FastTextButton);
       expect(button, findsOneWidget);
@@ -102,8 +105,9 @@ void main() {
           },
           shouldTrottleTime: true,
         )),
-        Duration(milliseconds: 60),
       );
+
+      await tester.pumpAndSettle();
 
       final button = find.byType(FastTextButton);
       expect(button, findsOneWidget);
@@ -129,8 +133,9 @@ void main() {
           shouldTrottleTime: true,
           trottleTimeDuration: Duration(milliseconds: 500),
         )),
-        Duration(milliseconds: 60),
       );
+
+      await tester.pumpAndSettle();
 
       final button = find.byType(FastTextButton);
       expect(button, findsOneWidget);

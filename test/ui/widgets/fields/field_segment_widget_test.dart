@@ -5,9 +5,10 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 
 FastApp _buildApp(Widget child) {
   return FastApp(
-      home: FastHomePage(
-    children: [child],
-  ));
+    home: FastHomePage(
+      children: [child],
+    ),
+  );
 }
 
 void main() {
@@ -30,8 +31,9 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final text = find.text('Label');
         expect(text, findsOneWidget);
@@ -49,8 +51,9 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         final segements = find.byType(FastBody);
         expect(segements, findsNWidgets(2));
@@ -72,8 +75,9 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         var finder = find.widgetWithText(FastBody, 'option 2');
 
@@ -99,8 +103,9 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         var option1 = tester.firstWidget(find.byType(FastBody)) as FastBody;
         expect(option1.textColor, equals(Color(0xFFFAFAFA)));
@@ -118,8 +123,9 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+
+        await tester.pumpAndSettle();
 
         var finder = find.widgetWithText(FastBody, 'option 2');
         var option = tester.firstWidget(finder) as FastBody;

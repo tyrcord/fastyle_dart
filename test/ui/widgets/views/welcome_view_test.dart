@@ -32,8 +32,8 @@ void main() {
             },
             slides: [slide1, slide2],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final child = find.byWidget(slide1);
 
@@ -49,8 +49,8 @@ void main() {
             },
             slides: [slide1, slide2],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.text('NEXT'));
         await tester.pumpAndSettle();
@@ -73,8 +73,8 @@ void main() {
             },
             slides: [slide1, slide2],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.text('NEXT'));
         await tester.pumpAndSettle();
@@ -97,8 +97,8 @@ void main() {
             },
             slides: [slide1, slide2],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.text('SKIP'), findsNothing);
       });
@@ -113,8 +113,8 @@ void main() {
             slides: [slide1, slide2],
             allowToSkip: true,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.text('SKIP'), findsOneWidget);
       });
@@ -128,8 +128,8 @@ void main() {
             slides: [slide1],
             allowToSkip: true,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.text('SKIP'), findsNothing);
       });
@@ -146,8 +146,8 @@ void main() {
             slides: [slide1],
             doneText: 'OK',
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.text('OK'), findsOneWidget);
       });
@@ -164,8 +164,8 @@ void main() {
             slides: [slide1, slide2],
             nextText: 'CONTINUE',
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.text('CONTINUE'), findsOneWidget);
       });
@@ -183,8 +183,8 @@ void main() {
             allowToSkip: true,
             skipText: 'PASS',
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.text('PASS'), findsOneWidget);
       });
@@ -203,8 +203,8 @@ void main() {
             slides: [slide1],
             onDone: () => done = true,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.text('DONE'));
         await tester.pumpAndSettle();
@@ -227,8 +227,8 @@ void main() {
             allowToSkip: true,
             onSkip: () => skipped = true,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.text('SKIP'));
         await tester.pumpAndSettle();

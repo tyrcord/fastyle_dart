@@ -37,8 +37,8 @@ void main() {
           _buildApp(FastListView(
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final listItems = find.byType(FastListItemLayout);
         expect(listItems, findsNWidgets(7));
@@ -54,8 +54,8 @@ void main() {
             groupByCategory: true,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final allText = find.text('All');
         final fruitsText = find.text('Fruits');
@@ -77,8 +77,8 @@ void main() {
               return FastLink(text: item.labelText, onTap: () {});
             },
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final listItems = find.byType(FastLink);
         expect(listItems, findsNWidgets(7));
@@ -93,8 +93,8 @@ void main() {
             groupByCategory: true,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
         final listItems = find.byType(FastListItemLayout);
         final item = tester.firstWidget(listItems) as FastListItemLayout;
         expect(listItems, findsNWidgets(7));
@@ -110,8 +110,8 @@ void main() {
             sortItems: false,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
         final listItems = find.byType(FastListItemLayout);
         final item = tester.firstWidget(listItems) as FastListItemLayout;
         expect(listItems, findsNWidgets(7));

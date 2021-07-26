@@ -19,8 +19,9 @@ void main() {
           titleText: titleText,
           children: children,
         )),
-        Duration(milliseconds: 60),
       );
+
+      await tester.pumpAndSettle();
 
       final text = find.text(titleText);
 
@@ -35,8 +36,9 @@ void main() {
           titleText: titleText,
           children: children,
         )),
-        Duration(milliseconds: 60),
       );
+
+      await tester.pumpAndSettle();
 
       final dialog = find.byType(FastDialog);
 

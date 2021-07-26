@@ -25,8 +25,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final text = find.text('42');
         expect(text, findsOneWidget);
@@ -44,8 +44,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final text = find.text('42');
         expect(text, findsOneWidget);
@@ -63,8 +63,8 @@ void main() {
               ),
             ],
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final text = find.text('42');
         expect(text, findsOneWidget);

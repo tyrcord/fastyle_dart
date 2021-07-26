@@ -39,8 +39,8 @@ void main() {
             onSelectionChanged: (FastItem<dynamic>? item) {},
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectField));
         await tester.pumpAndSettle();
@@ -65,8 +65,8 @@ void main() {
             },
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectField));
         await tester.pumpAndSettle();
@@ -91,8 +91,8 @@ void main() {
             },
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectField));
         await tester.pumpAndSettle();
@@ -123,8 +123,8 @@ void main() {
             groupByCategory: true,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectField));
         await tester.pumpAndSettle();
@@ -151,8 +151,8 @@ void main() {
             allCategoryText: 'Toutes',
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectField));
         await tester.pumpAndSettle();
@@ -178,8 +178,8 @@ void main() {
             items: items,
             searchPlaceholderText: 'Search',
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectField));
         await tester.pumpAndSettle();
@@ -208,8 +208,8 @@ void main() {
             groupByCategory: true,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectField));
         await tester.pumpAndSettle();
@@ -249,8 +249,8 @@ void main() {
             items: items,
             canClearSelection: false,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectField));
         await tester.pumpAndSettle();
@@ -271,8 +271,8 @@ void main() {
             clearSelectionText: 'Nettoyer',
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectField));
         await tester.pumpAndSettle();
@@ -295,8 +295,8 @@ void main() {
             groupByCategory: true,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectField));
         await tester.pumpAndSettle();
@@ -316,8 +316,8 @@ void main() {
             intialCategoryIndex: 1,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectField));
         await tester.pumpAndSettle();
@@ -338,8 +338,8 @@ void main() {
             intialCategoryIndex: 1,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectField));
         await tester.pumpAndSettle();
@@ -362,8 +362,8 @@ void main() {
             sortItems: false,
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FastSelectField));
         await tester.pumpAndSettle();

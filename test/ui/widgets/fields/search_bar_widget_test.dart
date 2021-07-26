@@ -40,9 +40,8 @@ void main() {
               searchQuery = query;
             },
           )),
-          Duration(milliseconds: 60),
         );
-
+        await tester.pumpAndSettle();
         controller.value = TextEditingValue(text: 'ap');
 
         expect(called, isTrue);
@@ -75,9 +74,8 @@ void main() {
               searchQuery = query;
             },
           )),
-          Duration(milliseconds: 60),
         );
-
+        await tester.pumpAndSettle();
         controller.value = TextEditingValue(text: 'ap');
 
         expect(called, isTrue);
@@ -98,8 +96,8 @@ void main() {
             items: items,
             placeholderText: 'Search',
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         final searchField =
             tester.firstWidget(find.byType(FastSearchField)) as FastSearchField;
@@ -119,8 +117,8 @@ void main() {
             onLeadingButtonTap: () => called = true,
             placeholderText: 'Search',
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         var finder = find.byWidget(kFastBackIcon);
 
@@ -138,9 +136,8 @@ void main() {
           _buildApp(FastSearchBar(
             items: items,
           )),
-          Duration(milliseconds: 60),
         );
-
+        await tester.pumpAndSettle();
         var finder = find.byWidget(kFastBackIcon);
 
         expect(finder, findsOneWidget);
@@ -169,8 +166,8 @@ void main() {
             items: items,
             clearSearchIcon: kFastDoneIcon,
           )),
-          Duration(milliseconds: 60),
         );
+        await tester.pumpAndSettle();
 
         expect(find.byWidget(kFastDoneIcon), findsOneWidget);
       });
