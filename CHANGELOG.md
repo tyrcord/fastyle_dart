@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.27.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.27.1) (2021-08-12)
+
+### Enhancements
+
+- Updated dependencies.
+
 ## [0.27.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.27.0) (2021-07-09)
 
 ### Features
