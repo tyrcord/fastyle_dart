@@ -22,7 +22,7 @@ dependencies:
   tbloc_dart: ^0.18.2
   tmodel_dart: ^0.3.0
   shimmer: ^2.0.0
-  decimal: ^1.2.0
+  decimal: ^1.3.0
 
 dev_dependencies:
   flutter_test:
