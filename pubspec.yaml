@@ -4,29 +4,29 @@ version: 0.27.1
 homepage: https://github.com/tyrcord/fastyle_dart
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=2.0.0"
+  sdk: ">=2.16.0 <3.0.0"
+  flutter: ">=2.10.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  async: ^2.6.1
-  google_fonts: ^2.1.0
+  async: ^2.8.2
+  google_fonts: ^2.3.1
   intl: ^0.17.0
   diacritic: ^0.1.3
-  flutter_spinkit: ^5.0.0
+  flutter_spinkit: ^5.1.0
   fuzzy: ^0.4.0-nullsafety.0
-  rxdart: ^0.27.1
-  another_flushbar: ^1.10.24
-  tbloc_dart: ^0.18.2
-  tmodel_dart: ^0.3.0
+  rxdart: ^0.27.3
+  another_flushbar: ^1.10.28
+  tbloc_dart: ^0.19.0
+  tmodel_dart: ^0.4.0
   shimmer: ^2.0.0
-  decimal: ^1.3.0
+  decimal: ^1.5.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   pedantic: ^1.11.1
-  test: ^1.16.8
-  dart_code_metrics: ^4.1.0
+  test: ^1.19.5
+  dart_code_metrics: ^4.10.1
