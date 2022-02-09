@@ -162,7 +162,9 @@ class FastNotificationCenter {
 
       final notification = _queue.removeFirst();
 
-      Future.microtask(() => notification.show(_context));
+      WidgetsBinding.instance?.addPostFrameCallback((_) {
+        notification.show(_context);
+      });
     } else {
       _isShowingNotification = false;
     }
