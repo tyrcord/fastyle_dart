@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.28.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.28.1) (2022-02-22)
+
+### Fixes
+
+- Fixed overlay style regression.
+
 ## [0.28.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.28.0) (2022-02-09)
 
 ### Enhancements
