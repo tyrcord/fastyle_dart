@@ -1,5 +1,6 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ThemeGradientHelper {
   LinearGradient primaryLinearGradient(BuildContext context) {
@@ -15,7 +16,7 @@ class ThemeGradientHelper {
     );
   }
 
-  Brightness getBrightnessForGradient({
+  SystemUiOverlayStyle getSystemUiOverlayStyleForGradient({
     required BuildContext context,
     required LinearGradient gradient,
   }) {
@@ -26,6 +27,8 @@ class ThemeGradientHelper {
     final averageLuminance =
         luminances.reduce((a, b) => a + b) / luminances.length;
 
-    return averageLuminance > 0.5 ? Brightness.light : Brightness.dark;
+    return averageLuminance > 0.5
+        ? SystemUiOverlayStyle.dark
+        : SystemUiOverlayStyle.light;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:flutter/services.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 
 class FastAppBarLayout extends StatefulWidget {
@@ -101,7 +102,7 @@ class _FastAppBarLayoutState extends State<FastAppBarLayout> {
           ),
         ],
       ),
-      brightness: _getBrightness(context),
+      systemOverlayStyle: _getSystemOverlayStyle(context),
     );
   }
 
@@ -126,6 +127,7 @@ class _FastAppBarLayoutState extends State<FastAppBarLayout> {
     }
 
     final gradient = ThemeHelper.gradients.primaryLinearGradient(context);
+
     return Container(decoration: BoxDecoration(gradient: gradient));
   }
 
@@ -157,25 +159,26 @@ class _FastAppBarLayoutState extends State<FastAppBarLayout> {
     );
   }
 
-  Brightness _getBrightness(BuildContext context) {
+  SystemUiOverlayStyle _getSystemOverlayStyle(BuildContext context) {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
     final brightness = themeBloc.currentState.brightness;
 
     if (brightness == Brightness.light) {
       if (widget.backgroundColor != null) {
-        return ThemeHelper.colors.getBrightnessForColor(
+        return ThemeHelper.colors.getOverlayStyleForColor(
           context: context,
           color: widget.backgroundColor!,
         );
       }
-      return ThemeHelper.gradients.getBrightnessForGradient(
+
+      return ThemeHelper.gradients.getSystemUiOverlayStyleForGradient(
         context: context,
         gradient: widget.backgroundLinearGradient ??
             ThemeHelper.gradients.primaryLinearGradient(context),
       );
     }
 
-    return Brightness.dark;
+    return SystemUiOverlayStyle.light;
   }
 
   void _onScrollNoticiation() {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:flutter/services.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 
 class ThemeColorHelper {
@@ -136,10 +137,12 @@ class ThemeColorHelper {
     return Theme.of(context).backgroundColor;
   }
 
-  Brightness getBrightnessForColor({
+  SystemUiOverlayStyle getOverlayStyleForColor({
     required BuildContext context,
     required Color color,
   }) {
-    return color.computeLuminance() > 0.5 ? Brightness.light : Brightness.dark;
+    return color.computeLuminance() > 0.5
+        ? SystemUiOverlayStyle.dark
+        : SystemUiOverlayStyle.light;
   }
 }
