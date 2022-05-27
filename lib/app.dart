@@ -56,7 +56,7 @@ class _FastAppState extends State<FastApp> {
     _themeBloc = widget.themeBloc ??
         FastThemeBloc(
           initialState: FastThemeBlocState(
-            brightness: WidgetsBinding.instance!.window.platformBrightness,
+            brightness: WidgetsBinding.instance.window.platformBrightness,
             themeMode: ThemeMode.system,
           ),
         );

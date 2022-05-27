@@ -86,7 +86,7 @@ class _FastListItemLayoutState extends State<FastListItemLayout> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback(_afterLayout);
+    WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
   }
 
   @override
