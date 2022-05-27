@@ -171,7 +171,7 @@ class FastSectionPage extends StatelessWidget {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
     final brightness = themeBloc.currentState.brightness;
     final overlayStyle = brightness == Brightness.dark
-        ? SystemUiOverlayStyle.dark
+        ? SystemUiOverlayStyle.light
         : ThemeHelper.colors.getOverlayStyleForColor(
             context: context,
             color: appBarBackgroundColor ??
