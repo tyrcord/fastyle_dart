@@ -87,9 +87,10 @@ class _FastNumberFieldState extends State<FastNumberField>
     super.didChangeDependencies();
 
     if (!_isInitialized) {
-      _controller = widget.textEditingController ??
-          TextEditingController(text: widget.valueText);
+      final controller = widget.textEditingController;
+      final value = widget.valueText;
 
+      _controller = controller ?? TextEditingController(text: value);
       _isInitialized = true;
     }
   }
@@ -97,10 +98,13 @@ class _FastNumberFieldState extends State<FastNumberField>
   @override
   void didUpdateWidget(FastNumberField oldWidget) {
     super.didUpdateWidget(oldWidget);
+    final value = widget.valueText;
 
-    if (oldWidget.valueText != widget.valueText ||
-        _controller.text != widget.valueText) {
-      _controller.value = TextEditingValue(text: widget.valueText);
+    if (oldWidget.valueText != value || _controller.text != value) {
+      final position = TextPosition(offset: value.length);
+      final selection = TextSelection.fromPosition(position);
+
+      _controller.value = TextEditingValue(text: value, selection: selection);
     }
   }
 
