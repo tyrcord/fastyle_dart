@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [0.29.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.29.0) (2022-05-29)
+
+### Fixes
+
+- Fixed wrong system overlay style in dark mode.
+
+### Enhancements
+
+- Updated dependencies.
+- Minor improvements
+
 ## [0.28.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.28.1) (2022-02-22)
 
 ### Fixes
