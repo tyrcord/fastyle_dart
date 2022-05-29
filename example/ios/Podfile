@@ -1,4 +1,4 @@
-$minimumOSVersion = '10.3'
+$minimumOSVersion = '11'
 
 platform :ios, $minimumOSVersion
 
