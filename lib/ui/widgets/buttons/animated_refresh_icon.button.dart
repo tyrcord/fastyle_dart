@@ -48,11 +48,11 @@ class _FastAnimatedRotationIconButtonState
 
   @override
   void dispose() {
-    super.dispose();
-
     if (widget.animationController != _controller) {
       _controller.dispose();
     }
+
+    super.dispose();
   }
 
   @override
