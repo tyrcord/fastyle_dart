@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.29.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.29.1) (2022-08-23)
+
+### Fixes
+
+- Minor fixes.
+
 ## [0.29.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.29.0) (2022-05-29)
 
 ### Fixes
