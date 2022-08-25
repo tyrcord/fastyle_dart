@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.29.2](https://github.com/tyrcord/fastyle_dart/releases/tag/0.29.2) (2022-08-25)
+
+### Enhancements
+
+- New Text Styles
+
 ## [0.29.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.29.1) (2022-08-23)
 
 ### Fixes
