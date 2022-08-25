@@ -7,7 +7,7 @@ class FastPendingReadOnlyTextField extends StatelessWidget {
   final bool showHelperBoundaries;
   final String placeholderText;
   final Color? helperTextColor;
-  final bool useFontForNumber;
+
   final Color? valueTextColor;
   final Color? highlightColor;
   final FontWeight fontWeight;
@@ -25,10 +25,9 @@ class FastPendingReadOnlyTextField extends StatelessWidget {
     required this.labelText,
     this.placeholderText = kFastEmptyString,
     this.enableInteractiveSelection = true,
-    this.fontWeight = FontWeight.w700,
+    this.fontWeight = kFastFontWeightBold,
     this.showHelperBoundaries = true,
     this.textAlign = TextAlign.left,
-    this.useFontForNumber = false,
     this.isPending = false,
     this.helperTextColor,
     this.highlightColor,

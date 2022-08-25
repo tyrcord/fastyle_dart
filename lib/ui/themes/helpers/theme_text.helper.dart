@@ -1,3 +1,4 @@
+import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 class ThemeTextHelper {
@@ -13,12 +14,12 @@ class ThemeTextHelper {
     final theme = Theme.of(context);
 
     return theme.textTheme.headline5!.copyWith(
-      fontWeight: FontWeight.w300,
+      fontWeight: kFastFontWeightLight,
       color: theme.hintColor,
     );
   }
 
-  TextStyle getSubheadLineTextStyle(BuildContext context) {
+  TextStyle getSubheadTextStyle(BuildContext context) {
     return Theme.of(context).textTheme.subtitle1!;
   }
 
@@ -30,7 +31,7 @@ class ThemeTextHelper {
     final theme = Theme.of(context);
 
     return theme.textTheme.headline6!.copyWith(
-      fontWeight: FontWeight.w300,
+      fontWeight: kFastFontWeightLight,
       color: theme.hintColor,
     );
   }
@@ -51,7 +52,7 @@ class ThemeTextHelper {
     final theme = Theme.of(context);
 
     return theme.textTheme.bodyText1!.copyWith(
-      fontWeight: FontWeight.w300,
+      fontWeight: kFastFontWeightLight,
       color: theme.hintColor,
     );
   }

@@ -5,7 +5,7 @@ class FastBaseTypography extends StatelessWidget {
   final bool enableInteractiveSelection;
   final TextOverflow? overflow;
   final FontWeight? fontWeight;
-  final bool useFontForNumber;
+
   final double? letterSpacing;
   final TextAlign textAlign;
   final double lineHeight;
@@ -20,7 +20,6 @@ class FastBaseTypography extends StatelessWidget {
     this.enableInteractiveSelection = false,
     this.lineHeight = kFastLineHeight,
     this.textAlign = TextAlign.left,
-    this.useFontForNumber = false,
     this.fontWeight,
     this.textColor,
     this.fontSize,
@@ -37,7 +36,6 @@ class FastBaseTypography extends StatelessWidget {
       color: textColor,
       letterSpacing: letterSpacing,
       fontWeight: fontWeight,
-      fontFamily: useFontForNumber ? kFastFontForNumber : null,
     );
 
     if (enableInteractiveSelection) {

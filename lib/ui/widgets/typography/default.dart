@@ -2,37 +2,22 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 /// DISPLAY 1
-/// 34px
+/// 48px
 /// regular
 /// lowercase
 class FastDisplay extends FastBaseTypography {
-  // FIXME!
-  // https://github.com/dart-lang/sdk/issues/9468
   const FastDisplay({
-    Key? key,
-    required String text,
-    bool enableInteractiveSelection = false,
-    TextAlign textAlign = TextAlign.left,
-    double lineHeight = kFastLineHeight,
-    bool useFontForNumber = false,
-    FontWeight? fontWeight,
-    TextOverflow? overflow,
-    Color? textColor,
-    double? fontSize,
-    int? maxLines,
-  }) : super(
-          enableInteractiveSelection: enableInteractiveSelection,
-          useFontForNumber: useFontForNumber,
-          fontWeight: fontWeight,
-          lineHeight: lineHeight,
-          textColor: textColor,
-          textAlign: textAlign,
-          fontSize: fontSize,
-          overflow: overflow,
-          maxLines: maxLines,
-          text: text,
-          key: key,
-        );
+    super.key,
+    required super.text,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+  });
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -41,37 +26,22 @@ class FastDisplay extends FastBaseTypography {
 }
 
 /// HEADLINE
-/// 28px
-/// semibold
+/// 34px
+/// medium
 /// lowercase
 class FastHeadline extends FastBaseTypography {
-  // FIXME!
-  // https://github.com/dart-lang/sdk/issues/9468
   const FastHeadline({
-    Key? key,
-    required String text,
-    bool enableInteractiveSelection = false,
-    TextAlign textAlign = TextAlign.left,
-    double lineHeight = kFastLineHeight,
-    bool useFontForNumber = false,
-    FontWeight? fontWeight,
-    TextOverflow? overflow,
-    Color? textColor,
-    double? fontSize,
-    int? maxLines,
-  }) : super(
-          enableInteractiveSelection: enableInteractiveSelection,
-          useFontForNumber: useFontForNumber,
-          fontWeight: fontWeight,
-          lineHeight: lineHeight,
-          textColor: textColor,
-          textAlign: textAlign,
-          fontSize: fontSize,
-          overflow: overflow,
-          maxLines: maxLines,
-          text: text,
-          key: key,
-        );
+    super.key,
+    required super.text,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+  });
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -80,37 +50,22 @@ class FastHeadline extends FastBaseTypography {
 }
 
 /// PLACEHOLDER HEADLINE
-/// 28px
+/// 34px
 /// light
 /// lowercase
 class FastPlaceHolderHeadline extends FastBaseTypography {
-  // FIXME!
-  // https://github.com/dart-lang/sdk/issues/9468
   const FastPlaceHolderHeadline({
-    Key? key,
-    required String text,
-    bool enableInteractiveSelection = false,
-    TextAlign textAlign = TextAlign.left,
-    double lineHeight = kFastLineHeight,
-    bool useFontForNumber = false,
-    FontWeight? fontWeight,
-    TextOverflow? overflow,
-    Color? textColor,
-    double? fontSize,
-    int? maxLines,
-  }) : super(
-          enableInteractiveSelection: enableInteractiveSelection,
-          useFontForNumber: useFontForNumber,
-          fontWeight: fontWeight,
-          lineHeight: lineHeight,
-          textColor: textColor,
-          textAlign: textAlign,
-          fontSize: fontSize,
-          overflow: overflow,
-          maxLines: maxLines,
-          text: text,
-          key: key,
-        );
+    super.key,
+    required super.text,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+  });
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -124,34 +79,21 @@ class FastPlaceHolderHeadline extends FastBaseTypography {
 /// uppercase
 class FastSubhead extends FastBaseTypography {
   FastSubhead({
-    Key? key,
     required String text,
-    bool enableInteractiveSelection = false,
-    TextAlign textAlign = TextAlign.left,
-    double lineHeight = kFastLineHeight,
-    bool useFontForNumber = false,
-    FontWeight? fontWeight,
-    TextOverflow? overflow,
-    Color? textColor,
-    double? fontSize,
-    int? maxLines,
-  }) : super(
-          enableInteractiveSelection: enableInteractiveSelection,
-          useFontForNumber: useFontForNumber,
-          text: text.toUpperCase(),
-          fontWeight: fontWeight,
-          lineHeight: lineHeight,
-          textColor: textColor,
-          textAlign: textAlign,
-          fontSize: fontSize,
-          overflow: overflow,
-          maxLines: maxLines,
-          key: key,
-        );
+    super.key,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+  }) : super(text: text.toUpperCase());
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
-    return ThemeHelper.texts.getSubheadLineTextStyle(context);
+    return ThemeHelper.texts.getSubheadTextStyle(context);
   }
 }
 
@@ -160,34 +102,18 @@ class FastSubhead extends FastBaseTypography {
 /// regular
 /// lowercase
 class FastTitle extends FastBaseTypography {
-  // FIXME!
-  // https://github.com/dart-lang/sdk/issues/9468
   const FastTitle({
-    Key? key,
-    required String text,
-    bool enableInteractiveSelection = false,
-    TextAlign textAlign = TextAlign.left,
-    double lineHeight = kFastLineHeight,
-    bool useFontForNumber = false,
-    FontWeight? fontWeight,
-    TextOverflow? overflow,
-    Color? textColor,
-    double? fontSize,
-    int? maxLines,
-  }) : super(
-          enableInteractiveSelection: enableInteractiveSelection,
-          useFontForNumber: useFontForNumber,
-          fontWeight: fontWeight,
-          lineHeight: lineHeight,
-          textColor: textColor,
-          textAlign: textAlign,
-          letterSpacing: 1.2,
-          fontSize: fontSize,
-          overflow: overflow,
-          maxLines: maxLines,
-          text: text,
-          key: key,
-        );
+    super.key,
+    required super.text,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+  }) : super(letterSpacing: 1.2);
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -196,37 +122,22 @@ class FastTitle extends FastBaseTypography {
 }
 
 /// PLACEHOLDER TITLE
-/// 22px
+/// 24px
 /// light
 /// lowercase
 class FastPlaceholderTitle extends FastBaseTypography {
-  // FIXME!
-  // https://github.com/dart-lang/sdk/issues/9468
   const FastPlaceholderTitle({
-    Key? key,
-    required String text,
-    bool enableInteractiveSelection = false,
-    TextAlign textAlign = TextAlign.left,
-    double lineHeight = kFastLineHeight,
-    bool useFontForNumber = false,
-    FontWeight? fontWeight,
-    TextOverflow? overflow,
-    Color? textColor,
-    double? fontSize,
-    int? maxLines,
-  }) : super(
-          enableInteractiveSelection: enableInteractiveSelection,
-          useFontForNumber: useFontForNumber,
-          fontWeight: fontWeight,
-          lineHeight: lineHeight,
-          textColor: textColor,
-          textAlign: textAlign,
-          fontSize: fontSize,
-          overflow: overflow,
-          maxLines: maxLines,
-          text: text,
-          key: key,
-        );
+    super.key,
+    required super.text,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+  });
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -237,33 +148,20 @@ class FastPlaceholderTitle extends FastBaseTypography {
 /// SUBTITLE
 /// 16px
 /// semibold
-/// uppercase
+/// lowercase
 class FastSubtitle extends FastBaseTypography {
-  FastSubtitle({
-    Key? key,
-    required String text,
-    bool enableInteractiveSelection = false,
-    TextAlign textAlign = TextAlign.left,
-    double lineHeight = kFastLineHeight,
-    bool useFontForNumber = false,
-    FontWeight? fontWeight,
-    TextOverflow? overflow,
-    Color? textColor,
-    double? fontSize,
-    int? maxLines,
-  }) : super(
-          enableInteractiveSelection: enableInteractiveSelection,
-          useFontForNumber: useFontForNumber,
-          text: text.toUpperCase(),
-          fontWeight: fontWeight,
-          lineHeight: lineHeight,
-          textColor: textColor,
-          textAlign: textAlign,
-          fontSize: fontSize,
-          overflow: overflow,
-          maxLines: maxLines,
-          key: key,
-        );
+  const FastSubtitle({
+    required super.text,
+    super.key,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+  }) : super();
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -276,33 +174,18 @@ class FastSubtitle extends FastBaseTypography {
 /// normal
 /// lowercase
 class FastBody extends FastBaseTypography {
-  // FIXME!
-  // https://github.com/dart-lang/sdk/issues/9468
   const FastBody({
-    Key? key,
-    required String text,
-    bool enableInteractiveSelection = false,
-    TextAlign textAlign = TextAlign.left,
-    double lineHeight = kFastLineHeight,
-    bool useFontForNumber = false,
-    FontWeight? fontWeight,
-    TextOverflow? overflow,
-    Color? textColor,
-    double? fontSize,
-    int? maxLines,
-  }) : super(
-          enableInteractiveSelection: enableInteractiveSelection,
-          useFontForNumber: useFontForNumber,
-          fontWeight: fontWeight,
-          lineHeight: lineHeight,
-          textColor: textColor,
-          textAlign: textAlign,
-          fontSize: fontSize,
-          overflow: overflow,
-          maxLines: maxLines,
-          text: text,
-          key: key,
-        );
+    super.key,
+    required super.text,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+  }) : super();
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -315,33 +198,18 @@ class FastBody extends FastBaseTypography {
 /// normal
 /// lowercase
 class FastBody2 extends FastBaseTypography {
-  // FIXME!
-  // https://github.com/dart-lang/sdk/issues/9468
   const FastBody2({
-    Key? key,
-    required String text,
-    bool enableInteractiveSelection = false,
-    TextAlign textAlign = TextAlign.left,
-    double lineHeight = kFastLineHeight,
-    bool useFontForNumber = false,
-    FontWeight? fontWeight,
-    TextOverflow? overflow,
-    Color? textColor,
-    double? fontSize,
-    int? maxLines,
-  }) : super(
-          enableInteractiveSelection: enableInteractiveSelection,
-          useFontForNumber: useFontForNumber,
-          fontWeight: fontWeight,
-          lineHeight: lineHeight,
-          textColor: textColor,
-          textAlign: textAlign,
-          fontSize: fontSize,
-          overflow: overflow,
-          maxLines: maxLines,
-          text: text,
-          key: key,
-        );
+    super.key,
+    required super.text,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+  }) : super();
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -354,33 +222,18 @@ class FastBody2 extends FastBaseTypography {
 /// light
 /// lowercase
 class FastPlaceholder extends FastBaseTypography {
-  // FIXME!
-  // https://github.com/dart-lang/sdk/issues/9468
   const FastPlaceholder({
-    Key? key,
-    required String text,
-    bool enableInteractiveSelection = false,
-    TextAlign textAlign = TextAlign.left,
-    double lineHeight = kFastLineHeight,
-    bool useFontForNumber = false,
-    FontWeight? fontWeight,
-    TextOverflow? overflow,
-    Color? textColor,
-    double? fontSize,
-    int? maxLines,
-  }) : super(
-          enableInteractiveSelection: enableInteractiveSelection,
-          useFontForNumber: useFontForNumber,
-          fontWeight: fontWeight,
-          lineHeight: lineHeight,
-          textColor: textColor,
-          textAlign: textAlign,
-          fontSize: fontSize,
-          overflow: overflow,
-          maxLines: maxLines,
-          text: text,
-          key: key,
-        );
+    super.key,
+    required super.text,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+  });
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -394,30 +247,17 @@ class FastPlaceholder extends FastBaseTypography {
 /// uppercase
 class FastButtonLabel extends FastBaseTypography {
   FastButtonLabel({
-    Key? key,
     required String text,
-    bool enableInteractiveSelection = false,
-    TextAlign textAlign = TextAlign.left,
-    double lineHeight = kFastLineHeight,
-    bool useFontForNumber = false,
-    FontWeight? fontWeight,
-    TextOverflow? overflow,
-    Color? textColor,
-    double? fontSize,
-    int? maxLines,
-  }) : super(
-          enableInteractiveSelection: enableInteractiveSelection,
-          useFontForNumber: useFontForNumber,
-          text: text.toUpperCase(),
-          fontWeight: fontWeight,
-          lineHeight: lineHeight,
-          textColor: textColor,
-          textAlign: textAlign,
-          fontSize: fontSize,
-          overflow: overflow,
-          maxLines: maxLines,
-          key: key,
-        );
+    super.key,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+  }) : super(text: text.toUpperCase());
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -430,33 +270,18 @@ class FastButtonLabel extends FastBaseTypography {
 /// light
 /// lowercase
 class FastCaption extends FastBaseTypography {
-  // FIXME!
-  // https://github.com/dart-lang/sdk/issues/9468
   const FastCaption({
-    Key? key,
-    required String text,
-    bool enableInteractiveSelection = false,
-    TextAlign textAlign = TextAlign.left,
-    double lineHeight = kFastLineHeight,
-    bool useFontForNumber = false,
-    FontWeight? fontWeight,
-    TextOverflow? overflow,
-    Color? textColor,
-    double? fontSize,
-    int? maxLines,
-  }) : super(
-          enableInteractiveSelection: enableInteractiveSelection,
-          useFontForNumber: useFontForNumber,
-          fontWeight: fontWeight,
-          lineHeight: lineHeight,
-          textColor: textColor,
-          textAlign: textAlign,
-          fontSize: fontSize,
-          overflow: overflow,
-          maxLines: maxLines,
-          text: text,
-          key: key,
-        );
+    super.key,
+    required super.text,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+  }) : super();
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -469,33 +294,18 @@ class FastCaption extends FastBaseTypography {
 /// light
 /// lowercase
 class FastHelper extends FastBaseTypography {
-  // FIXME!
-  // https://github.com/dart-lang/sdk/issues/9468
   const FastHelper({
-    Key? key,
-    required String text,
-    bool enableInteractiveSelection = false,
-    TextAlign textAlign = TextAlign.left,
-    double lineHeight = kFastLineHeight,
-    bool useFontForNumber = false,
-    FontWeight? fontWeight,
-    TextOverflow? overflow,
-    Color? textColor,
-    double? fontSize,
-    int? maxLines,
-  }) : super(
-          enableInteractiveSelection: enableInteractiveSelection,
-          useFontForNumber: useFontForNumber,
-          fontWeight: fontWeight,
-          lineHeight: lineHeight,
-          textColor: textColor,
-          textAlign: textAlign,
-          fontSize: fontSize,
-          overflow: overflow,
-          maxLines: maxLines,
-          text: text,
-          key: key,
-        );
+    super.key,
+    required super.text,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+  });
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {

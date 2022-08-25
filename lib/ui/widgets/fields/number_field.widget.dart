@@ -142,8 +142,7 @@ class _FastNumberFieldState extends State<FastNumberField>
         suffixIconConstraints: _kSuffixIconConstraints,
       ),
       style: bodyTextStyle.copyWith(
-        fontFamily: kFastFontForNumber,
-        fontWeight: FontWeight.w700,
+        fontWeight: kFastFontWeightBold,
       ),
       inputFormatters: [
         NumberInputFormatter(

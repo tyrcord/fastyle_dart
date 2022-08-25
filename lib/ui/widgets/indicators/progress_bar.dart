@@ -32,7 +32,6 @@ class FastProgressBarIndicator extends StatelessWidget {
           if (showProgressLabel)
             FastBody(
               text: '$formattedValue %',
-              useFontForNumber: true,
               textColor: mainColor,
             ),
           kFastSizedBox16,

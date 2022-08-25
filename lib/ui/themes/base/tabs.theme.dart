@@ -6,6 +6,6 @@ final kFastTabBarTheme = TabBarTheme(
   indicatorSize: TabBarIndicatorSize.label,
   labelStyle: kFastTextTheme.bodyText1,
   unselectedLabelStyle: kFastTextTheme.bodyText1!.copyWith(
-    fontWeight: FontWeight.w300,
+    fontWeight: kFastFontWeightLight,
   ),
 );

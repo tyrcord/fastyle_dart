@@ -6,7 +6,7 @@ class FastReadOnlyTextField extends StatelessWidget {
   final bool showHelperBoundaries;
   final Color? helperTextColor;
   final String placeholderText;
-  final bool useFontForNumber;
+
   final Color? valueTextColor;
   final String? captionText;
   final TextAlign textAlign;
@@ -23,7 +23,6 @@ class FastReadOnlyTextField extends StatelessWidget {
     this.enableInteractiveSelection = true,
     this.showHelperBoundaries = true,
     this.textAlign = TextAlign.left,
-    this.useFontForNumber = false,
     this.helperTextColor,
     this.valueTextColor,
     this.captionText,
@@ -57,7 +56,7 @@ class FastReadOnlyTextField extends StatelessWidget {
               text: valueText ?? placeholderText,
               enableInteractiveSelection: enableInteractiveSelection,
               textAlign: textAlign,
-              fontWeight: FontWeight.w700,
+              fontWeight: kFastFontWeightBold,
               textColor: valueText != null ? valueTextColor : null,
             ),
       ),

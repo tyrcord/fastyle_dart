@@ -18,7 +18,6 @@ class TypographyPage extends StatelessWidget {
           kFastSizedBox16,
           FastDisplay(
             text: '\$28,000',
-            useFontForNumber: true,
           ),
           kFastSizedBox16,
           FastHeadline(
@@ -42,24 +41,23 @@ class TypographyPage extends StatelessWidget {
           ),
           kFastSizedBox16,
           FastSubtitle(
-            text: 'subtitle',
+            text: 'Subtitle',
           ),
           kFastSizedBox16,
           FastBody(
             text: 'Body 1',
           ),
           kFastSizedBox16,
+          FastBody2(
+            text: 'Body 2',
+          ),
+          kFastSizedBox16,
           FastBody(
             text: '\$28,000',
-            useFontForNumber: true,
           ),
           kFastSizedBox16,
           FastPlaceholder(
             text: 'Placeholder',
-          ),
-          kFastSizedBox16,
-          FastBody2(
-            text: 'Body 2',
           ),
           kFastSizedBox16,
           FastButtonLabel(

@@ -6,7 +6,7 @@ class FastTextField extends StatefulWidget implements IFastInput {
   final bool showHelperBoundaries;
   final String? placeholderText;
   final bool allowAutocorrect;
-  final bool useFontForNumber;
+
   final String? initialValue;
   final String? captionText;
   final TextAlign textAlign;
@@ -34,7 +34,6 @@ class FastTextField extends StatefulWidget implements IFastInput {
     this.showHelperBoundaries = true,
     this.shouldDebounceTime = false,
     this.allowAutocorrect = false,
-    this.useFontForNumber = false,
     this.isReadOnly = false,
     this.isEnabled = true,
     this.textEditingController,
@@ -80,8 +79,7 @@ class _FastTextFieldState extends State<FastTextField>
       cursorColor: ThemeHelper.colors.getPrimaryColor(context),
       keyboardType: TextInputType.text,
       style: ThemeHelper.texts.getBodyTextStyle(context).copyWith(
-            fontWeight: FontWeight.w700,
-            fontFamily: widget.useFontForNumber ? kFastFontForNumber : null,
+            fontWeight: kFastFontWeightBold,
           ),
       decoration: InputDecoration(hintText: widget.placeholderText),
       onChanged: debounceOnValueChangedIfNeeded(),
