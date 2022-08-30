@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.29.4](https://github.com/tyrcord/fastyle_dart/releases/tag/0.29.4) (2022-08-30)
+
+### Features
+
+- Added FastAppErrorReporter widget.
+
 ## [0.29.3](https://github.com/tyrcord/fastyle_dart/releases/tag/0.29.3) (2022-08-30)
 
 ### Enhancements
