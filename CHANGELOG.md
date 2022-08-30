@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [0.29.3](https://github.com/tyrcord/fastyle_dart/releases/tag/0.29.3) (2022-08-30)
+
+### Enhancements
+
+- Add softWrap property to text widgets.
+
+### Fixes
+
+- Minor fixes.
+
 ## [0.29.2](https://github.com/tyrcord/fastyle_dart/releases/tag/0.29.2) (2022-08-25)
 
 ### Enhancements
