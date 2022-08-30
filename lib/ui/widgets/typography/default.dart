@@ -17,6 +17,7 @@ class FastDisplay extends FastBaseTypography {
     super.textColor,
     super.fontSize,
     super.maxLines,
+    super.softWrap,
   });
 
   @override
@@ -41,6 +42,7 @@ class FastHeadline extends FastBaseTypography {
     super.textColor,
     super.fontSize,
     super.maxLines,
+    super.softWrap,
   });
 
   @override
@@ -65,6 +67,7 @@ class FastPlaceHolderHeadline extends FastBaseTypography {
     super.textColor,
     super.fontSize,
     super.maxLines,
+    super.softWrap,
   });
 
   @override
@@ -89,6 +92,7 @@ class FastSubhead extends FastBaseTypography {
     super.textColor,
     super.fontSize,
     super.maxLines,
+    super.softWrap,
   }) : super(text: text.toUpperCase());
 
   @override
@@ -113,6 +117,7 @@ class FastTitle extends FastBaseTypography {
     super.textColor,
     super.fontSize,
     super.maxLines,
+    super.softWrap,
   }) : super(letterSpacing: 1.2);
 
   @override
@@ -137,6 +142,7 @@ class FastPlaceholderTitle extends FastBaseTypography {
     super.textColor,
     super.fontSize,
     super.maxLines,
+    super.softWrap,
   });
 
   @override
@@ -161,6 +167,7 @@ class FastSubtitle extends FastBaseTypography {
     super.textColor,
     super.fontSize,
     super.maxLines,
+    super.softWrap,
   }) : super();
 
   @override
@@ -185,6 +192,7 @@ class FastBody extends FastBaseTypography {
     super.textColor,
     super.fontSize,
     super.maxLines,
+    super.softWrap,
   }) : super();
 
   @override
@@ -209,6 +217,7 @@ class FastBody2 extends FastBaseTypography {
     super.textColor,
     super.fontSize,
     super.maxLines,
+    super.softWrap,
   }) : super();
 
   @override
@@ -233,6 +242,7 @@ class FastPlaceholder extends FastBaseTypography {
     super.textColor,
     super.fontSize,
     super.maxLines,
+    super.softWrap,
   });
 
   @override
@@ -250,10 +260,11 @@ class FastButtonLabel extends FastBaseTypography {
     required String text,
     super.key,
     super.enableInteractiveSelection = false,
-    super.textAlign = TextAlign.left,
+    super.overflow = TextOverflow.ellipsis,
     super.lineHeight = kFastLineHeight,
+    super.textAlign = TextAlign.left,
+    super.softWrap = false,
     super.fontWeight,
-    super.overflow,
     super.textColor,
     super.fontSize,
     super.maxLines,
@@ -281,6 +292,7 @@ class FastCaption extends FastBaseTypography {
     super.textColor,
     super.fontSize,
     super.maxLines,
+    super.softWrap,
   }) : super();
 
   @override
@@ -305,6 +317,7 @@ class FastHelper extends FastBaseTypography {
     super.textColor,
     super.fontSize,
     super.maxLines,
+    super.softWrap,
   });
 
   @override

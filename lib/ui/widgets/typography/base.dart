@@ -5,7 +5,7 @@ class FastBaseTypography extends StatelessWidget {
   final bool enableInteractiveSelection;
   final TextOverflow? overflow;
   final FontWeight? fontWeight;
-
+  final bool? softWrap;
   final double? letterSpacing;
   final TextAlign textAlign;
   final double lineHeight;
@@ -26,6 +26,7 @@ class FastBaseTypography extends StatelessWidget {
     this.maxLines,
     this.overflow,
     this.letterSpacing,
+    this.softWrap,
   }) : super(key: key);
 
   @override
@@ -53,6 +54,7 @@ class FastBaseTypography extends StatelessWidget {
       style: textStyle,
       maxLines: maxLines,
       overflow: overflow,
+      softWrap: softWrap,
     );
   }
 
