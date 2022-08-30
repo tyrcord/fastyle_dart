@@ -80,23 +80,26 @@ class _FastAppState extends State<FastApp> {
           bloc: _themeBloc,
           waitForData: true,
           builder: (context, FastThemeBlocState state) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
-              localizationsDelegates: widget.localizationsDelegates,
-              darkTheme: widget.darkTheme ?? FastTheme.dark.blue,
-              theme: widget.lightTheme ?? FastTheme.light.blue,
-              navigatorKey: FastNotificationCenter.navigatorKey,
-              supportedLocales: widget.supportedLocales,
-              themeMode: state.themeMode,
-              title: widget.titleText,
-              locale: widget.locale,
-              home: FastAppLoader(
-                delayBeforeShowingLoader: widget.delayBeforeShowingLoader,
-                appBuilder: (context) => widget.home,
-                errorReporter: widget.errorReporter,
-                loaderBuilder: widget.loaderBuilder,
-                errorBuilder: widget.errorBuilder,
-                loaderJobs: widget.loaderJobs,
+            return FastAppErrorReporter(
+              reporter: widget.errorReporter,
+              child: MaterialApp(
+                debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
+                localizationsDelegates: widget.localizationsDelegates,
+                darkTheme: widget.darkTheme ?? FastTheme.dark.blue,
+                theme: widget.lightTheme ?? FastTheme.light.blue,
+                navigatorKey: FastNotificationCenter.navigatorKey,
+                supportedLocales: widget.supportedLocales,
+                themeMode: state.themeMode,
+                title: widget.titleText,
+                locale: widget.locale,
+                home: FastAppLoader(
+                  delayBeforeShowingLoader: widget.delayBeforeShowingLoader,
+                  appBuilder: (context) => widget.home,
+                  errorReporter: widget.errorReporter,
+                  loaderBuilder: widget.loaderBuilder,
+                  errorBuilder: widget.errorBuilder,
+                  loaderJobs: widget.loaderJobs,
+                ),
               ),
             );
           },
