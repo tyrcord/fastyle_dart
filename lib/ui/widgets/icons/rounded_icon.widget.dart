@@ -17,6 +17,8 @@ class FastRoundedIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = ThemeHelper.getPaletteColors(context);
+
     return Container(
       padding: kFastEdgeInsets6,
       decoration: BoxDecoration(
@@ -26,7 +28,7 @@ class FastRoundedIcon extends StatelessWidget {
       child: Icon(
         iconData,
         size: iconSize,
-        color: iconColor ?? ThemeHelper.colors.getWhiteColor(context),
+        color: iconColor ?? palette.whiteColor,
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
+import 'package:tbloc_dart/core/base/base.dart';
 
 class ThemeHelper {
   static final _gradientHelper = ThemeGradientHelper();
@@ -19,6 +20,14 @@ class ThemeHelper {
 
   static ThemeTextHelper get texts {
     return _textHelper;
+  }
+
+  static FastPaletteColors getPaletteColors(BuildContext context) {
+    final themeBloc = BlocProvider.of<FastThemeBloc>(context);
+
+    return themeBloc.currentState.brightness == Brightness.light
+        ? kLightPaletteColors
+        : kDarkPaletteColors;
   }
 
   // FIXME: should belong to the ThemeData Object

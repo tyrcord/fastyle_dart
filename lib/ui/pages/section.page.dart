@@ -170,6 +170,7 @@ class FastSectionPage extends StatelessWidget {
   Widget _buildAppBar(BuildContext context) {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
     final brightness = themeBloc.currentState.brightness;
+    final palette = ThemeHelper.getPaletteColors(context);
     final overlayStyle = brightness == Brightness.dark
         ? SystemUiOverlayStyle.light
         : ThemeHelper.colors.getOverlayStyleForColor(
@@ -185,7 +186,7 @@ class FastSectionPage extends StatelessWidget {
       iconTheme: IconThemeData(
         color: themeBloc.currentState.brightness == Brightness.light
             ? ThemeHelper.texts.getBodyTextStyle(context).color
-            : ThemeHelper.colors.getWhiteColor(context),
+            : palette.whiteColor,
       ),
       backgroundColor: appBarBackgroundColor ?? Colors.transparent,
       elevation: _kElevation,

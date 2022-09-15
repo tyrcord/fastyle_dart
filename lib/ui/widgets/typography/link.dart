@@ -18,9 +18,10 @@ class FastLink extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bodyTextStyle = ThemeHelper.texts.getBodyTextStyle(context);
+    final palette = ThemeHelper.getPaletteColors(context);
     final linkTextStyle = bodyTextStyle.copyWith(
       fontSize: bodyTextStyle.fontSize!,
-      color: color ?? ThemeHelper.colors.getBlueColor(context),
+      color: color ?? palette.blue.mid,
     );
 
     return GestureDetector(

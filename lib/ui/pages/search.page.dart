@@ -236,6 +236,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
 
   Widget _buildFooter(BuildContext context) {
     final bottomPadding = MediaQuery.of(context).padding.bottom;
+    final palette = ThemeHelper.getPaletteColors(context);
 
     return Container(
       padding: bottomPadding > 0
@@ -249,7 +250,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             FastTextButton(
-              textColor: ThemeHelper.colors.getBlueColor(context),
+              textColor: palette.blue.mid,
               text: widget.clearSelectionText,
               onTap: () => _close(context, null),
             )

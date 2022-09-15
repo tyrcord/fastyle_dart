@@ -85,6 +85,8 @@ class _FastSegmentFieldState<T> extends State<FastSegmentField<T>> {
   }
 
   Map<int, Padding> _buildSegements(BuildContext context) {
+    final palette = ThemeHelper.getPaletteColors(context);
+
     return _options.map((int index, FastItem<T> item) {
       return MapEntry(
         index,
@@ -93,7 +95,7 @@ class _FastSegmentFieldState<T> extends State<FastSegmentField<T>> {
           child: FastBody(
             text: item.labelText,
             textColor: _selectedIndex == index
-                ? ThemeHelper.colors.getWhiteColor(context)
+                ? palette.whiteColor
                 : ThemeHelper.colors.getPrimaryColor(context),
           ),
         ),

@@ -1,5 +1,4 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FastThemeFactory {
@@ -41,22 +40,23 @@ class FastThemeFactory {
     Color? primaryColorDark,
   }) {
     final textTheme = baseTheme.textTheme;
-    final _secondaryColor = secondaryColor ?? baseTheme.accentColor;
+    final _secondaryColor = secondaryColor ?? baseTheme.colorScheme.secondary;
     final _tertiaryColor = tertiaryColor ?? textTheme.overline!.color;
 
     return baseTheme.copyWith(
       inputDecorationTheme: _buildInputDecorationTheme(baseTheme, primaryColor),
       primaryColorDark: primaryColorDark ?? baseTheme.primaryColorDark,
       buttonTheme: _buildButtonThemeData(primaryColor),
-      accentColor: _secondaryColor,
       primaryColor: primaryColor,
-      buttonColor: primaryColor,
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: primaryColor,
       ),
       textTheme: textTheme.copyWith(
         caption: textTheme.caption!.copyWith(color: _secondaryColor),
         overline: textTheme.overline!.copyWith(color: _tertiaryColor),
+      ),
+      colorScheme: ColorScheme.fromSwatch().copyWith(
+        secondary: _secondaryColor,
       ),
     );
   }

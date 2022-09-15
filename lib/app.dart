@@ -1,12 +1,10 @@
 import 'dart:io';
-import 'dart:ui';
-
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:tbloc_dart/tbloc_dart.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tbloc_dart/tbloc_dart.dart';
 
 class FastApp extends StatefulWidget {
   final Iterable<LocalizationsDelegate>? localizationsDelegates;

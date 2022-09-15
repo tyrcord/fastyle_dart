@@ -132,10 +132,11 @@ class _FastAppBarLayoutState extends State<FastAppBarLayout> {
   }
 
   Widget _buildTitling(BuildContext context) {
+    final palette = ThemeHelper.getPaletteColors(context);
     final textColor = ThemeHelper.colors.getColorWithBestConstrast(
       context: context,
       darkColor: ThemeHelper.texts.getTitleTextStyle(context).color!,
-      lightColor: ThemeHelper.colors.getWhiteColor(context),
+      lightColor: palette.whiteColor,
     );
 
     return FastPadding16(

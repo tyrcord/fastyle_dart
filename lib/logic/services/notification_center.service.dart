@@ -1,9 +1,8 @@
 import 'dart:collection';
 
 import 'package:another_flushbar/flushbar.dart';
-import 'package:flutter/material.dart';
-
 import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:flutter/material.dart';
 
 const _kDefaultErrorOptions = FastNotificationCenterOptions(
   leadingIcon: Icon(Icons.cancel),
@@ -38,12 +37,11 @@ class FastNotificationCenter {
     Key? key,
     FastNotificationCenterOptions options = _kDefaultErrorOptions,
   }) {
+    final palette = ThemeHelper.getPaletteColors(_context);
+
     _buildNotification(
       message,
-      options: _mergeIconColors(
-        options,
-        ThemeHelper.colors.getRedColor(_context),
-      ),
+      options: _mergeIconColors(options, palette.red.mid),
     );
   }
 
@@ -55,12 +53,11 @@ class FastNotificationCenter {
     Key? key,
     FastNotificationCenterOptions options = _kDefaultWarnOptions,
   }) {
+    final palette = ThemeHelper.getPaletteColors(_context);
+
     _buildNotification(
       message,
-      options: _mergeIconColors(
-        options,
-        ThemeHelper.colors.getOrangeColor(_context),
-      ),
+      options: _mergeIconColors(options, palette.orange.mid),
     );
   }
 
@@ -72,12 +69,11 @@ class FastNotificationCenter {
     Key? key,
     FastNotificationCenterOptions options = _kDefaultInfoOptions,
   }) {
+    final palette = ThemeHelper.getPaletteColors(_context);
+
     _buildNotification(
       message,
-      options: _mergeIconColors(
-        options,
-        ThemeHelper.colors.getBlueGrayColor(_context),
-      ),
+      options: _mergeIconColors(options, palette.blueGray.mid),
     );
   }
 
@@ -89,12 +85,11 @@ class FastNotificationCenter {
     Key? key,
     FastNotificationCenterOptions options = _kDefaultSuccessOptions,
   }) {
+    final palette = ThemeHelper.getPaletteColors(_context);
+
     _buildNotification(
       message,
-      options: _mergeIconColors(
-        options,
-        ThemeHelper.colors.getGreenColor(_context),
-      ),
+      options: _mergeIconColors(options, palette.green.mid),
     );
   }
 

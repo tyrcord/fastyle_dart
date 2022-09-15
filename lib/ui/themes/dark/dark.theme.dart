@@ -66,6 +66,6 @@ final kDarkFastTheme = kBaseFastTheme.copyWith(
     ),
   ),
   popupMenuTheme: PopupMenuThemeData(
-    color: kFastDarkSecondaryBackgroundColor,
+    color: kFastDarkTertiaryBackgroundColor,
   ),
 );

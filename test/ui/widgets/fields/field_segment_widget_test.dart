@@ -86,7 +86,7 @@ void main() {
 
         var option = tester.firstWidget(finder) as FastBody;
 
-        expect(option.textColor, equals(Color(0xFFFAFAFA)));
+        expect(option.textColor, equals(Color(0xFFfcfcfc)));
         expect(called, isTrue);
       });
     });
@@ -108,7 +108,7 @@ void main() {
         await tester.pumpAndSettle();
 
         var option1 = tester.firstWidget(find.byType(FastBody)) as FastBody;
-        expect(option1.textColor, equals(Color(0xFFFAFAFA)));
+        expect(option1.textColor, equals(Color(0xFFfcfcfc)));
       });
 
       testWidgets('should select the second segment by default',
@@ -130,7 +130,7 @@ void main() {
         var finder = find.widgetWithText(FastBody, 'option 2');
         var option = tester.firstWidget(finder) as FastBody;
 
-        expect(option.textColor, equals(Color(0xFFFAFAFA)));
+        expect(option.textColor, equals(Color(0xFFfcfcfc)));
       });
     });
   });
