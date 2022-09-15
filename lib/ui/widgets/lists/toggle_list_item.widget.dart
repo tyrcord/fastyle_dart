@@ -71,7 +71,9 @@ class _FastToggleListItemState extends State<FastToggleListItem> {
     final item = widget.item;
     final descriptionText = item?.descriptionText ?? widget.descriptionText;
 
-    return descriptionText != null ? FastBody2(text: descriptionText) : null;
+    return descriptionText != null
+        ? FastSecondaryBody(text: descriptionText)
+        : null;
   }
 
   void _onChanged(bool value) {

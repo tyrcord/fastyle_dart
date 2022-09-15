@@ -89,7 +89,7 @@ class ColorsPage extends StatelessWidget {
             text: 'Hex:',
             fontSize: 14,
           ),
-          FastBody2(
+          FastSecondaryBody(
             text: _toHex(color),
             fontSize: 13,
             enableInteractiveSelection: true,

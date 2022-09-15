@@ -79,7 +79,7 @@ final kFastDarkSecondaryBackgroundColor = Color(0xFF181b25);
 final kFastDarkTertiaryBackgroundColor = Color(0xFF242938);
 
 // Label Colors
-final kFastDarklabelColor = kFastDarkWhiteColor;
+final kFastDarkLabelColor = kFastDarkWhiteColor;
 final kFastDarkSecondaryLabelColor = kFastDarkGrayPaletteColors.lighter;
 final kFastDarkTertiaryLabelColor = kFastDarkGrayPaletteColors.light;
 final kFastDarkHintLabelColor = kFastDarkGrayPaletteColors.mid;

@@ -109,7 +109,7 @@ class _FastListItemLayoutState extends State<FastListItemLayout> {
     }
 
     if (widget.descriptionText != null) {
-      subtitle = FastBody2(text: widget.descriptionText!);
+      subtitle = FastSecondaryBody(text: widget.descriptionText!);
 
       if (transform != null) {
         subtitle = Transform(transform: transform, child: subtitle);

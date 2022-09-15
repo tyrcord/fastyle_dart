@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const _kFontSize48 = 48.0;
-const _kFontSize34 = 34.0;
-const _kFontSize24 = 24.0;
-const _kFontSize18 = 18.0;
-const _kFontSize16 = 16.0;
-const _kFontSize14 = 14.0;
+const kFastFontSize48 = 48.0;
+const kFastFontSize34 = 34.0;
+const kFastFontSize24 = 24.0;
+const kFastFontSize18 = 18.0;
+const kFastFontSize16 = 16.0;
+const kFastFontSize14 = 14.0;
+const kFastFontSize12 = 12.0;
+const kFastFontSize10 = 10.0;
 
 const kFastFontWeightLight = FontWeight.w300;
 const kFastFontWeightRegular = FontWeight.w400;
@@ -25,42 +27,46 @@ const _kFontFamilyFallback = <String>[
 final kFastTextTheme = TextTheme(
   headline4: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightRegular,
-    fontSize: _kFontSize48,
+    fontSize: kFastFontSize48,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
   headline5: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightMedium,
-    fontSize: _kFontSize34,
+    fontSize: kFastFontSize34,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
-  subtitle1: GoogleFonts.barlowSemiCondensed(
+  headline3: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightSemiBold,
-    fontSize: _kFontSize18,
+    fontSize: kFastFontSize18,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
   headline6: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightRegular,
-    fontSize: _kFontSize24,
+    fontSize: kFastFontSize24,
+  ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
+  subtitle1: GoogleFonts.barlowSemiCondensed(
+    fontWeight: kFastFontWeightSemiBold,
+    fontSize: kFastFontSize16,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
   subtitle2: GoogleFonts.barlowSemiCondensed(
-    fontWeight: kFastFontWeightSemiBold,
-    fontSize: _kFontSize16,
+    fontWeight: kFastFontWeightMedium,
+    fontSize: kFastFontSize14,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
   bodyText1: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightRegular,
-    fontSize: _kFontSize18,
+    fontSize: kFastFontSize18,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
   bodyText2: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightRegular,
-    fontSize: _kFontSize16,
+    fontSize: kFastFontSize16,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
   button: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightMedium,
-    fontSize: _kFontSize16,
+    fontSize: kFastFontSize16,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
   caption: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightRegular,
-    fontSize: _kFontSize16,
+    fontSize: kFastFontSize16,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
   overline: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightRegular,
-    fontSize: _kFontSize14,
+    fontSize: kFastFontSize14,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
 );

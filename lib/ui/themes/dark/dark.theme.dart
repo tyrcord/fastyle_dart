@@ -12,28 +12,31 @@ final kDarkFastTheme = kBaseFastTheme.copyWith(
   hintColor: kFastDarkHintLabelColor,
   textTheme: _baseTextTheme.copyWith(
     headline4: _baseTextTheme.headline4!.copyWith(
-      color: kFastDarklabelColor,
+      color: kFastDarkLabelColor,
     ),
     headline5: _baseTextTheme.headline5!.copyWith(
-      color: kFastDarklabelColor,
+      color: kFastDarkLabelColor,
+    ),
+    headline3: _baseTextTheme.subtitle1!.copyWith(
+      color: kFastDarkSecondaryLabelColor,
+    ),
+    headline6: _baseTextTheme.headline6!.copyWith(
+      color: kFastDarkLabelColor,
     ),
     subtitle1: _baseTextTheme.subtitle1!.copyWith(
       color: kFastDarkSecondaryLabelColor,
     ),
-    headline6: _baseTextTheme.headline6!.copyWith(
-      color: kFastDarklabelColor,
-    ),
-    subtitle2: _baseTextTheme.subtitle2!.copyWith(
-      color: kFastDarkSecondaryLabelColor,
+    subtitle2: _baseTextTheme.subtitle1!.copyWith(
+      color: kFastDarkTertiaryLabelColor,
     ),
     bodyText1: _baseTextTheme.bodyText1!.copyWith(
-      color: kFastDarklabelColor,
+      color: kFastDarkLabelColor,
     ),
     bodyText2: _baseTextTheme.bodyText2!.copyWith(
       color: kFastDarkSecondaryLabelColor,
     ),
     button: _baseTextTheme.button!.copyWith(
-      color: kFastDarklabelColor,
+      color: kFastDarkLabelColor,
     ),
     caption: _baseTextTheme.caption!.copyWith(
       color: kFastDarkSecondaryLabelColor,
@@ -42,9 +45,9 @@ final kDarkFastTheme = kBaseFastTheme.copyWith(
       color: kFastDarkSecondaryLabelColor,
     ),
   ),
-  iconTheme: IconThemeData(color: kFastDarklabelColor),
+  iconTheme: IconThemeData(color: kFastDarkLabelColor),
   tabBarTheme: _baseTabBarTheme.copyWith(
-    labelColor: kFastDarklabelColor,
+    labelColor: kFastDarkLabelColor,
     unselectedLabelColor: kFastDarkSecondaryLabelColor,
   ),
   cardTheme: CardTheme(

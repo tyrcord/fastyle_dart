@@ -77,7 +77,7 @@ const kFastLightPrimaryBackgroundColor = kFastLightWhiteColor;
 const kFastLightSecondaryBackgroundColor = Colors.white;
 
 // Label Colors
-final kFastLightlabelColor = kFastLightGrayPaletteColors.darkest;
+final kFastLightLabelColor = kFastLightGrayPaletteColors.darkest;
 final kFastLightSecondaryLabelColor = kFastLightGrayPaletteColors.darker;
 final kFastLightTertiaryLabelColor = kFastLightGrayPaletteColors.dark;
 final kFastLightHintLabelColor = kFastLightGrayPaletteColors.mid;

@@ -107,7 +107,7 @@ class FastFieldLayout extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 1.0),
-            child: FastBody2(
+            child: FastSecondaryBody(
               text: (capitalizeLabelText
                       ? toBeginningOfSentenceCase(labelText)
                       : labelText) ??
@@ -129,7 +129,7 @@ class FastFieldLayout extends StatelessWidget {
       opacity: hasHelper ? 1.0 : 0.0,
       child: Container(
         margin: const EdgeInsets.only(top: 4.0),
-        child: FastHelper(
+        child: FastOverline(
           textColor: helperTextColor,
           text: hasHelper
               ? toBeginningOfSentenceCase(helperText)!

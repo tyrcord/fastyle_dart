@@ -16,7 +16,7 @@ class CardsPage extends StatelessWidget {
           kFastSizedBox16,
           FastCard(
             titleText: 'French',
-            child: FastBody2(text: 'Bonjour le monde !'),
+            child: FastSecondaryBody(text: 'Bonjour le monde !'),
           ),
           kFastSizedBox16,
           FastCard(
@@ -31,7 +31,7 @@ class CardsPage extends StatelessWidget {
                 ),
               ),
             ],
-            child: FastBody2(text: 'Hello World!'),
+            child: FastSecondaryBody(text: 'Hello World!'),
           ),
           kFastSizedBox16,
           FastCard(
@@ -39,8 +39,8 @@ class CardsPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                FastBody2(text: 'Hola!'),
-                FastBody2(text: 'Hola!'),
+                FastSecondaryBody(text: 'Hola!'),
+                FastSecondaryBody(text: 'Hola!'),
               ],
             ),
           ),
@@ -100,8 +100,8 @@ class CardsPage extends StatelessWidget {
             titleText: 'Calculator',
             child: Column(
               children: [
-                FastBody2(text: 'Content 1'),
-                FastBody2(text: 'Content 2'),
+                FastSecondaryBody(text: 'Content 1'),
+                FastSecondaryBody(text: 'Content 2'),
                 kFastSizedBox16,
                 FastExpansionPanel(
                   titleText: 'More...',

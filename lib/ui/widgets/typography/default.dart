@@ -176,6 +176,31 @@ class FastSubtitle extends FastBaseTypography {
   }
 }
 
+/// SECONDARY SUBTITLE
+/// 14px
+/// medium
+/// uppercase
+class FastSecondarySubtitle extends FastBaseTypography {
+  FastSecondarySubtitle({
+    required String text,
+    super.key,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+    super.softWrap,
+  }) : super(text: text.toUpperCase());
+
+  @override
+  TextStyle getDefaultTextStyle(BuildContext context) {
+    return ThemeHelper.texts.getSecondarySubtitleTextStyle(context);
+  }
+}
+
 /// BODY 1
 /// 18px
 /// normal
@@ -206,6 +231,7 @@ class FastBody extends FastBaseTypography {
 /// normal
 /// lowercase
 class FastBody2 extends FastBaseTypography {
+  @Deprecated('Use FastSecondaryBody')
   const FastBody2({
     super.key,
     required super.text,
@@ -222,7 +248,32 @@ class FastBody2 extends FastBaseTypography {
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
-    return ThemeHelper.texts.getBody2TextStyle(context);
+    return ThemeHelper.texts.getSecondaryBodyTextStyle(context);
+  }
+}
+
+/// SECONDARY BODY
+/// 18px
+/// normal
+/// lowercase
+class FastSecondaryBody extends FastBaseTypography {
+  const FastSecondaryBody({
+    super.key,
+    required super.text,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+    super.softWrap,
+  }) : super();
+
+  @override
+  TextStyle getDefaultTextStyle(BuildContext context) {
+    return ThemeHelper.texts.getSecondaryBodyTextStyle(context);
   }
 }
 
@@ -276,6 +327,31 @@ class FastButtonLabel extends FastBaseTypography {
   }
 }
 
+/// SECONDARY BUTTON
+/// 14px
+/// medium
+/// uppercase
+class FastSecondaryButton extends FastBaseTypography {
+  FastSecondaryButton({
+    required String text,
+    super.key,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+    super.softWrap,
+  }) : super(text: text.toUpperCase());
+
+  @override
+  TextStyle getDefaultTextStyle(BuildContext context) {
+    return ThemeHelper.texts.getSecondaryButtonTextStyle(context);
+  }
+}
+
 /// CAPTION
 /// 16px
 /// light
@@ -301,11 +377,37 @@ class FastCaption extends FastBaseTypography {
   }
 }
 
-/// HELPER
+/// SECONDARY CAPTION
+/// 12px
+/// medium
+/// uppercase
+class FastSecondaryCaption extends FastBaseTypography {
+  FastSecondaryCaption({
+    required String text,
+    super.key,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+    super.softWrap,
+  }) : super(text: text.toUpperCase());
+
+  @override
+  TextStyle getDefaultTextStyle(BuildContext context) {
+    return ThemeHelper.texts.getSecondaryCaptionTextStyle(context);
+  }
+}
+
+/// OVERLINE
 /// 14px
 /// light
 /// lowercase
 class FastHelper extends FastBaseTypography {
+  @Deprecated('Use FastOverline')
   const FastHelper({
     super.key,
     required super.text,
@@ -323,5 +425,55 @@ class FastHelper extends FastBaseTypography {
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
     return ThemeHelper.texts.getOverlineTextStyle(context);
+  }
+}
+
+/// OVERLINE
+/// 14px
+/// light
+/// lowercase
+class FastOverline extends FastBaseTypography {
+  const FastOverline({
+    super.key,
+    required super.text,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+    super.softWrap,
+  });
+
+  @override
+  TextStyle getDefaultTextStyle(BuildContext context) {
+    return ThemeHelper.texts.getOverlineTextStyle(context);
+  }
+}
+
+/// SECONDARY OVERLINE
+/// 10px
+/// medium
+/// uppercase
+class FastSecondaryOverline extends FastBaseTypography {
+  FastSecondaryOverline({
+    required String text,
+    super.key,
+    super.enableInteractiveSelection = false,
+    super.textAlign = TextAlign.left,
+    super.lineHeight = kFastLineHeight,
+    super.fontWeight,
+    super.overflow,
+    super.textColor,
+    super.fontSize,
+    super.maxLines,
+    super.softWrap,
+  }) : super(text: text.toUpperCase());
+
+  @override
+  TextStyle getDefaultTextStyle(BuildContext context) {
+    return ThemeHelper.texts.getSecondaryOverlineTextStyle(context);
   }
 }

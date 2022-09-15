@@ -150,7 +150,7 @@ class _FastAppBarLayoutState extends State<FastAppBarLayout> {
               maxLines: 1,
             ),
           if (widget.subtitleText != null)
-            FastBody2(
+            FastSecondaryBody(
               text: widget.subtitleText!,
               textColor: textColor,
               maxLines: 1,

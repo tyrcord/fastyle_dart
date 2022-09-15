@@ -13,65 +13,43 @@ class TypographyPage extends StatelessWidget {
       titleText: 'Typography',
       child: ListView(
         children: [
-          FastDisplay(
-            text: 'Display',
-          ),
+          FastDisplay(text: 'Display'),
           kFastSizedBox16,
-          FastDisplay(
-            text: '\$28,000',
-          ),
+          FastDisplay(text: '\$28,000'),
           kFastSizedBox16,
-          FastHeadline(
-            text: 'Headline',
-          ),
+          FastHeadline(text: 'Headline'),
           kFastSizedBox16,
-          FastPlaceHolderHeadline(
-            text: 'Placeholder Headline',
-          ),
+          FastPlaceHolderHeadline(text: 'Placeholder Headline'),
           kFastSizedBox16,
-          FastSubhead(
-            text: 'Subhead',
-          ),
+          FastSubhead(text: 'Subhead'),
           kFastSizedBox16,
-          FastTitle(
-            text: 'Title',
-          ),
+          FastTitle(text: 'Title'),
           kFastSizedBox16,
-          FastPlaceholderTitle(
-            text: 'Placeholder Title',
-          ),
+          FastPlaceholderTitle(text: 'Placeholder Title'),
           kFastSizedBox16,
-          FastSubtitle(
-            text: 'Subtitle',
-          ),
+          FastSubtitle(text: 'Subtitle'),
           kFastSizedBox16,
-          FastBody(
-            text: 'Body 1',
-          ),
+          FastSecondarySubtitle(text: 'Secondary Subtitle'),
           kFastSizedBox16,
-          FastBody2(
-            text: 'Body 2',
-          ),
+          FastBody(text: 'Body'),
           kFastSizedBox16,
-          FastBody(
-            text: '\$28,000',
-          ),
+          FastSecondaryBody(text: 'Secondary Body'),
           kFastSizedBox16,
-          FastPlaceholder(
-            text: 'Placeholder',
-          ),
+          FastBody(text: '\$28,000'),
           kFastSizedBox16,
-          FastButtonLabel(
-            text: 'Button',
-          ),
+          FastPlaceholder(text: 'Placeholder'),
           kFastSizedBox16,
-          FastCaption(
-            text: 'Caption',
-          ),
+          FastButtonLabel(text: 'Button'),
           kFastSizedBox16,
-          FastHelper(
-            text: 'Helper',
-          ),
+          FastSecondaryButton(text: 'Secondary Button'),
+          kFastSizedBox16,
+          FastCaption(text: 'Caption'),
+          kFastSizedBox16,
+          FastSecondaryCaption(text: 'Secondary Caption'),
+          kFastSizedBox16,
+          FastOverline(text: 'Overline'),
+          kFastSizedBox16,
+          FastSecondaryOverline(text: 'Secondary Overline'),
           kFastSizedBox16,
           FastLink(
             onTap: () => log('link tapped'),

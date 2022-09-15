@@ -12,19 +12,22 @@ final kLightFastTheme = kBaseFastTheme.copyWith(
   hintColor: kFastLightHintLabelColor,
   textTheme: _baseTextTheme.copyWith(
     headline4: _baseTextTheme.headline4!.copyWith(
-      color: kFastLightlabelColor,
+      color: kFastLightLabelColor,
     ),
     headline5: _baseTextTheme.headline5!.copyWith(
-      color: kFastLightlabelColor,
+      color: kFastLightLabelColor,
+    ),
+    headline3: _baseTextTheme.subtitle1!.copyWith(
+      color: kFastLightSecondaryLabelColor,
+    ),
+    headline6: _baseTextTheme.headline6!.copyWith(
+      color: kFastLightLabelColor,
     ),
     subtitle1: _baseTextTheme.subtitle1!.copyWith(
       color: kFastLightSecondaryLabelColor,
     ),
-    headline6: _baseTextTheme.headline6!.copyWith(
-      color: kFastLightlabelColor,
-    ),
     subtitle2: _baseTextTheme.subtitle2!.copyWith(
-      color: kFastLightSecondaryLabelColor,
+      color: kFastLightTertiaryLabelColor,
     ),
     bodyText1: _baseTextTheme.bodyText1!.copyWith(
       color: kFastLightSecondaryLabelColor,
@@ -33,7 +36,7 @@ final kLightFastTheme = kBaseFastTheme.copyWith(
       color: kFastLightTertiaryLabelColor,
     ),
     button: _baseTextTheme.button!.copyWith(
-      color: kFastLightlabelColor,
+      color: kFastLightLabelColor,
     ),
     caption: _baseTextTheme.caption!.copyWith(
       color: kFastLightSecondaryLabelColor,
@@ -43,9 +46,9 @@ final kLightFastTheme = kBaseFastTheme.copyWith(
     ),
   ),
   cardTheme: CardTheme(color: kFastLightSecondaryBackgroundColor),
-  iconTheme: IconThemeData(color: kFastLightlabelColor),
+  iconTheme: IconThemeData(color: kFastLightLabelColor),
   tabBarTheme: _baseTabBarTheme.copyWith(
-    labelColor: kFastLightlabelColor,
+    labelColor: kFastLightLabelColor,
     unselectedLabelColor: kFastLightSecondaryLabelColor,
   ),
   dividerColor: kFastLightSeparatorColor,
