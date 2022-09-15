@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:fastyle_dart_example/pages/colors.dart';
 import 'package:fastyle_dart_example/pages/notifications.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,11 @@ class DummyCrashLoaderJob extends FastJob {
   }
 }
 
-void main() => runApp(MyApp());
+void main() {
+  GoogleFonts.config.allowRuntimeFetching = false;
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -53,12 +58,16 @@ class MyApp extends StatelessWidget {
         // DummyCrashLoaderJob(),
         DummyLoaderJob(),
       ],
-      errorBuilder: (context, error) => Center(
-        child: FastBody(
-          textColor: ThemeHelper.colors.getRedColor(context),
-          text: 'Oops! An error occured while launching the app',
-        ),
-      ),
+      errorBuilder: (context, error) {
+        final palette = ThemeHelper.getPaletteColors(context);
+
+        return Center(
+          child: FastBody(
+            textColor: palette.red.mid,
+            text: 'Oops! An error occured while launching the app',
+          ),
+        );
+      },
       loaderBuilder: (context, progress) {
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -148,6 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Widget> _buildList(BuildContext context) {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
+    final palette = ThemeHelper.getPaletteColors(context);
 
     return [
       FastListHeader(
@@ -172,7 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
       FastNavigationListItem(
         leading: FastRoundedIcon(
           iconData: Icons.radio_button_checked,
-          backgroundColor: ThemeHelper.colors.getPurpleColor(context),
+          backgroundColor: palette.purple.mid,
         ),
         labelText: 'Buttons',
         descriptionText: 'Raised, icon buttons',
@@ -186,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
       FastNavigationListItem(
         leading: FastRoundedIcon(
           iconData: Icons.text_fields,
-          backgroundColor: ThemeHelper.colors.getGreenColor(context),
+          backgroundColor: palette.green.mid,
         ),
         labelText: 'Typography',
         descriptionText: 'Title, subhead...',
@@ -200,7 +210,7 @@ class _MyHomePageState extends State<MyHomePage> {
       FastNavigationListItem(
         leading: FastRoundedIcon(
           iconData: Icons.table_chart,
-          backgroundColor: ThemeHelper.colors.getBlueColor(context),
+          backgroundColor: palette.blue.mid,
         ),
         labelText: 'Tabs',
         onTap: () {
@@ -213,7 +223,7 @@ class _MyHomePageState extends State<MyHomePage> {
       FastNavigationListItem(
         leading: FastRoundedIcon(
           iconData: Icons.view_agenda,
-          backgroundColor: ThemeHelper.colors.getPinkColor(context),
+          backgroundColor: palette.pink.mid,
         ),
         labelText: 'Cards',
         onTap: () {
@@ -226,7 +236,7 @@ class _MyHomePageState extends State<MyHomePage> {
       FastNavigationListItem(
         leading: FastRoundedIcon(
           iconData: Icons.view_list,
-          backgroundColor: ThemeHelper.colors.getIndigoColor(context),
+          backgroundColor: palette.indigo.mid,
         ),
         labelText: 'List',
         onTap: () {
@@ -239,7 +249,7 @@ class _MyHomePageState extends State<MyHomePage> {
       FastNavigationListItem(
         leading: FastRoundedIcon(
           iconData: Icons.edit,
-          backgroundColor: ThemeHelper.colors.getTealColor(context),
+          backgroundColor: palette.teal.mid,
         ),
         labelText: 'Fields',
         onTap: () {
@@ -252,7 +262,7 @@ class _MyHomePageState extends State<MyHomePage> {
       FastNavigationListItem(
         leading: FastRoundedIcon(
           iconData: Icons.message,
-          backgroundColor: ThemeHelper.colors.getOrangeColor(context),
+          backgroundColor: palette.orange.mid,
         ),
         labelText: 'Notifications',
         onTap: () {
@@ -265,7 +275,7 @@ class _MyHomePageState extends State<MyHomePage> {
       FastNavigationListItem(
         leading: FastRoundedIcon(
           iconData: Icons.colorize,
-          backgroundColor: ThemeHelper.colors.getRedColor(context),
+          backgroundColor: palette.red.mid,
         ),
         labelText: 'Colors',
         onTap: () {
@@ -278,7 +288,7 @@ class _MyHomePageState extends State<MyHomePage> {
       FastNavigationListItem(
         leading: FastRoundedIcon(
           iconData: Icons.description,
-          backgroundColor: ThemeHelper.colors.getBlueColor(context),
+          backgroundColor: palette.brown.mid,
         ),
         labelText: 'Page',
         onTap: () {

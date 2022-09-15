@@ -7,6 +7,7 @@ class TypographyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bodyTextStyle = ThemeHelper.texts.getBodyTextStyle(context);
+    final palette = ThemeHelper.getPaletteColors(context);
 
     return FastSectionPage(
       titleText: 'Typography',
@@ -87,9 +88,7 @@ class TypographyPage extends StatelessWidget {
                     'pretium ac, suscipit non sem. ',
                 children: [
                   TextSpan(
-                    style: bodyTextStyle.copyWith(
-                      color: ThemeHelper.colors.getBlueColor(context),
-                    ),
+                    style: bodyTextStyle.copyWith(color: palette.blue.mid),
                     text: 'nested link',
                   ),
                 ],
