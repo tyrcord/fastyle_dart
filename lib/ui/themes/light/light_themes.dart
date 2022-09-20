@@ -1,51 +1,50 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:flutter/cupertino.dart';
 
 final kLightBlueFastTheme = FastThemeFactory.buildLightThemeWithColors(
   primaryColor: kFastLightBlueColor,
-  primaryColorDark: CupertinoColors.systemBlue.highContrastColor,
+  primaryColorDark: kFastLightBluePaletteColors.dark,
   secondaryColor: kFastLightTealColor,
   tertiaryColor: kFastLightIndigoColor,
 );
 
 final kLightIndigoFastTheme = FastThemeFactory.buildLightThemeWithColors(
   primaryColor: kFastLightIndigoColor,
-  primaryColorDark: CupertinoColors.systemIndigo.highContrastColor,
+  primaryColorDark: kFastLightIndigoPaletteColors.dark,
   secondaryColor: kFastLightPurpleColor,
   tertiaryColor: kFastLightTealColor,
 );
 
 final kLightPinkFastTheme = FastThemeFactory.buildLightThemeWithColors(
   primaryColor: kFastLightPinkColor,
-  primaryColorDark: CupertinoColors.systemPink.highContrastColor,
+  primaryColorDark: kFastLightPinkPaletteColors.dark,
   secondaryColor: kFastLightPurpleColor,
   tertiaryColor: kFastLightTealColor,
 );
 
 final kLightPurpleFastTheme = FastThemeFactory.buildLightThemeWithColors(
   primaryColor: kFastLightPurpleColor,
-  primaryColorDark: CupertinoColors.systemPurple.highContrastColor,
+  primaryColorDark: kFastLightPurplePaletteColors.dark,
   secondaryColor: kFastLightIndigoColor,
   tertiaryColor: kFastLightTealColor,
 );
 
 final kLightTealFastTheme = FastThemeFactory.buildLightThemeWithColors(
   primaryColor: kFastLightTealColor,
-  primaryColorDark: CupertinoColors.systemTeal.highContrastColor,
+  primaryColorDark: kFastLightTealPaletteColors.dark,
   secondaryColor: kFastLightPurpleColor,
   tertiaryColor: kFastLightBlueColor,
 );
 
 final kLightYellowFastTheme = FastThemeFactory.buildLightThemeWithColors(
   primaryColor: kFastLightYellowColor,
-  primaryColorDark: CupertinoColors.systemYellow.highContrastColor,
+  primaryColorDark: kFastLightYellowPaletteColors.dark,
   secondaryColor: kFastLightIndigoColor,
   tertiaryColor: kFastLightTealColor,
 );
 
 final kLightOrangeFastTheme = FastThemeFactory.buildLightThemeWithColors(
   primaryColor: kFastLightOrangeColor,
-  primaryColorDark: CupertinoColors.systemOrange.highContrastColor,
+  primaryColorDark: kFastLightOrangePaletteColors.dark,
   secondaryColor: kFastLightIndigoColor,
   tertiaryColor: kFastLightTealColor,
 );
