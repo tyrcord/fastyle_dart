@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.30.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.30.1) (2022-09-20)
+
+### Fixes
+
+- Fixed wrong primary dark colors.
+
 ## [0.30.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.30.0) (2022-09-16)
 
 ### Enhancements
