@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.30.2](https://github.com/tyrcord/fastyle_dart/releases/tag/0.30.2) (2022-09-27)
+
+### Enhancements
+
+- Updated light colors.
+
 ## [0.30.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.30.1) (2022-09-20)
 
 ### Fixes
