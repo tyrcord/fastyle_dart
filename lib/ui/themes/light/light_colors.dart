@@ -8,15 +8,15 @@ const kFastLightGrayColor = Color(0xFF8c8c8c);
 const kFastLightBlueColor = Color(0xFF3190d3);
 const kFastLightBlueGrayColor = Color(0xFF638ca1);
 const kFastLightTealColor = Color(0xFF56aeae);
-const kFastLightIndigoColor = Color(0xFF7d50b4);
-const kFastLightPurpleColor = Color(0xFFb150b4);
+const kFastLightIndigoColor = Color(0xFF6d4aba);
+const kFastLightPurpleColor = Color(0xFFbf41c3);
 const kFastLightMintColor = Color(0xFF5AAA97);
-const kFastLightGreenColor = Color(0xFF64a06d);
-final kFastLightPinkColor = Color(0xFFdc289a);
-const kFastLightRedColor = Color(0xFFd34c31);
-const kFastLightOrangeColor = Color(0xFFd77c2d);
-const kFastLightYellowColor = Color(0xFFe0c124);
-const kFastLightBrownColor = Color(0xFFa97c5b);
+const kFastLightGreenColor = Color(0xFF5da864);
+final kFastLightPinkColor = Color(0xFFd53098);
+const kFastLightRedColor = Color(0xFFda422b);
+const kFastLightOrangeColor = Color(0xFFe67b1e);
+const kFastLightYellowColor = Color(0xFFf3e712);
+const kFastLightBrownColor = Color(0xFFa57c5f);
 
 // Palette Colors
 
