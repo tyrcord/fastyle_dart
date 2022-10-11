@@ -1,7 +1,7 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:tbloc_dart/tbloc_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tbloc_dart/tbloc_dart.dart';
 
 const _kHeaderPadding = EdgeInsets.symmetric(horizontal: 16.0);
 const _kAppBarHeightSize = Size.fromHeight(kToolbarHeight);
@@ -209,8 +209,8 @@ class FastSectionPage extends StatelessWidget {
           parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
 
       leading = useCloseButton
-          ? closeButton ?? const CloseButton()
-          : backButton ?? const BackButton();
+          ? closeButton ?? const FastCloseButton()
+          : backButton ?? const FastBackButton();
     }
 
     return leading;

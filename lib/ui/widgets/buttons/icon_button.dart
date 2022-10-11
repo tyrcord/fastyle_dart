@@ -69,6 +69,7 @@ class _FastIconButtonState extends State<FastIconButton>
       disabledColor: _color.withAlpha(kDisabledAlpha),
       color: _color,
       tooltip: widget.tooltip,
+      splashRadius: kFastSplashRadius,
     );
   }
 }
