@@ -1,20 +1,19 @@
 import 'dart:developer';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:fastyle_dart_example/pages/colors.dart';
-import 'package:fastyle_dart_example/pages/notifications.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:tbloc_dart/tbloc_dart.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 import 'package:fastyle_dart_example/data/items.dart';
 import 'package:fastyle_dart_example/pages/buttons.dart';
 import 'package:fastyle_dart_example/pages/cards.dart';
+import 'package:fastyle_dart_example/pages/colors.dart';
 import 'package:fastyle_dart_example/pages/fields.dart';
 import 'package:fastyle_dart_example/pages/lists.dart';
+import 'package:fastyle_dart_example/pages/notifications.dart';
 import 'package:fastyle_dart_example/pages/tabs.dart';
 import 'package:fastyle_dart_example/pages/typography.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:tbloc_dart/tbloc_dart.dart';
 
 class DummyLoaderJob extends FastJob {
   @override
@@ -95,9 +94,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final palette = ThemeHelper.getPaletteColors(context);
+
     return FastHomePage(
-      leading: IconButton(
-        onPressed: () {
+      leading: FastIconButton(
+        onTap: () {
           const slideText1 = 'slide 1';
           const slideText2 = 'slide 2';
           const homeText = 'Home';
@@ -120,10 +121,12 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         },
         icon: Icon(Icons.account_circle),
+        iconColor: palette.whiteColor,
+        iconSize: kFastIconSizeMedium,
       ),
       actions: [
-        IconButton(
-          onPressed: () async {
+        FastIconButton(
+          onTap: () async {
             final response = await Navigator.push(
               context,
               CupertinoPageRoute(
@@ -142,6 +145,8 @@ class _MyHomePageState extends State<MyHomePage> {
             }
           },
           icon: Icon(Icons.search),
+          iconColor: palette.whiteColor,
+          iconSize: kFastIconSizeMedium,
         ),
       ],
       titleText: 'Fastyle Demo',
