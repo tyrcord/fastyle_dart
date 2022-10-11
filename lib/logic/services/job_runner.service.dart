@@ -1,10 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:decimal/decimal.dart';
-import 'package:rxdart/rxdart.dart';
-
 import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:flutter/material.dart';
+import 'package:rxdart/rxdart.dart';
 
 class FastJobRunner {
   @protected
@@ -21,7 +20,8 @@ class FastJobRunner {
     IFastErrorReporter? errorReporter,
   }) {
     if (!_isRunning) {
-      final progresStep = Decimal.one / Decimal.fromInt(jobs.length);
+      final rProgresStep = Decimal.one / Decimal.fromInt(jobs.length);
+      final dProgresStep = rProgresStep.toDecimal();
       var progress = Decimal.zero;
       var hasError = false;
       _isRunning = true;
@@ -32,7 +32,7 @@ class FastJobRunner {
                 job.run(context, errorReporter: errorReporter),
               ))
           .map((_) {
-            progress += progresStep;
+            progress += dProgresStep;
 
             return progress.toDouble();
           })
