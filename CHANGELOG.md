@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [0.31.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.31.0) (2022-10-11)
+
+### Enhancements
+
+- Better web support.
+- Update decimal dependency.
+
 ## [0.30.2](https://github.com/tyrcord/fastyle_dart/releases/tag/0.30.2) (2022-09-27)
 
 ### Enhancements
