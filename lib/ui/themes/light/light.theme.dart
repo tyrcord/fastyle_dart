@@ -1,5 +1,4 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 final _baseTextTheme = kBaseFastTheme.textTheme;

@@ -45,7 +45,7 @@ const kFastSizedBox64 = SizedBox(height: 64.0);
 
 const kFastBorderRadius = 12.0;
 const kFastBlurRadius = 3.0;
-const kFastSplashRadius = 16.0;
+const kFastSplashRadius = 18.0;
 
 // Options
 

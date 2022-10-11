@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:io' if (dart.library.html) 'dart:html';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/foundation.dart';
