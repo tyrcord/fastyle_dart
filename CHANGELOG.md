@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.31.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.31.1) (2022-10-11)
+
+### Enhancements
+
+- Better web support.
+
 ## [0.31.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.31.0) (2022-10-11)
 
 ### Enhancements
