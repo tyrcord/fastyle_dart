@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.31.3](https://github.com/tyrcord/fastyle_dart/releases/tag/0.31.3) (2022-10-12)
+
+### Fixes
+
+- Fixed app progress bar.
+
 ## [0.31.2](https://github.com/tyrcord/fastyle_dart/releases/tag/0.31.2) (2022-10-12)
 
 ### Enhancements
