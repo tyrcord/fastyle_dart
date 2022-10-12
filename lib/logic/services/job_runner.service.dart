@@ -21,7 +21,7 @@ class FastJobRunner {
   }) {
     if (!_isRunning) {
       final rProgresStep = Decimal.one / Decimal.fromInt(jobs.length);
-      final dProgresStep = rProgresStep.toDecimal();
+      final dProgresStep = rProgresStep.toDecimal(scaleOnInfinitePrecision: 32);
       var progress = Decimal.zero;
       var hasError = false;
       _isRunning = true;
