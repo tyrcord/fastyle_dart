@@ -1,7 +1,8 @@
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:flutter/material.dart';
+import 'package:tutils_dart/tutils_dart.dart';
 
 class ButtonsPage extends StatelessWidget {
   @override
@@ -13,9 +14,37 @@ class ButtonsPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           FastRaisedButton(
-            text: 'raised button',
+            text: 'raised button (platform?)',
             onTap: () {
-              log('raised button disabled');
+              log('raised button tapped');
+
+              if (isIOS) {
+                log('isIOS');
+              }
+
+              if (isAndroid) {
+                log('isAndroid');
+              }
+
+              if (isWeb) {
+                log('isWeb');
+              }
+
+              if (isLinux) {
+                log('isLinux');
+              }
+
+              if (isMacOS) {
+                log('isMacOS');
+              }
+
+              if (isWindows) {
+                log('isWindows');
+              }
+
+              if (isFuchsia) {
+                log('isFuchsia');
+              }
             },
           ),
           FastRaisedButton(
