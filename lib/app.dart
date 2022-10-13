@@ -1,10 +1,8 @@
-import 'dart:io' if (dart.library.html) 'dart:html';
-
 import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
+import 'package:tutils_dart/tutils_dart.dart';
 
 class FastApp extends StatefulWidget {
   final Iterable<LocalizationsDelegate>? localizationsDelegates;
@@ -107,9 +105,9 @@ class _FastAppState extends State<FastApp> {
   }
 
   void _hideKeyboard() {
-    if (kIsWeb) return;
+    if (isWeb) return;
 
-    if (Platform.isIOS || Platform.isAndroid) {
+    if (isIOS || isAndroid) {
       FocusManager.instance.primaryFocus!.unfocus();
       SystemChannels.textInput.invokeMethod('TextInput.hide');
     }

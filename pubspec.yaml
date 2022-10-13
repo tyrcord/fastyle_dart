@@ -23,6 +23,7 @@ dependencies:
   tmodel_dart: ^0.5.0
   shimmer: ^2.0.0
   decimal: ^2.3.0
+  tutils_dart: ^1.0.0
 
 dev_dependencies:
   flutter_test:
