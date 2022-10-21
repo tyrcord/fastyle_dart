@@ -105,22 +105,24 @@ class FastNotificationCenter {
     Key? key,
     FastNotificationCenterOptions? options,
   }) {
+    final colorHelper = ThemeHelper.colors;
+    final backgroundColor = colorHelper.getSecondaryBackgroundColor(_context);
+
     _addNotification(
       Flushbar(
-        key: key,
-        backgroundColor:
-            ThemeHelper.colors.getSecondaryBackgroundColor(_context),
+        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+        borderRadius: const BorderRadius.all(Radius.circular(48)),
         boxShadows: [ThemeHelper.getDefaultBoxShadow(_context)],
+        onStatusChanged: _onNotificationStatusChanged,
         flushbarPosition: FlushbarPosition.TOP,
         animationDuration: _animationDuration,
         messageText: FastBody(text: message),
+        backgroundColor: backgroundColor,
         duration: _notificationDuration,
-        borderRadius: const BorderRadius.all(
-          Radius.circular(kFastBorderRadius),
-        ),
         icon: _buildIcon(options),
         margin: kFastEdgeInsets8,
-        onStatusChanged: _onNotificationStatusChanged,
+        maxWidth: 400,
+        key: key,
       ),
     );
   }
