@@ -3,24 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:tbloc_dart/core/base/base.dart';
 
 class ThemeHelper {
+  static final _spacingHelper = FastThemeSpacingHelper();
   static final _gradientHelper = ThemeGradientHelper();
   static final _colorHelper = ThemeColorHelper();
   static final _textHelper = ThemeTextHelper();
-  static double borderSize = kFastBorderSize;
-  static double dividerSize = kFastDividerSize;
+
   static double dividerIndent = kFastDividerIndent;
+  static double dividerSize = kFastDividerSize;
+  static double borderSize = kFastBorderSize;
 
-  static ThemeGradientHelper get gradients {
-    return _gradientHelper;
-  }
-
-  static ThemeColorHelper get colors {
-    return _colorHelper;
-  }
-
-  static ThemeTextHelper get texts {
-    return _textHelper;
-  }
+  static FastThemeSpacingHelper get spacing => _spacingHelper;
+  static ThemeGradientHelper get gradients => _gradientHelper;
+  static ThemeColorHelper get colors => _colorHelper;
+  static ThemeTextHelper get texts => _textHelper;
 
   static FastPaletteColors getPaletteColors(BuildContext context) {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
