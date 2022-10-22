@@ -2,6 +2,9 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:fuzzy/fuzzy.dart';
 
+export './edge_insets.constants.dart';
+export './sized_box.constants.dart';
+
 // Strings
 
 const kFastClearSelectionText = 'Clear Selection';
@@ -18,14 +21,6 @@ const kFastNextText = 'next';
 const kFastSkipText = 'skip';
 const kFastEmptyString = '';
 
-// EdgeInsets
-
-const kFastEdgeInsets24 = EdgeInsets.all(24.0);
-const kFastEdgeInsets16 = EdgeInsets.all(16.0);
-const kFastEdgeInsets12 = EdgeInsets.all(12.0);
-const kFastEdgeInsets8 = EdgeInsets.all(8.0);
-const kFastEdgeInsets6 = EdgeInsets.all(6.0);
-
 // Sizes
 
 const kFastIconSizeXs = 18.0;
@@ -34,12 +29,6 @@ const kFastIconSizeMedium = 24.0;
 const kFastIconSizeXl = 28.0;
 
 const kFastLineHeight = 1.2;
-
-const kFastSizedBox8 = SizedBox(height: 8.0);
-const kFastSizedBox16 = SizedBox(height: 16.0);
-const kFastSizedBox24 = SizedBox(height: 24.0);
-const kFastSizedBox32 = SizedBox(height: 32.0);
-const kFastSizedBox64 = SizedBox(height: 64.0);
 
 // Radius
 
