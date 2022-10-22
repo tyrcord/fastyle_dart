@@ -28,6 +28,7 @@ class FastNotificationCenter {
   static final ListQueue<Flushbar> _queue = ListQueue<Flushbar>();
   static bool _isShowingNotification = false;
   static const int _maxNotification = 2;
+  static const double _maxNoticationWidth = 400;
 
   ///
   /// Displays an error notification.
@@ -110,8 +111,6 @@ class FastNotificationCenter {
 
     _addNotification(
       Flushbar(
-        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-        borderRadius: const BorderRadius.all(Radius.circular(48)),
         boxShadows: [ThemeHelper.getDefaultBoxShadow(_context)],
         onStatusChanged: _onNotificationStatusChanged,
         flushbarPosition: FlushbarPosition.TOP,
@@ -119,10 +118,17 @@ class FastNotificationCenter {
         messageText: FastBody(text: message),
         backgroundColor: backgroundColor,
         duration: _notificationDuration,
+        maxWidth: _maxNoticationWidth,
         icon: _buildIcon(options),
         margin: kFastEdgeInsets8,
-        maxWidth: 400,
         key: key,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(FastSpacing.xl),
+        ),
+        padding: EdgeInsets.symmetric(
+          vertical: FastSpacing.xs,
+          horizontal: FastSpacing.small,
+        ),
       ),
     );
   }
