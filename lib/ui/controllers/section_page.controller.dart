@@ -1,8 +1,7 @@
+import 'package:async/async.dart';
+import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:async/async.dart';
-
-import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastSectionPageController extends StatefulWidget {
   final WidgetBuilder? loadingBuilder;

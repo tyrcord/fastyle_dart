@@ -1,14 +1,11 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-const _kHeaderPadding = 16.0;
-const _kContentPadding = EdgeInsets.symmetric(vertical: _kHeaderPadding);
-
 class FastHomePage extends StatelessWidget {
   ///
   /// The padding for the page.
   ///
-  final EdgeInsetsGeometry contentPadding;
+  final EdgeInsetsGeometry? contentPadding;
 
   ///
   /// A button displayed floating above body, in the bottom right corner.
@@ -58,19 +55,17 @@ class FastHomePage extends StatelessWidget {
     Key? key,
     required this.children,
     this.appBarExpandedHeight = kFastExpandedHeight,
-    this.contentPadding = _kContentPadding,
     this.appBarBackgroundLinearGradient,
     this.appBarBackgroundColor,
     this.floatingActionButton,
     this.appBarDecoration,
     this.scrollController,
+    this.contentPadding,
     this.subtitleText,
     this.titleText,
     this.actions,
     this.leading,
-  })  : assert(
-          appBarExpandedHeight >= kFastExpandedHeight ? true : false,
-        ),
+  })  : assert(appBarExpandedHeight >= kFastExpandedHeight ? true : false),
         super(key: key);
 
   @override
