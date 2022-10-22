@@ -50,6 +50,22 @@ class FastThemeSpacingHelper {
     return kFastVerticalEdgeInsets16;
   }
 
+  double getSpacing(BuildContext context) {
+    final mediaQueryData = MediaQuery.of(context);
+
+    if (mediaQueryData.size.width >= FastMediaBreakpoints.tablet) {
+      return FastSpacing.small;
+    } else if (mediaQueryData.size.width >= FastMediaBreakpoints.desktop) {
+      return FastSpacing.medium;
+    } else if (mediaQueryData.size.width >= FastMediaBreakpoints.large) {
+      return FastSpacing.large;
+    } else if (mediaQueryData.size.width >= FastMediaBreakpoints.xl) {
+      return FastSpacing.xl;
+    }
+
+    return FastSpacing.xs;
+  }
+
   SizedBox getVerticalSpacing(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
 
