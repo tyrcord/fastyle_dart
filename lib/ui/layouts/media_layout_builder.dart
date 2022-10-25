@@ -4,7 +4,7 @@ import 'package:tbloc_dart/tbloc_dart.dart';
 
 typedef FastMediaLayoutWidgetBuilder = Widget Function(
   BuildContext context,
-  FastMediaType fastMediaType,
+  FastMediaType mediaType,
 );
 
 class FastMediaLayoutBuilder extends StatelessWidget {

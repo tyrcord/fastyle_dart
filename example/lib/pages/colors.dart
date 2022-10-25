@@ -12,54 +12,50 @@ class ColorsPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          buildScheme('Gray', palette.gray),
-          buildScheme('Blue', palette.blue),
-          buildScheme('Blue Gray', palette.blueGray),
-          buildScheme('Teal', palette.teal),
-          buildScheme('Indigo', palette.indigo),
-          buildScheme('Purple', palette.purple),
-          buildScheme('Mint', palette.mint),
-          buildScheme('Green', palette.green),
-          buildScheme('Pink', palette.pink),
-          buildScheme('Red', palette.red),
-          buildScheme('Orange', palette.orange),
-          buildScheme('Yellow', palette.yellow),
-          buildScheme('Brown', palette.brown),
+          buildScheme(context, 'Gray', palette.gray),
+          buildScheme(context, 'Blue', palette.blue),
+          buildScheme(context, 'Blue Gray', palette.blueGray),
+          buildScheme(context, 'Teal', palette.teal),
+          buildScheme(context, 'Indigo', palette.indigo),
+          buildScheme(context, 'Purple', palette.purple),
+          buildScheme(context, 'Mint', palette.mint),
+          buildScheme(context, 'Green', palette.green),
+          buildScheme(context, 'Pink', palette.pink),
+          buildScheme(context, 'Red', palette.red),
+          buildScheme(context, 'Orange', palette.orange),
+          buildScheme(context, 'Yellow', palette.yellow),
+          buildScheme(context, 'Brown', palette.brown),
         ],
       ),
     );
   }
 
-  Widget buildScheme(String title, FastPaletteScheme scheme) {
+  Widget buildScheme(
+      BuildContext context, String title, FastPaletteScheme scheme) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         FastTitle(text: title),
         kFastSizedBox16,
-        buildColors(scheme),
+        buildColors(context, scheme),
         kFastSizedBox32,
       ],
     );
   }
 
-  Widget buildColors(FastPaletteScheme scheme) {
-    const separator = SizedBox(width: 3);
+  Widget buildColors(BuildContext context, FastPaletteScheme scheme) {
+    var spacing = ThemeHelper.spacing.getSpacing(context);
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Wrap(
+      runSpacing: spacing,
+      spacing: spacing,
       children: [
         buildColor('Lightest', scheme.lightest),
-        separator,
         buildColor('Lighter', scheme.lighter),
-        separator,
         buildColor('Light', scheme.light),
-        separator,
         buildColor('Mid', scheme.mid),
-        separator,
         buildColor('Dark', scheme.dark),
-        separator,
         buildColor('Darker', scheme.darker),
-        separator,
         buildColor('Darkest', scheme.darkest),
       ],
     );

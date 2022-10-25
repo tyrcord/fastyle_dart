@@ -8,6 +8,7 @@ import 'package:fastyle_dart_example/pages/colors.dart';
 import 'package:fastyle_dart_example/pages/fields.dart';
 import 'package:fastyle_dart_example/pages/lists.dart';
 import 'package:fastyle_dart_example/pages/notifications.dart';
+import 'package:fastyle_dart_example/pages/responsive.dart';
 import 'package:fastyle_dart_example/pages/tabs.dart';
 import 'package:fastyle_dart_example/pages/typography.dart';
 import 'package:flutter/cupertino.dart';
@@ -317,6 +318,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
+          );
+        },
+      ),
+      FastNavigationListItem(
+        leading: FastRoundedIcon(
+          iconData: Icons.dashboard,
+          backgroundColor: palette.yellow.mid,
+        ),
+        labelText: 'Responsive',
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ResponsivePage()),
           );
         },
       ),
