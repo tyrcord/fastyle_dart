@@ -6,3 +6,4 @@ export './list_view.layout.dart';
 export './media_layout_builder.dart';
 export './media_layout_observer.dart';
 export './shadow.layout.dart';
+export './split.layout.dart';

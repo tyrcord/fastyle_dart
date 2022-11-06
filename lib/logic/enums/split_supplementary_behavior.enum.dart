@@ -1,0 +1,4 @@
+enum FastSplitSupplementaryBehavior {
+  cascade,
+  sideBar,
+}
