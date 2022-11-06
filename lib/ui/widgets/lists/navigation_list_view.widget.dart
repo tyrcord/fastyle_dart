@@ -15,6 +15,8 @@ class FastNavigationListView<T extends FastItem> extends StatefulWidget {
   final bool sortItems;
   final bool isEnabled;
   final List<T> items;
+  final bool showTrailing;
+  final bool showLeading;
 
   FastNavigationListView({
     Key? key,
@@ -29,6 +31,8 @@ class FastNavigationListView<T extends FastItem> extends StatefulWidget {
     this.showSearchBar = false,
     this.sortItems = true,
     this.isEnabled = true,
+    this.showTrailing = true,
+    this.showLeading = true,
     this.itemContentPadding,
     this.listItemBuilder,
   }) : super(key: key);
@@ -83,6 +87,8 @@ class _FastNavigationListViewState<T extends FastItem>
   Widget _buildNavigationListItem(BuildContext context, T item) {
     return FastNavigationListItem(
       contentPadding: widget.itemContentPadding,
+      showTrailing: widget.showTrailing,
+      showLeading: widget.showLeading,
       item: item,
       onTap: () {
         if (widget.isEnabled && item.isEnabled) {

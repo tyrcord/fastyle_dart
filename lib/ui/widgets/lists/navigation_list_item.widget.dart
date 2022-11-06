@@ -16,6 +16,8 @@ class FastNavigationListItem<T extends FastItem> extends StatelessWidget {
   final bool isEnabled;
   final bool isDense;
   final T? item;
+  final bool showTrailing;
+  final bool showLeading;
 
   FastNavigationListItem({
     Key? key,
@@ -24,6 +26,8 @@ class FastNavigationListItem<T extends FastItem> extends StatelessWidget {
     this.capitalizeLabelText = true,
     this.isEnabled = true,
     this.isDense = true,
+    this.showTrailing = true,
+    this.showLeading = true,
     this.descriptionText,
     this.contentPadding,
     this.labelText,
@@ -35,15 +39,15 @@ class FastNavigationListItem<T extends FastItem> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FastListItemLayout(
-      contentPadding: contentPadding,
-      labelText: item?.labelText ?? labelText!,
+      trailing: showTrailing ? item?.descriptor?.trailing ?? trailing : null,
+      leading: showLeading ? item?.descriptor?.leading ?? leading : null,
       descriptionText: item?.descriptionText ?? descriptionText,
-      capitalizeLabelText: capitalizeLabelText,
-      onTap: onTap,
-      leading: item?.descriptor?.leading ?? leading,
-      trailing: item?.descriptor?.trailing ?? trailing,
-      isEnabled: item?.isEnabled ?? isEnabled,
       isDense: item?.descriptor?.isDense ?? isDense,
+      labelText: item?.labelText ?? labelText!,
+      capitalizeLabelText: capitalizeLabelText,
+      isEnabled: item?.isEnabled ?? isEnabled,
+      contentPadding: contentPadding,
+      onTap: onTap,
     );
   }
 }
