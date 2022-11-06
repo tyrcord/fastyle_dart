@@ -7,6 +7,8 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
   ///
   /// Allow to convert the label to beginning of sentence case.
   ///
+  final Color? selectionTralingColor;
+  final Color? selectionLabelColor;
   final bool capitalizeLabelText;
   final String? descriptionText;
   final Color? selectionColor;
@@ -26,6 +28,8 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
     this.isSelected = false,
     this.isEnabled = true,
     this.isDense = true,
+    this.selectionTralingColor,
+    this.selectionLabelColor,
     this.descriptionText,
     this.contentPadding,
     this.selectionColor,
@@ -38,27 +42,47 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _trailing = item?.descriptor?.trailing ?? trailing ?? kFastDoneIcon;
+    Color? _selectionLabelColor;
+    Color? _selectionColor;
+    Widget? _trailing;
 
-    if (_trailing is Icon) {
-      final icon = _trailing;
-      _trailing = Icon(
-        icon.icon,
-        color: selectionColor ?? ThemeHelper.colors.getPrimaryColor(context),
-        size: icon.size,
-      );
+    if (isSelected) {
+      final palette = ThemeHelper.getPaletteColors(context);
+      final colors = ThemeHelper.colors;
+
+      if (selectionColor != null) {
+        _selectionColor = selectionColor ?? colors.getPrimaryColor(context);
+        _selectionLabelColor = selectionLabelColor ?? palette.whiteColor;
+        _trailing = null;
+      } else {
+        // TODO: we need to think again the default trailing icon
+        // since we can have a selection color.
+        _trailing = item?.descriptor?.trailing ?? trailing ?? kFastDoneIcon;
+
+        if (_trailing is Icon) {
+          final icon = _trailing;
+
+          _trailing = Icon(
+            color: selectionTralingColor ?? colors.getPrimaryColor(context),
+            size: icon.size,
+            icon.icon,
+          );
+        }
+      }
     }
 
     return FastListItemLayout(
-      contentPadding: contentPadding,
-      labelText: item?.labelText ?? labelText!,
       descriptionText: item?.descriptionText ?? descriptionText,
-      capitalizeLabelText: capitalizeLabelText,
-      onTap: onTap,
       leading: item?.descriptor?.leading ?? leading,
-      trailing: isSelected ? _trailing : null,
-      isEnabled: item?.isEnabled ?? isEnabled,
       isDense: item?.descriptor?.isDense ?? isDense,
+      selectionLabelColor: _selectionLabelColor,
+      labelText: item?.labelText ?? labelText!,
+      capitalizeLabelText: capitalizeLabelText,
+      isEnabled: item?.isEnabled ?? isEnabled,
+      selectionColor: _selectionColor,
+      contentPadding: contentPadding,
+      trailing: _trailing,
+      onTap: onTap,
     );
   }
 }

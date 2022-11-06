@@ -6,8 +6,11 @@ class FastSelectableListView<T extends FastItem> extends StatefulWidget {
   final ValueChanged<T> onSelectionChanged;
   final EdgeInsets? itemContentPadding;
   final List<FastCategory>? categories;
+  final Color? selectionTralingColor;
+  final Color? selectionLabelColor;
   final String? allCategoryText;
   final int intialCategoryIndex;
+  final Color? selectionColor;
   final bool isViewScrollable;
   final bool showItemDivider;
   final bool groupByCategory;
@@ -28,9 +31,12 @@ class FastSelectableListView<T extends FastItem> extends StatefulWidget {
     this.intialCategoryIndex = 0,
     this.sortItems = true,
     this.isEnabled = true,
+    this.selectionTralingColor,
+    this.selectionLabelColor,
     this.itemContentPadding,
     this.allCategoryText,
     this.listItemBuilder,
+    this.selectionColor,
     this.categories,
     this.selection,
   }) : super(key: key);
@@ -84,7 +90,10 @@ class _FastSelectableListViewState<T extends FastItem>
   Widget _buildSelectableListItem(T item) {
     return FastSelectableListItem(
       key: UniqueKey(),
+      selectionTralingColor: widget.selectionTralingColor,
+      selectionLabelColor: widget.selectionLabelColor,
       contentPadding: widget.itemContentPadding,
+      selectionColor: widget.selectionColor,
       item: item,
       onTap: () {
         if (widget.isEnabled && item.isEnabled) {

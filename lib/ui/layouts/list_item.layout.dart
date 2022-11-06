@@ -53,14 +53,20 @@ class FastListItemLayout extends StatefulWidget {
   ///
   final bool isDense;
 
+  final Color? selectionLabelColor;
+
+  final Color? selectionColor;
+
   FastListItemLayout({
     Key? key,
     required this.labelText,
     this.capitalizeLabelText = true,
     this.isEnabled = true,
     this.isDense = true,
+    this.selectionLabelColor,
     this.descriptionText,
     this.contentPadding,
+    this.selectionColor,
     this.descriptor,
     this.trailing,
     this.leading,
@@ -117,15 +123,18 @@ class _FastListItemLayoutState extends State<FastListItemLayout> {
 
     return ThemeHelper.getListTitleTheme(
       context: context,
-      child: ListTile(
-        trailing: widget.descriptor?.trailing ?? widget.trailing,
-        contentPadding: widget.contentPadding,
-        title: _buildTitle(transform),
-        enabled: widget.isEnabled,
-        leading: _buildLeading(),
-        onTap: widget.onTap,
-        subtitle: subtitle,
-        dense: isDense,
+      child: Container(
+        color: widget.selectionColor,
+        child: ListTile(
+          trailing: widget.descriptor?.trailing ?? widget.trailing,
+          contentPadding: widget.contentPadding,
+          title: _buildTitle(transform),
+          enabled: widget.isEnabled,
+          leading: _buildLeading(),
+          onTap: widget.onTap,
+          subtitle: subtitle,
+          dense: isDense,
+        ),
       ),
     );
   }
@@ -135,7 +144,10 @@ class _FastListItemLayoutState extends State<FastListItemLayout> {
         ? toBeginningOfSentenceCase(widget.labelText)!
         : widget.labelText;
 
-    final title = FastBody(text: labelText);
+    final title = FastBody(
+      textColor: widget.selectionLabelColor,
+      text: labelText,
+    );
 
     return transform != null
         ? Transform(transform: transform, child: title)
