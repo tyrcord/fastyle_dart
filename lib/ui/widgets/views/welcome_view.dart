@@ -1,7 +1,6 @@
+import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 
 const _kStepDotSize = 10.0;
@@ -70,6 +69,7 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
 
   @override
   Widget build(BuildContext context) {
+    final spacing = ThemeHelper.spacing.getVerticalSpacing(context);
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
     final brightness = themeBloc.currentState.brightness;
     final overlayStyle = brightness == Brightness.dark
@@ -97,7 +97,9 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
                         },
                       ),
                     ),
+                    spacing,
                     _buildStepper(context, isPending),
+                    spacing,
                   ],
                 ),
               );
@@ -111,39 +113,59 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
   Widget _buildStepper(BuildContext context, bool isPending) {
     final canShowSkipButton = widget.allowToSkip && !hasReachEnd;
 
-    return Stack(
-      children: <Widget>[
-        Positioned.fill(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: _buildSteps(context),
-          ),
-        ),
-        Align(
-          alignment: Alignment.centerRight,
-          child: _buildButtonLayout(
-            FastTextButton(
-              onTap: () {
-                if (hasReachEnd) {
-                  _onDone();
-                } else {
-                  _pageViewController.nextPage(
-                    duration: kTabScrollDuration,
-                    curve: Curves.ease,
-                  );
-                }
-              },
-              text: hasReachEnd ? widget.doneText : widget.nextText,
-              isEnabled: !isPending,
+    return _buildStepperContainer(
+      context,
+      Stack(
+        children: <Widget>[
+          Positioned.fill(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: _buildSteps(context),
             ),
           ),
-        ),
-        if (canShowSkipButton)
-          _buildButtonLayout(
-            FastTextButton(onTap: _onSkip, text: widget.skipText),
+          Align(
+            alignment: Alignment.centerRight,
+            child: _buildButtonLayout(
+              context,
+              FastTextButton(
+                onTap: () {
+                  if (hasReachEnd) {
+                    _onDone();
+                  } else {
+                    _pageViewController.nextPage(
+                      duration: kTabScrollDuration,
+                      curve: Curves.ease,
+                    );
+                  }
+                },
+                text: hasReachEnd ? widget.doneText : widget.nextText,
+                isEnabled: !isPending,
+              ),
+            ),
           ),
-      ],
+          if (canShowSkipButton)
+            _buildButtonLayout(
+              context,
+              FastTextButton(onTap: _onSkip, text: widget.skipText),
+            ),
+        ],
+      ),
     );
+  }
+
+// TODO: check
+  Widget _buildStepperContainer(BuildContext context, Widget child) {
+    return FastMediaLayoutBuilder(builder: ((context, mediaType) {
+      var factor = 1.0;
+
+      if (mediaType == FastMediaType.tablet) {
+        factor = 0.8;
+      } else if (mediaType == FastMediaType.desktop) {
+        factor = 0.6;
+      }
+
+      return FractionallySizedBox(widthFactor: factor, child: child);
+    }));
   }
 
   List<Widget> _buildSteps(BuildContext context) {
@@ -166,11 +188,10 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
     );
   }
 
-  Widget _buildButtonLayout(Widget child) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: child,
-    );
+  Widget _buildButtonLayout(BuildContext context, Widget child) {
+    final padding = ThemeHelper.spacing.getHorizontalPadding(context);
+
+    return Padding(padding: padding, child: child);
   }
 
   void _onSkip() {

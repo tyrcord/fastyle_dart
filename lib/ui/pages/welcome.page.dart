@@ -11,20 +11,23 @@ class FastWelcomePage extends StatelessWidget {
     this.children,
   }) : super(key: key);
 
+  // TODO improvements
+  // https://github.com/flutter/flutter/issues/18711#issuecomment-505791677
   @override
   Widget build(BuildContext context) {
-    // TODO improvements
-    // https://github.com/flutter/flutter/issues/18711#issuecomment-505791677
+    final spacing = ThemeHelper.spacing.getVerticalSpacing(context);
+    final padding = ThemeHelper.spacing.getPadding(context);
+
     return Container(
-      padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
+      padding: padding,
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            kFastSizedBox16,
+            spacing,
             FastHeadline(text: titleText),
             if (children != null) ...children!,
-            kFastSizedBox16,
+            spacing,
           ],
         ),
       ),

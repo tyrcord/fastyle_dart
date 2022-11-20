@@ -2,13 +2,14 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 const _kHeaderPadding = 16.0;
-const _kContentPadding = EdgeInsets.symmetric(vertical: _kHeaderPadding);
+const _kContentPadding32 = EdgeInsets.symmetric(vertical: 32);
+const _kContentPadding16 = EdgeInsets.symmetric(vertical: _kHeaderPadding);
 
 class FastHomePageLayout extends StatefulWidget {
   ///
   /// The padding for the page.
   ///
-  final EdgeInsetsGeometry contentPadding;
+  final EdgeInsetsGeometry? contentPadding;
 
   ///
   /// A button displayed floating above body, in the bottom right corner.
@@ -58,12 +59,12 @@ class FastHomePageLayout extends StatefulWidget {
     Key? key,
     required this.children,
     this.appBarExpandedHeight = kFastExpandedHeight,
-    this.contentPadding = _kContentPadding,
     this.appBarBackgroundLinearGradient,
     this.appBarBackgroundColor,
     this.floatingActionButton,
     this.appBarDecoration,
     this.scrollController,
+    this.contentPadding,
     this.subtitleText,
     this.titleText,
     this.actions,
@@ -110,20 +111,36 @@ class _FastHomePageLayoutState extends State<FastHomePageLayout> {
             leading: widget.leading,
             scrollController: _scrollController,
           ),
-          _buildContent(),
+          _buildContent(context),
         ],
       ),
       floatingActionButton: widget.floatingActionButton,
     );
   }
 
-  Widget _buildContent() {
+  Widget _buildContent(BuildContext context) {
+    final padding = _getContentPadding(context);
+
     return SliverSafeArea(
       top: false,
       sliver: SliverPadding(
         sliver: SliverList(delegate: SliverChildListDelegate(widget.children)),
-        padding: widget.contentPadding,
+        padding: padding,
       ),
     );
+  }
+
+  EdgeInsetsGeometry _getContentPadding(BuildContext context) {
+    final mediaQueryData = MediaQuery.of(context);
+
+    if (widget.contentPadding != null) {
+      return widget.contentPadding!;
+    }
+
+    if (mediaQueryData.size.width >= FastMediaBreakpoints.tablet) {
+      return _kContentPadding32;
+    }
+
+    return _kContentPadding16;
   }
 }
