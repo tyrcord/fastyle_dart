@@ -155,8 +155,6 @@ class FastPageLayout extends StatelessWidget {
   Widget _buildContent(BuildContext context) {
     final padding = _getContentPadding(context);
 
-    log(padding.left.toString());
-
     return Padding(
       padding: footer == null
           ? padding.copyWith(bottom: _getBottomPadding(context))
