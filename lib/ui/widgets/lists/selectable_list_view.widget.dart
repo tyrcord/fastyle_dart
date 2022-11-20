@@ -19,11 +19,19 @@ class FastSelectableListView<T extends FastItem> extends StatefulWidget {
   final bool isEnabled;
   final List<T> items;
   final T? selection;
+  final bool showSearchBar;
+  final String searchPlaceholderText;
+  final bool shouldUseFuzzySearch;
+  final Icon clearSearchIcon;
 
   FastSelectableListView({
     Key? key,
     required this.onSelectionChanged,
     required this.items,
+    this.searchPlaceholderText = kFastSearchPlaceholderText,
+    this.clearSearchIcon = kFastClearSearchIcon,
+    this.shouldUseFuzzySearch = false,
+    this.showSearchBar = false,
     this.padding = EdgeInsets.zero,
     this.groupByCategory = false,
     this.isViewScrollable = true,
@@ -66,16 +74,20 @@ class _FastSelectableListViewState<T extends FastItem>
 
   @override
   Widget build(BuildContext context) {
-    return FastListViewLayout(
+    return FastSearchableListView<T>(
       listItemBuilder: _buildListItems,
       items: widget.items,
-      isViewScrollable: widget.isViewScrollable,
       showItemDivider: widget.showItemDivider,
       sortItems: widget.sortItems,
       groupByCategory: widget.groupByCategory,
       intialCategoryIndex: widget.intialCategoryIndex,
       allCategoryText: widget.allCategoryText,
       padding: widget.padding,
+      clearSearchIcon: widget.clearSearchIcon,
+      shouldUseFuzzySearch: widget.shouldUseFuzzySearch,
+      searchPlaceholderText: widget.searchPlaceholderText,
+      showSearchBar: widget.showSearchBar,
+      isViewScrollable: widget.isViewScrollable,
     );
   }
 

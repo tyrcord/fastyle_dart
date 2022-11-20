@@ -1,13 +1,7 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:tbloc_dart/tbloc_dart.dart';
 
-const _kHeaderPadding = EdgeInsets.symmetric(horizontal: 16.0);
 const _kAppBarHeightSize = Size.fromHeight(kToolbarHeight);
-const _kMargin = EdgeInsets.symmetric(vertical: 16.0);
-const _kBottomPaddingMin = 16.0;
-const _kElevation = 0.0;
 
 class FastSectionPage extends StatelessWidget {
   ///
@@ -59,7 +53,7 @@ class FastSectionPage extends StatelessWidget {
   ///
   /// The padding for the page.
   ///
-  final EdgeInsets contentPadding;
+  final EdgeInsets? contentPadding;
 
   ///
   /// Indicates the size of the app bar.
@@ -111,14 +105,17 @@ class FastSectionPage extends StatelessWidget {
   ///
   final Widget? child;
 
+  final bool showAppBar;
+
   FastSectionPage({
     Key? key,
     this.appBarHeightSize = _kAppBarHeightSize,
-    this.contentPadding = kFastEdgeInsets16,
     this.isTitlePositionBelowAppBar = true,
     this.isViewScrollable = false,
+    this.showAppBar = true,
     this.appBarBackgroundColor,
     this.floatingActionButton,
+    this.contentPadding,
     this.loadingTimeout,
     this.contentBuilder,
     this.loadingBuilder,
@@ -147,149 +144,32 @@ class FastSectionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: appBarHeightSize,
-        child: _buildAppBar(context),
-      ),
-      body: SafeArea(
-        top: false,
-        bottom: false,
-        child: FastSectionPageController(
-          loadedBuilder: _buildPageContent(),
-          loadingBuilder: loadingBuilder,
-          errorBuilder: errorBuilder,
-          loadingFuture: loadingFuture,
-          loadingTimeout: loadingTimeout,
-        ),
-      ),
+    return FastScaffold(
+      isTitlePositionBelowAppBar: isTitlePositionBelowAppBar,
+      appBarBackgroundColor: appBarBackgroundColor,
       floatingActionButton: floatingActionButton,
-    );
-  }
-
-  Widget _buildAppBar(BuildContext context) {
-    final themeBloc = BlocProvider.of<FastThemeBloc>(context);
-    final brightness = themeBloc.currentState.brightness;
-    final palette = ThemeHelper.getPaletteColors(context);
-    final overlayStyle = brightness == Brightness.dark
-        ? SystemUiOverlayStyle.light
-        : ThemeHelper.colors.getOverlayStyleForColor(
-            context: context,
-            color: appBarBackgroundColor ??
-                ThemeHelper.colors.getSecondaryBackgroundColor(context),
-          );
-
-    return AppBar(
-      systemOverlayStyle: overlayStyle,
-      automaticallyImplyLeading: false,
-      leading: leading ?? _buildLeadingIcon(context),
-      iconTheme: IconThemeData(
-        color: themeBloc.currentState.brightness == Brightness.light
-            ? ThemeHelper.texts.getBodyTextStyle(context).color
-            : palette.whiteColor,
-      ),
-      backgroundColor: appBarBackgroundColor ?? Colors.transparent,
-      elevation: _kElevation,
+      appBarHeightSize: appBarHeightSize,
+      closeButton: closeButton,
+      showAppBar: showAppBar,
+      backButton: backButton,
+      titleColor: titleColor,
+      titleText: titleText,
       actions: actions,
-      title: !isTitlePositionBelowAppBar && titleText != null
-          ? FastTitle(text: titleText!, textColor: titleColor, fontSize: 28.0)
-          : null,
-      centerTitle: false,
-    );
-  }
-
-  Widget? _buildLeadingIcon(BuildContext context) {
-    final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
-    final canPop = parentRoute?.canPop ?? false;
-
-    Widget? leading;
-
-    if (canPop) {
-      final useCloseButton =
-          parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
-
-      leading = useCloseButton
-          ? closeButton ?? const FastCloseButton()
-          : backButton ?? const FastBackButton();
-    }
-
-    return leading;
-  }
-
-  WidgetBuilder _buildPageContent() {
-    return (BuildContext context) {
-      if (isViewScrollable) {
-        return _builScrollableContent(context);
-      }
-
-      return _buildFixedContent(context);
-    };
-  }
-
-  Widget _buildFixedContent(BuildContext context) {
-    var content = _buildContent(context);
-
-    if (!isViewScrollable) {
-      content = Expanded(child: content);
-    }
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        if (titleText != null && isTitlePositionBelowAppBar)
-          Container(
-            padding: _kHeaderPadding,
-            margin: _kMargin,
-            child: FastHeadline(textColor: titleColor, text: titleText!),
-          ),
-        content,
-        if (!isViewScrollable && (footer != null || footerBuilder != null))
-          _buildFooter(context),
-      ],
-    );
-  }
-
-  CustomScrollView _builScrollableContent(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(child: _buildFixedContent(context)),
-        if (footer != null || footerBuilder != null)
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: _buildFooter(context),
-          ),
-      ],
-    );
-  }
-
-  Widget _buildContent(BuildContext context) {
-    return Padding(
-      padding: footer == null
-          ? contentPadding.copyWith(bottom: _getBottomPadding(context))
-          : contentPadding.copyWith(bottom: 0.0),
-      child: contentBuilder != null ? Builder(builder: contentBuilder!) : child,
-    );
-  }
-
-  Widget _buildFooter(BuildContext context) {
-    final mediaQueryData = MediaQuery.of(context);
-
-    return Padding(
-      padding: contentPadding.copyWith(
-        top: 0.0,
-        bottom: mediaQueryData.padding.bottom + _kBottomPaddingMin,
+      leading: leading,
+      child: FastPageLayout(
+        titleText: isTitlePositionBelowAppBar ? titleText : null,
+        isViewScrollable: isViewScrollable,
+        loadingBuilder: loadingBuilder,
+        loadingTimeout: loadingTimeout,
+        contentPadding: contentPadding,
+        contentBuilder: contentBuilder,
+        footerBuilder: footerBuilder,
+        loadingFuture: loadingFuture,
+        errorBuilder: errorBuilder,
+        titleColor: titleColor,
+        footer: footer,
+        child: child,
       ),
-      child: footerBuilder != null ? Builder(builder: footerBuilder!) : footer,
     );
-  }
-
-  double _getBottomPadding(BuildContext context) {
-    if (isViewScrollable) {
-      final mediaQueryData = MediaQuery.of(context);
-
-      return mediaQueryData.padding.bottom + _kBottomPaddingMin;
-    }
-
-    return 0.0;
   }
 }

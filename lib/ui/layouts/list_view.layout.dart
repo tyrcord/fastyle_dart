@@ -25,15 +25,15 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
   final int intialCategoryIndex;
 
   ///
-  /// Indicates whether the view initial is scrollable.
-  ///
-  final bool isViewScrollable;
-
-  ///
   /// Indicates whether the list should be displayed as a tab view
   /// and grouped by categories.
   ///
   final bool groupByCategory;
+
+  ///
+  /// Indicates whether the view initial is scrollable.
+  ///
+  final bool isViewScrollable;
 
   ///
   /// Indicates whether a thin horizontal line should be used as separator
@@ -110,6 +110,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     return ListView.builder(
       padding: padding,
       itemCount: rows.length,
+      shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
         return _buildListItem(
           context: context,
