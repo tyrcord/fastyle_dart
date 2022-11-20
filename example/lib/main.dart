@@ -7,6 +7,7 @@ import 'package:fastyle_dart_example/pages/cards.dart';
 import 'package:fastyle_dart_example/pages/colors.dart';
 import 'package:fastyle_dart_example/pages/fields.dart';
 import 'package:fastyle_dart_example/pages/lists.dart';
+import 'package:fastyle_dart_example/pages/split-view.dart';
 import 'package:fastyle_dart_example/pages/notifications.dart';
 import 'package:fastyle_dart_example/pages/responsive.dart';
 import 'package:fastyle_dart_example/pages/tabs.dart';
@@ -331,6 +332,19 @@ class _MyHomePageState extends State<MyHomePage> {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => ResponsivePage()),
+          );
+        },
+      ),
+      FastNavigationListItem(
+        leading: FastRoundedIcon(
+          iconData: Icons.dashboard,
+          backgroundColor: palette.blue.mid,
+        ),
+        labelText: 'Split View',
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SplitViewPage()),
           );
         },
       ),
