@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Navigator.push(
             context,
             CupertinoPageRoute(
-              builder: (context) => FastWelcomeView(
+              builder: (context) => FastOnboardingView(
                 homeBuilder: (_) => home,
                 slides: [slide1, slide2],
                 allowToSkip: true,

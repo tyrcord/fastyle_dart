@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
 
-FastApp _buildApp(FastWelcomeView welcome) {
+FastApp _buildApp(FastOnboardingView onboarding) {
   return FastApp(
-    home: welcome,
+    home: onboarding,
   );
 }
 
@@ -21,12 +21,12 @@ void main() {
     ],
   );
 
-  group('FastWelcomeView', () {
+  group('FastOnboardingView', () {
     group('#slides', () {
       testWidgets('should display the first slide',
           (WidgetTester tester) async {
         await tester.pumpWidget(
-          _buildApp(FastWelcomeView(
+          _buildApp(FastOnboardingView(
             homeBuilder: (_) {
               return home;
             },
@@ -43,7 +43,7 @@ void main() {
       testWidgets('should display the second slide after tapping on next',
           (WidgetTester tester) async {
         await tester.pumpWidget(
-          _buildApp(FastWelcomeView(
+          _buildApp(FastOnboardingView(
             homeBuilder: (_) {
               return home;
             },
@@ -66,7 +66,7 @@ void main() {
         var called = false;
 
         await tester.pumpWidget(
-          _buildApp(FastWelcomeView(
+          _buildApp(FastOnboardingView(
             homeBuilder: (_) {
               called = true;
               return home;
@@ -91,7 +91,7 @@ void main() {
       testWidgets('should be set to false by default',
           (WidgetTester tester) async {
         await tester.pumpWidget(
-          _buildApp(FastWelcomeView(
+          _buildApp(FastOnboardingView(
             homeBuilder: (_) {
               return home;
             },
@@ -103,10 +103,10 @@ void main() {
         expect(find.text('SKIP'), findsNothing);
       });
 
-      testWidgets('should allow to skip the welcome view when set to true',
+      testWidgets('should allow to skip the onboarding view when set to true',
           (WidgetTester tester) async {
         await tester.pumpWidget(
-          _buildApp(FastWelcomeView(
+          _buildApp(FastOnboardingView(
             homeBuilder: (_) {
               return home;
             },
@@ -123,7 +123,7 @@ void main() {
           'should not displayed a skip option when there is only one slide',
           (WidgetTester tester) async {
         await tester.pumpWidget(
-          _buildApp(FastWelcomeView(
+          _buildApp(FastOnboardingView(
             homeBuilder: (_) => home,
             slides: [slide1],
             allowToSkip: true,
@@ -139,7 +139,7 @@ void main() {
       testWidgets('should allow to override the done label',
           (WidgetTester tester) async {
         await tester.pumpWidget(
-          _buildApp(FastWelcomeView(
+          _buildApp(FastOnboardingView(
             homeBuilder: (_) {
               return home;
             },
@@ -157,7 +157,7 @@ void main() {
       testWidgets('should allow to override the next label',
           (WidgetTester tester) async {
         await tester.pumpWidget(
-          _buildApp(FastWelcomeView(
+          _buildApp(FastOnboardingView(
             homeBuilder: (_) {
               return home;
             },
@@ -175,7 +175,7 @@ void main() {
       testWidgets('should allow to override the skip label',
           (WidgetTester tester) async {
         await tester.pumpWidget(
-          _buildApp(FastWelcomeView(
+          _buildApp(FastOnboardingView(
             homeBuilder: (_) {
               return home;
             },
@@ -196,7 +196,7 @@ void main() {
         var done = false;
 
         await tester.pumpWidget(
-          _buildApp(FastWelcomeView(
+          _buildApp(FastOnboardingView(
             homeBuilder: (_) {
               return home;
             },
@@ -219,7 +219,7 @@ void main() {
         var skipped = false;
 
         await tester.pumpWidget(
-          _buildApp(FastWelcomeView(
+          _buildApp(FastOnboardingView(
             homeBuilder: (_) {
               return home;
             },

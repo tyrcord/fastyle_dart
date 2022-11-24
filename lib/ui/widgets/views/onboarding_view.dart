@@ -7,8 +7,8 @@ const _kStepDotSize = 10.0;
 
 typedef BoolCallback = bool Function();
 
-class FastWelcomeView extends StatefulWidget {
-  final FastWelcomeViewController? controller;
+class FastOnboardingView extends StatefulWidget {
+  final FastOnboardingViewController? controller;
 
   ///
   /// Main widget when the application starts up.
@@ -24,7 +24,7 @@ class FastWelcomeView extends StatefulWidget {
   final String nextText;
   final String skipText;
 
-  const FastWelcomeView({
+  const FastOnboardingView({
     Key? key,
     required this.homeBuilder,
     required this.slides,
@@ -40,12 +40,12 @@ class FastWelcomeView extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _FastWelcomeViewState createState() => _FastWelcomeViewState();
+  _FastOnboardingViewState createState() => _FastOnboardingViewState();
 }
 
-class _FastWelcomeViewState extends State<FastWelcomeView> {
+class _FastOnboardingViewState extends State<FastOnboardingView> {
   final PageController _pageViewController = PageController();
-  late FastWelcomeViewController _controller;
+  late FastOnboardingViewController _controller;
   int _slidesLength = 0;
   int _pageCursor = 0;
 
@@ -53,7 +53,7 @@ class _FastWelcomeViewState extends State<FastWelcomeView> {
 
   @override
   void initState() {
-    _controller = widget.controller ?? FastWelcomeViewController();
+    _controller = widget.controller ?? FastOnboardingViewController();
     _slidesLength = widget.slides.length;
     _pageViewController.addListener(() {
       setState(() => _pageCursor = _pageViewController.page!.round());

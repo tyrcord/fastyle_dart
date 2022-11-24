@@ -22,13 +22,13 @@ FastApp _buildApp(
 }
 
 void main() {
-  late FastWelcomeViewController controller;
+  late FastOnboardingViewController controller;
 
   setUp(() {
-    controller = FastWelcomeViewController();
+    controller = FastOnboardingViewController();
   });
 
-  group('FastWelcomeViewController', () {
+  group('FastOnboardingViewController', () {
     testWidgets(
       'controller default value should be set to false',
       (WidgetTester tester) async {

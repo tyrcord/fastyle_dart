@@ -1,2 +1,2 @@
 export './section_page.controller.dart';
-export './welcome_view.controller.dart';
+export './onboarding_view.controller.dart';
