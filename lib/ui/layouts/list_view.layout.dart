@@ -53,6 +53,8 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
 
   final EdgeInsets padding;
 
+  final scrollController = ScrollController();
+
   FastListViewLayout({
     Key? key,
     required this.listItemBuilder,
@@ -107,19 +109,23 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     final rows = _sortItemIfNeeded(items);
     final lastIndex = rows.length - 1;
 
-    return ListView.builder(
-      padding: padding,
-      itemCount: rows.length,
-      shrinkWrap: true,
-      itemBuilder: (BuildContext context, int index) {
-        return _buildListItem(
-          context: context,
-          item: rows[index],
-          index: index,
-          isLastItem: index < lastIndex,
-          decoration: dividerDecoration,
-        );
-      },
+    return Scrollbar(
+      controller: scrollController,
+      child: ListView.builder(
+        padding: padding,
+        itemCount: rows.length,
+        shrinkWrap: true,
+        controller: scrollController,
+        itemBuilder: (BuildContext context, int index) {
+          return _buildListItem(
+            context: context,
+            item: rows[index],
+            index: index,
+            isLastItem: index < lastIndex,
+            decoration: dividerDecoration,
+          );
+        },
+      ),
     );
   }
 

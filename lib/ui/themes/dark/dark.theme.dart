@@ -70,4 +70,18 @@ final kDarkFastTheme = kBaseFastTheme.copyWith(
   popupMenuTheme: PopupMenuThemeData(
     color: kFastDarkTertiaryBackgroundColor,
   ),
+  scrollbarTheme: ScrollbarThemeData(
+    thumbColor: MaterialStateProperty.resolveWith((states) {
+      const interactiveStates = <MaterialState>{
+        MaterialState.hovered,
+        MaterialState.dragged,
+      };
+
+      if (states.any(interactiveStates.contains)) {
+        return kFastDarkGrayPaletteColors.lighter;
+      }
+
+      return kFastDarkGrayPaletteColors.light;
+    }),
+  ),
 );
