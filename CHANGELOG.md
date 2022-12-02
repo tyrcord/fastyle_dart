@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [0.32.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.32.0) (2022-12-02)
+
+### Features
+
+- Added FastNavigationSplitView.
+
+### Enhancements
+
+- Better responsiveness.
+
 ## [0.31.4](https://github.com/tyrcord/fastyle_dart/releases/tag/0.31.4) (2022-10-13)
 
 ### Enhancements
