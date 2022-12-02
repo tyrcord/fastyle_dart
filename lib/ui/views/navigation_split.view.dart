@@ -174,6 +174,8 @@ class _FastNavigationSplitViewState extends State<FastNavigationSplitView> {
         // TODO check for _selection
         page = FastSectionPage(
           contentPadding: EdgeInsets.zero,
+          closeButton: widget.closeButton,
+          backButton: widget.backButton,
           child: Builder(
             builder: ((context) {
               return widget.detailsBuilder(context, _selection!);
@@ -243,10 +245,14 @@ class _FastNavigationSplitViewState extends State<FastNavigationSplitView> {
     final colors = ThemeHelper.colors;
 
     return FastSelectableListView(
-      showSearchBar: widget.showSearchBar,
+      searchPlaceholderText: widget.searchPlaceholderText,
+      shouldUseFuzzySearch: widget.shouldUseFuzzySearch,
       selectionColor: colors.getPrimaryColor(context),
       itemContentPadding: widget.itemContentPadding,
+      clearSearchIcon: widget.clearSearchIcon,
+      showItemDivider: widget.showItemDivider,
       listItemBuilder: widget.listItemBuilder,
+      showSearchBar: widget.showSearchBar,
       isEnabled: widget.isEnabled,
       sortItems: widget.sortItems,
       selection: _selection,
