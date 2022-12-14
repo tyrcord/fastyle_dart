@@ -1,9 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:async/async.dart';
-
 import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:flutter/material.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 
 abstract class FastJob {

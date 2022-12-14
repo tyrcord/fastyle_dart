@@ -28,9 +28,11 @@ class FastJobRunner {
 
       _runner = Stream.fromIterable(jobs)
           .takeWhile((FastJob job) => !hasError)
-          .asyncExpand((FastJob job) => Stream.fromFuture(
-                job.run(context, errorReporter: errorReporter),
-              ))
+          .asyncExpand((FastJob job) {
+            return Stream.fromFuture(
+              job.run(context, errorReporter: errorReporter),
+            );
+          })
           .map((_) {
             progress += dProgresStep;
 
