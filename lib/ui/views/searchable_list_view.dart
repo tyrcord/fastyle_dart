@@ -46,7 +46,7 @@ class FastSearchableListView<T extends FastItem> extends StatefulWidget {
     this.groupByCategory = false,
     this.isViewScrollable = true,
     this.showItemDivider = false,
-    this.showSearchBar = false,
+    this.showSearchBar = true,
     this.sortItems = true,
     this.isEnabled = true,
     this.showTrailing = true,
