@@ -1,11 +1,10 @@
 import 'dart:async';
 
+import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
-import 'package:fastyle_dart/fastyle_dart.dart';
-
-mixin FastThrottleButtonMixin<T extends IFastButton> on State<T> {
+mixin FastThrottleButtonMixin<T extends FastButton> on State<T> {
   @protected
   final trottler = PublishSubject<Function>();
 

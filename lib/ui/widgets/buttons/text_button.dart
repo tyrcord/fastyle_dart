@@ -1,36 +1,20 @@
+import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fastyle_dart/fastyle_dart.dart';
-
-class FastTextButton extends StatefulWidget implements IFastButton {
-  final FastButtonEmphasis emphasis;
-  final EdgeInsetsGeometry? padding;
-  final Color? highlightColor;
-  final Color? textColor;
-  final Widget? child;
-  final String? text;
-
+class FastTextButton extends FastButton {
   @override
-  final bool shouldTrottleTime;
-  @override
-  final Duration trottleTimeDuration;
-  @override
-  final VoidCallback onTap;
-  @override
-  final bool isEnabled;
-
   const FastTextButton({
-    Key? key,
-    required this.onTap,
-    this.trottleTimeDuration = kFastTrottleTimeDuration,
-    this.emphasis = FastButtonEmphasis.low,
-    this.shouldTrottleTime = false,
-    this.isEnabled = true,
-    this.highlightColor,
-    this.textColor,
-    this.padding,
-    this.child,
-    this.text,
+    required super.onTap,
+    super.trottleTimeDuration,
+    super.shouldTrottleTime,
+    super.highlightColor,
+    super.isEnabled,
+    super.textColor,
+    super.emphasis,
+    super.padding,
+    super.child,
+    super.text,
+    super.key,
   })  : assert(
           child == null || text == null,
           'child and text properties cannot be initialized at the same time',
@@ -38,15 +22,14 @@ class FastTextButton extends StatefulWidget implements IFastButton {
         assert(
           child != null || text != null,
           'child or text properties must be initialized',
-        ),
-        super(key: key);
+        );
 
   @override
   _FastTextButtonState createState() => _FastTextButtonState();
 }
 
 class _FastTextButtonState extends State<FastTextButton>
-    with FastThrottleButtonMixin {
+    with FastThrottleButtonMixin, FastButtonSyleMixin {
   @override
   void dispose() {
     unsubscribeToTrottlerEventsIfNeeded();
@@ -63,21 +46,12 @@ class _FastTextButtonState extends State<FastTextButton>
 
     return TextButton(
       style: ButtonStyle(
-        padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry?>(
-            (Set<MaterialState> states) {
-          return widget.padding;
-        }),
-        overlayColor: MaterialStateProperty.resolveWith<Color>(
-            (Set<MaterialState> states) {
-          return widget.highlightColor ?? textColor.withOpacity(0.1);
-        }),
+        overlayColor: getOverlayColor(textColor),
+        padding: getButtonPadding(),
+        shape: getButtonShape(),
       ),
       onPressed: throttleOnTapIfNeeded(),
-      child: widget.child ??
-          FastButtonLabel(
-            text: widget.text ?? kFastButtonLabel,
-            textColor: widget.isEnabled ? textColor : textColor.withAlpha(155),
-          ),
+      child: widget.child ?? buildButtonLabel(textColor),
     );
   }
 }

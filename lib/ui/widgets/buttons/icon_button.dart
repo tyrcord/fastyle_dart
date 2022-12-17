@@ -1,44 +1,29 @@
+import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fastyle_dart/fastyle_dart.dart';
-
-class FastIconButton extends StatefulWidget implements IFastButton {
-  final FastButtonEmphasis emphasis;
-  final EdgeInsetsGeometry padding;
+class FastIconButton extends FastButton {
   final Alignment iconAlignment;
-  final Color? highlightColor;
   final Color? iconColor;
   final double iconSize;
   final String? tooltip;
   final Widget icon;
 
-  @override
-  final Duration trottleTimeDuration;
-
-  @override
-  final bool shouldTrottleTime;
-
-  @override
-  final VoidCallback onTap;
-
-  @override
-  final bool isEnabled;
-
   const FastIconButton({
-    Key? key,
-    required this.onTap,
+    required super.onTap,
     required this.icon,
-    this.trottleTimeDuration = kFastTrottleTimeDuration,
-    this.emphasis = FastButtonEmphasis.low,
+    super.trottleTimeDuration,
+    super.shouldTrottleTime,
+    super.highlightColor,
+    super.isEnabled,
+    super.textColor,
+    super.emphasis,
+    super.padding,
+    super.key,
     this.iconAlignment = Alignment.center,
     this.iconSize = kFastIconSizeSmall,
-    this.padding = kFastEdgeInsets8,
-    this.shouldTrottleTime = false,
-    this.isEnabled = true,
-    this.highlightColor,
     this.iconColor,
     this.tooltip,
-  }) : super(key: key);
+  });
 
   @override
   _FastIconButtonState createState() => _FastIconButtonState();
@@ -61,15 +46,15 @@ class _FastIconButtonState extends State<FastIconButton>
             : ThemeHelper.texts.getButtonTextStyle(context).color!);
 
     return IconButton(
-      padding: widget.padding,
-      onPressed: throttleOnTapIfNeeded(),
-      highlightColor: widget.highlightColor,
       icon: Align(alignment: widget.iconAlignment, child: widget.icon),
-      iconSize: widget.iconSize,
       disabledColor: _color.withAlpha(kDisabledAlpha),
-      color: _color,
-      tooltip: widget.tooltip,
+      padding: widget.padding ?? kFastEdgeInsets8,
+      highlightColor: widget.highlightColor,
+      onPressed: throttleOnTapIfNeeded(),
       splashRadius: kFastSplashRadius,
+      iconSize: widget.iconSize,
+      tooltip: widget.tooltip,
+      color: _color,
     );
   }
 }
