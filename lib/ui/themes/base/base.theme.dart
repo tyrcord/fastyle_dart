@@ -6,6 +6,7 @@ final kBaseFastTheme = ThemeData(
   tabBarTheme: kFastTabBarTheme,
   textTheme: kFastTextTheme,
   splashFactory: const NoSplashFactory(),
+  useMaterial3: true,
 );
 
 class NoSplashFactory extends InteractiveInkFeatureFactory {

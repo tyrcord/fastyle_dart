@@ -98,7 +98,8 @@ class FastScaffold extends StatelessWidget {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
     final brightness = themeBloc.currentState.brightness;
     final palette = ThemeHelper.getPaletteColors(context);
-    final overlayStyle = brightness == Brightness.dark
+    final isBrightnessLight = brightness == Brightness.light;
+    final overlayStyle = !isBrightnessLight
         ? SystemUiOverlayStyle.light
         : ThemeHelper.colors.getOverlayStyleForColor(
             context: context,
@@ -107,11 +108,12 @@ class FastScaffold extends StatelessWidget {
           );
 
     return AppBar(
+      surfaceTintColor: ThemeHelper.colors.getSurfaceTintColor(context),
       systemOverlayStyle: overlayStyle,
       automaticallyImplyLeading: false,
       leading: leading ?? _buildLeadingIcon(context),
       iconTheme: IconThemeData(
-        color: themeBloc.currentState.brightness == Brightness.light
+        color: isBrightnessLight
             ? ThemeHelper.texts.getBodyTextStyle(context).color
             : palette.whiteColor,
       ),

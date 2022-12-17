@@ -48,6 +48,19 @@ class ThemeColorHelper {
     return Theme.of(context).backgroundColor;
   }
 
+  Color getSurfaceTintColor(BuildContext context) {
+    final themeBloc = BlocProvider.of<FastThemeBloc>(context);
+    final brightness = themeBloc.currentState.brightness;
+    final palette = ThemeHelper.getPaletteColors(context);
+    final isBrightnessLight = brightness == Brightness.light;
+    final grayPalette = palette.gray;
+    final opacity = 0.5;
+
+    return isBrightnessLight
+        ? grayPalette.lighter.withOpacity(opacity)
+        : grayPalette.darker.withOpacity(opacity);
+  }
+
   SystemUiOverlayStyle getOverlayStyleForColor({
     required BuildContext context,
     required Color color,

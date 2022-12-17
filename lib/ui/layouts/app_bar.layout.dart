@@ -69,6 +69,7 @@ class _FastAppBarLayoutState extends State<FastAppBarLayout> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      surfaceTintColor: ThemeHelper.colors.getSurfaceTintColor(context),
       leading: widget.leading,
       expandedHeight: widget.expandedHeight,
       backgroundColor: Colors.transparent,
