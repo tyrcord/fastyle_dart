@@ -108,7 +108,10 @@ class FastScaffold extends StatelessWidget {
           );
 
     return AppBar(
-      surfaceTintColor: ThemeHelper.colors.getSurfaceTintColor(context),
+      surfaceTintColor: appBarBackgroundColor == null
+          ? ThemeHelper.colors.getSurfaceTintColor(context)
+          : Colors.transparent,
+      scrolledUnderElevation: appBarBackgroundColor == null ? null : 0,
       systemOverlayStyle: overlayStyle,
       automaticallyImplyLeading: false,
       leading: leading ?? _buildLeadingIcon(context),
