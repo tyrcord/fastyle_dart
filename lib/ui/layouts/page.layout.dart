@@ -63,6 +63,8 @@ class FastPageLayout extends StatelessWidget {
   ///
   final Color? titleColor;
 
+  bool get _hasFooter => footer != null || footerBuilder != null;
+
   FastPageLayout({
     Key? key,
     this.isViewScrollable = false,
@@ -131,8 +133,7 @@ class FastPageLayout extends StatelessWidget {
             child: FastHeadline(textColor: titleColor, text: titleText!),
           ),
         content,
-        if (!isViewScrollable && (footer != null || footerBuilder != null))
-          _buildFooter(context),
+        if (!isViewScrollable && _hasFooter) _buildFooter(context),
       ],
     );
   }
@@ -141,7 +142,7 @@ class FastPageLayout extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(child: _buildFixedContent(context)),
-        if (footer != null || footerBuilder != null)
+        if (_hasFooter)
           SliverFillRemaining(
             hasScrollBody: false,
             child: _buildFooter(context),
@@ -154,9 +155,9 @@ class FastPageLayout extends StatelessWidget {
     final padding = _getContentPadding(context);
 
     return Padding(
-      padding: footer == null
-          ? padding.copyWith(bottom: _getBottomPadding(context))
-          : padding.copyWith(bottom: 0.0),
+      padding: _hasFooter
+          ? padding.copyWith(bottom: 0.0)
+          : padding.copyWith(bottom: _getBottomPadding(context)),
       child: contentBuilder != null ? Builder(builder: contentBuilder!) : child,
     );
   }
@@ -169,7 +170,7 @@ class FastPageLayout extends StatelessWidget {
     return Padding(
       padding: padding.copyWith(
         bottom: mediaQueryData.padding.bottom + spacing,
-        top: 0.0,
+        top: spacing,
       ),
       child: footerBuilder != null ? Builder(builder: footerBuilder!) : footer,
     );
