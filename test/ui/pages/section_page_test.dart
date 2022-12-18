@@ -1,7 +1,6 @@
-import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter/material.dart';
-
 import 'package:fastyle_dart/fastyle_dart.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 FastApp _buildApp(FastSectionPage home) {
   return FastApp(home: home);
