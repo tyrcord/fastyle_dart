@@ -40,21 +40,26 @@ class _FastIconButtonState extends State<FastIconButton>
 
   @override
   Widget build(BuildContext context) {
+    final themeData = Theme.of(context);
     final _color = widget.iconColor ??
         (widget.emphasis == FastButtonEmphasis.high
             ? ThemeHelper.colors.getPrimaryColor(context)
             : ThemeHelper.texts.getButtonTextStyle(context).color!);
 
-    return IconButton(
-      icon: Align(alignment: widget.iconAlignment, child: widget.icon),
-      disabledColor: _color.withAlpha(kDisabledAlpha),
-      padding: widget.padding ?? kFastEdgeInsets8,
-      highlightColor: widget.highlightColor,
-      onPressed: throttleOnTapIfNeeded(),
-      splashRadius: kFastSplashRadius,
-      iconSize: widget.iconSize,
-      tooltip: widget.tooltip,
-      color: _color,
+    return Theme(
+      // FIXME: Temporary workaround, will probably need to make out own.
+      data: themeData.copyWith(useMaterial3: false),
+      child: IconButton(
+        icon: Align(alignment: widget.iconAlignment, child: widget.icon),
+        disabledColor: _color.withAlpha(kDisabledAlpha),
+        padding: widget.padding ?? kFastEdgeInsets8,
+        highlightColor: widget.highlightColor,
+        onPressed: throttleOnTapIfNeeded(),
+        splashRadius: kFastSplashRadius,
+        iconSize: widget.iconSize,
+        tooltip: widget.tooltip,
+        color: _color,
+      ),
     );
   }
 }
