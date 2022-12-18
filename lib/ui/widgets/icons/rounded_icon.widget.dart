@@ -1,35 +1,52 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
+enum FastBoxShape {
+  roundedRectangle,
+  rectangle,
+  circle,
+}
+
 class FastRoundedIcon extends StatelessWidget {
-  final IconData iconData;
-  final Color? iconColor;
-  final double iconSize;
   final Color? backgroundColor;
+  final FastBoxShape? shape;
+  final Widget icon;
+  final double size;
 
   const FastRoundedIcon({
-    Key? key,
-    required this.iconData,
-    this.iconSize = kFastIconSizeSmall,
+    super.key,
+    required this.icon,
+    this.size = kFastIconSizeSmall,
     this.backgroundColor,
-    this.iconColor,
-  }) : super(key: key);
+    this.shape,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final palette = ThemeHelper.getPaletteColors(context);
+    final hasRadius = shape == FastBoxShape.roundedRectangle;
+    final radius = hasRadius ? BorderRadius.circular(8) : null;
+    final _shape = _getShape();
 
     return Container(
-      padding: kFastEdgeInsets6,
+      height: size,
+      width: size,
       decoration: BoxDecoration(
         color: backgroundColor ?? ThemeHelper.colors.getPrimaryColor(context),
-        shape: BoxShape.circle,
+        borderRadius: radius,
+        shape: _shape,
       ),
-      child: Icon(
-        iconData,
-        size: iconSize,
-        color: iconColor ?? palette.whiteColor,
-      ),
+      child: Center(child: icon),
     );
+  }
+
+  BoxShape _getShape() {
+    switch (shape) {
+      case FastBoxShape.roundedRectangle:
+        return BoxShape.rectangle;
+      case FastBoxShape.rectangle:
+        return BoxShape.rectangle;
+      default:
+        return BoxShape.circle;
+    }
   }
 }
