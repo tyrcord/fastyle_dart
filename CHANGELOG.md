@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## [0.33.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.33.0) (2022-12-19)
+
+### Features
+
+- Uses material 3.
+
+### Enhancements
+
+- Better responsiveness.
+
+### Fixes
+
+- Minor fixes.
+
 ## [0.32.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.32.0) (2022-12-02)
 
 ### Features
