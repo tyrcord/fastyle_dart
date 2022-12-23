@@ -84,4 +84,5 @@ final kLightFastTheme = kBaseFastTheme.copyWith(
       return kFastLightGrayPaletteColors.light;
     }),
   ),
+  shadowColor: kFastLightShadowColor,
 );
