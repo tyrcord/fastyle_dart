@@ -1,3 +1,4 @@
+export './box_shape.enum.dart';
 export './button_emphasis.enum.dart';
 export './media_type.enum.dart';
 export './position.enum.dart';

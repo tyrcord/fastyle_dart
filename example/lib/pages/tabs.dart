@@ -27,6 +27,7 @@ class TabsPage extends StatelessWidget {
           FastSelectableListView(
             showItemDivider: true,
             items: options,
+            sortItems: false,
             onSelectionChanged: (FastItem option) {
               log('${option.labelText} selected');
             },

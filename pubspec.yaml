@@ -24,6 +24,7 @@ dependencies:
   shimmer: ^2.0.0
   decimal: ^2.3.0
   tutils_dart: ^1.0.0
+  font_awesome_flutter: ^10.3.0
 
 dev_dependencies:
   flutter_test:

@@ -187,9 +187,9 @@ class _MyHomePageState extends State<MyHomePage> {
         categoryText: 'ui categories',
       ),
       FastNavigationListItem(
-        leading: FastRoundedIcon(
-          iconData: Icons.radio_button_checked,
-          backgroundColor: palette.purple.mid,
+        leading: FastRoundedDuotoneIcon(
+          icon: Icon(Icons.radio_button_checked),
+          palette: palette.purple,
         ),
         labelText: 'Buttons',
         descriptionText: 'Raised, icon buttons',
@@ -201,9 +201,9 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       FastNavigationListItem(
-        leading: FastRoundedIcon(
-          iconData: Icons.text_fields,
-          backgroundColor: palette.green.mid,
+        leading: FastRoundedDuotoneIcon(
+          icon: Icon(Icons.text_fields),
+          palette: palette.green,
         ),
         labelText: 'Typography',
         descriptionText: 'Title, subhead...',
@@ -215,9 +215,9 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       FastNavigationListItem(
-        leading: FastRoundedIcon(
-          iconData: Icons.table_chart,
-          backgroundColor: palette.blue.mid,
+        leading: FastRoundedDuotoneIcon(
+          icon: Icon(Icons.table_chart),
+          palette: palette.blue,
         ),
         labelText: 'Tabs',
         onTap: () {
@@ -228,9 +228,9 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       FastNavigationListItem(
-        leading: FastRoundedIcon(
-          iconData: Icons.view_agenda,
-          backgroundColor: palette.pink.mid,
+        leading: FastRoundedDuotoneIcon(
+          icon: Icon(Icons.view_agenda),
+          palette: palette.blueGray,
         ),
         labelText: 'Cards',
         onTap: () {
@@ -241,9 +241,9 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       FastNavigationListItem(
-        leading: FastRoundedIcon(
-          iconData: Icons.view_list,
-          backgroundColor: palette.indigo.mid,
+        leading: FastRoundedDuotoneIcon(
+          icon: Icon(Icons.view_list),
+          palette: palette.pink,
         ),
         labelText: 'List',
         onTap: () {
@@ -254,9 +254,9 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       FastNavigationListItem(
-        leading: FastRoundedIcon(
-          iconData: Icons.edit,
-          backgroundColor: palette.teal.mid,
+        leading: FastRoundedDuotoneIcon(
+          icon: Icon(Icons.edit),
+          palette: palette.teal,
         ),
         labelText: 'Fields',
         onTap: () {
@@ -267,9 +267,9 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       FastNavigationListItem(
-        leading: FastRoundedIcon(
-          iconData: Icons.message,
-          backgroundColor: palette.orange.mid,
+        leading: FastRoundedDuotoneIcon(
+          icon: Icon(Icons.message),
+          palette: palette.orange,
         ),
         labelText: 'Notifications',
         onTap: () {
@@ -280,9 +280,9 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       FastNavigationListItem(
-        leading: FastRoundedIcon(
-          iconData: Icons.colorize,
-          backgroundColor: palette.red.mid,
+        leading: FastRoundedDuotoneIcon(
+          icon: Icon(Icons.colorize),
+          palette: palette.red,
         ),
         labelText: 'Colors',
         onTap: () {
@@ -293,9 +293,9 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       FastNavigationListItem(
-        leading: FastRoundedIcon(
-          iconData: Icons.description,
-          backgroundColor: palette.brown.mid,
+        leading: FastRoundedDuotoneIcon(
+          icon: Icon(Icons.description),
+          palette: palette.brown,
         ),
         labelText: 'Page',
         onTap: () {
@@ -323,9 +323,9 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       FastNavigationListItem(
-        leading: FastRoundedIcon(
-          iconData: Icons.dashboard,
-          backgroundColor: palette.yellow.mid,
+        leading: FastRoundedDuotoneIcon(
+          icon: Icon(Icons.dashboard),
+          palette: palette.yellow,
         ),
         labelText: 'Responsive',
         onTap: () {
@@ -336,9 +336,9 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       FastNavigationListItem(
-        leading: FastRoundedIcon(
-          iconData: Icons.dashboard,
-          backgroundColor: palette.blue.mid,
+        leading: FastRoundedDuotoneIcon(
+          icon: Icon(Icons.dashboard),
+          palette: palette.blue,
         ),
         labelText: 'Split View',
         onTap: () {
