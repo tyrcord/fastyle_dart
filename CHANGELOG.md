@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.33.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.33.1) (2022-12-23)
+
+### Enhancements
+
+- Better rounded icons.
+
 ## [0.33.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.33.0) (2022-12-19)
 
 ### Features
