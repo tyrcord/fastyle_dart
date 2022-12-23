@@ -14,6 +14,7 @@ import 'package:fastyle_dart_example/pages/tabs.dart';
 import 'package:fastyle_dart_example/pages/typography.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 
@@ -337,7 +338,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       FastNavigationListItem(
         leading: FastRoundedDuotoneIcon(
-          icon: Icon(Icons.dashboard),
+          icon: FaIcon(FontAwesomeIcons.tableColumns),
           palette: palette.blue,
         ),
         labelText: 'Split View',
