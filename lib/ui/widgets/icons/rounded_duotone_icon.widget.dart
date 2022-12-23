@@ -22,7 +22,7 @@ class FastRoundedDuotoneIcon extends FastRoundedIcon {
     var _iconColor = iconColor;
     var _icon = icon;
 
-    if (palette != null) {
+    if (palette != null && _backgroundColor == null && _iconColor == null) {
       _backgroundColor = palette!.lightest;
       _iconColor = palette!.mid;
     }
