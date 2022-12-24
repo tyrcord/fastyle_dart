@@ -1,5 +1,6 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 final _baseTextTheme = kBaseFastTheme.textTheme;
 final _baseTabBarTheme = kBaseFastTheme.tabBarTheme;
@@ -85,4 +86,33 @@ final kDarkFastTheme = kBaseFastTheme.copyWith(
     }),
   ),
   shadowColor: kFastDarkShadowColor,
+  navigationBarTheme: kFastNavigationBarTheme.copyWith(
+    surfaceTintColor: kFastDarkSecondaryBackgroundColor,
+    iconTheme: MaterialStateProperty.resolveWith<IconThemeData>((states) {
+      if (states.contains(MaterialState.disabled)) {
+        return IconThemeData(color: kFastDarkTertiaryLabelColor);
+      } else if (states.contains(MaterialState.selected)) {
+        return IconThemeData(color: kFastDarkWhiteColor);
+      }
+
+      return IconThemeData(color: kFastDarkLabelColor);
+    }),
+    labelTextStyle: MaterialStateProperty.resolveWith<TextStyle>(
+      (
+        Set<MaterialState> states,
+      ) {
+        var base = GoogleFonts.barlowSemiCondensed(
+          fontWeight: kFastFontWeightRegular,
+          fontSize: kFastFontSize16,
+          color: kFastLightLabelColor,
+        );
+
+        if (states.contains(MaterialState.disabled)) {
+          return base.copyWith(color: kFastDarkTertiaryLabelColor);
+        }
+
+        return base.copyWith(color: kFastDarkLabelColor);
+      },
+    ),
+  ),
 );

@@ -1,5 +1,6 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 final _baseTextTheme = kBaseFastTheme.textTheme;
 final _baseTabBarTheme = kBaseFastTheme.tabBarTheme;
@@ -57,9 +58,7 @@ final kLightFastTheme = kBaseFastTheme.copyWith(
     indent: kFastDividerIndent,
   ),
   inputDecorationTheme: kInputDecorationTheme.copyWith(
-    hintStyle: TextStyle(
-      color: kFastLightHintLabelColor,
-    ),
+    hintStyle: TextStyle(color: kFastLightHintLabelColor),
     enabledBorder: UnderlineInputBorder(
       borderSide: BorderSide(
         color: kFastLightSeparatorColor,
@@ -85,4 +84,32 @@ final kLightFastTheme = kBaseFastTheme.copyWith(
     }),
   ),
   shadowColor: kFastLightShadowColor,
+  navigationBarTheme: kFastNavigationBarTheme.copyWith(
+    surfaceTintColor: kFastLightWhiteColor,
+    iconTheme: MaterialStateProperty.resolveWith<IconThemeData>((states) {
+      if (states.contains(MaterialState.disabled)) {
+        return IconThemeData(color: kFastLightTertiaryLabelColor);
+      } else if (states.contains(MaterialState.selected)) {
+        return IconThemeData(color: kFastLightWhiteColor);
+      }
+
+      return IconThemeData(color: kFastLightLabelColor);
+    }),
+    labelTextStyle: MaterialStateProperty.resolveWith<TextStyle>(
+      (
+        Set<MaterialState> states,
+      ) {
+        var base = GoogleFonts.barlowSemiCondensed(
+          fontWeight: kFastFontWeightRegular,
+          fontSize: kFastFontSize16,
+        );
+
+        if (states.contains(MaterialState.disabled)) {
+          return base.copyWith(color: kFastLightTertiaryLabelColor);
+        }
+
+        return base.copyWith(color: kFastLightLabelColor);
+      },
+    ),
+  ),
 );

@@ -64,6 +64,8 @@ class FastScaffold extends StatelessWidget {
 
   final bool showAppBar;
 
+  final NavigationBar? bottomNavigationBar;
+
   FastScaffold({
     Key? key,
     this.appBarHeightSize = _kAppBarHeightSize,
@@ -71,6 +73,7 @@ class FastScaffold extends StatelessWidget {
     this.showAppBar = true,
     this.appBarBackgroundColor,
     this.floatingActionButton,
+    this.bottomNavigationBar,
     this.closeButton,
     this.backButton,
     this.titleColor,
@@ -91,6 +94,7 @@ class FastScaffold extends StatelessWidget {
           : null,
       body: child,
       floatingActionButton: floatingActionButton,
+      bottomNavigationBar: bottomNavigationBar,
     );
   }
 
