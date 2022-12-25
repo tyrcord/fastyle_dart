@@ -13,16 +13,16 @@ class NavigationBarViewPage extends StatelessWidget {
       child: FastNavigationBarView(
         indicatorColor: ThemeHelper.getPaletteColors(context).mint.mid,
         showAppBar: false,
-        destinations: const <Widget>[
-          NavigationDestination(
+        destinations: const <FastNavigationDestination>[
+          FastNavigationDestination(
             icon: Icon(Icons.explore),
             label: 'Explore',
           ),
-          NavigationDestination(
+          FastNavigationDestination(
             icon: Icon(Icons.commute),
             label: 'Commute',
           ),
-          NavigationDestination(
+          FastNavigationDestination(
             selectedIcon: Icon(Icons.bookmark),
             icon: Icon(Icons.bookmark_border),
             label: 'Saved',

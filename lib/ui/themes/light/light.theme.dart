@@ -93,7 +93,7 @@ final kLightFastTheme = kBaseFastTheme.copyWith(
         return IconThemeData(color: kFastLightWhiteColor);
       }
 
-      return IconThemeData(color: kFastLightLabelColor);
+      return IconThemeData(color: kFastLightSecondaryLabelColor);
     }),
     labelTextStyle: MaterialStateProperty.resolveWith<TextStyle>(
       (
@@ -106,10 +106,27 @@ final kLightFastTheme = kBaseFastTheme.copyWith(
 
         if (states.contains(MaterialState.disabled)) {
           return base.copyWith(color: kFastLightTertiaryLabelColor);
+        } else if (states.contains(MaterialState.selected)) {
+          return base.copyWith(color: kFastLightLabelColor);
         }
 
-        return base.copyWith(color: kFastLightLabelColor);
+        return base.copyWith(color: kFastLightSecondaryLabelColor);
       },
+    ),
+  ),
+  navigationRailTheme: kFastNavigationRailTheme.copyWith(
+    backgroundColor: kFastLightWhiteColor,
+    selectedIconTheme: IconThemeData(color: kFastLightWhiteColor),
+    unselectedIconTheme: IconThemeData(color: kFastLightSecondaryLabelColor),
+    selectedLabelTextStyle: GoogleFonts.barlowSemiCondensed(
+      fontWeight: kFastFontWeightRegular,
+      fontSize: kFastFontSize16,
+      color: kFastLightLabelColor,
+    ),
+    unselectedLabelTextStyle: GoogleFonts.barlowSemiCondensed(
+      fontWeight: kFastFontWeightRegular,
+      fontSize: kFastFontSize16,
+      color: kFastLightSecondaryLabelColor,
     ),
   ),
 );
