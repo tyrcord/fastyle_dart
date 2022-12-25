@@ -122,7 +122,7 @@ class _FastNavigationSplitViewState extends State<FastNavigationSplitView> {
     return Material(
       child: FastMediaLayoutBuilder(
         builder: ((BuildContext context, FastMediaType mediaType) {
-          if (mediaType.index < FastMediaType.tablet.index) {
+          if (mediaType < FastMediaType.tablet) {
             return buildNavigationListView(context, mediaType);
           }
 
@@ -289,7 +289,7 @@ class _FastNavigationSplitViewState extends State<FastNavigationSplitView> {
     _selection = item;
     _bloc.addEvent(FastNavigationSplitViewBlocEvent.changed(item));
 
-    if (mediaType.index < FastMediaType.tablet.index) {
+    if (mediaType < FastMediaType.tablet) {
       _navigateToDetails(context);
     }
   }

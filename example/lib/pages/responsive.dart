@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +7,7 @@ class ResponsivePage extends StatelessWidget {
     return FastMediaLayoutBuilder(builder: ((context, mediaType) {
       Widget content;
 
-      if (mediaType.index <= FastMediaType.tablet.index) {
+      if (mediaType <= FastMediaType.tablet) {
         content = buildColumnView(context, mediaType);
       } else {
         content = buildGridView(context, mediaType);

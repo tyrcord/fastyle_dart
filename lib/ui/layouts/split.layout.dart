@@ -20,7 +20,7 @@ class FastSplitLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return FastMediaLayoutBuilder(
       builder: ((BuildContext context, FastMediaType mediaType) {
-        if (mediaType.index < FastMediaType.tablet.index) {
+        if (mediaType < FastMediaType.tablet) {
           return buildPrimary(context, mediaType);
         }
 
@@ -126,9 +126,9 @@ class FastSplitLayout extends StatelessWidget {
   }
 
   double _getColumnWidth(FastMediaType mediaType) {
-    if (mediaType.index <= FastMediaType.xl.index) {
+    if (mediaType <= FastMediaType.xl) {
       return 240;
-    } else if (mediaType.index <= FastMediaType.large.index) {
+    } else if (mediaType <= FastMediaType.large) {
       return 220;
     }
 

@@ -33,6 +33,7 @@ class NavigationBarViewPage extends StatelessWidget {
             titleText: 'Explore',
             showAppBar: false,
             isViewScrollable: false,
+            contentPadding: EdgeInsets.zero,
             child: FastSelectableListView(
               showItemDivider: true,
               items: options,
