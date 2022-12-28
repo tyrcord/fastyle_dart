@@ -32,6 +32,9 @@ class FastDialog extends AlertDialog {
       content: SingleChildScrollView(child: ListBody(children: children)),
       actions: actions,
       backgroundColor: backgroundColor,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      ),
     );
   }
 }
