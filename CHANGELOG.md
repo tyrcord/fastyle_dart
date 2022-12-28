@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [0.33.2](https://github.com/tyrcord/fastyle_dart/releases/tag/0.33.2) (2022-12-28)
+
+### Features
+
+- Added Navigation bar.
+
+### Enhancements
+
+- Better alert shape.
+
 ## [0.33.1](https://github.com/tyrcord/fastyle_dart/releases/tag/0.33.1) (2022-12-23)
 
 ### Enhancements
