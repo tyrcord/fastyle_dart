@@ -63,10 +63,13 @@ class FastPageLayout extends StatelessWidget {
   ///
   final Color? titleColor;
 
+  final bool avoidOperatingSystemInterfaces;
+
   bool get _hasFooter => footer != null || footerBuilder != null;
 
   FastPageLayout({
     Key? key,
+    this.avoidOperatingSystemInterfaces = true,
     this.isViewScrollable = false,
     this.contentPadding,
     this.loadingTimeout,
@@ -94,7 +97,7 @@ class FastPageLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      top: false,
+      top: avoidOperatingSystemInterfaces,
       bottom: false,
       child: FastSectionPageController(
         loadedBuilder: _buildPageContent(),

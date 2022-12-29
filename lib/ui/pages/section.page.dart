@@ -158,6 +158,7 @@ class FastSectionPage extends StatelessWidget {
       leading: leading,
       child: FastPageLayout(
         titleText: isTitlePositionBelowAppBar ? titleText : null,
+        avoidOperatingSystemInterfaces: !showAppBar,
         isViewScrollable: isViewScrollable,
         loadingBuilder: loadingBuilder,
         loadingTimeout: loadingTimeout,
