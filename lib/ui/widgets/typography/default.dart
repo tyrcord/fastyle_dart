@@ -18,6 +18,7 @@ class FastDisplay extends FastBaseTypography {
     super.fontSize,
     super.maxLines,
     super.softWrap,
+    super.upperCase,
   });
 
   @override
@@ -43,6 +44,7 @@ class FastHeadline extends FastBaseTypography {
     super.fontSize,
     super.maxLines,
     super.softWrap,
+    super.upperCase,
   });
 
   @override
@@ -68,6 +70,7 @@ class FastPlaceHolderHeadline extends FastBaseTypography {
     super.fontSize,
     super.maxLines,
     super.softWrap,
+    super.upperCase,
   });
 
   @override
@@ -82,18 +85,19 @@ class FastPlaceHolderHeadline extends FastBaseTypography {
 /// uppercase
 class FastSubhead extends FastBaseTypography {
   FastSubhead({
-    required String text,
+    required super.text,
     super.key,
     super.enableInteractiveSelection = false,
     super.textAlign = TextAlign.left,
     super.lineHeight = kFastLineHeight,
+    super.upperCase = true,
     super.fontWeight,
     super.overflow,
     super.textColor,
     super.fontSize,
     super.maxLines,
     super.softWrap,
-  }) : super(text: text.toUpperCase());
+  });
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -112,6 +116,7 @@ class FastTitle extends FastBaseTypography {
     super.enableInteractiveSelection = false,
     super.textAlign = TextAlign.left,
     super.lineHeight = kFastLineHeight,
+    super.upperCase,
     super.fontWeight,
     super.overflow,
     super.textColor,
@@ -137,6 +142,7 @@ class FastPlaceholderTitle extends FastBaseTypography {
     super.enableInteractiveSelection = false,
     super.textAlign = TextAlign.left,
     super.lineHeight = kFastLineHeight,
+    super.upperCase,
     super.fontWeight,
     super.overflow,
     super.textColor,
@@ -162,13 +168,14 @@ class FastSubtitle extends FastBaseTypography {
     super.enableInteractiveSelection = false,
     super.textAlign = TextAlign.left,
     super.lineHeight = kFastLineHeight,
+    super.upperCase,
     super.fontWeight,
     super.overflow,
     super.textColor,
     super.fontSize,
     super.maxLines,
     super.softWrap,
-  }) : super();
+  });
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -182,18 +189,19 @@ class FastSubtitle extends FastBaseTypography {
 /// uppercase
 class FastSecondarySubtitle extends FastBaseTypography {
   FastSecondarySubtitle({
-    required String text,
+    required super.text,
     super.key,
     super.enableInteractiveSelection = false,
     super.textAlign = TextAlign.left,
     super.lineHeight = kFastLineHeight,
+    super.upperCase = true,
     super.fontWeight,
     super.overflow,
     super.textColor,
     super.fontSize,
     super.maxLines,
     super.softWrap,
-  }) : super(text: text.toUpperCase());
+  });
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -210,15 +218,16 @@ class FastBody extends FastBaseTypography {
     super.key,
     required super.text,
     super.enableInteractiveSelection = false,
-    super.textAlign = TextAlign.left,
     super.lineHeight = kFastLineHeight,
+    super.textAlign = TextAlign.left,
+    super.upperCase,
     super.fontWeight,
     super.overflow,
     super.textColor,
     super.fontSize,
     super.maxLines,
     super.softWrap,
-  }) : super();
+  });
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -236,15 +245,16 @@ class FastBody2 extends FastBaseTypography {
     super.key,
     required super.text,
     super.enableInteractiveSelection = false,
-    super.textAlign = TextAlign.left,
     super.lineHeight = kFastLineHeight,
+    super.textAlign = TextAlign.left,
+    super.upperCase,
     super.fontWeight,
     super.overflow,
     super.textColor,
     super.fontSize,
     super.maxLines,
     super.softWrap,
-  }) : super();
+  });
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -261,15 +271,16 @@ class FastSecondaryBody extends FastBaseTypography {
     super.key,
     required super.text,
     super.enableInteractiveSelection = false,
-    super.textAlign = TextAlign.left,
     super.lineHeight = kFastLineHeight,
+    super.textAlign = TextAlign.left,
+    super.upperCase,
     super.fontWeight,
     super.overflow,
     super.textColor,
     super.fontSize,
     super.maxLines,
     super.softWrap,
-  }) : super();
+  });
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -286,8 +297,9 @@ class FastPlaceholder extends FastBaseTypography {
     super.key,
     required super.text,
     super.enableInteractiveSelection = false,
-    super.textAlign = TextAlign.left,
     super.lineHeight = kFastLineHeight,
+    super.textAlign = TextAlign.left,
+    super.upperCase,
     super.fontWeight,
     super.overflow,
     super.textColor,
@@ -308,18 +320,19 @@ class FastPlaceholder extends FastBaseTypography {
 /// uppercase
 class FastButtonLabel extends FastBaseTypography {
   FastButtonLabel({
-    required String text,
+    required super.text,
     super.key,
     super.enableInteractiveSelection = false,
     super.overflow = TextOverflow.ellipsis,
     super.lineHeight = kFastLineHeight,
     super.textAlign = TextAlign.left,
     super.softWrap = false,
+    super.upperCase = true,
     super.fontWeight,
     super.textColor,
     super.fontSize,
     super.maxLines,
-  }) : super(text: text.toUpperCase());
+  });
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -333,18 +346,19 @@ class FastButtonLabel extends FastBaseTypography {
 /// uppercase
 class FastSecondaryButton extends FastBaseTypography {
   FastSecondaryButton({
-    required String text,
+    required super.text,
     super.key,
     super.enableInteractiveSelection = false,
-    super.textAlign = TextAlign.left,
     super.lineHeight = kFastLineHeight,
+    super.textAlign = TextAlign.left,
+    super.upperCase = true,
     super.fontWeight,
     super.overflow,
     super.textColor,
     super.fontSize,
     super.maxLines,
     super.softWrap,
-  }) : super(text: text.toUpperCase());
+  });
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -364,12 +378,13 @@ class FastCaption extends FastBaseTypography {
     super.textAlign = TextAlign.left,
     super.lineHeight = kFastLineHeight,
     super.fontWeight,
-    super.overflow,
+    super.upperCase,
     super.textColor,
+    super.overflow,
     super.fontSize,
     super.maxLines,
     super.softWrap,
-  }) : super();
+  });
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -383,18 +398,19 @@ class FastCaption extends FastBaseTypography {
 /// uppercase
 class FastSecondaryCaption extends FastBaseTypography {
   FastSecondaryCaption({
-    required String text,
-    super.key,
+    required super.text,
     super.enableInteractiveSelection = false,
-    super.textAlign = TextAlign.left,
     super.lineHeight = kFastLineHeight,
+    super.textAlign = TextAlign.left,
+    super.upperCase = true,
     super.fontWeight,
     super.overflow,
     super.textColor,
     super.fontSize,
     super.maxLines,
     super.softWrap,
-  }) : super(text: text.toUpperCase());
+    super.key,
+  });
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {
@@ -414,6 +430,7 @@ class FastHelper extends FastBaseTypography {
     super.enableInteractiveSelection = false,
     super.textAlign = TextAlign.left,
     super.lineHeight = kFastLineHeight,
+    super.upperCase,
     super.fontWeight,
     super.overflow,
     super.textColor,
@@ -437,8 +454,9 @@ class FastOverline extends FastBaseTypography {
     super.key,
     required super.text,
     super.enableInteractiveSelection = false,
-    super.textAlign = TextAlign.left,
     super.lineHeight = kFastLineHeight,
+    super.textAlign = TextAlign.left,
+    super.upperCase,
     super.fontWeight,
     super.overflow,
     super.textColor,
@@ -459,18 +477,19 @@ class FastOverline extends FastBaseTypography {
 /// uppercase
 class FastSecondaryOverline extends FastBaseTypography {
   FastSecondaryOverline({
-    required String text,
+    required super.text,
     super.key,
     super.enableInteractiveSelection = false,
     super.textAlign = TextAlign.left,
     super.lineHeight = kFastLineHeight,
+    super.upperCase = true,
     super.fontWeight,
     super.overflow,
     super.textColor,
     super.fontSize,
     super.maxLines,
     super.softWrap,
-  }) : super(text: text.toUpperCase());
+  });
 
   @override
   TextStyle getDefaultTextStyle(BuildContext context) {

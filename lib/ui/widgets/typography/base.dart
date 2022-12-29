@@ -11,6 +11,7 @@ class FastBaseTypography extends StatelessWidget {
   final double lineHeight;
   final Color? textColor;
   final double? fontSize;
+  final bool upperCase;
   final int? maxLines;
   final String text;
 
@@ -20,17 +21,19 @@ class FastBaseTypography extends StatelessWidget {
     this.enableInteractiveSelection = false,
     this.lineHeight = kFastLineHeight,
     this.textAlign = TextAlign.left,
+    this.upperCase = false,
+    this.letterSpacing,
     this.fontWeight,
     this.textColor,
     this.fontSize,
     this.maxLines,
     this.overflow,
-    this.letterSpacing,
     this.softWrap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final textValue = upperCase ? text.toUpperCase() : text;
     final textStyle = getDefaultTextStyle(context).copyWith(
       height: lineHeight,
       fontSize: fontSize,
@@ -41,7 +44,7 @@ class FastBaseTypography extends StatelessWidget {
 
     if (enableInteractiveSelection) {
       return SelectableText(
-        text,
+        textValue,
         textAlign: textAlign,
         style: textStyle,
         maxLines: maxLines,
@@ -49,7 +52,7 @@ class FastBaseTypography extends StatelessWidget {
     }
 
     return Text(
-      text,
+      textValue,
       textAlign: textAlign,
       style: textStyle,
       maxLines: maxLines,
