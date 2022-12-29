@@ -18,6 +18,7 @@ class FastTheme {
     purple: kDarkPurpleFastTheme,
     teal: kDarkTealFastTheme,
     yellow: kDarkYellowFastTheme,
+    mint: kDarkMintFastTheme,
   );
 
   static FastThemeScheme light = FastThemeScheme(
@@ -28,5 +29,6 @@ class FastTheme {
     purple: kLightPurpleFastTheme,
     teal: kLightTealFastTheme,
     yellow: kLightYellowFastTheme,
+    mint: kLightMintFastTheme,
   );
 }

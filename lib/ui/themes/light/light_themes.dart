@@ -48,3 +48,10 @@ final kLightOrangeFastTheme = FastThemeFactory.buildLightThemeWithColors(
   secondaryColor: kFastLightIndigoColor,
   tertiaryColor: kFastLightTealColor,
 );
+
+final kLightMintFastTheme = FastThemeFactory.buildLightThemeWithColors(
+  primaryColor: kFastLightMintColor,
+  primaryColorDark: kFastLightMintPaletteColors.dark,
+  secondaryColor: kFastLightPurpleColor,
+  tertiaryColor: kFastLightIndigoColor,
+);
