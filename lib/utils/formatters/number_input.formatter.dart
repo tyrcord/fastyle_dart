@@ -106,10 +106,11 @@ class NumberInputFormatter extends TextInputFormatter {
         return oldValue;
       }
 
-      return TextEditingValue(
-        text: _formatNumberToString(number, valueText, periods.isNotEmpty),
-        selection: newValue.selection,
-      );
+      final text = _formatNumberToString(number, valueText, periods.isNotEmpty);
+      final position = TextPosition(offset: text.length);
+      final selection = TextSelection.fromPosition(position);
+
+      return TextEditingValue(text: text, selection: selection);
     }
 
     return oldValue;
