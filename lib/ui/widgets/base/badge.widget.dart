@@ -37,13 +37,13 @@ class FastBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: _getPadding(),
-      decoration: buildDecoration(context),
+      decoration: buildBoxDecoration(context),
       child: Center(child: buildText(context)),
     );
   }
 
-  /// Returns the decoration.
-  BoxDecoration buildDecoration(BuildContext context) {
+  /// Returns the box decoration.
+  BoxDecoration buildBoxDecoration(BuildContext context) {
     return BoxDecoration(
       color: _getBackgroundColor(context),
       borderRadius: _getBorderRadius(),
