@@ -11,19 +11,21 @@ class FastApp extends StatefulWidget {
   final Iterable<Locale> supportedLocales;
   final Duration delayBeforeShowingLoader;
   final IFastErrorReporter? errorReporter;
+  final Map<String, WidgetBuilder> routes;
   final bool debugShowCheckedModeBanner;
   final Iterable<FastJob>? loaderJobs;
   final FastThemeBloc? themeBloc;
   final ThemeData? lightTheme;
+  final String? initialRoute;
   final ThemeData? darkTheme;
   final String titleText;
   final Locale? locale;
-  final Widget home;
+  final Widget? home;
 
   FastApp({
     Key? key,
-    required this.home,
     this.delayBeforeShowingLoader = const Duration(seconds: 1),
+    this.routes = const <String, WidgetBuilder>{},
     this.supportedLocales = kFastSupportedLocales,
     this.debugShowCheckedModeBanner = false,
     this.titleText = kFastEmptyString,
@@ -31,11 +33,13 @@ class FastApp extends StatefulWidget {
     this.errorReporter,
     this.loaderBuilder,
     this.errorBuilder,
+    this.initialRoute,
     this.loaderJobs,
     this.lightTheme,
     this.darkTheme,
     this.themeBloc,
     this.locale,
+    this.home,
   }) : super(key: key);
 
   @override
@@ -76,7 +80,7 @@ class _FastAppState extends State<FastApp> {
           child: BlocBuilderWidget(
             bloc: _themeBloc,
             waitForData: true,
-            builder: (context, FastThemeBlocState state) {
+            builder: (BuildContext context, FastThemeBlocState state) {
               return FastAppErrorReporter(
                 reporter: widget.errorReporter,
                 child: MaterialApp(
@@ -89,13 +93,14 @@ class _FastAppState extends State<FastApp> {
                   themeMode: state.themeMode,
                   title: widget.titleText,
                   locale: widget.locale,
+                  routes: widget.routes,
                   home: FastAppLoader(
                     delayBeforeShowingLoader: widget.delayBeforeShowingLoader,
-                    appBuilder: (context) => widget.home,
                     errorReporter: widget.errorReporter,
                     loaderBuilder: widget.loaderBuilder,
                     errorBuilder: widget.errorBuilder,
                     loaderJobs: widget.loaderJobs,
+                    appBuilder: _buildHome,
                   ),
                 ),
               );
@@ -104,6 +109,28 @@ class _FastAppState extends State<FastApp> {
         ),
       ),
     );
+  }
+
+  Widget _buildHome(BuildContext context) {
+    if (widget.initialRoute != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.pushReplacementNamed(
+          context,
+          widget.initialRoute!,
+        );
+      });
+
+      return _buildEmptyContainer(context);
+    }
+
+    return widget.home ?? _buildEmptyContainer(context);
+  }
+
+  Widget _buildEmptyContainer(BuildContext context) {
+    final backgroungColor =
+        ThemeHelper.colors.getPrimaryBackgroundColor(context);
+
+    return Container(color: backgroungColor);
   }
 
   void _hideKeyboard() {
