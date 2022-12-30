@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## [0.34.0](https://github.com/tyrcord/fastyle_dart/releases/tag/0.34.0) (2022-12-30)
+
+### Features
+
+- Added fast shimmer.
+- Added toTitleCase helper.
+- Added fast badge.
+
+### Fixes
+
+- Minor fixes.
+
 ## [0.33.2](https://github.com/tyrcord/fastyle_dart/releases/tag/0.33.2) (2022-12-28)
 
 ### Features
