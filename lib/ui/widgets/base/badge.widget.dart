@@ -38,7 +38,7 @@ class FastBadge extends StatelessWidget {
     return Container(
       padding: _getPadding(),
       decoration: buildBoxDecoration(context),
-      child: Center(child: buildText(context)),
+      child: buildText(context),
     );
   }
 
@@ -88,6 +88,6 @@ class FastBadge extends StatelessWidget {
 
   /// Returns the border radius.
   BorderRadius _getBorderRadius() {
-    return borderRadius != null ? borderRadius! : BorderRadius.circular(16);
+    return borderRadius != null ? borderRadius! : BorderRadius.circular(12);
   }
 }

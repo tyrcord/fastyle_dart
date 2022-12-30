@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 /// A duotone badge widget that can be used to display a small amount of
 /// information.
-class DuotoneFastBadge extends FastBadge {
+class FastDuotoneBadge extends FastBadge {
   /// The palette.
   final FastPaletteScheme? palette;
 
-  const DuotoneFastBadge({
+  const FastDuotoneBadge({
     super.key,
     super.backgroundColor,
     super.borderRadius,
