@@ -28,6 +28,15 @@ const kFastIconSizeSmall = 20.0;
 const kFastIconSizeMedium = 24.0;
 const kFastIconSizeXl = 28.0;
 
+// Image Sizes
+
+const kFastImageizeXs = 16.0;
+const kFastImageSizeSmall = 24.0;
+const kFastImageSizeMedium = 32.0;
+const kFastImageSizeLarge = 48.0;
+const kFastImageSizeXl = 64.0;
+const kFastImageSizeXxl = 128.0;
+
 const kFastLineHeight = 1.2;
 
 // Radius
