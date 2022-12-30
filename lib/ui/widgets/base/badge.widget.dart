@@ -51,6 +51,7 @@ class FastBadge extends StatelessWidget {
     );
   }
 
+  /// Returns the text.
   Widget buildText(BuildContext context) {
     return FastOverline(
       textColor: _getTextColor(context),
