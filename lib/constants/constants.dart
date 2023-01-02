@@ -26,7 +26,8 @@ const kFastEmptyString = '';
 const kFastIconSizeXs = 18.0;
 const kFastIconSizeSmall = 20.0;
 const kFastIconSizeMedium = 24.0;
-const kFastIconSizeXl = 28.0;
+const kFastIconSizeLarge = 28.0;
+const kFastIconSizeXl = 32.0;
 
 // Image Sizes
 

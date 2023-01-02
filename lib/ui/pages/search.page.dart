@@ -186,7 +186,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
       return FastIconButton(
         icon: useCloseButton ? widget.closeIcon : widget.backIcon,
         onTap: () => _close(context, widget.selection),
-        iconSize: kFastIconSizeXl,
+        iconSize: kFastIconSizeLarge,
       );
     }
 

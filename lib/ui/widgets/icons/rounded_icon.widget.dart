@@ -15,7 +15,7 @@ class FastRoundedIcon extends StatelessWidget {
     super.key,
     required this.icon,
     this.size = kFastIconSizeMedium,
-    this.ratio = 0.55,
+    this.ratio = 0.5,
     this.backgroundColor,
     this.iconColor,
     this.iconSize,
