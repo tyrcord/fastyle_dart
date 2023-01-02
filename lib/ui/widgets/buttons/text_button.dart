@@ -10,6 +10,7 @@ class FastTextButton extends FastButton {
     super.highlightColor,
     super.isEnabled,
     super.textColor,
+    super.upperCase,
     super.emphasis,
     super.padding,
     super.child,
@@ -51,7 +52,11 @@ class _FastTextButtonState extends State<FastTextButton>
         shape: getButtonShape(),
       ),
       onPressed: throttleOnTapIfNeeded(),
-      child: widget.child ?? buildButtonLabel(textColor),
+      child: widget.child ??
+          buildButtonLabel(
+            textColor,
+            upperCase: widget.upperCase,
+          ),
     );
   }
 }

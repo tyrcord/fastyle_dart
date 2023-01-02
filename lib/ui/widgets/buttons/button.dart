@@ -10,6 +10,7 @@ abstract class FastButton extends StatefulWidget {
   final VoidCallback onTap;
   final Color? textColor;
   final bool isEnabled;
+  final bool upperCase;
   final String? text;
   final Widget? child;
 
@@ -19,6 +20,7 @@ abstract class FastButton extends StatefulWidget {
     this.trottleTimeDuration = kFastTrottleTimeDuration,
     this.emphasis = FastButtonEmphasis.low,
     this.shouldTrottleTime = false,
+    this.upperCase = false,
     this.isEnabled = true,
     this.highlightColor,
     this.textColor,

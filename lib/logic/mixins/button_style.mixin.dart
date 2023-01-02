@@ -23,12 +23,14 @@ mixin FastButtonSyleMixin<T extends FastButton> on State<T> {
   FastButtonLabel buildButtonLabel(
     Color textColor, {
     Color? disabledTextColor,
+    bool upperCase = true,
   }) {
     return FastButtonLabel(
       text: widget.text ?? kFastButtonLabel,
       textColor: widget.isEnabled
           ? textColor
           : disabledTextColor ?? textColor.withAlpha(kDisabledAlpha),
+      upperCase: upperCase,
     );
   }
 }
