@@ -29,9 +29,18 @@ class FastJobRunner {
       _runner = Stream.fromIterable(jobs)
           .takeWhile((FastJob job) => !hasError)
           .asyncExpand((FastJob job) {
-            return Stream.fromFuture(
-              job.run(context, errorReporter: errorReporter),
-            );
+            final completer = Completer<bool>();
+
+            WidgetsBinding.instance.scheduleFrameCallback((_) async {
+              final response = await job.run(
+                context,
+                errorReporter: errorReporter,
+              );
+
+              completer.complete(response);
+            });
+
+            return Stream.fromFuture(completer.future);
           })
           .map((_) {
             progress += dProgresStep;
