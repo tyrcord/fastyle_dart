@@ -74,6 +74,7 @@ class _FastAppLoaderState extends State<FastAppLoader> {
       child: BlocBuilderWidget(
         bloc: _bloc,
         waitForData: true,
+        loadingBuilder: (BuildContext context) => buildPlaceholder(context),
         builder: (BuildContext context, FastAppLoaderBlocState state) {
           if (state.isLoading) {
             if (widget.loaderBuilder != null && _canShowLoader) {
@@ -83,6 +84,8 @@ class _FastAppLoaderState extends State<FastAppLoader> {
                 }),
               );
             }
+
+            return buildPlaceholder(context);
           } else if (state.isLoaded) {
             _delayTimer.cancel();
 
@@ -100,6 +103,12 @@ class _FastAppLoaderState extends State<FastAppLoader> {
           return FastSectionPage();
         },
       ),
+    );
+  }
+
+  Widget buildPlaceholder(BuildContext context) {
+    return Container(
+      color: ThemeHelper.colors.getPrimaryBackgroundColor(context),
     );
   }
 }
