@@ -69,4 +69,13 @@ class ThemeColorHelper {
         ? SystemUiOverlayStyle.dark
         : SystemUiOverlayStyle.light;
   }
+
+  Color getDisabledColor(BuildContext context) {
+    final palette = ThemeHelper.getPaletteColors(context);
+    final themeBloc = BlocProvider.of<FastThemeBloc>(context);
+    final brightness = themeBloc.currentState.brightness;
+    final isBrightnessLight = brightness == Brightness.light;
+
+    return isBrightnessLight ? palette.gray.ultraLight : palette.gray.darkest;
+  }
 }
