@@ -110,6 +110,22 @@ class FieldsPage extends StatelessWidget {
             categories: demoCategories,
             onSelectionChanged: (FastItem<String>? value) {},
           ),
+          FastNumberField(
+            labelText: 'Number 5 (disabled)',
+            placeholderText: '0',
+            captionText: 'required',
+            onValueChanged: (String value) => log(value),
+            isEnabled: false,
+          ),
+          FastSelectField(
+            labelText: 'Favorite food (disabled)',
+            items: demoItems,
+            groupByCategory: true,
+            selection: demoItems[3],
+            categories: demoCategories,
+            onSelectionChanged: (FastItem<String>? value) {},
+            isEnabled: false,
+          ),
           FastTextField(
             labelText: 'Text 2',
             placeholderText: 'value',
