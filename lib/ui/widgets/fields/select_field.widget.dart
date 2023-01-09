@@ -24,6 +24,7 @@ class FastSelectField<T> extends StatefulWidget {
   final Widget closeIcon;
   final Widget backIcon;
   final bool isReadOnly;
+  final bool isEnabled;
   final bool sortItems;
 
   FastSelectField({
@@ -44,6 +45,7 @@ class FastSelectField<T> extends StatefulWidget {
     this.useFuzzySearch = false,
     this.isReadOnly = false,
     this.sortItems = true,
+    this.isEnabled = true,
     this.placeholderText,
     this.allCategoryText,
     this.captionText,
@@ -85,78 +87,128 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {
-        var items = widget.items;
-
-        if (!widget.isReadOnly && items.isNotEmpty) {
-          FocusManager.instance.primaryFocus!.unfocus();
-          _focusNode.requestFocus();
-
-          final response = await Navigator.push(
-            context,
-            CupertinoPageRoute(
-              builder: (BuildContext context) => FastSearchPage<FastItem<T>>(
-                titleText: widget.searchTitleText,
-                items: widget.items,
-                groupByCategory: widget.groupByCategory,
-                categories: widget.categories,
-                selection: widget.selection,
-                useFuzzySearch: widget.useFuzzySearch,
-                sortItems: widget.sortItems,
-                searchPlaceholderText: widget.searchPlaceholderText,
-                intialCategoryIndex: widget.intialCategoryIndex,
-                allCategoryText: widget.allCategoryText,
-                clearSearchIcon: widget.clearSearchIcon,
-                backIcon: widget.backIcon,
-                closeIcon: widget.closeIcon,
-                canClearSelection: widget.canClearSelection,
-                clearSelectionText: widget.clearSelectionText,
-              ),
-              fullscreenDialog: true,
-            ),
-          ) as FastItem<T>?;
-
-          setState(() {
-            _selection = response;
-            widget.onSelectionChanged(_selection);
-          });
-        }
-      },
+      onTap: handleOnTap,
       child: FastFieldLayout(
         showHelperBoundaries: widget.showHelperBoundaries,
-        labelText: widget.labelText,
         captionText: widget.captionText,
+        control: buildControl(context),
         helperText: widget.helperText,
-        control: _buildControl(context),
+        labelText: widget.labelText,
       ),
     );
   }
 
-  Widget _buildControl(BuildContext context) {
-    final text = _selection != null
-        ? FastBody(text: _selection!.labelText, fontWeight: kFastFontWeightBold)
-        : widget.placeholderText != null
-            ? FastPlaceholder(
-                text: widget.placeholderText!,
-                fontWeight: kFastFontWeightBold,
-              )
-            : const FastBody(
-                text: kFastNoneString,
-                fontWeight: kFastFontWeightBold,
-              );
-
+  Widget buildControl(BuildContext context) {
     return Container(
-      decoration: ThemeHelper.createBorderSide(context),
+      decoration: buildBorderSide(context),
       child: Row(
         children: <Widget>[
-          Expanded(child: text),
-          Icon(
-            Icons.arrow_drop_down,
-            color: ThemeHelper.texts.getBodyTextStyle(context).color,
-            size: kFastIconSizeMedium,
-          ),
+          Expanded(child: buildLabel(context)),
+          buildIcon(context),
         ],
       ),
     );
+  }
+
+  Widget buildLabel(BuildContext context) {
+    if (_selection != null) {
+      return FastBody(
+        textColor: _getLabelColor(context),
+        fontWeight: kFastFontWeightBold,
+        text: _selection!.labelText,
+      );
+    } else if (widget.placeholderText != null) {
+      return FastPlaceholder(
+        textColor: _getPlaceholderColor(context),
+        fontWeight: kFastFontWeightBold,
+        text: widget.placeholderText!,
+      );
+    }
+
+    return FastBody(
+      textColor: _getLabelColor(context),
+      fontWeight: kFastFontWeightBold,
+      text: kFastNoneString,
+    );
+  }
+
+  Widget buildIcon(BuildContext context) {
+    return Icon(
+      Icons.arrow_drop_down,
+      color: _getLabelColor(context),
+      size: kFastIconSizeMedium,
+    );
+  }
+
+  BoxDecoration buildBorderSide(BuildContext context) {
+    Color? color;
+
+    if (!widget.isEnabled) {
+      color = ThemeHelper.colors.getDisabledColor(context);
+    }
+
+    return ThemeHelper.createBorderSide(context, color: color);
+  }
+
+  Future<void> handleOnTap() async {
+    var items = widget.items;
+
+    if (widget.isEnabled && !widget.isReadOnly && items.isNotEmpty) {
+      FocusManager.instance.primaryFocus!.unfocus();
+      _focusNode.requestFocus();
+
+      final response = await Navigator.push(
+        context,
+        CupertinoPageRoute(
+          builder: (BuildContext context) => FastSearchPage<FastItem<T>>(
+            searchPlaceholderText: widget.searchPlaceholderText,
+            intialCategoryIndex: widget.intialCategoryIndex,
+            clearSelectionText: widget.clearSelectionText,
+            canClearSelection: widget.canClearSelection,
+            allCategoryText: widget.allCategoryText,
+            clearSearchIcon: widget.clearSearchIcon,
+            groupByCategory: widget.groupByCategory,
+            useFuzzySearch: widget.useFuzzySearch,
+            titleText: widget.searchTitleText,
+            categories: widget.categories,
+            sortItems: widget.sortItems,
+            selection: widget.selection,
+            closeIcon: widget.closeIcon,
+            backIcon: widget.backIcon,
+            items: widget.items,
+          ),
+          fullscreenDialog: true,
+        ),
+      ) as FastItem<T>?;
+
+      setState(() {
+        _selection = response;
+        widget.onSelectionChanged(_selection);
+      });
+    }
+  }
+
+  // private methods
+
+  /// Returns the label color based on the current state of the field.
+  Color _getLabelColor(BuildContext context) {
+    Color? color;
+
+    if (!widget.isEnabled) {
+      color = ThemeHelper.colors.getDisabledColor(context);
+    }
+
+    return color ?? ThemeHelper.texts.getBodyTextStyle(context).color!;
+  }
+
+  /// Returns the placeholder color based on the current state of the field.
+  Color _getPlaceholderColor(BuildContext context) {
+    Color? color;
+
+    if (!widget.isEnabled) {
+      color = ThemeHelper.colors.getDisabledColor(context);
+    }
+
+    return color ?? ThemeHelper.texts.getPlaceholderTextStyle(context).color!;
   }
 }
