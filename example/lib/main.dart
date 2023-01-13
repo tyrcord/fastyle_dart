@@ -6,6 +6,7 @@ import 'package:fastyle_dart_example/pages/buttons.dart';
 import 'package:fastyle_dart_example/pages/cards.dart';
 import 'package:fastyle_dart_example/pages/colors.dart';
 import 'package:fastyle_dart_example/pages/fields.dart';
+import 'package:fastyle_dart_example/pages/indicators.dart';
 import 'package:fastyle_dart_example/pages/lists.dart';
 import 'package:fastyle_dart_example/pages/naviagtion_bar_view.dart';
 import 'package:fastyle_dart_example/pages/notifications.dart';
@@ -72,12 +73,19 @@ class MyApp extends StatelessWidget {
         );
       },
       loaderBuilder: (context, progress) {
+        debugPrint(progress.toString());
+
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FastProgressBarIndicator(
+            FastLinearProgressBarIndicator(
               showProgressLabel: true,
+              showAsPercentage: true,
+              fractionDigits: 0,
+              minBarHeight: 20,
               value: progress,
+              barRadius: 10,
+              maxValue: 1,
             ),
             kFastSizedBox16,
             FastBody(text: 'Please wait while the application is loading...'),
@@ -360,6 +368,19 @@ class _MyHomePageState extends State<MyHomePage> {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => NavigationBarViewPage()),
+          );
+        },
+      ),
+      FastNavigationListItem(
+        leading: FastRoundedDuotoneIcon(
+          icon: FaIcon(FontAwesomeIcons.spinner),
+          palette: palette.blue,
+        ),
+        labelText: 'Indicators',
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => IndicatorsPage()),
           );
         },
       ),

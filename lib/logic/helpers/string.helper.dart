@@ -19,3 +19,8 @@ String? toTitleCase(String? text) {
   // Join the words back into a single string
   return words.join(' ');
 }
+
+/// Returns a formatted percentage string from a double value.
+String toPercentage(double value, int fractionDigits) {
+  return '${(value * 100).toStringAsFixed(fractionDigits)} %';
+}
