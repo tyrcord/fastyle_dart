@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.34.5](https://github.com/tyrcord/fastyle_dart/releases/tag/0.34.5) (2023-01-20)
+
+### Features
+
+- Add some app's information predefinied text
+
 ## [0.34.3](https://github.com/tyrcord/fastyle_dart/releases/tag/0.34.3) (2023-01-13)
 
 ### Enhancements
