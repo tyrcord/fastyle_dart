@@ -2,7 +2,7 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that displays the app's name, author and year.
-class FusexAppInformation extends StatelessWidget {
+class FastAppInformation extends StatelessWidget {
   /// The custom text to display for the app copyright.
   final String? customAppCopyrightText;
 
@@ -27,7 +27,7 @@ class FusexAppInformation extends StatelessWidget {
   /// The year of the app.
   final int? year;
 
-  const FusexAppInformation({
+  const FastAppInformation({
     super.key,
     this.shortCopyright = false,
     this.customAppCopyrightText,
