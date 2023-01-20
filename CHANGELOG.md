@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.34.6](https://github.com/tyrcord/fastyle_dart/releases/tag/0.34.6) (2023-01-20)
+
+### Fixes
+
+- Typo.
+
 ## [0.34.5](https://github.com/tyrcord/fastyle_dart/releases/tag/0.34.5) (2023-01-20)
 
 ### Features
