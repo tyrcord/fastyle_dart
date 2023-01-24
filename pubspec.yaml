@@ -30,5 +30,4 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   pedantic: ^1.11.1
-  test: ^1.21.4
-  dart_code_metrics: ^4.19.1
+  dart_code_metrics: ^5.5.0
