@@ -1,5 +1,6 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class FastCloseButton extends StatelessWidget {
   final VoidCallback? onTap;
@@ -17,7 +18,9 @@ class FastCloseButton extends StatelessWidget {
         if (onTap != null) {
           onTap!();
         } else {
-          Navigator.maybePop(context);
+          if (context.canPop()) {
+            context.pop();
+          }
         }
       },
     );

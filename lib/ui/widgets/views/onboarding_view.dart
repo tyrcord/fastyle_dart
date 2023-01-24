@@ -1,6 +1,7 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 
 const _kStepDotSize = 10.0;
@@ -13,7 +14,7 @@ class FastOnboardingView extends StatefulWidget {
   ///
   /// Main widget when the application starts up.
   ///
-  final WidgetBuilder homeBuilder;
+  final String? doneRoute;
   final VoidCallback? onDone;
   final VoidCallback? onSkip;
   final Color? stepDotColor;
@@ -26,7 +27,6 @@ class FastOnboardingView extends StatefulWidget {
 
   const FastOnboardingView({
     Key? key,
-    required this.homeBuilder,
     required this.slides,
     this.stepDotSize = _kStepDotSize,
     this.doneText = kFastDoneText,
@@ -35,6 +35,7 @@ class FastOnboardingView extends StatefulWidget {
     this.allowToSkip = false,
     this.stepDotColor,
     this.controller,
+    this.doneRoute,
     this.onDone,
     this.onSkip,
   }) : super(key: key);
@@ -210,10 +211,5 @@ class _FastOnboardingViewState extends State<FastOnboardingView> {
     _done();
   }
 
-  void _done() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: widget.homeBuilder),
-    );
-  }
+  void _done() => context.go(widget.doneRoute ?? '/');
 }
