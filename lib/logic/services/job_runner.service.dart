@@ -31,13 +31,15 @@ class FastJobRunner {
           .asyncExpand((FastJob job) {
             final completer = Completer<bool>();
 
-            WidgetsBinding.instance.scheduleFrameCallback((_) async {
-              final response = await job.run(
-                context,
-                errorReporter: errorReporter,
-              );
+            WidgetsBinding.instance.scheduleFrameCallback((_) {
+              runZonedGuarded(() async {
+                final response = await job.run(
+                  context,
+                  errorReporter: errorReporter,
+                );
 
-              completer.complete(response);
+                completer.complete(response);
+              }, (error, stackTrace) => completer.completeError(error));
             });
 
             return Stream.fromFuture(completer.future);
