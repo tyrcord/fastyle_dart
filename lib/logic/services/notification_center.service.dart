@@ -20,9 +20,6 @@ const _kDefaultSuccessOptions = FastNotificationCenterOptions(
 );
 
 class FastNotificationCenter {
-  static final navigatorKey = GlobalKey<NavigatorState>();
-
-  static BuildContext get _context => navigatorKey.currentContext!;
   static const Duration _animationDuration = Duration(milliseconds: 750);
   static const Duration _notificationDuration = Duration(seconds: 2);
   static final ListQueue<Flushbar> _queue = ListQueue<Flushbar>();
@@ -34,13 +31,15 @@ class FastNotificationCenter {
   /// Displays an error notification.
   ///
   static void error(
+    BuildContext context,
     String message, {
     Key? key,
     FastNotificationCenterOptions options = _kDefaultErrorOptions,
   }) {
-    final palette = ThemeHelper.getPaletteColors(_context);
+    final palette = ThemeHelper.getPaletteColors(context);
 
     _buildNotification(
+      context,
       message,
       options: _mergeIconColors(options, palette.red.mid),
     );
@@ -50,13 +49,15 @@ class FastNotificationCenter {
   /// Displays an warn notification.
   ///
   static void warn(
+    BuildContext context,
     String message, {
     Key? key,
     FastNotificationCenterOptions options = _kDefaultWarnOptions,
   }) {
-    final palette = ThemeHelper.getPaletteColors(_context);
+    final palette = ThemeHelper.getPaletteColors(context);
 
     _buildNotification(
+      context,
       message,
       options: _mergeIconColors(options, palette.orange.mid),
     );
@@ -66,13 +67,15 @@ class FastNotificationCenter {
   /// Displays an info notification.
   ///
   static void info(
+    BuildContext context,
     String message, {
     Key? key,
     FastNotificationCenterOptions options = _kDefaultInfoOptions,
   }) {
-    final palette = ThemeHelper.getPaletteColors(_context);
+    final palette = ThemeHelper.getPaletteColors(context);
 
     _buildNotification(
+      context,
       message,
       options: _mergeIconColors(options, palette.blueGray.mid),
     );
@@ -82,13 +85,15 @@ class FastNotificationCenter {
   /// Displays an success notification.
   ///
   static void success(
+    BuildContext context,
     String message, {
     Key? key,
     FastNotificationCenterOptions options = _kDefaultSuccessOptions,
   }) {
-    final palette = ThemeHelper.getPaletteColors(_context);
+    final palette = ThemeHelper.getPaletteColors(context);
 
     _buildNotification(
+      context,
       message,
       options: _mergeIconColors(options, palette.green.mid),
     );
@@ -102,17 +107,23 @@ class FastNotificationCenter {
   }
 
   static void _buildNotification(
+    BuildContext context,
     String message, {
     Key? key,
     FastNotificationCenterOptions? options,
   }) {
     final colorHelper = ThemeHelper.colors;
-    final backgroundColor = colorHelper.getSecondaryBackgroundColor(_context);
+    final backgroundColor = colorHelper.getSecondaryBackgroundColor(context);
 
     _addNotification(
+      context,
       Flushbar(
-        boxShadows: [ThemeHelper.getDefaultBoxShadow(_context)],
-        onStatusChanged: _onNotificationStatusChanged,
+        boxShadows: [ThemeHelper.getDefaultBoxShadow(context)],
+        onStatusChanged: (status) {
+          if (status == FlushbarStatus.DISMISSED) {
+            _nextNotification(context);
+          }
+        },
         flushbarPosition: FlushbarPosition.TOP,
         animationDuration: _animationDuration,
         messageText: FastBody(text: message),
@@ -147,7 +158,7 @@ class FastNotificationCenter {
     return null;
   }
 
-  static void _addNotification(Flushbar notification) {
+  static void _addNotification(BuildContext context, Flushbar notification) {
     if (_queue.length == _maxNotification) {
       _queue.removeFirst();
     }
@@ -155,27 +166,21 @@ class FastNotificationCenter {
     _queue.addLast(notification);
 
     if (!_isShowingNotification) {
-      _nextNotification();
+      _nextNotification(context);
     }
   }
 
-  static void _nextNotification() {
+  static void _nextNotification(BuildContext context) {
     if (_queue.isNotEmpty) {
       _isShowingNotification = true;
 
       final notification = _queue.removeFirst();
 
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        notification.show(_context);
+        notification.show(context);
       });
     } else {
       _isShowingNotification = false;
-    }
-  }
-
-  static void _onNotificationStatusChanged(FlushbarStatus? status) {
-    if (status == FlushbarStatus.DISMISSED) {
-      _nextNotification();
     }
   }
 }
