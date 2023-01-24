@@ -46,7 +46,7 @@ class FastAppInformation extends StatelessWidget {
       children: <Widget>[
         FastAppVersion(
           customText: customAppVersionText,
-          buildNumber: buildNumber!,
+          buildNumber: buildNumber,
           version: version!,
         ),
         FastAppCopyright(
@@ -56,6 +56,7 @@ class FastAppInformation extends StatelessWidget {
           name: name,
           year: year,
         ),
+        kFastSizedBox16,
       ],
     );
   }
