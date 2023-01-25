@@ -1,3 +1,4 @@
+import 'package:fastyle_dart/logic/logic.dart';
 import 'package:fastyle_dart/ui/ui.dart';
 import 'package:fastyle_dart_example/pages/buttons.dart';
 import 'package:fastyle_dart_example/pages/cards.dart';
@@ -13,6 +14,13 @@ import 'package:fastyle_dart_example/pages/tabs.dart';
 import 'package:fastyle_dart_example/pages/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+final options = List<FastItem>.generate(50, (int index) {
+  return FastItem(labelText: index.toString(), value: index);
+});
+
+final GlobalKey<NavigatorState> _shellNavigatorKey =
+    GlobalKey<NavigatorState>();
 
 final AppRoutes = [
   GoRoute(
@@ -91,9 +99,62 @@ final AppRoutes = [
     path: 'split-view',
     builder: (context, state) => SplitViewPage(),
   ),
-  GoRoute(
-    path: 'navigation-bar-view',
-    builder: (context, state) => NavigationBarViewPage(),
+  ShellRoute(
+    navigatorKey: _shellNavigatorKey,
+    builder: (context, state, child) => NavigationBarViewPage(
+      child: child,
+    ),
+    routes: [
+      GoRoute(
+        parentNavigatorKey: _shellNavigatorKey,
+        path: 'navigation-bar-view/explore',
+        pageBuilder: (context, state) {
+          return FastFadeTransitionPage(
+            child: FastSectionPage(
+              titleText: 'Commute',
+              showAppBar: false,
+            ),
+            key: state.pageKey,
+          );
+        },
+      ),
+      GoRoute(
+        parentNavigatorKey: _shellNavigatorKey,
+        path: 'navigation-bar-view/commute',
+        pageBuilder: (context, state) {
+          return FastFadeTransitionPage(
+            child: FastSectionPage(
+              titleText: 'Explore',
+              showAppBar: false,
+              isViewScrollable: false,
+              contentPadding: EdgeInsets.zero,
+              child: FastSelectableListView(
+                showItemDivider: true,
+                items: options,
+                sortItems: false,
+                onSelectionChanged: (FastItem option) {
+                  debugPrint('${option.labelText} selected');
+                },
+              ),
+            ),
+            key: state.pageKey,
+          );
+        },
+      ),
+      GoRoute(
+        parentNavigatorKey: _shellNavigatorKey,
+        path: 'navigation-bar-view/saved',
+        pageBuilder: (context, state) {
+          return FastFadeTransitionPage(
+            child: FastSectionPage(
+              titleText: 'Saved',
+              showAppBar: false,
+            ),
+            key: state.pageKey,
+          );
+        },
+      ),
+    ],
   ),
   GoRoute(
     path: 'indicators',

@@ -261,7 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
           palette: palette.green,
         ),
         labelText: 'Navigation Bar View',
-        onTap: () => context.go('/navigation-bar-view'),
+        onTap: () => context.go('/navigation-bar-view/explore'),
       ),
       FastNavigationListItem(
         leading: FastRoundedDuotoneIcon(

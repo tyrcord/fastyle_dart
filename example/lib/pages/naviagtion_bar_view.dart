@@ -2,12 +2,12 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
 class NavigationBarViewPage extends StatelessWidget {
+  final Widget? child;
+
+  const NavigationBarViewPage({super.key, this.child});
+
   @override
   Widget build(BuildContext context) {
-    final options = List<FastItem>.generate(50, (int index) {
-      return FastItem(labelText: index.toString(), value: index);
-    });
-
     return FastSectionPage(
       contentPadding: EdgeInsets.zero,
       child: FastNavigationBarView(
@@ -17,41 +17,21 @@ class NavigationBarViewPage extends StatelessWidget {
           FastNavigationDestination(
             icon: Icon(Icons.explore),
             label: 'Explore',
+            path: '/navigation-bar-view/explore',
           ),
           FastNavigationDestination(
             icon: Icon(Icons.commute),
             label: 'Commute',
+            path: '/navigation-bar-view/commute',
           ),
           FastNavigationDestination(
             selectedIcon: Icon(Icons.bookmark),
             icon: Icon(Icons.bookmark_border),
             label: 'Saved',
+            path: '/navigation-bar-view/saved',
           ),
         ],
-        children: [
-          FastSectionPage(
-            titleText: 'Explore',
-            showAppBar: false,
-            isViewScrollable: false,
-            contentPadding: EdgeInsets.zero,
-            child: FastSelectableListView(
-              showItemDivider: true,
-              items: options,
-              sortItems: false,
-              onSelectionChanged: (FastItem option) {
-                debugPrint('${option.labelText} selected');
-              },
-            ),
-          ),
-          FastSectionPage(
-            titleText: 'Commute',
-            showAppBar: false,
-          ),
-          FastSectionPage(
-            titleText: 'Saved',
-            showAppBar: false,
-          ),
-        ],
+        child: child,
       ),
     );
   }
