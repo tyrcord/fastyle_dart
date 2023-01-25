@@ -198,18 +198,18 @@ class _FastOnboardingViewState extends State<FastOnboardingView> {
   void _onSkip() {
     if (widget.onSkip != null) {
       widget.onSkip!();
+    } else {
+      _done();
     }
-
-    _done();
   }
 
   void _onDone() {
     if (widget.onDone != null) {
       widget.onDone!();
+    } else {
+      _done();
     }
-
-    _done();
   }
 
-  void _done() => context.go(widget.doneRoute ?? '/');
+  void _done() => GoRouter.of(context).pushReplacement('/');
 }
