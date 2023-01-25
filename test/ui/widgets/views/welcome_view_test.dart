@@ -12,14 +12,8 @@ FastApp _buildApp(FastOnboardingView onboarding) {
 void main() {
   const slideText1 = 'slide 1';
   const slideText2 = 'slide 2';
-  const homeText = 'Home';
   const slide1 = Text(slideText1);
   const slide2 = Text(slideText2);
-  final home = FastHomePage(
-    children: [
-      Text(homeText),
-    ],
-  );
 
   group('FastOnboardingView', () {
     group('#slides', () {
@@ -27,9 +21,6 @@ void main() {
           (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(FastOnboardingView(
-            homeBuilder: (_) {
-              return home;
-            },
             slides: [slide1, slide2],
           )),
         );
@@ -44,9 +35,6 @@ void main() {
           (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(FastOnboardingView(
-            homeBuilder: (_) {
-              return home;
-            },
             slides: [slide1, slide2],
           )),
         );
@@ -60,41 +48,11 @@ void main() {
       });
     });
 
-    group('#homeBuilder', () {
-      testWidgets('should be called when the initialization is done',
-          (WidgetTester tester) async {
-        var called = false;
-
-        await tester.pumpWidget(
-          _buildApp(FastOnboardingView(
-            homeBuilder: (_) {
-              called = true;
-              return home;
-            },
-            slides: [slide1, slide2],
-          )),
-        );
-        await tester.pumpAndSettle();
-
-        await tester.tap(find.text('NEXT'));
-        await tester.pumpAndSettle();
-        await tester.tap(find.text('DONE'));
-        await tester.pumpAndSettle();
-
-        final child = find.byWidget(home);
-        expect(child, findsOneWidget);
-        expect(called, isTrue);
-      });
-    });
-
     group('#allowToSkip', () {
       testWidgets('should be set to false by default',
           (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(FastOnboardingView(
-            homeBuilder: (_) {
-              return home;
-            },
             slides: [slide1, slide2],
           )),
         );
@@ -107,9 +65,6 @@ void main() {
           (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(FastOnboardingView(
-            homeBuilder: (_) {
-              return home;
-            },
             slides: [slide1, slide2],
             allowToSkip: true,
           )),
@@ -124,7 +79,6 @@ void main() {
           (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(FastOnboardingView(
-            homeBuilder: (_) => home,
             slides: [slide1],
             allowToSkip: true,
           )),
@@ -140,9 +94,6 @@ void main() {
           (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(FastOnboardingView(
-            homeBuilder: (_) {
-              return home;
-            },
             slides: [slide1],
             doneText: 'OK',
           )),
@@ -158,9 +109,6 @@ void main() {
           (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(FastOnboardingView(
-            homeBuilder: (_) {
-              return home;
-            },
             slides: [slide1, slide2],
             nextText: 'CONTINUE',
           )),
@@ -176,9 +124,6 @@ void main() {
           (WidgetTester tester) async {
         await tester.pumpWidget(
           _buildApp(FastOnboardingView(
-            homeBuilder: (_) {
-              return home;
-            },
             slides: [slide1, slide2],
             allowToSkip: true,
             skipText: 'PASS',
@@ -197,9 +142,6 @@ void main() {
 
         await tester.pumpWidget(
           _buildApp(FastOnboardingView(
-            homeBuilder: (_) {
-              return home;
-            },
             slides: [slide1],
             onDone: () => done = true,
           )),
@@ -220,9 +162,6 @@ void main() {
 
         await tester.pumpWidget(
           _buildApp(FastOnboardingView(
-            homeBuilder: (_) {
-              return home;
-            },
             slides: [slide1, slide2],
             allowToSkip: true,
             onSkip: () => skipped = true,

@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.0.0](https://github.com/tyrcord/fastyle_dart/releases/tag/1.0.0) (2023-01-25)
+
+### Features
+
+- Support go router
+
 ## [0.34.6](https://github.com/tyrcord/fastyle_dart/releases/tag/0.34.6) (2023-01-20)
 
 ### Fixes

@@ -13,6 +13,7 @@ dependencies:
   google_fonts: ^3.0.1
   tutils_dart: ^1.0.0
   font_awesome_flutter: ^10.3.0
+  go_router: ^6.0.1
 
   fastyle_dart:
     path: ../

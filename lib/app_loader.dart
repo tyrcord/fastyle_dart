@@ -1,9 +1,8 @@
 import 'dart:async';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:tbloc_dart/tbloc_dart.dart';
-
 import 'package:flutter/material.dart';
+import 'package:tbloc_dart/tbloc_dart.dart';
 
 typedef FastAppLoaderBuilder = Widget Function(
   BuildContext context,
@@ -16,21 +15,33 @@ typedef FastAppLoaderErrorBuilder = Widget Function(
 );
 
 class FastAppLoader extends StatefulWidget {
+  final Iterable<LocalizationsDelegate>? localizationsDelegates;
   final FastAppLoaderErrorBuilder? errorBuilder;
   final FastAppLoaderBuilder? loaderBuilder;
   final IFastErrorReporter? errorReporter;
+  final Iterable<Locale> supportedLocales;
   final Duration delayBeforeShowingLoader;
+  final bool debugShowCheckedModeBanner;
   final Iterable<FastJob>? loaderJobs;
   final WidgetBuilder appBuilder;
+  final ThemeData? lightTheme;
+  final ThemeData? darkTheme;
+  final Locale? locale;
 
   const FastAppLoader({
     Key? key,
     required this.appBuilder,
     this.delayBeforeShowingLoader = const Duration(seconds: 1),
+    this.supportedLocales = kFastSupportedLocales,
+    this.debugShowCheckedModeBanner = false,
+    this.localizationsDelegates,
     this.loaderBuilder,
     this.errorReporter,
     this.errorBuilder,
     this.loaderJobs,
+    this.lightTheme,
+    this.darkTheme,
+    this.locale,
   }) : super(key: key);
 
   @override
@@ -43,6 +54,14 @@ class _FastAppLoaderState extends State<FastAppLoader> {
   bool _isInitializing = false;
   bool _isInitialized = false;
   bool _canShowLoader = false;
+
+  Iterable<LocalizationsDelegate<dynamic>> get _localizationsDelegates {
+    return <LocalizationsDelegate<dynamic>>[
+      if (widget.localizationsDelegates != null)
+        ...widget.localizationsDelegates!,
+      DefaultWidgetsLocalizations.delegate,
+    ];
+  }
 
   @override
   void didChangeDependencies() {
@@ -74,18 +93,12 @@ class _FastAppLoaderState extends State<FastAppLoader> {
       child: BlocBuilderWidget(
         bloc: _bloc,
         waitForData: true,
-        loadingBuilder: (BuildContext context) => buildPlaceholder(context),
+        loadingBuilder: (BuildContext context) => buildPlaceholderApp(context),
         builder: (BuildContext context, FastAppLoaderBlocState state) {
-          if (state.isLoading) {
-            if (widget.loaderBuilder != null && _canShowLoader) {
-              return FastSectionPage(
-                child: Builder(builder: (BuildContext context) {
-                  return widget.loaderBuilder!(context, state.progress);
-                }),
-              );
-            }
-
-            return buildPlaceholder(context);
+          if (state.isLoading &&
+              widget.loaderBuilder != null &&
+              _canShowLoader) {
+            return buildLoadingApp(progress: state.progress);
           } else if (state.isLoaded) {
             _delayTimer.cancel();
 
@@ -93,22 +106,71 @@ class _FastAppLoaderState extends State<FastAppLoader> {
           } else if (state.hasError && widget.errorBuilder != null) {
             _delayTimer.cancel();
 
-            return FastSectionPage(
-              child: Builder(builder: (BuildContext context) {
-                return widget.errorBuilder!(context, state.error);
-              }),
-            );
+            return buildErrorApp(state.error);
           }
 
-          return FastSectionPage();
+          return buildPlaceholderApp(context);
         },
       ),
     );
   }
 
-  Widget buildPlaceholder(BuildContext context) {
+  Widget buildErrorApp(dynamic error) {
+    return buildEmptyApp(
+      child: Builder(
+        builder: (BuildContext context) {
+          return widget.errorBuilder!(context, error);
+        },
+      ),
+    );
+  }
+
+  Widget buildLoadingApp({double progress = 0}) {
+    return buildEmptyApp(
+      child: Builder(
+        builder: (BuildContext context) {
+          return widget.loaderBuilder!(context, progress);
+        },
+      ),
+    );
+  }
+
+  Widget buildPlaceholderApp(BuildContext context) {
     return Container(
       color: ThemeHelper.colors.getPrimaryBackgroundColor(context),
+    );
+  }
+
+  Widget buildEmptyApp({required Widget child}) {
+    return BlocBuilderWidget(
+      bloc: BlocProvider.of<FastThemeBloc>(context),
+      builder: (BuildContext context, state) {
+        final appLocale = widget.locale ?? const Locale('en', 'US');
+        final useDarkTheme = state.brightness == Brightness.dark;
+        var theme = widget.lightTheme ?? FastTheme.light.blue;
+
+        if (useDarkTheme && widget.darkTheme != null) {
+          theme = widget.darkTheme ?? FastTheme.dark.blue;
+        }
+
+        return Localizations(
+          delegates: _localizationsDelegates.toList(),
+          locale: appLocale,
+          child: MediaQuery.fromWindow(
+            child: AnimatedTheme(
+              data: theme,
+              child: Builder(builder: ((context) {
+                return Container(
+                  color: ThemeHelper.colors.getPrimaryBackgroundColor(context),
+                  child: FastPageLayout(
+                    child: child,
+                  ),
+                );
+              })),
+            ),
+          ),
+        );
+      },
     );
   }
 }

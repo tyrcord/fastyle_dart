@@ -5,12 +5,14 @@ class FastNavigationDestination {
   final Widget? selectedIcon;
   final String? tooltip;
   final String label;
+  final String path;
   final Widget icon;
   final Key? key;
 
   const FastNavigationDestination({
     required this.label,
     required this.icon,
+    required this.path,
     this.selectedIcon,
     this.tooltip,
     this.key,

@@ -14,6 +14,7 @@ class NotificationsPage extends StatelessWidget {
             text: 'info button',
             onTap: () {
               FastNotificationCenter.info(
+                context,
                 'info message',
                 options: FastNotificationCenterOptions(
                   leadingIcon: Icon(Icons.message),
@@ -25,6 +26,7 @@ class NotificationsPage extends StatelessWidget {
             text: 'error button',
             onTap: () {
               FastNotificationCenter.error(
+                context,
                 'error message',
                 options: FastNotificationCenterOptions(
                   leadingIcon: Icon(Icons.bug_report),
@@ -36,6 +38,7 @@ class NotificationsPage extends StatelessWidget {
             text: 'warn button',
             onTap: () {
               FastNotificationCenter.warn(
+                context,
                 'warn message',
                 options: FastNotificationCenterOptions(
                   leadingIcon: Icon(Icons.warning),
@@ -47,6 +50,7 @@ class NotificationsPage extends StatelessWidget {
             text: 'success button',
             onTap: () {
               FastNotificationCenter.success(
+                context,
                 'success message',
                 options: FastNotificationCenterOptions(
                   leadingIcon: Icon(Icons.check),

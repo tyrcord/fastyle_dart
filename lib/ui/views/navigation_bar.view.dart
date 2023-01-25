@@ -1,10 +1,11 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class FastNavigationBarView extends StatefulWidget {
   final List<FastNavigationDestination> destinations;
   final void Function(int)? onDestinationSelected;
-  final List<Widget>? children;
+  final Widget? child;
   final Color? backgroundColor;
   final Color? indicatorColor;
   final bool showAppBar;
@@ -16,7 +17,7 @@ class FastNavigationBarView extends StatefulWidget {
     this.onDestinationSelected,
     this.backgroundColor,
     this.indicatorColor,
-    this.children,
+    this.child,
   });
 
   @override
@@ -30,14 +31,13 @@ class _FastNavigationBarViewState extends State<FastNavigationBarView> {
   Widget build(BuildContext context) {
     return FastMediaLayoutBuilder(
       builder: (context, mediaType) {
-        final selectedPage = _findSelectedPage();
         var _indicatorColor = widget.indicatorColor;
         _indicatorColor ??= ThemeHelper.colors.getPrimaryColor(context);
 
         if (mediaType >= FastMediaType.tablet) {
           return FastScaffold(
             showAppBar: widget.showAppBar,
-            child: buildNavigationRail(selectedPage, _indicatorColor),
+            child: buildNavigationRail(context, widget.child, _indicatorColor),
           );
         }
 
@@ -48,9 +48,9 @@ class _FastNavigationBarViewState extends State<FastNavigationBarView> {
             indicatorColor: _indicatorColor,
           ),
           child: FastScaffold(
-            showAppBar: widget.showAppBar,
             bottomNavigationBar: buildNavigationBar(context),
-            child: selectedPage,
+            showAppBar: widget.showAppBar,
+            child: widget.child,
           ),
         );
       },
@@ -59,53 +59,54 @@ class _FastNavigationBarViewState extends State<FastNavigationBarView> {
 
   NavigationBar buildNavigationBar(BuildContext context) {
     final colors = ThemeHelper.colors;
-
     final _backgroundColor =
         widget.backgroundColor ?? colors.getSecondaryBackgroundColor(context);
 
     return NavigationBar(
       destinations: _buildNavigationDestinationList(),
       onDestinationSelected: _handleSelectionChange,
+      selectedIndex: _findSelectedIndex(context),
       surfaceTintColor: _backgroundColor,
       backgroundColor: _backgroundColor,
-      selectedIndex: currentPageIndex,
     );
   }
 
-  Widget buildNavigationRail(Widget? selectedPage, Color indicatorColor) {
-    return Row(children: <Widget>[
-      NavigationRail(
-        destinations: _buildNavigationRailDestinationList(),
-        onDestinationSelected: _handleSelectionChange,
-        labelType: NavigationRailLabelType.all,
-        selectedIndex: currentPageIndex,
-        indicatorColor: indicatorColor,
-      ),
-      const VerticalDivider(thickness: 1, width: 1),
-      Expanded(child: selectedPage ?? Container()),
-    ]);
+  Widget buildNavigationRail(
+    BuildContext context,
+    Widget? selectedPage,
+    Color indicatorColor,
+  ) {
+    return Row(
+      children: <Widget>[
+        NavigationRail(
+          destinations: _buildNavigationRailDestinationList(),
+          onDestinationSelected: _handleSelectionChange,
+          labelType: NavigationRailLabelType.all,
+          selectedIndex: _findSelectedIndex(context),
+          indicatorColor: indicatorColor,
+        ),
+        const VerticalDivider(thickness: 1, width: 1),
+        Expanded(child: selectedPage ?? Container()),
+      ],
+    );
+  }
+
+  int _findSelectedIndex(BuildContext context) {
+    final route = GoRouter.of(context);
+    final location = route.location;
+    final index = widget.destinations.toList().indexWhere((element) {
+      return location.startsWith(element.path);
+    });
+
+    return index >= 0 ? index : 0;
   }
 
   void _handleSelectionChange(int index) {
-    setState(() => currentPageIndex = index);
-
     if (widget.onDestinationSelected != null) {
       widget.onDestinationSelected!(index);
+    } else {
+      context.go(widget.destinations[index].path);
     }
-  }
-
-  Widget? _findSelectedPage() {
-    Widget? selectedPage;
-
-    if (widget.children != null) {
-      final children = widget.children!;
-
-      if (currentPageIndex < children.length) {
-        selectedPage = widget.children![currentPageIndex];
-      }
-    }
-
-    return selectedPage;
   }
 
   List<NavigationDestination> _buildNavigationDestinationList() {

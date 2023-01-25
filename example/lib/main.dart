@@ -1,22 +1,11 @@
-import 'dart:developer';
-
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:fastyle_dart_example/data/items.dart';
-import 'package:fastyle_dart_example/pages/buttons.dart';
-import 'package:fastyle_dart_example/pages/cards.dart';
-import 'package:fastyle_dart_example/pages/colors.dart';
-import 'package:fastyle_dart_example/pages/fields.dart';
-import 'package:fastyle_dart_example/pages/indicators.dart';
-import 'package:fastyle_dart_example/pages/lists.dart';
-import 'package:fastyle_dart_example/pages/naviagtion_bar_view.dart';
-import 'package:fastyle_dart_example/pages/notifications.dart';
-import 'package:fastyle_dart_example/pages/responsive.dart';
-import 'package:fastyle_dart_example/pages/split-view.dart';
-import 'package:fastyle_dart_example/pages/tabs.dart';
-import 'package:fastyle_dart_example/pages/typography.dart';
+import 'package:fastyle_dart_example/routes.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tbloc_dart/tbloc_dart.dart';
 
@@ -55,6 +44,7 @@ class MyApp extends StatelessWidget {
       lightTheme: FastTheme.light.blue,
       darkTheme: FastTheme.dark.blue,
       home: MyHomePage(),
+      routes: AppRoutes,
       loaderJobs: [
         DummyLoaderJob(),
         DummyLoaderJob(),
@@ -110,28 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return FastHomePage(
       leading: FastIconButton(
-        onTap: () {
-          const slideText1 = 'slide 1';
-          const slideText2 = 'slide 2';
-          const homeText = 'Home';
-          const slide1 = Text(slideText1);
-          const slide2 = Text(slideText2);
-          final home = FastHomePage(
-            children: [Text(homeText)],
-          );
-
-          Navigator.push(
-            context,
-            CupertinoPageRoute(
-              builder: (context) => FastOnboardingView(
-                homeBuilder: (_) => home,
-                slides: [slide1, slide2],
-                allowToSkip: true,
-              ),
-              fullscreenDialog: true,
-            ),
-          );
-        },
+        onTap: () => context.go('/onboarding'),
         icon: Icon(Icons.account_circle),
         iconColor: palette.whiteColor,
         iconSize: kFastIconSizeMedium,
@@ -153,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
             );
 
             if (response != null) {
-              log(response.value.toString());
+              debugPrint(response.value.toString());
             }
           },
           icon: Icon(Icons.search),
@@ -203,12 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         labelText: 'Buttons',
         descriptionText: 'Raised, icon buttons',
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ButtonsPage()),
-          );
-        },
+        onTap: () => context.go('/buttons'),
       ),
       FastNavigationListItem(
         leading: FastRoundedDuotoneIcon(
@@ -217,12 +181,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         labelText: 'Typography',
         descriptionText: 'Title, subhead...',
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => TypographyPage()),
-          );
-        },
+        onTap: () => context.go('/typography'),
       ),
       FastNavigationListItem(
         leading: FastRoundedDuotoneIcon(
@@ -230,12 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
           palette: palette.blue,
         ),
         labelText: 'Tabs',
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => TabsPage()),
-          );
-        },
+        onTap: () => context.go('/tabs'),
       ),
       FastNavigationListItem(
         leading: FastRoundedDuotoneIcon(
@@ -243,12 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
           palette: palette.blueGray,
         ),
         labelText: 'Cards',
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => CardsPage()),
-          );
-        },
+        onTap: () => context.go('/cards'),
       ),
       FastNavigationListItem(
         leading: FastRoundedDuotoneIcon(
@@ -256,12 +205,7 @@ class _MyHomePageState extends State<MyHomePage> {
           palette: palette.pink,
         ),
         labelText: 'List',
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ListsPage()),
-          );
-        },
+        onTap: () => context.go('/list'),
       ),
       FastNavigationListItem(
         leading: FastRoundedDuotoneIcon(
@@ -269,12 +213,7 @@ class _MyHomePageState extends State<MyHomePage> {
           palette: palette.teal,
         ),
         labelText: 'Fields',
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => FieldsPage()),
-          );
-        },
+        onTap: () => context.go('/fields'),
       ),
       FastNavigationListItem(
         leading: FastRoundedDuotoneIcon(
@@ -282,12 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
           palette: palette.orange,
         ),
         labelText: 'Notifications',
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => NotificationsPage()),
-          );
-        },
+        onTap: () => context.go('/notifications'),
       ),
       FastNavigationListItem(
         leading: FastRoundedDuotoneIcon(
@@ -295,12 +229,7 @@ class _MyHomePageState extends State<MyHomePage> {
           palette: palette.red,
         ),
         labelText: 'Colors',
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ColorsPage()),
-          );
-        },
+        onTap: () => context.go('/colors'),
       ),
       FastNavigationListItem(
         leading: FastRoundedDuotoneIcon(
@@ -308,42 +237,15 @@ class _MyHomePageState extends State<MyHomePage> {
           palette: palette.brown,
         ),
         labelText: 'Page',
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => FastSectionPage(
-                loadingBuilder: (_) {
-                  return Text('loading...');
-                },
-                errorBuilder: (_) {
-                  return Text('An error occured');
-                },
-                loadingFuture: Future.delayed(
-                  const Duration(milliseconds: 2500),
-                  () => true,
-                ),
-                loadingTimeout: Duration(milliseconds: 300),
-                child: Container(
-                  child: Text('done'),
-                ),
-              ),
-            ),
-          );
-        },
+        onTap: () => context.go('/page'),
       ),
       FastNavigationListItem(
         leading: FastRoundedDuotoneIcon(
           icon: Icon(Icons.dashboard),
           palette: palette.yellow,
         ),
-        labelText: 'Responsive',
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ResponsivePage()),
-          );
-        },
+        labelText: 'responsive',
+        onTap: () => context.go('/responsive'),
       ),
       FastNavigationListItem(
         leading: FastRoundedDuotoneIcon(
@@ -351,12 +253,7 @@ class _MyHomePageState extends State<MyHomePage> {
           palette: palette.blue,
         ),
         labelText: 'Split View',
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SplitViewPage()),
-          );
-        },
+        onTap: () => context.go('/split-view'),
       ),
       FastNavigationListItem(
         leading: FastRoundedDuotoneIcon(
@@ -364,12 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
           palette: palette.green,
         ),
         labelText: 'Navigation Bar View',
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => NavigationBarViewPage()),
-          );
-        },
+        onTap: () => context.go('/navigation-bar-view/explore'),
       ),
       FastNavigationListItem(
         leading: FastRoundedDuotoneIcon(
@@ -377,12 +269,7 @@ class _MyHomePageState extends State<MyHomePage> {
           palette: palette.blue,
         ),
         labelText: 'Indicators',
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => IndicatorsPage()),
-          );
-        },
+        onTap: () => context.go('/indicators'),
       ),
     ];
   }
