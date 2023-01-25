@@ -4,7 +4,7 @@ export './base/base.dart';
 export './dark/dark.dart';
 export './helpers/helpers.dart';
 export './light/light.dart';
-export 'palette_colors.dart';
+export './palette_colors.dart';
 export './palette_scheme.dart';
 export './theme.factory.dart';
 export './theme_scheme.dart';

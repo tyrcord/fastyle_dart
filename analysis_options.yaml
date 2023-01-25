@@ -4,6 +4,7 @@ analyzer:
     - dart_code_metrics
   strong-mode:
     implicit-casts: false
+  exclude: [test/**, example/**]
 linter:
   rules:
     - avoid_empty_else
