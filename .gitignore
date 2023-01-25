@@ -161,3 +161,5 @@ $RECYCLE.BIN/
 
 # Snyk
 .dccache
+
+**/.iac-data
