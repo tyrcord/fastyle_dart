@@ -26,15 +26,20 @@ class FastDialog extends AlertDialog {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: FastTitle(text: titleText, textColor: titleColor),
-      titlePadding: kFastEdgeInsets16,
-      contentPadding: _kPaddingContent,
       content: SingleChildScrollView(child: ListBody(children: children)),
+      title: FastTitle(text: titleText, textColor: titleColor),
+      surfaceTintColor: _getBackgroundColor(context),
+      contentPadding: _kPaddingContent,
+      titlePadding: kFastEdgeInsets16,
       actions: actions,
-      backgroundColor: backgroundColor,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
       ),
     );
+  }
+
+  Color _getBackgroundColor(BuildContext context) {
+    return backgroundColor ??
+        ThemeHelper.colors.getSecondaryBackgroundColor(context);
   }
 }
