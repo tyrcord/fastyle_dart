@@ -32,10 +32,12 @@ class FastShimmer extends StatelessWidget {
 
         _baseColor ??= isDark ? grayPalette.darkest : grayPalette.lightest;
 
-        return Shimmer.fromColors(
-          highlightColor: _highlightColor,
-          baseColor: _baseColor,
-          child: child,
+        return RepaintBoundary(
+          child: Shimmer.fromColors(
+            highlightColor: _highlightColor,
+            baseColor: _baseColor,
+            child: child,
+          ),
         );
       },
     );

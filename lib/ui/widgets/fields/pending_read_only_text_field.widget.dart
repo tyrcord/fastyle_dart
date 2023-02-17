@@ -58,14 +58,16 @@ class FastPendingReadOnlyTextField extends StatelessWidget {
           valueTextColor ?? ThemeHelper.texts.getBodyTextStyle(context).color!;
       final _highlightColor = highlightColor ?? baseColor.withOpacity(0.1);
 
-      return Shimmer.fromColors(
-        highlightColor: _highlightColor,
-        baseColor: baseColor,
-        child: FastBody(
-          textColor: baseColor,
-          textAlign: textAlign,
-          fontWeight: fontWeight,
-          text: pendingText!,
+      return RepaintBoundary(
+        child: Shimmer.fromColors(
+          highlightColor: _highlightColor,
+          baseColor: baseColor,
+          child: FastBody(
+            textColor: baseColor,
+            textAlign: textAlign,
+            fontWeight: fontWeight,
+            text: pendingText!,
+          ),
         ),
       );
     }

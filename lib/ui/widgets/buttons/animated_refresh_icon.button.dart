@@ -65,17 +65,19 @@ class _FastAnimatedRotationIconButtonState
 
   @override
   Widget build(BuildContext context) {
-    return FastIconButton(
-      shouldTrottleTime: widget.shouldTrottleTime,
-      iconAlignment: widget.iconAlignment,
-      iconColor: widget.iconColor,
-      isEnabled: widget.isEnabled,
-      iconSize: widget.iconSize,
-      padding: widget.padding,
-      onTap: widget.onTap,
-      icon: RotationTransition(
-        turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
-        child: widget.icon ?? const Icon(Icons.sync),
+    return RepaintBoundary(
+      child: FastIconButton(
+        shouldTrottleTime: widget.shouldTrottleTime,
+        iconAlignment: widget.iconAlignment,
+        iconColor: widget.iconColor,
+        isEnabled: widget.isEnabled,
+        iconSize: widget.iconSize,
+        padding: widget.padding,
+        onTap: widget.onTap,
+        icon: RotationTransition(
+          turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
+          child: widget.icon ?? const Icon(Icons.sync),
+        ),
       ),
     );
   }

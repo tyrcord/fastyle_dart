@@ -50,21 +50,24 @@ class _FastExpansionPanelState extends State<FastExpansionPanel>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        _buildInteractiveHeader(context),
-        AnimatedCrossFade(
-          duration: widget.animationDuration,
-          firstChild: Container(),
-          secondChild: Container(
-            padding: const EdgeInsets.only(top: 16),
-            child: Builder(builder: widget.bodyBuilder),
+    return RepaintBoundary(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _buildInteractiveHeader(context),
+          AnimatedCrossFade(
+            duration: widget.animationDuration,
+            firstChild: Container(),
+            secondChild: Container(
+              padding: const EdgeInsets.only(top: 16),
+              child: Builder(builder: widget.bodyBuilder),
+            ),
+            crossFadeState: isExpanded
+                ? CrossFadeState.showSecond
+                : CrossFadeState.showFirst,
           ),
-          crossFadeState:
-              isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-        ),
-      ],
+        ],
+      ),
     );
   }
 
