@@ -18,7 +18,7 @@ class FastAlertDialog extends AlertDialog {
   @override
   final List<Widget>? actions;
 
-  FastAlertDialog({
+  const FastAlertDialog({
     Key? key,
     required this.titleText,
     this.backgroundColor,

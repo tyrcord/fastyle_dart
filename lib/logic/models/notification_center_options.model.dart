@@ -48,12 +48,12 @@ class FastNotificationCenterOptions extends TModel {
 
   @override
   FastNotificationCenterOptions merge(
-    covariant FastNotificationCenterOptions options,
+    covariant FastNotificationCenterOptions model,
   ) {
     return copyWith(
-      leadingIcon: options.leadingIcon,
-      iconColor: options.iconColor,
-      iconSize: options.iconSize,
+      leadingIcon: model.leadingIcon,
+      iconColor: model.iconColor,
+      iconSize: model.iconSize,
     );
   }
 

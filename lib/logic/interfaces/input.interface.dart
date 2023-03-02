@@ -6,7 +6,8 @@ abstract class IFastInput extends StatefulWidget {
   final bool shouldDebounceTime;
   final bool isEnabled;
 
-  IFastInput({
+  const IFastInput({
+    super.key,
     required this.debounceTimeDuration,
     this.shouldDebounceTime = false,
     this.isEnabled = true,

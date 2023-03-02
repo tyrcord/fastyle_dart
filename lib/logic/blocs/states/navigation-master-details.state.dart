@@ -36,12 +36,12 @@ class FastNavigationSplitViewState extends BlocState {
 
   @override
   FastNavigationSplitViewState merge(
-    covariant FastNavigationSplitViewState state,
+    covariant FastNavigationSplitViewState model,
   ) {
     return copyWith(
-      item: state.item,
-      isLoading: state.isLoading,
-      isLoaded: state.isLoaded,
+      item: model.item,
+      isLoading: model.isLoading,
+      isLoaded: model.isLoaded,
     );
   }
 

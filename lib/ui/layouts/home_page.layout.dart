@@ -55,7 +55,7 @@ class FastHomePageLayout extends StatefulWidget {
 
   final ScrollController? scrollController;
 
-  FastHomePageLayout({
+  const FastHomePageLayout({
     Key? key,
     required this.children,
     this.appBarExpandedHeight = kFastExpandedHeight,
@@ -75,10 +75,10 @@ class FastHomePageLayout extends StatefulWidget {
         super(key: key);
 
   @override
-  _FastHomePageLayoutState createState() => _FastHomePageLayoutState();
+  FastHomePageLayoutState createState() => FastHomePageLayoutState();
 }
 
-class _FastHomePageLayoutState extends State<FastHomePageLayout> {
+class FastHomePageLayoutState extends State<FastHomePageLayout> {
   late final ScrollController _scrollController;
 
   @override

@@ -38,12 +38,12 @@ class FastAppLoaderBlocState extends BlocState {
   }
 
   @override
-  FastAppLoaderBlocState merge(covariant FastAppLoaderBlocState state) {
+  FastAppLoaderBlocState merge(covariant FastAppLoaderBlocState model) {
     return copyWith(
-      isLoading: state.isLoading,
-      isLoaded: state.isLoaded,
-      progress: state.progress,
-      error: state.error,
+      isLoading: model.isLoading,
+      isLoaded: model.isLoaded,
+      progress: model.progress,
+      error: model.error,
     );
   }
 

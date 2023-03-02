@@ -24,7 +24,7 @@ class FastSelectableListView<T extends FastItem> extends StatefulWidget {
   final bool shouldUseFuzzySearch;
   final Icon clearSearchIcon;
 
-  FastSelectableListView({
+  const FastSelectableListView({
     Key? key,
     required this.onSelectionChanged,
     required this.items,

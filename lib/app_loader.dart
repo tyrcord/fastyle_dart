@@ -45,10 +45,10 @@ class FastAppLoader extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _FastAppLoaderState createState() => _FastAppLoaderState();
+  FastAppLoaderState createState() => FastAppLoaderState();
 }
 
-class _FastAppLoaderState extends State<FastAppLoader> {
+class FastAppLoaderState extends State<FastAppLoader> {
   final _bloc = FastAppLoaderBloc();
   late final Timer _delayTimer;
   bool _isInitializing = false;

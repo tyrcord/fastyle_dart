@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-final kFastNavigationBarTheme = NavigationBarThemeData(
+const kFastNavigationBarTheme = NavigationBarThemeData(
   indicatorShape: CircleBorder(),
   elevation: 2.0,
 );

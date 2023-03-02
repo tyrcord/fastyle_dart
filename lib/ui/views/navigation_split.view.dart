@@ -69,7 +69,7 @@ class FastNavigationSplitView extends StatefulWidget {
 
   final bool showAppBar;
 
-  FastNavigationSplitView({
+  const FastNavigationSplitView({
     Key? key,
     required this.detailsBuilder,
     required this.items,

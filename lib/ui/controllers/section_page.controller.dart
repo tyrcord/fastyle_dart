@@ -10,7 +10,7 @@ class FastSectionPageController extends StatefulWidget {
   final Future<bool>? loadingFuture;
   final Duration? loadingTimeout;
 
-  FastSectionPageController({
+  const FastSectionPageController({
     Key? key,
     required this.loadedBuilder,
     this.loadingBuilder,
@@ -73,7 +73,7 @@ class _FastSectionPageControllerState extends State<FastSectionPageController> {
 
   WidgetBuilder _buildLoadingWidget() {
     return widget.loadingBuilder ??
-        ((BuildContext context) => FastThreeBounceIndicator());
+        ((BuildContext context) => const FastThreeBounceIndicator());
   }
 
   WidgetBuilder _buildErrorWidget() {

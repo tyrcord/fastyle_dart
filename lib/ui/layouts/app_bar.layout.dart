@@ -52,10 +52,10 @@ class FastAppBarLayout extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _FastAppBarLayoutState createState() => _FastAppBarLayoutState();
+  FastAppBarLayoutState createState() => FastAppBarLayoutState();
 }
 
-class _FastAppBarLayoutState extends State<FastAppBarLayout> {
+class FastAppBarLayoutState extends State<FastAppBarLayout> {
   late final ScrollController _scrollController;
   double _decorationOpacity = 1.0;
 
@@ -114,7 +114,7 @@ class _FastAppBarLayoutState extends State<FastAppBarLayout> {
       );
     }
 
-    return Container(width: double.infinity, height: widget.expandedHeight);
+    return SizedBox(width: double.infinity, height: widget.expandedHeight);
   }
 
   Widget _buildBackground(BuildContext context) {

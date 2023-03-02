@@ -51,7 +51,7 @@ class FastLinearProgressBarIndicator extends StatefulWidget {
   /// Whether to animate the progress bar.
   final bool animate;
 
-  FastLinearProgressBarIndicator({
+  const FastLinearProgressBarIndicator({
     Key? key,
     this.animationDuration = const Duration(milliseconds: 300),
     this.showProgressLabel = false,
@@ -202,9 +202,9 @@ class _FastLinearProgressBarIndicatorState
       return widget.backgroundColor!;
     }
 
-    final _palette = ThemeHelper.getPaletteColors(context);
+    final palette = ThemeHelper.getPaletteColors(context);
 
-    return _palette.gray.ultraLight;
+    return palette.gray.ultraLight;
   }
 
   /// get the progress bar color.

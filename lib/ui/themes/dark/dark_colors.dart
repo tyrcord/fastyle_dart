@@ -74,12 +74,12 @@ final kFastDarkBrownPaletteColors = FastPaletteScheme.fromColor(
 );
 
 // Background Colors
-final kFastDarkPrimaryBackgroundColor = Color(0xFF0a0b0f);
-final kFastDarkSecondaryBackgroundColor = Color(0xFF181b25);
-final kFastDarkTertiaryBackgroundColor = Color(0xFF242938);
+const kFastDarkPrimaryBackgroundColor = Color(0xFF0a0b0f);
+const kFastDarkSecondaryBackgroundColor = Color(0xFF181b25);
+const kFastDarkTertiaryBackgroundColor = Color(0xFF242938);
 
 // Label Colors
-final kFastDarkLabelColor = kFastDarkWhiteColor;
+const kFastDarkLabelColor = kFastDarkWhiteColor;
 final kFastDarkSecondaryLabelColor = kFastDarkGrayPaletteColors.lighter;
 final kFastDarkTertiaryLabelColor = kFastDarkGrayPaletteColors.light;
 final kFastDarkHintLabelColor = kFastDarkGrayPaletteColors.mid;

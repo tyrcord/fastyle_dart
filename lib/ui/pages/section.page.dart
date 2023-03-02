@@ -107,7 +107,7 @@ class FastSectionPage extends StatelessWidget {
 
   final bool showAppBar;
 
-  FastSectionPage({
+  const FastSectionPage({
     Key? key,
     this.appBarHeightSize = _kAppBarHeightSize,
     this.isTitlePositionBelowAppBar = true,

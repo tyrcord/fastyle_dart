@@ -13,7 +13,7 @@ class FastSegmentField<T> extends StatefulWidget {
   /// TODO
   final bool isReadOnly;
 
-  FastSegmentField({
+  const FastSegmentField({
     Key? key,
     required this.labelText,
     required this.options,

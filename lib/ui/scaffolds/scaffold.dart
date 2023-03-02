@@ -66,7 +66,7 @@ class FastScaffold extends StatelessWidget {
 
   final NavigationBar? bottomNavigationBar;
 
-  FastScaffold({
+  const FastScaffold({
     Key? key,
     this.appBarHeightSize = _kAppBarHeightSize,
     this.isTitlePositionBelowAppBar = true,

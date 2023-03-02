@@ -45,12 +45,12 @@ final kDarkFastTheme = kBaseFastTheme.copyWith(
       color: kFastDarkSecondaryLabelColor,
     ),
   ),
-  iconTheme: IconThemeData(color: kFastDarkLabelColor),
+  iconTheme: const IconThemeData(color: kFastDarkLabelColor),
   tabBarTheme: _baseTabBarTheme.copyWith(
     labelColor: kFastDarkLabelColor,
     unselectedLabelColor: kFastDarkSecondaryLabelColor,
   ),
-  cardTheme: CardTheme(
+  cardTheme: const CardTheme(
     color: kFastDarkSecondaryBackgroundColor,
   ),
   dividerColor: kFastDarkSeparatorColor,
@@ -68,7 +68,7 @@ final kDarkFastTheme = kBaseFastTheme.copyWith(
       ),
     ),
   ),
-  popupMenuTheme: PopupMenuThemeData(
+  popupMenuTheme: const PopupMenuThemeData(
     color: kFastDarkTertiaryBackgroundColor,
   ),
   scrollbarTheme: ScrollbarThemeData(
@@ -92,7 +92,7 @@ final kDarkFastTheme = kBaseFastTheme.copyWith(
       if (states.contains(MaterialState.disabled)) {
         return IconThemeData(color: kFastDarkTertiaryLabelColor);
       } else if (states.contains(MaterialState.selected)) {
-        return IconThemeData(color: kFastDarkWhiteColor);
+        return const IconThemeData(color: kFastDarkWhiteColor);
       }
 
       return IconThemeData(color: kFastDarkSecondaryLabelColor);
@@ -119,7 +119,7 @@ final kDarkFastTheme = kBaseFastTheme.copyWith(
   ),
   navigationRailTheme: kFastNavigationRailTheme.copyWith(
     backgroundColor: kFastDarkSecondaryBackgroundColor,
-    selectedIconTheme: IconThemeData(color: kFastDarkLabelColor),
+    selectedIconTheme: const IconThemeData(color: kFastDarkLabelColor),
     unselectedIconTheme: IconThemeData(color: kFastDarkSecondaryLabelColor),
     selectedLabelTextStyle: GoogleFonts.barlowSemiCondensed(
       fontWeight: kFastFontWeightRegular,

@@ -20,7 +20,7 @@ class FastPendingReadOnlyTextField extends StatelessWidget {
   final String labelText;
   final bool isPending;
 
-  FastPendingReadOnlyTextField({
+  const FastPendingReadOnlyTextField({
     Key? key,
     required this.labelText,
     this.placeholderText = kFastEmptyString,

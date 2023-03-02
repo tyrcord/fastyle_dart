@@ -12,7 +12,7 @@ class FastNavigationSplitViewBlocEvent<T extends FastItem>
     T? item,
   }) : super(type: type, payload: item);
 
-  FastNavigationSplitViewBlocEvent.changed(T? item)
+  const FastNavigationSplitViewBlocEvent.changed(T? item)
       : this(
           type: FastNavigationSplitViewEventType.changed,
           item: item,

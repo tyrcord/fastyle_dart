@@ -1,4 +1,4 @@
-include: package:pedantic/analysis_options.yaml
+include: package:flutter_lints/flutter.yaml
 analyzer:
   plugins:
     - dart_code_metrics
@@ -16,7 +16,6 @@ linter:
     - cancel_subscriptions
     - constant_identifier_names
     - control_flow_in_finally
-    - directives_ordering
     - empty_catches
     - empty_constructor_bodies
     - empty_statements
@@ -47,10 +46,13 @@ linter:
 dart_code_metrics:
   anti-patterns:
     - long-method
+    - long-parameter-list
   metrics:
     cyclomatic-complexity: 7
     lines-of-executable-code: 25
     number-of-arguments: 4
+    maintainability-index: 50
+    maximum-nesting-level: 5
   metrics-exclude:
     - test/**
     - example/**
@@ -58,4 +60,3 @@ dart_code_metrics:
     - newline-before-return
     - no-boolean-literal-compare
     - no-empty-block
-    - prefer-trailing-comma-for-collection

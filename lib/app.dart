@@ -24,7 +24,7 @@ class FastApp extends StatefulWidget {
   final Locale? locale;
   final Widget? home;
 
-  FastApp({
+  const FastApp({
     super.key,
     this.routes = const <GoRoute>[],
     this.delayBeforeShowingLoader = const Duration(seconds: 1),
@@ -165,7 +165,7 @@ class _FastAppState extends State<FastApp> {
     if (isWeb) return;
 
     if (isIOS || isAndroid) {
-      FocusManager.instance.primaryFocus!.unfocus();
+      FocusManager.instance.primaryFocus?.unfocus();
       SystemChannels.textInput.invokeMethod('TextInput.hide');
     }
   }

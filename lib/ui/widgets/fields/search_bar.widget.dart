@@ -17,7 +17,8 @@ class FastSearchBar<T extends FastItem> extends StatefulWidget {
   final Widget backIcon;
   final List<T> items;
 
-  FastSearchBar({
+  const FastSearchBar({
+    super.key,
     required this.items,
     this.placeholderText = kFastSearchPlaceholderText,
     this.clearSearchIcon = kFastClearSearchIcon,
@@ -30,13 +31,13 @@ class FastSearchBar<T extends FastItem> extends StatefulWidget {
     this.onLeadingButtonTap,
     this.onSearchFilter,
     this.onSuggestions,
-  }) : super();
+  });
 
   @override
-  _FastSearchBarState createState() => _FastSearchBarState<T>();
+  FastSearchBarState createState() => FastSearchBarState<T>();
 }
 
-class _FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
+class FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
   late TextEditingController _textController;
   String? _searchQuery;
 

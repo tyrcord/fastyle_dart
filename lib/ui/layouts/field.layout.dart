@@ -49,7 +49,7 @@ class FastFieldLayout extends StatelessWidget {
   ///
   final Widget control;
 
-  FastFieldLayout({
+  const FastFieldLayout({
     Key? key,
     required this.control,
     this.margin = const EdgeInsets.only(bottom: 8.0),

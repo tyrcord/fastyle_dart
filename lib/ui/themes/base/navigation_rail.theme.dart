@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-final kFastNavigationRailTheme = NavigationRailThemeData(
+const kFastNavigationRailTheme = NavigationRailThemeData(
   // indicatorShape: CircleBorder(),
   elevation: 2.0,
 );

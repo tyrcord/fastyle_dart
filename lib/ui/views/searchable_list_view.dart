@@ -34,7 +34,7 @@ class FastSearchableListView<T extends FastItem> extends StatefulWidget {
   final bool showTrailing;
   final bool showLeading;
 
-  FastSearchableListView({
+  const FastSearchableListView({
     Key? key,
     required this.items,
     this.onSelectionChanged,

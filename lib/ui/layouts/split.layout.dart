@@ -8,7 +8,7 @@ class FastSplitLayout extends StatelessWidget {
   final WidgetBuilder secondaryBuilder;
   final WidgetBuilder primaryBuilder;
 
-  FastSplitLayout({
+  const FastSplitLayout({
     Key? key,
     required this.secondaryBuilder,
     required this.primaryBuilder,

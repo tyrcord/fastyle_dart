@@ -56,12 +56,12 @@ class FastListItemCategory<T extends FastItem> extends TModel {
   }
 
   @override
-  FastListItemCategory<T> merge(covariant FastListItemCategory<T> category) {
+  FastListItemCategory<T> merge(covariant FastListItemCategory<T> model) {
     return copyWith(
-      labelText: category.labelText,
-      valueText: category.valueText,
-      weight: category.weight,
-      items: category.items,
+      labelText: model.labelText,
+      valueText: model.valueText,
+      weight: model.weight,
+      items: model.items,
     );
   }
 

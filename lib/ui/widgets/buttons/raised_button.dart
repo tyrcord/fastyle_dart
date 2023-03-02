@@ -26,10 +26,10 @@ class FastRaisedButton extends FastButton {
         );
 
   @override
-  _FastRaisedButtonState createState() => _FastRaisedButtonState();
+  FastRaisedButtonState createState() => FastRaisedButtonState();
 }
 
-class _FastRaisedButtonState extends State<FastRaisedButton>
+class FastRaisedButtonState extends State<FastRaisedButton>
     with FastThrottleButtonMixin, FastButtonSyleMixin {
   @override
   void dispose() {

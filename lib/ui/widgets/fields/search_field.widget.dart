@@ -21,7 +21,7 @@ class FastSearchField extends StatefulWidget implements IFastInput {
   @override
   final bool isEnabled;
 
-  FastSearchField({
+  const FastSearchField({
     Key? key,
     this.debounceTimeDuration = kFastDebounceTimeDuration,
     this.placeholderText = kFastSearchPlaceholderText,
@@ -36,10 +36,10 @@ class FastSearchField extends StatefulWidget implements IFastInput {
   }) : super(key: key);
 
   @override
-  _FastSearchFieldState createState() => _FastSearchFieldState();
+  FastSearchFieldState createState() => FastSearchFieldState();
 }
 
-class _FastSearchFieldState extends State<FastSearchField>
+class FastSearchFieldState extends State<FastSearchField>
     with FastDebounceInputMixin {
   @override
   void dispose() {

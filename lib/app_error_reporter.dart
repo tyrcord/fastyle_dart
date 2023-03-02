@@ -15,5 +15,7 @@ class FastAppErrorReporter extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(FastAppErrorReporter old) => reporter != old.reporter;
+  bool updateShouldNotify(FastAppErrorReporter oldWidget) {
+    return reporter != oldWidget.reporter;
+  }
 }

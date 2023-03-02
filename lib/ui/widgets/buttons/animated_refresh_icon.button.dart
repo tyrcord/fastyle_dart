@@ -28,11 +28,11 @@ class FastAnimatedRotationIconButton extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _FastAnimatedRotationIconButtonState createState() =>
-      _FastAnimatedRotationIconButtonState();
+  FastAnimatedRotationIconButtonState createState() =>
+      FastAnimatedRotationIconButtonState();
 }
 
-class _FastAnimatedRotationIconButtonState
+class FastAnimatedRotationIconButtonState
     extends State<FastAnimatedRotationIconButton>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;

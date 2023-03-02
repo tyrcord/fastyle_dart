@@ -136,7 +136,7 @@ class FastNotificationCenter {
         borderRadius: const BorderRadius.all(
           Radius.circular(FastSpacing.xl),
         ),
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           vertical: FastSpacing.xs,
           horizontal: FastSpacing.small,
         ),

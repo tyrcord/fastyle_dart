@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
-final kInputDecorationTheme = InputDecorationTheme(
+const kInputDecorationTheme = InputDecorationTheme(
   isDense: true,
 );

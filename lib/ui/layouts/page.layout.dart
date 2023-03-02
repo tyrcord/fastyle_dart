@@ -67,7 +67,7 @@ class FastPageLayout extends StatelessWidget {
 
   bool get _hasFooter => footer != null || footerBuilder != null;
 
-  FastPageLayout({
+  const FastPageLayout({
     Key? key,
     this.avoidOperatingSystemInterfaces = true,
     this.isViewScrollable = false,

@@ -80,7 +80,8 @@ class FastSearchPage<T extends FastItem> extends StatefulWidget {
   ///
   final T? selection;
 
-  FastSearchPage({
+  const FastSearchPage({
+    super.key,
     required this.items,
     this.searchPlaceholderText = kFastSearchPlaceholderText,
     this.clearSelectionText = kFastClearSelectionText,
@@ -96,7 +97,7 @@ class FastSearchPage<T extends FastItem> extends StatefulWidget {
     this.allCategoryText,
     this.categories,
     this.selection,
-  }) : super();
+  });
 
   @override
   State<StatefulWidget> createState() => FastSearchPageState<T>();

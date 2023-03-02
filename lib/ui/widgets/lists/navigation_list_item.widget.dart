@@ -19,7 +19,7 @@ class FastNavigationListItem<T extends FastItem> extends StatelessWidget {
   final bool showTrailing;
   final bool showLeading;
 
-  FastNavigationListItem({
+  const FastNavigationListItem({
     Key? key,
     required this.onTap,
     this.trailing = kFastNavigationTrailingIcon,

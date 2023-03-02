@@ -11,9 +11,9 @@ class FastThemeBlocEvent extends BlocEvent<FastThemeBlocEventType, dynamic> {
     required FastThemeBlocEventType type,
   }) : super(type: type);
 
-  FastThemeBlocEvent.system() : this(type: FastThemeBlocEventType.system);
+  const FastThemeBlocEvent.system() : this(type: FastThemeBlocEventType.system);
 
-  FastThemeBlocEvent.light() : this(type: FastThemeBlocEventType.light);
+  const FastThemeBlocEvent.light() : this(type: FastThemeBlocEventType.light);
 
-  FastThemeBlocEvent.dark() : this(type: FastThemeBlocEventType.dark);
+  const FastThemeBlocEvent.dark() : this(type: FastThemeBlocEventType.dark);
 }

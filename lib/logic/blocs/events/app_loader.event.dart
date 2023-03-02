@@ -42,7 +42,7 @@ class FastAppLoaderBlocEvent extends BlocEvent<FastAppLoaderBlocEventType,
           ),
         );
 
-  FastAppLoaderBlocEvent.initialized()
+  const FastAppLoaderBlocEvent.initialized()
       : this(type: FastAppLoaderBlocEventType.initialized);
 
   FastAppLoaderBlocEvent.initFailed(Object error)

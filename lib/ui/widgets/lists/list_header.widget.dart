@@ -9,7 +9,7 @@ class FastListHeader extends StatelessWidget {
   final EdgeInsets padding;
   final EdgeInsets margin;
 
-  FastListHeader({
+  const FastListHeader({
     Key? key,
     required this.categoryText,
     this.padding = const EdgeInsets.symmetric(horizontal: 16.0),

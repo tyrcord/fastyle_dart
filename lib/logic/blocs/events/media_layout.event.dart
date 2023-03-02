@@ -12,7 +12,7 @@ class FastMediaLayoutBlocEvent
     FastMediaType? mediaType,
   }) : super(type: type, payload: mediaType);
 
-  FastMediaLayoutBlocEvent.changed(FastMediaType mediaType)
+  const FastMediaLayoutBlocEvent.changed(FastMediaType mediaType)
       : this(
           type: FastMediaLayoutBlocEventType.changed,
           mediaType: mediaType,

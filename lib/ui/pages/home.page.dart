@@ -51,7 +51,7 @@ class FastHomePage extends StatelessWidget {
 
   final ScrollController? scrollController;
 
-  FastHomePage({
+  const FastHomePage({
     Key? key,
     required this.children,
     this.appBarExpandedHeight = kFastExpandedHeight,

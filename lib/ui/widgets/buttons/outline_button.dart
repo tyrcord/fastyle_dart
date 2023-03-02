@@ -27,10 +27,10 @@ class FastOutlineButton extends FastButton {
         );
 
   @override
-  _FastOutlineButtonState createState() => _FastOutlineButtonState();
+  FastOutlineButtonState createState() => FastOutlineButtonState();
 }
 
-class _FastOutlineButtonState extends State<FastOutlineButton>
+class FastOutlineButtonState extends State<FastOutlineButton>
     with FastThrottleButtonMixin, FastButtonSyleMixin {
   @override
   void dispose() {
@@ -51,7 +51,7 @@ class _FastOutlineButtonState extends State<FastOutlineButton>
     final textColor = widget.textColor ?? borderColor;
 
     return OutlinedButtonTheme(
-      data: OutlinedButtonThemeData(
+      data: const OutlinedButtonThemeData(
         style: ButtonStyle(),
       ),
       child: OutlinedButton(

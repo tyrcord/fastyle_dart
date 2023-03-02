@@ -24,10 +24,10 @@ class FastExpansionPanel extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _FastExpansionPanelState createState() => _FastExpansionPanelState();
+  FastExpansionPanelState createState() => FastExpansionPanelState();
 }
 
-class _FastExpansionPanelState extends State<FastExpansionPanel>
+class FastExpansionPanelState extends State<FastExpansionPanel>
     with SingleTickerProviderStateMixin {
   late final AnimationController _rotationController = AnimationController(
     duration: widget.animationDuration,
@@ -106,7 +106,7 @@ class _FastExpansionPanelState extends State<FastExpansionPanel>
         alignment: AlignmentDirectional.center,
         children: [
           Container(
-            constraints: BoxConstraints(minHeight: kFastIconSizeMedium),
+            constraints: const BoxConstraints(minHeight: kFastIconSizeMedium),
             child: Center(
               child: FastButtonLabel(text: widget.titleText, textColor: color),
             ),

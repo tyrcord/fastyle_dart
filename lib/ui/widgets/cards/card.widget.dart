@@ -11,7 +11,7 @@ class FastCard extends StatelessWidget {
   final String titleText;
   final Widget? child;
 
-  FastCard({
+  const FastCard({
     Key? key,
     required this.titleText,
     this.backgroundColor,

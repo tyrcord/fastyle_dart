@@ -49,11 +49,11 @@ class FastListItemDescriptor extends FastDescriptor {
   }
 
   @override
-  FastListItemDescriptor merge(covariant FastListItemDescriptor descriptor) {
+  FastListItemDescriptor merge(covariant FastListItemDescriptor model) {
     return copyWith(
-      trailing: descriptor.trailing,
-      isDense: descriptor.isDense,
-      leading: descriptor.leading,
+      trailing: model.trailing,
+      isDense: model.isDense,
+      leading: model.leading,
     );
   }
 

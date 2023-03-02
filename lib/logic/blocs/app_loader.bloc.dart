@@ -43,7 +43,7 @@ class FastAppLoaderBloc
           errorReporter: errorReporter,
         );
       } else {
-        addEvent(FastAppLoaderBlocEvent.initialized());
+        addEvent(const FastAppLoaderBlocEvent.initialized());
       }
     } else if (eventType == FastAppLoaderBlocEventType.initialized &&
         !isInitialized &&
@@ -82,7 +82,7 @@ class FastAppLoaderBloc
       }
 
       await Future.delayed(const Duration(milliseconds: 60));
-      addEvent(FastAppLoaderBlocEvent.initialized());
+      addEvent(const FastAppLoaderBlocEvent.initialized());
     } catch (error) {
       addEvent(FastAppLoaderBlocEvent.initFailed(error));
     }

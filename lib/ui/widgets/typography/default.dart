@@ -84,7 +84,7 @@ class FastPlaceHolderHeadline extends FastBaseTypography {
 /// semibold
 /// uppercase
 class FastSubhead extends FastBaseTypography {
-  FastSubhead({
+  const FastSubhead({
     required super.text,
     super.key,
     super.enableInteractiveSelection = false,
@@ -188,7 +188,7 @@ class FastSubtitle extends FastBaseTypography {
 /// medium
 /// uppercase
 class FastSecondarySubtitle extends FastBaseTypography {
-  FastSecondarySubtitle({
+  const FastSecondarySubtitle({
     required super.text,
     super.key,
     super.enableInteractiveSelection = false,
@@ -319,7 +319,7 @@ class FastPlaceholder extends FastBaseTypography {
 /// semibold
 /// uppercase
 class FastButtonLabel extends FastBaseTypography {
-  FastButtonLabel({
+  const FastButtonLabel({
     required super.text,
     super.key,
     super.enableInteractiveSelection = false,
@@ -345,7 +345,7 @@ class FastButtonLabel extends FastBaseTypography {
 /// medium
 /// uppercase
 class FastSecondaryButton extends FastBaseTypography {
-  FastSecondaryButton({
+  const FastSecondaryButton({
     required super.text,
     super.key,
     super.enableInteractiveSelection = false,
@@ -397,7 +397,7 @@ class FastCaption extends FastBaseTypography {
 /// medium
 /// uppercase
 class FastSecondaryCaption extends FastBaseTypography {
-  FastSecondaryCaption({
+  const FastSecondaryCaption({
     required super.text,
     super.enableInteractiveSelection = false,
     super.lineHeight = kFastLineHeight,
@@ -476,7 +476,7 @@ class FastOverline extends FastBaseTypography {
 /// medium
 /// uppercase
 class FastSecondaryOverline extends FastBaseTypography {
-  FastSecondaryOverline({
+  const FastSecondaryOverline({
     required super.text,
     super.key,
     super.enableInteractiveSelection = false,

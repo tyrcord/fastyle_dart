@@ -35,11 +35,11 @@ class FastMediaLayoutBlocState extends BlocState {
   }
 
   @override
-  FastMediaLayoutBlocState merge(covariant FastMediaLayoutBlocState state) {
+  FastMediaLayoutBlocState merge(covariant FastMediaLayoutBlocState model) {
     return copyWith(
-      mediaType: state.mediaType,
-      isLoading: state.isLoading,
-      isLoaded: state.isLoaded,
+      mediaType: model.mediaType,
+      isLoading: model.isLoading,
+      isLoaded: model.isLoaded,
     );
   }
 

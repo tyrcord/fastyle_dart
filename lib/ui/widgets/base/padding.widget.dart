@@ -18,7 +18,7 @@ class FastPadding extends StatelessWidget {
 }
 
 class FastPadding24 extends FastPadding {
-  FastPadding24({
+  const FastPadding24({
     Key? key,
     required Widget child,
     EdgeInsets padding = kFastEdgeInsets24,
@@ -30,7 +30,7 @@ class FastPadding24 extends FastPadding {
 }
 
 class FastPadding16 extends FastPadding {
-  FastPadding16({
+  const FastPadding16({
     Key? key,
     required Widget child,
     EdgeInsets padding = kFastEdgeInsets16,
@@ -42,7 +42,7 @@ class FastPadding16 extends FastPadding {
 }
 
 class FastPadding12 extends FastPadding {
-  FastPadding12({
+  const FastPadding12({
     Key? key,
     required Widget child,
     EdgeInsets padding = kFastEdgeInsets12,
@@ -54,7 +54,7 @@ class FastPadding12 extends FastPadding {
 }
 
 class FastPadding8 extends FastPadding {
-  FastPadding8({
+  const FastPadding8({
     Key? key,
     required Widget child,
     EdgeInsets padding = kFastEdgeInsets8,

@@ -41,10 +41,10 @@ class FastOnboardingView extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _FastOnboardingViewState createState() => _FastOnboardingViewState();
+  FastOnboardingViewState createState() => FastOnboardingViewState();
 }
 
-class _FastOnboardingViewState extends State<FastOnboardingView> {
+class FastOnboardingViewState extends State<FastOnboardingView> {
   final PageController _pageViewController = PageController();
   late FastOnboardingViewController _controller;
   int _slidesLength = 0;

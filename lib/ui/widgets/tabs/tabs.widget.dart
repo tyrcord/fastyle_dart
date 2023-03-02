@@ -13,7 +13,7 @@ class FastTabs extends StatelessWidget {
   final int initialIndex;
   final List<Tab> tabs;
 
-  FastTabs({
+  const FastTabs({
     Key? key,
     required this.tabs,
     required this.views,

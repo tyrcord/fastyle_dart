@@ -14,7 +14,7 @@ class FastListView<T extends FastItem> extends StatelessWidget {
   final List<T> items;
   final EdgeInsets padding;
 
-  FastListView({
+  const FastListView({
     Key? key,
     required this.items,
     this.padding = EdgeInsets.zero,

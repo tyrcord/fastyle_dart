@@ -54,7 +54,7 @@ class ThemeColorHelper {
     final palette = ThemeHelper.getPaletteColors(context);
     final isBrightnessLight = brightness == Brightness.light;
     final grayPalette = palette.gray;
-    final opacity = 0.5;
+    const opacity = 0.5;
 
     return isBrightnessLight
         ? grayPalette.lighter.withOpacity(opacity)

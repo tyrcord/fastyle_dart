@@ -4,6 +4,7 @@ import 'package:decimal/decimal.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:tbloc_dart/tbloc_dart.dart';
 
 class FastJobRunner {
   @protected
@@ -57,6 +58,17 @@ class FastJobRunner {
                 error.source,
                 error.stackTrace,
                 reason: error.debugLabel,
+              );
+            } else if (error is BlocError) {
+              errorReporter?.recordError(
+                error.source,
+                error.stackTrace,
+                reason: error.message,
+              );
+            } else if (error is Error) {
+              errorReporter?.recordError(
+                error,
+                error.stackTrace ?? StackTrace.current,
               );
             } else {
               errorReporter?.recordError(

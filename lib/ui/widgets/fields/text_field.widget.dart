@@ -26,7 +26,7 @@ class FastTextField extends StatefulWidget implements IFastInput {
   @override
   final bool isEnabled;
 
-  FastTextField({
+  const FastTextField({
     Key? key,
     required this.labelText,
     this.debounceTimeDuration = kFastDebounceTimeDuration,
@@ -45,10 +45,10 @@ class FastTextField extends StatefulWidget implements IFastInput {
   }) : super(key: key);
 
   @override
-  _FastTextFieldState createState() => _FastTextFieldState();
+  FastTextFieldState createState() => FastTextFieldState();
 }
 
-class _FastTextFieldState extends State<FastTextField>
+class FastTextFieldState extends State<FastTextField>
     with FastDebounceInputMixin {
   @override
   void dispose() {

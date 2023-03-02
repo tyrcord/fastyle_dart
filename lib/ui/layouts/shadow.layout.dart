@@ -29,7 +29,7 @@ class FastShadowLayout extends StatelessWidget {
 
   final EdgeInsets? padding;
 
-  FastShadowLayout({
+  const FastShadowLayout({
     Key? key,
     required this.child,
     this.borderRadius = kFastBorderRadius,

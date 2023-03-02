@@ -26,10 +26,10 @@ class FastIconButton extends FastButton {
   });
 
   @override
-  _FastIconButtonState createState() => _FastIconButtonState();
+  FastIconButtonState createState() => FastIconButtonState();
 }
 
-class _FastIconButtonState extends State<FastIconButton>
+class FastIconButtonState extends State<FastIconButton>
     with FastThrottleButtonMixin {
   @override
   void dispose() {

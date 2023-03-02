@@ -42,7 +42,7 @@ class FastListItemLayout extends StatelessWidget {
   /// The minimum width for the leading widget.
   final double minLeadingWidth;
 
-  FastListItemLayout({
+  const FastListItemLayout({
     Key? key,
     required this.labelText,
     this.capitalizeLabelText = true,

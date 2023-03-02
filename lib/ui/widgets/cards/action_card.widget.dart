@@ -12,7 +12,7 @@ class FastActionCard extends StatelessWidget {
   final String titleText;
   final Widget? child;
 
-  FastActionCard({
+  const FastActionCard({
     Key? key,
     required this.titleText,
     required this.onTap,

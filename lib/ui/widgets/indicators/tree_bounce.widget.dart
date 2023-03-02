@@ -5,7 +5,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 class FastThreeBounceIndicator extends StatelessWidget {
   final Color? color;
 
-  FastThreeBounceIndicator({Key? key, this.color}) : super(key: key);
+  const FastThreeBounceIndicator({Key? key, this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -16,7 +16,7 @@ class FastReadOnlyTextField extends StatelessWidget {
   final String labelText;
   final Widget? child;
 
-  FastReadOnlyTextField({
+  const FastReadOnlyTextField({
     Key? key,
     required this.labelText,
     this.placeholderText = kFastEmptyString,

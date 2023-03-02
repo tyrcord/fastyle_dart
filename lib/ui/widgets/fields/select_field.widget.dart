@@ -27,7 +27,7 @@ class FastSelectField<T> extends StatefulWidget {
   final bool isEnabled;
   final bool sortItems;
 
-  FastSelectField({
+  const FastSelectField({
     Key? key,
     required this.onSelectionChanged,
     required this.labelText,

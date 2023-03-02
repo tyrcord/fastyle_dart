@@ -18,7 +18,7 @@ class FastNavigationListView<T extends FastItem> extends StatefulWidget {
   final bool showTrailing;
   final bool showLeading;
 
-  FastNavigationListView({
+  const FastNavigationListView({
     Key? key,
     required this.onSelectionChanged,
     required this.items,
@@ -38,11 +38,11 @@ class FastNavigationListView<T extends FastItem> extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _FastNavigationListViewState<T> createState() =>
-      _FastNavigationListViewState<T>();
+  FastNavigationListViewState<T> createState() =>
+      FastNavigationListViewState<T>();
 }
 
-class _FastNavigationListViewState<T extends FastItem>
+class FastNavigationListViewState<T extends FastItem>
     extends State<FastNavigationListView<T>> {
   List<T>? _suggestions;
 

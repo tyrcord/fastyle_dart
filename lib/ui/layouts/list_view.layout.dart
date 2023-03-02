@@ -2,7 +2,7 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-const kFastListTileCategoryAll = FastInternalCategory(
+final kFastListTileCategoryAll = FastInternalCategory(
   labelText: kFastAllString,
   valueText: kFastAllString,
   weight: 1000,
@@ -210,6 +210,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
       labelText: category.labelText,
       valueText: category.valueText,
       weight: category.weight,
+      // ignore: prefer_const_literals_to_create_immutables
       items: <T>[],
     );
   }

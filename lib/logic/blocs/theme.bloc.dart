@@ -16,12 +16,12 @@ class FastThemeBloc
   @override
   Stream<FastThemeBlocState> mapEventToState(FastThemeBlocEvent event) async* {
     if (event.type == FastThemeBlocEventType.light) {
-      yield FastThemeBlocState(
+      yield const FastThemeBlocState(
         brightness: Brightness.light,
         themeMode: ThemeMode.light,
       );
     } else if (event.type == FastThemeBlocEventType.dark) {
-      yield FastThemeBlocState(
+      yield const FastThemeBlocState(
         brightness: Brightness.dark,
         themeMode: ThemeMode.dark,
       );
@@ -40,7 +40,7 @@ class FastThemeBloc
     final themeMode = currentState.themeMode;
 
     if (themeMode == ThemeMode.system && newBrightness != brightness) {
-      addEvent(FastThemeBlocEvent.system());
+      addEvent(const FastThemeBlocEvent.system());
     }
   }
 }

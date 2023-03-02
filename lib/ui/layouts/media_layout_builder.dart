@@ -10,7 +10,7 @@ typedef FastMediaLayoutWidgetBuilder = Widget Function(
 class FastMediaLayoutBuilder extends StatelessWidget {
   final FastMediaLayoutWidgetBuilder builder;
 
-  FastMediaLayoutBuilder({
+  const FastMediaLayoutBuilder({
     Key? key,
     required this.builder,
   }) : super(key: key);

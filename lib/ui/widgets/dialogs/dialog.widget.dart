@@ -14,7 +14,7 @@ class FastDialog extends AlertDialog {
   @override
   final Color? backgroundColor;
 
-  FastDialog({
+  const FastDialog({
     Key? key,
     required this.titleText,
     required this.children,

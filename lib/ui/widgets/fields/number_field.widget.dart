@@ -36,7 +36,7 @@ class FastNumberField extends StatefulWidget implements IFastInput {
   @override
   final bool isEnabled;
 
-  FastNumberField({
+  const FastNumberField({
     Key? key,
     required this.labelText,
     this.maxLength = NumberInputFormatter.safeIntegerMaxLength,
@@ -63,10 +63,10 @@ class FastNumberField extends StatefulWidget implements IFastInput {
   }) : super(key: key);
 
   @override
-  _FastNumberFieldState createState() => _FastNumberFieldState();
+  FastNumberFieldState createState() => FastNumberFieldState();
 }
 
-class _FastNumberFieldState extends State<FastNumberField>
+class FastNumberFieldState extends State<FastNumberField>
     with FastDebounceInputMixin {
   late TextEditingController _controller;
   bool _isInitialized = false;
