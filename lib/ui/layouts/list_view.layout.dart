@@ -2,7 +2,7 @@ import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-final kFastListTileCategoryAll = FastInternalCategory(
+const kFastListTileCategoryAll = FastInternalCategory(
   labelText: kFastAllString,
   valueText: kFastAllString,
   weight: 1000,

@@ -63,12 +63,20 @@ class FastCategory extends TModel {
 /// Internal purposes.
 ///
 class FastInternalCategory extends FastCategory {
+  ///
+  /// Represents the weight of an internal category.
+  /// Weight must be greater than 1000.
+  /// In order to avoid conflicts with user categories.
+  ///
+  @override
+  // ignore: overridden_fields
+  final double weight;
+
   const FastInternalCategory({
     required super.labelText,
     required super.valueText,
-    required double weight,
-  })  : assert(weight >= 1000),
-        super(weight: weight);
+    required this.weight,
+  }) : assert(weight >= 1000);
 
   @override
   FastInternalCategory copyWith({
