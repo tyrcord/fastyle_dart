@@ -55,7 +55,6 @@ class FastCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Flexible(
-            flex: 2,
             child: Padding(
               padding: hasHeaderActions
                   ? const EdgeInsets.only(right: 8.0)
@@ -64,7 +63,7 @@ class FastCard extends StatelessWidget {
             ),
           ),
           if (headerActions != null)
-            Flexible(
+            Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[...headerActions!],
