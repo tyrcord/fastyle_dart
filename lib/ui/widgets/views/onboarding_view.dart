@@ -86,23 +86,25 @@ class FastOnboardingViewState extends State<FastOnboardingView> {
             builder: (BuildContext context, bool isPending, Widget? child) {
               return IgnorePointer(
                 ignoring: isPending,
-                child: Column(
-                  // crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Expanded(
-                      child: PageView.builder(
-                        controller: _pageViewController,
-                        itemCount: _slidesLength,
-                        itemBuilder: (BuildContext context, int index) {
-                          return widget.slides[index];
-                        },
+                child: FastMediaLayoutBuilder(builder: (context, mediaType) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Expanded(
+                        child: PageView.builder(
+                          padEnds: false,
+                          controller: _pageViewController,
+                          itemCount: _slidesLength,
+                          itemBuilder: (BuildContext context, int index) {
+                            return widget.slides[index];
+                          },
+                        ),
                       ),
-                    ),
-                    spacing,
-                    _buildStepper(context, isPending),
-                    spacing,
-                  ],
-                ),
+                      _buildStepper(context, isPending),
+                      if (mediaType >= FastMediaType.tablet) spacing,
+                    ],
+                  );
+                }),
               );
             },
           ),

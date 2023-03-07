@@ -16,7 +16,7 @@ class FastOnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final spacing = ThemeHelper.spacing.getVerticalSpacing(context);
-    final padding = ThemeHelper.spacing.getPadding(context);
+    final padding = ThemeHelper.spacing.getHorizontalPadding(context);
 
     return Container(
       padding: padding,
@@ -27,7 +27,6 @@ class FastOnboardingPage extends StatelessWidget {
             spacing,
             FastHeadline(text: titleText),
             if (children != null) ...children!,
-            spacing,
           ],
         ),
       ),
