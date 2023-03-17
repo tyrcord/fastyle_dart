@@ -6,7 +6,7 @@ class FastReadOnlyTextField extends StatelessWidget {
   final bool showHelperBoundaries;
   final Color? helperTextColor;
   final String placeholderText;
-
+  final FontWeight fontWeight;
   final Color? valueTextColor;
   final String? captionText;
   final TextAlign textAlign;
@@ -21,6 +21,7 @@ class FastReadOnlyTextField extends StatelessWidget {
     required this.labelText,
     this.placeholderText = kFastEmptyString,
     this.enableInteractiveSelection = true,
+    this.fontWeight = kFastFontWeightBold,
     this.showHelperBoundaries = true,
     this.textAlign = TextAlign.left,
     this.helperTextColor,
@@ -46,20 +47,36 @@ class FastReadOnlyTextField extends StatelessWidget {
   }
 
   Widget _buildControl(BuildContext context) {
+    final palette = ThemeHelper.getPaletteColors(context);
+
     return Container(
       height: 37.0,
-      decoration: ThemeHelper.createBorderSide(context),
+      decoration: ThemeHelper.createBorderSide(
+        context,
+        color: palette.gray.ultraLight,
+      ),
       child: Align(
         alignment: Alignment.centerLeft,
-        child: child ??
-            FastBody(
-              text: valueText ?? placeholderText,
-              enableInteractiveSelection: enableInteractiveSelection,
-              textAlign: textAlign,
-              fontWeight: kFastFontWeightBold,
-              textColor: valueText != null ? valueTextColor : null,
-            ),
+        child: child ?? buildText(),
       ),
+    );
+  }
+
+  Widget buildText() {
+    if (valueText != null) {
+      return FastBody(
+        enableInteractiveSelection: enableInteractiveSelection,
+        textColor: valueTextColor,
+        fontWeight: fontWeight,
+        textAlign: textAlign,
+        text: valueText!,
+      );
+    }
+
+    return FastPlaceholder(
+      enableInteractiveSelection: enableInteractiveSelection,
+      text: placeholderText,
+      textAlign: textAlign,
     );
   }
 }

@@ -7,7 +7,6 @@ class FastPendingReadOnlyTextField extends StatelessWidget {
   final bool showHelperBoundaries;
   final String placeholderText;
   final Color? helperTextColor;
-
   final Color? valueTextColor;
   final Color? highlightColor;
   final FontWeight fontWeight;
@@ -42,25 +41,29 @@ class FastPendingReadOnlyTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FastReadOnlyTextField(
-      labelText: labelText,
+      showHelperBoundaries: showHelperBoundaries,
+      helperTextColor: helperTextColor,
+      placeholderText: placeholderText,
+      valueTextColor: valueTextColor,
       captionText: captionText,
       helperText: helperText,
-      helperTextColor: helperTextColor,
-      showHelperBoundaries: showHelperBoundaries,
       suffixIcon: suffixIcon,
-      child: _buidText(context),
+      fontWeight: fontWeight,
+      labelText: labelText,
+      valueText: valueText,
+      textAlign: textAlign,
+      child: _buildPendingChildIfNeeded(context),
     );
   }
 
-  Widget _buidText(BuildContext context) {
+  Widget? _buildPendingChildIfNeeded(BuildContext context) {
     if (isPending && pendingText != null) {
       final baseColor =
           valueTextColor ?? ThemeHelper.texts.getBodyTextStyle(context).color!;
-      final _highlightColor = highlightColor ?? baseColor.withOpacity(0.1);
 
       return RepaintBoundary(
         child: Shimmer.fromColors(
-          highlightColor: _highlightColor,
+          highlightColor: highlightColor ?? baseColor.withOpacity(0.1),
           baseColor: baseColor,
           child: FastBody(
             textColor: baseColor,
@@ -72,12 +75,6 @@ class FastPendingReadOnlyTextField extends StatelessWidget {
       );
     }
 
-    return FastBody(
-      enableInteractiveSelection: enableInteractiveSelection,
-      text: valueText ?? placeholderText,
-      textColor: valueTextColor,
-      textAlign: textAlign,
-      fontWeight: fontWeight,
-    );
+    return null;
   }
 }
