@@ -5,6 +5,13 @@ import 'package:google_fonts/google_fonts.dart';
 final _baseTextTheme = kBaseFastTheme.textTheme;
 final _baseTabBarTheme = kBaseFastTheme.tabBarTheme;
 
+final _defaultUnderlineInputBorder = UnderlineInputBorder(
+  borderSide: BorderSide(
+    color: kFastDarkSeparatorColor,
+    width: kFastBorderSize,
+  ),
+);
+
 final kDarkFastTheme = kBaseFastTheme.copyWith(
   scaffoldBackgroundColor: kFastDarkPrimaryBackgroundColor,
   backgroundColor: kFastDarkSecondaryBackgroundColor,
@@ -61,12 +68,8 @@ final kDarkFastTheme = kBaseFastTheme.copyWith(
   ),
   inputDecorationTheme: kInputDecorationTheme.copyWith(
     hintStyle: TextStyle(color: kFastDarkHintLabelColor),
-    enabledBorder: UnderlineInputBorder(
-      borderSide: BorderSide(
-        color: kFastDarkSeparatorColor,
-        width: kFastBorderSize,
-      ),
-    ),
+    enabledBorder: _defaultUnderlineInputBorder,
+    disabledBorder: _defaultUnderlineInputBorder,
   ),
   popupMenuTheme: const PopupMenuThemeData(
     color: kFastDarkTertiaryBackgroundColor,
