@@ -6,6 +6,7 @@ class FastAnimatedRotationIconButton extends StatefulWidget {
   final EdgeInsetsGeometry padding;
   final Alignment iconAlignment;
   final bool shouldTrottleTime;
+  final Color? disabledColor;
   final VoidCallback onTap;
   final Color? iconColor;
   final double iconSize;
@@ -23,6 +24,7 @@ class FastAnimatedRotationIconButton extends StatefulWidget {
     this.isEnabled = true,
     this.rotate = false,
     this.animationController,
+    this.disabledColor,
     this.iconColor,
     this.icon,
   }) : super(key: key);
@@ -69,6 +71,7 @@ class FastAnimatedRotationIconButtonState
       child: FastIconButton(
         shouldTrottleTime: widget.shouldTrottleTime,
         iconAlignment: widget.iconAlignment,
+        disabledColor: widget.disabledColor,
         iconColor: widget.iconColor,
         isEnabled: widget.isEnabled,
         iconSize: widget.iconSize,

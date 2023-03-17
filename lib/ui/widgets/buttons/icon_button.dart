@@ -15,6 +15,7 @@ class FastIconButton extends FastButton {
     super.shouldTrottleTime,
     super.highlightColor,
     super.isEnabled,
+    super.disabledColor,
     super.textColor,
     super.emphasis,
     super.padding,
@@ -51,7 +52,7 @@ class FastIconButtonState extends State<FastIconButton>
       data: themeData.copyWith(useMaterial3: false),
       child: IconButton(
         icon: Align(alignment: widget.iconAlignment, child: widget.icon),
-        disabledColor: _color.withAlpha(kDisabledAlpha),
+        disabledColor: widget.disabledColor ?? _color.withAlpha(kDisabledAlpha),
         padding: widget.padding ?? kFastEdgeInsets8,
         highlightColor: widget.highlightColor,
         onPressed: throttleOnTapIfNeeded(),

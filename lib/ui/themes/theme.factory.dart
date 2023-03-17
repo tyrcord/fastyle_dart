@@ -63,7 +63,7 @@ class FastThemeFactory {
 
   static ButtonThemeData _buildButtonThemeData(Color color) {
     return ButtonThemeData(
-      disabledColor: color.withAlpha(155),
+      disabledColor: color.withAlpha(kDisabledAlpha),
       buttonColor: color,
     );
   }

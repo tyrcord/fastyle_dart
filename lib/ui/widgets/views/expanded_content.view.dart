@@ -98,7 +98,8 @@ class FastExpansionPanelState extends State<FastExpansionPanel>
   Widget _buildHeader(BuildContext context) {
     final textColor = widget.titleTextColor ??
         ThemeHelper.texts.getButtonTextStyle(context).color!;
-    final color = widget.isEnabled ? textColor : textColor.withAlpha(155);
+    final color =
+        widget.isEnabled ? textColor : textColor.withAlpha(kDisabledAlpha);
 
     return Container(
       constraints: const BoxConstraints(minHeight: 40.0, minWidth: 44.0),
