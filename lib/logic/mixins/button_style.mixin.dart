@@ -24,6 +24,7 @@ mixin FastButtonSyleMixin<T extends FastButton> on State<T> {
     Color textColor, {
     Color? disabledTextColor,
     bool upperCase = true,
+    double? fontSize,
   }) {
     return FastButtonLabel(
       text: widget.text ?? kFastButtonLabel,
@@ -31,6 +32,7 @@ mixin FastButtonSyleMixin<T extends FastButton> on State<T> {
           ? textColor
           : disabledTextColor ?? textColor.withAlpha(kDisabledAlpha),
       upperCase: upperCase,
+      fontSize: fontSize,
     );
   }
 }
