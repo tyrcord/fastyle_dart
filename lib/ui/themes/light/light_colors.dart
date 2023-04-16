@@ -75,6 +75,7 @@ final kFastLightBrownPaletteColors = FastPaletteScheme.fromColor(
 // Background Colors
 const kFastLightPrimaryBackgroundColor = kFastLightWhiteColor;
 const kFastLightSecondaryBackgroundColor = Colors.white;
+const kFastLightTertiaryBackgroundColor = Color.fromRGBO(247, 247, 247, 1);
 
 // Label Colors
 final kFastLightLabelColor = kFastLightGrayPaletteColors.darkest;

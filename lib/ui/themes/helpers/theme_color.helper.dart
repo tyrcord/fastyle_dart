@@ -48,6 +48,14 @@ class ThemeColorHelper {
     return Theme.of(context).backgroundColor;
   }
 
+  Color getTertiaryBackgroundColor(BuildContext context) {
+    final themeBloc = BlocProvider.of<FastThemeBloc>(context);
+
+    return themeBloc.currentState.brightness == Brightness.light
+        ? kFastLightTertiaryBackgroundColor
+        : kFastDarkTertiaryBackgroundColor;
+  }
+
   Color getSurfaceTintColor(BuildContext context) {
     final themeBloc = BlocProvider.of<FastThemeBloc>(context);
     final brightness = themeBloc.currentState.brightness;
