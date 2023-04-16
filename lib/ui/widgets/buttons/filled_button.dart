@@ -1,15 +1,17 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
-class FastRaisedButton extends FastButton {
+class FastFilledButton extends FastButton {
   final Color? backgroundColor;
   final double? elevation;
+  final double? fontSize;
 
-  const FastRaisedButton({
+  const FastFilledButton({
     required super.onTap,
     super.trottleTimeDuration,
     super.shouldTrottleTime,
     super.highlightColor,
+    super.overlayColor,
     super.isEnabled,
     super.textColor,
     super.padding,
@@ -18,6 +20,7 @@ class FastRaisedButton extends FastButton {
     super.key,
     this.backgroundColor,
     this.elevation,
+    this.fontSize,
   })  : assert(
           child == null || text == null,
           'child and text properties cannot be initialized at the same time',
@@ -28,10 +31,10 @@ class FastRaisedButton extends FastButton {
         );
 
   @override
-  FastRaisedButtonState createState() => FastRaisedButtonState();
+  FastFilledButtonState createState() => FastFilledButtonState();
 }
 
-class FastRaisedButtonState extends State<FastRaisedButton>
+class FastFilledButtonState extends State<FastFilledButton>
     with FastThrottleButtonMixin, FastButtonSyleMixin {
   @override
   void dispose() {
@@ -54,9 +57,9 @@ class FastRaisedButtonState extends State<FastRaisedButton>
           backgroundColor: backgroundColor,
         );
 
-    return ElevatedButton(
+    return FilledButton(
       onPressed: throttleOnTapIfNeeded(),
-      style: ElevatedButton.styleFrom(
+      style: FilledButton.styleFrom(
         foregroundColor: widget.highlightColor,
         padding: widget.padding,
         elevation: widget.elevation,
@@ -64,7 +67,11 @@ class FastRaisedButtonState extends State<FastRaisedButton>
         disabledBackgroundColor: backgroundColor.withOpacity(0.5),
         backgroundColor: backgroundColor,
       ),
-      child: widget.child ?? buildButtonLabel(textColor),
+      child: widget.child ??
+          buildButtonLabel(
+            textColor,
+            fontSize: widget.fontSize,
+          ),
     );
   }
 }
