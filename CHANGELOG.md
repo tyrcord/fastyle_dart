@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.1.2](https://github.com/tyrcord/fastyle_dart/releases/tag/1.1.2) (2023-04-18)
+
+### Enhancements
+
+- Updated dependencies.
+
 ## [1.1.1](https://github.com/tyrcord/fastyle_dart/releases/tag/1.1.1) (2023-04-18)
 
 ### Enhancements
