@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
-import 'package:tutils_dart/tutils_dart.dart';
+import 'package:t_helpers/helpers.dart';
 
 class ButtonsPage extends StatelessWidget {
   @override

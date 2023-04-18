@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
-import 'package:tbloc_dart/tbloc_dart.dart';
+import 'package:tbloc/tbloc.dart';
 
 typedef FastAppLoaderBuilder = Widget Function(
   BuildContext context,

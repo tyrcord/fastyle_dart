@@ -1,7 +1,7 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:tbloc_dart/tbloc_dart.dart';
+import 'package:tbloc/tbloc.dart';
 
 /// A shimmer widget that can be used to display a loading state.
 class FastShimmer extends StatelessWidget {

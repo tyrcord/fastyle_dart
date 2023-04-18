@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:tmodel_dart/tmodel_dart.dart';
+import 'package:tmodel/tmodel.dart';
 
 void main() {
   group('FastNotificationCenterOptions', () {

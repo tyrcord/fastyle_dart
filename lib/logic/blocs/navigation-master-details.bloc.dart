@@ -1,5 +1,5 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:tbloc_dart/tbloc_dart.dart';
+import 'package:tbloc/tbloc.dart';
 
 class FastNavigationSplitViewBloc extends BidirectionalBloc<
     FastNavigationSplitViewBlocEvent, FastNavigationSplitViewState> {

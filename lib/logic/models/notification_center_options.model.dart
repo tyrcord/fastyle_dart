@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:tmodel_dart/tmodel_dart.dart';
+import 'package:tmodel/tmodel.dart';
 
 class FastNotificationCenterOptions extends TModel {
   ///

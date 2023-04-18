@@ -1,6 +1,6 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 
-import 'package:tmodel_dart/tmodel_dart.dart';
+import 'package:tmodel/tmodel.dart';
 
 class FastListItemCategory<T extends FastItem> extends TModel {
   ///

@@ -1,4 +1,4 @@
-import 'package:tbloc_dart/tbloc_dart.dart';
+import 'package:tbloc/tbloc.dart';
 
 class FastAppLoaderBlocState extends BlocState {
   final double progress;
