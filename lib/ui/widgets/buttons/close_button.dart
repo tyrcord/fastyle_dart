@@ -11,7 +11,7 @@ class FastCloseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FastIconButton(
-      icon: const Icon(Icons.close),
+      icon: kFastCloseIcon,
       iconColor: color,
       tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
       onTap: () {

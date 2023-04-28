@@ -24,7 +24,7 @@ class FastSearchableListView<T extends FastItem> extends StatefulWidget {
   final String searchPlaceholderText;
   final bool shouldUseFuzzySearch;
   final bool isViewScrollable;
-  final Icon clearSearchIcon;
+  final Widget clearSearchIcon;
   final bool showItemDivider;
   final EdgeInsets padding;
   final bool showSearchBar;

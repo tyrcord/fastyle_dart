@@ -40,9 +40,6 @@ class NotificationsPage extends StatelessWidget {
               FastNotificationCenter.warn(
                 context,
                 'warn message',
-                options: FastNotificationCenterOptions(
-                  leadingIcon: Icon(Icons.warning),
-                ),
               );
             },
           ),
@@ -52,9 +49,6 @@ class NotificationsPage extends StatelessWidget {
               FastNotificationCenter.success(
                 context,
                 'success message',
-                options: FastNotificationCenterOptions(
-                  leadingIcon: Icon(Icons.check),
-                ),
               );
             },
             shouldTrottleTime: true,

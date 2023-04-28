@@ -1,3 +1,4 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
@@ -79,7 +80,7 @@ class FastAnimatedRotationIconButtonState
         onTap: widget.onTap,
         icon: RotationTransition(
           turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
-          child: widget.icon ?? const Icon(Icons.sync),
+          child: widget.icon ?? const FaIcon(FontAwesomeIcons.arrowsRotate),
         ),
       ),
     );

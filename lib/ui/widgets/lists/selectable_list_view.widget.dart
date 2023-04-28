@@ -22,7 +22,7 @@ class FastSelectableListView<T extends FastItem> extends StatefulWidget {
   final bool showSearchBar;
   final String searchPlaceholderText;
   final bool shouldUseFuzzySearch;
-  final Icon clearSearchIcon;
+  final Widget clearSearchIcon;
 
   const FastSelectableListView({
     Key? key,

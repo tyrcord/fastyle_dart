@@ -1,22 +1,22 @@
-import 'dart:collection';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
+import 'dart:collection';
 
 const _kDefaultErrorOptions = FastNotificationCenterOptions(
-  leadingIcon: Icon(Icons.cancel),
+  leadingIcon: FaIcon(FontAwesomeIcons.circleXmark),
 );
 
 const _kDefaultWarnOptions = FastNotificationCenterOptions(
-  leadingIcon: Icon(Icons.report_problem),
+  leadingIcon: FaIcon(FontAwesomeIcons.triangleExclamation),
 );
 
 const _kDefaultInfoOptions = FastNotificationCenterOptions(
-  leadingIcon: Icon(Icons.info),
+  leadingIcon: FaIcon(FontAwesomeIcons.circleInfo),
 );
 const _kDefaultSuccessOptions = FastNotificationCenterOptions(
-  leadingIcon: Icon(Icons.done),
+  leadingIcon: FaIcon(FontAwesomeIcons.circleCheck),
 );
 
 class FastNotificationCenter {
