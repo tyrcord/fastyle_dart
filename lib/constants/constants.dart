@@ -11,6 +11,7 @@ export './sized_box.constants.dart';
 const kFastClearSelectionText = 'Clear Selection';
 const kFastSearchPlaceholderText = 'Search...';
 const kFastSelectTitleText = 'Select';
+const kFastNoItemsString = 'No items';
 const kFastButtonLabel = 'Button';
 const kFastCancelText = 'cancel';
 const kFastNoneString = 'none';
@@ -29,6 +30,7 @@ const kFastIconSizeSmall = 20.0;
 const kFastIconSizeMedium = 24.0;
 const kFastIconSizeLarge = 28.0;
 const kFastIconSizeXl = 32.0;
+const kFastIconSizeXxl = 48.0;
 
 // Image Sizes
 
