@@ -159,14 +159,15 @@ class FastAppLoaderState extends State<FastAppLoader> {
           child: MediaQuery.fromWindow(
             child: AnimatedTheme(
               data: theme,
-              child: Builder(builder: ((context) {
-                return Container(
-                  color: ThemeHelper.colors.getPrimaryBackgroundColor(context),
-                  child: FastPageLayout(
-                    child: child,
-                  ),
-                );
-              })),
+              child: Builder(
+                builder: (context) {
+                  return Container(
+                    color:
+                        ThemeHelper.colors.getPrimaryBackgroundColor(context),
+                    child: FastPageLayout(child: child),
+                  );
+                },
+              ),
             ),
           ),
         );

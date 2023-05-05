@@ -34,8 +34,17 @@ class FastSearchableListView<T extends FastItem> extends StatefulWidget {
   final bool showTrailing;
   final bool showLeading;
 
+  /// A function that creates additional tab views.
+  final List<FastListItemCategory<T>> Function()? extraTabBuilder;
+
+  /// The delegate object that can modify the behavior of the widget.
+  final FastListViewLayoutDelegate<T>? delegate;
+
+  final Widget? emptyContent;
+  final String? emptyText;
+
   const FastSearchableListView({
-    Key? key,
+    super.key,
     required this.items,
     this.onSelectionChanged,
     this.searchPlaceholderText = kFastSearchPlaceholderText,
@@ -51,10 +60,14 @@ class FastSearchableListView<T extends FastItem> extends StatefulWidget {
     this.isEnabled = true,
     this.showTrailing = true,
     this.showLeading = true,
+    this.extraTabBuilder,
     this.itemContentPadding,
     this.listItemBuilder,
     this.allCategoryText,
-  }) : super(key: key);
+    this.delegate,
+    this.emptyContent,
+    this.emptyText,
+  });
 
   @override
   State<StatefulWidget> createState() => _FastSearchableListViewState<T>();
@@ -76,6 +89,10 @@ class _FastSearchableListViewState<T extends FastItem>
       intialCategoryIndex: widget.intialCategoryIndex,
       allCategoryText: widget.allCategoryText,
       groupByCategory: widget.groupByCategory,
+      extraTabBuilder: widget.extraTabBuilder,
+      delegate: widget.delegate,
+      emptyContent: widget.emptyContent,
+      emptyText: widget.emptyText,
     );
 
     if (widget.isViewScrollable) {

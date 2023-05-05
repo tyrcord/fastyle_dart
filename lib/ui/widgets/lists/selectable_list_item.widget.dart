@@ -1,3 +1,4 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
 
@@ -55,19 +56,7 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
         _selectionLabelColor = selectionLabelColor ?? palette.whiteColor;
         _trailing = null;
       } else {
-        // TODO: we need to think again the default trailing icon
-        // since we can have a selection color.
-        _trailing = item?.descriptor?.trailing ?? trailing ?? kFastDoneIcon;
-
-        if (_trailing is Icon) {
-          final icon = _trailing;
-
-          _trailing = Icon(
-            color: selectionTralingColor ?? colors.getPrimaryColor(context),
-            size: icon.size,
-            icon.icon,
-          );
-        }
+        _trailing = _getTrailingIcon(context);
       }
     }
 
@@ -84,5 +73,31 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
       trailing: _trailing,
       onTap: onTap,
     );
+  }
+
+  Widget _getTrailingIcon(BuildContext context) {
+    var icon = item?.descriptor?.trailing ?? trailing ?? kFastDoneIcon;
+
+    if (icon is Icon) {
+      icon = Icon(
+        color: _getSelectionTrailingColor(context),
+        size: icon.size,
+        icon.icon,
+      );
+    } else if (icon is FaIcon) {
+      icon = FaIcon(
+        icon.icon,
+        color: _getSelectionTrailingColor(context),
+        size: icon.size,
+      );
+    }
+
+    return icon;
+  }
+
+  Color _getSelectionTrailingColor(BuildContext context) {
+    final colors = ThemeHelper.colors;
+
+    return selectionTralingColor ?? colors.getPrimaryColor(context);
   }
 }

@@ -3,6 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FastSelectField<T> extends StatefulWidget {
+  /// A function that creates additional tab views.
+  final List<FastListItemCategory<FastItem<T>>> Function()? extraTabBuilder;
+
+  /// The delegate object that can modify the behavior of the widget.
+  final FastListViewLayoutDelegate<FastItem<T>>? delegate;
+
   final ValueChanged<FastItem<T>?> onSelectionChanged;
   final List<FastCategory>? categories;
   final String searchPlaceholderText;
@@ -26,6 +32,8 @@ class FastSelectField<T> extends StatefulWidget {
   final bool isReadOnly;
   final bool isEnabled;
   final bool sortItems;
+  final Widget? listViewEmptyContent;
+  final String? listViewEmptyText;
 
   const FastSelectField({
     Key? key,
@@ -48,10 +56,14 @@ class FastSelectField<T> extends StatefulWidget {
     this.isEnabled = true,
     this.placeholderText,
     this.allCategoryText,
+    this.extraTabBuilder,
     this.captionText,
     this.helperText,
     this.categories,
+    this.delegate,
     this.selection,
+    this.listViewEmptyContent,
+    this.listViewEmptyText,
   }) : super(key: key);
 
   @override
@@ -168,13 +180,17 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
             allCategoryText: widget.allCategoryText,
             clearSearchIcon: widget.clearSearchIcon,
             groupByCategory: widget.groupByCategory,
+            extraTabBuilder: widget.extraTabBuilder,
             useFuzzySearch: widget.useFuzzySearch,
             titleText: widget.searchTitleText,
+            listViewEmptyContent: widget.listViewEmptyContent,
+            listViewEmptyText: widget.listViewEmptyText,
             categories: widget.categories,
             sortItems: widget.sortItems,
             selection: widget.selection,
             closeIcon: widget.closeIcon,
             backIcon: widget.backIcon,
+            delegate: widget.delegate,
             items: widget.items,
           ),
           fullscreenDialog: true,

@@ -24,6 +24,15 @@ class FastSelectableListView<T extends FastItem> extends StatefulWidget {
   final bool shouldUseFuzzySearch;
   final Widget clearSearchIcon;
 
+  /// A function that creates additional tab views.
+  final List<FastListItemCategory<T>> Function()? extraTabBuilder;
+
+  /// The delegate object that can modify the behavior of the widget.
+  final FastListViewLayoutDelegate<T>? delegate;
+
+  final Widget? listViewEmptyContent;
+  final String? listViewEmptyText;
+
   const FastSelectableListView({
     Key? key,
     required this.onSelectionChanged,
@@ -43,10 +52,14 @@ class FastSelectableListView<T extends FastItem> extends StatefulWidget {
     this.selectionLabelColor,
     this.itemContentPadding,
     this.allCategoryText,
+    this.extraTabBuilder,
     this.listItemBuilder,
     this.selectionColor,
     this.categories,
     this.selection,
+    this.delegate,
+    this.listViewEmptyContent,
+    this.listViewEmptyText,
   }) : super(key: key);
 
   @override
@@ -88,6 +101,10 @@ class _FastSelectableListViewState<T extends FastItem>
       searchPlaceholderText: widget.searchPlaceholderText,
       showSearchBar: widget.showSearchBar,
       isViewScrollable: widget.isViewScrollable,
+      extraTabBuilder: widget.extraTabBuilder,
+      delegate: widget.delegate,
+      emptyContent: widget.listViewEmptyContent,
+      emptyText: widget.listViewEmptyText,
     );
   }
 

@@ -8,3 +8,4 @@ export './mixins/mixins.dart';
 export './models/models.dart';
 export './services/services.dart';
 export './types/types.dart';
+export './delegates/delegates.dart';

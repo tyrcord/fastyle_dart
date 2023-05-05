@@ -17,9 +17,11 @@ class FastNavigationListView<T extends FastItem> extends StatefulWidget {
   final List<T> items;
   final bool showTrailing;
   final bool showLeading;
+  final Widget? emptyContent;
+  final String? emptyText;
 
   const FastNavigationListView({
-    Key? key,
+    super.key,
     required this.onSelectionChanged,
     required this.items,
     this.searchPlaceholderText = kFastSearchPlaceholderText,
@@ -35,7 +37,9 @@ class FastNavigationListView<T extends FastItem> extends StatefulWidget {
     this.showLeading = true,
     this.itemContentPadding,
     this.listItemBuilder,
-  }) : super(key: key);
+    this.emptyContent,
+    this.emptyText,
+  });
 
   @override
   FastNavigationListViewState<T> createState() =>
@@ -70,6 +74,8 @@ class FastNavigationListViewState<T extends FastItem>
             showItemDivider: widget.showItemDivider,
             sortItems: widget.shouldUseFuzzySearch ? false : widget.sortItems,
             padding: widget.padding,
+            emptyContent: widget.emptyContent,
+            emptyText: widget.emptyText,
           ),
         ),
       ],

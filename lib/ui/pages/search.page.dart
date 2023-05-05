@@ -80,6 +80,15 @@ class FastSearchPage<T extends FastItem> extends StatefulWidget {
   ///
   final T? selection;
 
+  /// A function that creates additional tab views.
+  final List<FastListItemCategory<T>> Function()? extraTabBuilder;
+
+  /// The delegate object that can modify the behavior of the widget.
+  final FastListViewLayoutDelegate<T>? delegate;
+
+  final Widget? listViewEmptyContent;
+  final String? listViewEmptyText;
+
   const FastSearchPage({
     super.key,
     required this.items,
@@ -95,8 +104,12 @@ class FastSearchPage<T extends FastItem> extends StatefulWidget {
     this.useFuzzySearch = false,
     this.sortItems = true,
     this.allCategoryText,
+    this.extraTabBuilder,
+    this.delegate,
     this.categories,
     this.selection,
+    this.listViewEmptyContent,
+    this.listViewEmptyText,
   });
 
   @override
@@ -219,11 +232,15 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
                 items: _suggestions ?? widget.items,
                 onSelectionChanged: (T item) => _close(context, item),
                 categories: widget.categories,
+                extraTabBuilder: widget.extraTabBuilder,
                 groupByCategory:
                     _searchQuery == null ? widget.groupByCategory : false,
                 selection: widget.selection,
                 intialCategoryIndex: widget.intialCategoryIndex,
                 allCategoryText: widget.allCategoryText,
+                delegate: widget.delegate,
+                listViewEmptyContent: widget.listViewEmptyContent,
+                listViewEmptyText: widget.listViewEmptyText,
               ),
             ),
           ),

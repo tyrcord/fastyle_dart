@@ -8,55 +8,53 @@ const kFastListTileCategoryAll = FastInternalCategory(
   weight: 1000,
 );
 
+/// A widget that creates a list view with customizable features.
 class FastListViewLayout<T extends FastItem> extends StatelessWidget {
-  ///
-  /// Function that creates a list item for a given index and item.
-  ///
+  /// The function that creates a list item for a given index and item.
   final FastListItemBuilder<T> listItemBuilder;
 
-  ///
-  /// Text that describes the all category.
-  ///
-  final String? allCategoryText;
-
-  ///
-  /// Indicates the initial category selected.
-  ///
-  final int intialCategoryIndex;
-
-  ///
-  /// Indicates whether the list should be displayed as a tab view
-  /// and grouped by categories.
-  ///
-  final bool groupByCategory;
-
-  ///
-  /// Indicates whether the view initial is scrollable.
-  ///
-  final bool isViewScrollable;
-
-  ///
-  /// Indicates whether a thin horizontal line should be used as separator
-  /// between items.
-  ///
-  final bool showItemDivider;
-
-  ///
-  /// Indicates whether the list should sort the items.
-  ///
-  final bool sortItems;
-
-  ///
-  /// Items to display.
-  ///
+  /// The list of items to display.
   final List<T> items;
 
+  /// The amount of padding around the content.
   final EdgeInsets padding;
 
+  /// The index of the initial category to display.
+  final int intialCategoryIndex;
+
+  /// A boolean indicating whether to group items by category.
+  final bool groupByCategory;
+
+  /// A boolean indicating whether the view is scrollable.
+  final bool isViewScrollable;
+
+  /// A boolean indicating whether to show a thin horizontal line between items.
+  final bool showItemDivider;
+
+  /// A boolean indicating whether to sort the items.
+  final bool sortItems;
+
+  /// A function that creates additional tab views.
+  final List<FastListItemCategory<T>> Function()? extraTabBuilder;
+
+  /// The text that describes the all category.
+  final String? allCategoryText;
+
+  /// The delegate object that can modify the behavior of the widget.
+  final FastListViewLayoutDelegate<T>? delegate;
+
+  /// The scroll controller used to control the list view's scrolling behavior.
   final scrollController = ScrollController();
 
+  final Widget? emptyContent;
+
+  final String? emptyText;
+
+  /// Creates a new `FastListViewLayout` widget.
+  ///
+  /// The `listItemBuilder` and `items` parameters are required.
   FastListViewLayout({
-    Key? key,
+    super.key,
     required this.listItemBuilder,
     required this.items,
     this.padding = EdgeInsets.zero,
@@ -65,29 +63,62 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     this.isViewScrollable = true,
     this.showItemDivider = false,
     this.sortItems = true,
+    this.extraTabBuilder,
     this.allCategoryText,
-  }) : super(key: key);
+    this.emptyContent,
+    this.emptyText,
+    this.delegate,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final _items = [...items];
+    final elements = [...items];
 
+    // If groupByCategory is true, display a tab view with categories
     if (groupByCategory) {
-      return _buildTabViews(context, _items);
+      return _buildTabViews(context, elements);
     }
 
-    return _buildListView(context, _items);
+    // Otherwise, display a standard list view
+    return buildListView(context, elements);
   }
 
+  /// Builds a tab view widget with categories.
   Widget _buildTabViews(BuildContext context, List<T> items) {
-    final listCategories = _buildListCategories(items);
+    // Group the items into categories
+    var listCategories = _buildListCategories(items);
+
+    // If an extraTabBuilder function is provided, call it to add additional
+    // categories
+    if (extraTabBuilder != null) {
+      listCategories.addAll(extraTabBuilder!());
+    }
+
+    // Sort the categories by weight in descending order
+    listCategories.sort((a, b) => b.weight.compareTo(a.weight));
+
+    // Create a list of tabs and views from the categories
     final views = <Widget>[];
     final tabs = <Tab>[];
 
-    listCategories.forEach((FastListItemCategory<T> listCategory) {
-      tabs.add(Tab(text: toBeginningOfSentenceCase(listCategory.labelText)));
-      views.add(_buildListView(context, listCategory.items));
-    });
+    for (var listCategory in listCategories) {
+      // Create a tab for the category
+      Tab tab = Tab(text: toBeginningOfSentenceCase(listCategory.labelText));
+      Widget? view;
+
+      // If a delegate is provided, call its willBuildListViewForCategory method
+      // to customize the list view for the category
+      if (delegate != null) {
+        view = delegate!.willBuildListViewForCategory(this, listCategory);
+      }
+
+      // If a view was not provided by the delegate, create a standard list view
+      //for the category
+      view ??= buildListView(context, listCategory.items);
+
+      tabs.add(tab);
+      views.add(view);
+    }
 
     return FastTabs(
       initialIndex: intialCategoryIndex,
@@ -96,14 +127,35 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     );
   }
 
-  Widget _buildListView(BuildContext context, List<T> items) {
+  /// Builds a list view with the specified items.
+  Widget buildListView(BuildContext context, List<T> items) {
+    if (items.isEmpty) {
+      return _buildEmptyContent(context);
+    }
+
+    // If the view is scrollable or the items are grouped by category,
+    // create a scrollable list view
     if (isViewScrollable || groupByCategory) {
       return _buildScrollableContent(context, items);
     }
 
+    // Otherwise, create a fixed list view
     return _buildFixedContent(context, items);
   }
 
+  Widget _buildEmptyContent(BuildContext context) {
+    if (emptyContent != null) {
+      return emptyContent!;
+    }
+
+    return Center(
+      child: FastSecondaryBody(
+        text: emptyText ?? kFastNoItemsString,
+      ),
+    );
+  }
+
+  /// Builds a scrollable list view with the specified items.
   Widget _buildScrollableContent(BuildContext context, List<T> items) {
     final dividerDecoration = _buildDividerDecorationIdNeeded(context);
     final rows = _sortItemIfNeeded(items);
@@ -129,6 +181,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     );
   }
 
+  /// Builds a fixed list view with the specified items.
   Widget _buildFixedContent(BuildContext context, List<T> items) {
     final dividerDecoration = _buildDividerDecorationIdNeeded(context);
     final rows = _sortItemIfNeeded(items);
@@ -151,10 +204,12 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     );
   }
 
+  /// Builds a decoration for item dividers if needed.
   BoxDecoration? _buildDividerDecorationIdNeeded(BuildContext context) {
     return showItemDivider ? ThemeHelper.createBorderSide(context) : null;
   }
 
+  /// Sorts the items if sortItems is true.
   List<T> _sortItemIfNeeded(List<T> items) {
     if (sortItems) {
       items = items.map((T item) {
@@ -173,6 +228,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     return items;
   }
 
+  /// Groups the items into categories.
   List<FastListItemCategory<T>> _buildListCategories(List<T> items) {
     final categoriesMap = {
       kFastListTileCategoryAll.valueText: _buildListCategory(
@@ -185,7 +241,7 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
     final allCategory =
         categoriesMap[kFastListTileCategoryAll.valueText]!.items;
 
-    items.forEach((T item) {
+    for (var item in items) {
       item.categories?.forEach((FastCategory category) {
         if (!categoriesMap.containsKey(category.valueText)) {
           categoriesMap[category.valueText] = _buildListCategory(category);
@@ -197,10 +253,9 @@ class FastListViewLayout<T extends FastItem> extends StatelessWidget {
 
         categoriesMap[category.valueText]!.items.add(item);
       });
-    });
+    }
 
     final categories = categoriesMap.values.toList();
-    categories.sort((a, b) => b.weight.compareTo(a.weight));
 
     return categories;
   }
