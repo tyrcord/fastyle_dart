@@ -44,6 +44,7 @@ class FastTabs extends StatelessWidget {
             labelStyle: labelStyle,
             unselectedLabelColor: unselectedLabelColor,
             unselectedLabelStyle: unselectedLabelStyle,
+            dividerColor: Colors.transparent,
             tabs: tabs,
           ),
           Expanded(child: TabBarView(children: views)),
