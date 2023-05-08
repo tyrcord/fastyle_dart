@@ -43,20 +43,20 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color? _selectionLabelColor;
-    Color? _selectionColor;
-    Widget? _trailing;
+    Color? selectionLabelColor0;
+    Color? selectionColor0;
+    Widget? trailing0;
 
     if (isSelected) {
       final palette = ThemeHelper.getPaletteColors(context);
       final colors = ThemeHelper.colors;
 
       if (selectionColor != null) {
-        _selectionColor = selectionColor ?? colors.getPrimaryColor(context);
-        _selectionLabelColor = selectionLabelColor ?? palette.whiteColor;
-        _trailing = null;
+        selectionColor0 = selectionColor ?? colors.getPrimaryColor(context);
+        selectionLabelColor0 = selectionLabelColor ?? palette.whiteColor;
+        trailing0 = null;
       } else {
-        _trailing = _getTrailingIcon(context);
+        trailing0 = _getTrailingIcon(context);
       }
     }
 
@@ -64,13 +64,13 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
       descriptionText: item?.descriptionText ?? descriptionText,
       leading: item?.descriptor?.leading ?? leading,
       isDense: item?.descriptor?.isDense ?? isDense,
-      selectionLabelColor: _selectionLabelColor,
+      selectionLabelColor: selectionLabelColor0,
       labelText: item?.labelText ?? labelText!,
       capitalizeLabelText: capitalizeLabelText,
       isEnabled: item?.isEnabled ?? isEnabled,
-      selectionColor: _selectionColor,
+      selectionColor: selectionColor0,
       contentPadding: contentPadding,
-      trailing: _trailing,
+      trailing: trailing0,
       onTap: onTap,
     );
   }

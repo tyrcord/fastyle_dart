@@ -31,13 +31,13 @@ class _FastNavigationBarViewState extends State<FastNavigationBarView> {
   Widget build(BuildContext context) {
     return FastMediaLayoutBuilder(
       builder: (context, mediaType) {
-        var _indicatorColor = widget.indicatorColor;
-        _indicatorColor ??= ThemeHelper.colors.getPrimaryColor(context);
+        var indicatorColor = widget.indicatorColor;
+        indicatorColor ??= ThemeHelper.colors.getPrimaryColor(context);
 
         if (mediaType >= FastMediaType.tablet) {
           return FastScaffold(
             showAppBar: widget.showAppBar,
-            child: buildNavigationRail(context, widget.child, _indicatorColor),
+            child: buildNavigationRail(context, widget.child, indicatorColor),
           );
         }
 
@@ -45,7 +45,7 @@ class _FastNavigationBarViewState extends State<FastNavigationBarView> {
 
         return NavigationBarTheme(
           data: theme.navigationBarTheme.copyWith(
-            indicatorColor: _indicatorColor,
+            indicatorColor: indicatorColor,
           ),
           child: FastScaffold(
             bottomNavigationBar: buildNavigationBar(context),
@@ -59,15 +59,15 @@ class _FastNavigationBarViewState extends State<FastNavigationBarView> {
 
   NavigationBar buildNavigationBar(BuildContext context) {
     final colors = ThemeHelper.colors;
-    final _backgroundColor =
+    final backgroundColor =
         widget.backgroundColor ?? colors.getSecondaryBackgroundColor(context);
 
     return NavigationBar(
       destinations: _buildNavigationDestinationList(),
       onDestinationSelected: _handleSelectionChange,
       selectedIndex: _findSelectedIndex(context),
-      surfaceTintColor: _backgroundColor,
-      backgroundColor: _backgroundColor,
+      surfaceTintColor: backgroundColor,
+      backgroundColor: backgroundColor,
     );
   }
 

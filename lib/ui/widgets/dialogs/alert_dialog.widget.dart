@@ -12,16 +12,10 @@ class FastAlertDialog extends AlertDialog {
   final Color? titleColor;
   final String titleText;
 
-  @override
-  final Color? backgroundColor;
-
-  @override
-  final List<Widget>? actions;
-
   const FastAlertDialog({
     Key? key,
     required this.titleText,
-    this.backgroundColor,
+    super.backgroundColor,
     this.messageColor,
     this.messageText,
     this.cancelText,
@@ -29,7 +23,7 @@ class FastAlertDialog extends AlertDialog {
     this.validText,
     this.onCancel,
     this.children,
-    this.actions,
+    super.actions,
     this.onValid,
   })  : assert(messageText == null || children == null),
         assert(messageText != null || children != null),

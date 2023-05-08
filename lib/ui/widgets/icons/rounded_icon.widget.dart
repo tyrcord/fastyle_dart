@@ -26,13 +26,13 @@ class FastRoundedIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     final hasRadius = shape == FastBoxShape.roundedRectangle;
     final radius = hasRadius ? BorderRadius.circular(8) : null;
-    final _shape = _getShape();
-    var _icon = icon;
+    final shape0 = _getShape();
+    var icon0 = icon;
 
     if (icon is Icon) {
-      _icon = _transformIcon(icon as Icon);
+      icon0 = _transformIcon(icon as Icon);
     } else if (icon is FaIcon) {
-      _icon = _transformFaIcon(icon as FaIcon);
+      icon0 = _transformFaIcon(icon as FaIcon);
     }
 
     return Container(
@@ -41,9 +41,9 @@ class FastRoundedIcon extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor ?? ThemeHelper.colors.getPrimaryColor(context),
         borderRadius: radius,
-        shape: _shape,
+        shape: shape0,
       ),
-      child: Center(child: _icon),
+      child: Center(child: icon0),
     );
   }
 

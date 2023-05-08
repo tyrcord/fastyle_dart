@@ -207,17 +207,17 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
   }
 
   Widget _buildListView(BuildContext context) {
-    final _shadowColor = ThemeHelper.colors.getShadowColor(context);
+    final shadowColor = ThemeHelper.colors.getShadowColor(context);
     final decoration = Container(
       height: 1.5,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         boxShadow: [
-          BoxShadow(color: _shadowColor, blurRadius: kFastBlurRadius),
+          BoxShadow(color: shadowColor, blurRadius: kFastBlurRadius),
         ],
       ),
     );
-    final _shouldSortItems = _searchQuery != null && widget.useFuzzySearch
+    final shouldSortItems = _searchQuery != null && widget.useFuzzySearch
         ? false
         : widget.sortItems;
 
@@ -228,7 +228,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
             child: Container(
               color: ThemeHelper.colors.getPrimaryBackgroundColor(context),
               child: FastSelectableListView(
-                sortItems: _shouldSortItems,
+                sortItems: shouldSortItems,
                 items: _suggestions ?? widget.items,
                 onSelectionChanged: (T item) => _close(context, item),
                 categories: widget.categories,

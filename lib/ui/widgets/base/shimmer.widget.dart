@@ -24,18 +24,18 @@ class FastShimmer extends StatelessWidget {
       bloc: BlocProvider.of<FastThemeBloc>(context),
       builder: (BuildContext context, state) {
         final isDark = state.brightness == Brightness.dark;
-        var _highlightColor = highlightColor;
-        var _baseColor = baseColor;
+        var highlightColor0 = highlightColor;
+        var baseColor0 = baseColor;
 
-        _highlightColor ??=
+        highlightColor0 ??=
             isDark ? grayPalette.ultraDark : grayPalette.ultraLight;
 
-        _baseColor ??= isDark ? grayPalette.darkest : grayPalette.lightest;
+        baseColor0 ??= isDark ? grayPalette.darkest : grayPalette.lightest;
 
         return RepaintBoundary(
           child: Shimmer.fromColors(
-            highlightColor: _highlightColor,
-            baseColor: _baseColor,
+            highlightColor: highlightColor0,
+            baseColor: baseColor0,
             child: child,
           ),
         );

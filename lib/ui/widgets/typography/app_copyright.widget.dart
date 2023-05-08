@@ -63,9 +63,9 @@ class FastAppCopyright extends StatelessWidget {
 
   /// Returns the year.
   String _getYear() {
-    final _year = year ?? DateTime.now().year;
+    final year0 = year ?? DateTime.now().year;
 
-    return _year.toString();
+    return year0.toString();
   }
 
   /// Returns the author

@@ -18,22 +18,22 @@ class FastRoundedDuotoneIcon extends FastRoundedIcon {
   @override
   Widget build(BuildContext context) {
     final colors = ThemeHelper.colors;
-    var _backgroundColor = backgroundColor;
-    var _iconColor = iconColor;
-    var _icon = icon;
+    var backgroundColor0 = backgroundColor;
+    var iconColor0 = iconColor;
+    var icon0 = icon;
 
-    if (palette != null && _backgroundColor == null && _iconColor == null) {
-      _backgroundColor = palette!.lightest;
-      _iconColor = palette!.mid;
+    if (palette != null && backgroundColor0 == null && iconColor0 == null) {
+      backgroundColor0 = palette!.lightest;
+      iconColor0 = palette!.mid;
     }
 
-    _backgroundColor ??= colors.getPrimaryColor(context).withAlpha(155);
+    backgroundColor0 ??= colors.getPrimaryColor(context).withAlpha(155);
 
     return FastRoundedIcon(
-      backgroundColor: _backgroundColor,
-      iconColor: _iconColor,
+      backgroundColor: backgroundColor0,
+      iconColor: iconColor0,
       shape: shape,
-      icon: _icon,
+      icon: icon0,
       size: size,
     );
   }

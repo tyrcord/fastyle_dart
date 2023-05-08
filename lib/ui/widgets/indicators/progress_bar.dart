@@ -154,19 +154,19 @@ class _FastLinearProgressBarIndicatorState
 
   /// Builds the progress label.
   Widget buildProgressLabel(BuildContext context) {
-    String _label;
+    String label;
 
     if (widget.progressLabelBuilder != null) {
-      _label = widget.progressLabelBuilder!(widget.value);
+      label = widget.progressLabelBuilder!(widget.value);
     } else if (widget.showAsPercentage) {
-      _label = toPercentage(widget.value, widget.fractionDigits);
+      label = toPercentage(widget.value, widget.fractionDigits);
     } else {
-      _label = widget.value.toStringAsFixed(widget.fractionDigits);
+      label = widget.value.toStringAsFixed(widget.fractionDigits);
     }
 
     return FastOverline(
       textColor: _getProgressLabelColor(context),
-      text: _label,
+      text: label,
     );
   }
 
@@ -179,17 +179,17 @@ class _FastLinearProgressBarIndicatorState
     }
 
     setState(() {
-      var _value = widget.value;
+      var value = widget.value;
 
-      if (_value < widget.minValue) {
-        _value = widget.minValue;
+      if (value < widget.minValue) {
+        value = widget.minValue;
       }
 
-      if (_value > widget.maxValue) {
-        _value = widget.maxValue;
+      if (value > widget.maxValue) {
+        value = widget.maxValue;
       }
 
-      _factor = _value / widget.maxValue;
+      _factor = value / widget.maxValue;
       _progressBarWidth = constraints.maxWidth * _factor;
     });
   }
@@ -224,9 +224,9 @@ class _FastLinearProgressBarIndicatorState
       return widget.progressLabelColor!;
     }
 
-    final _palette = ThemeHelper.getPaletteColors(context);
-    final darkColor = _palette.gray.mid;
-    final lightColor = _palette.whiteColor;
+    final palette = ThemeHelper.getPaletteColors(context);
+    final darkColor = palette.gray.mid;
+    final lightColor = palette.whiteColor;
 
     return ThemeHelper.colors.getColorWithBestConstrast(
         context: context,

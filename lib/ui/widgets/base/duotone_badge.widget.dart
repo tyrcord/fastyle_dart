@@ -19,18 +19,18 @@ class FastDuotoneBadge extends FastBadge {
 
   @override
   Widget build(BuildContext context) {
-    var _backgroundColor = backgroundColor;
-    var _textColor = textColor;
+    var backgroundColor0 = backgroundColor;
+    var textColor0 = textColor;
 
-    if (palette != null && _backgroundColor == null && _textColor == null) {
-      _backgroundColor = palette!.ultraLight;
-      _textColor = palette!.dark;
+    if (palette != null && backgroundColor0 == null && textColor0 == null) {
+      backgroundColor0 = palette!.ultraLight;
+      textColor0 = palette!.dark;
     }
 
     return FastBadge(
-      backgroundColor: _backgroundColor,
+      backgroundColor: backgroundColor0,
       borderRadius: borderRadius,
-      textColor: _textColor,
+      textColor: textColor0,
       padding: padding,
       text: text,
     );

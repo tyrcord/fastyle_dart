@@ -82,10 +82,10 @@ class FastListItemLayout extends StatelessWidget {
 
   /// Builds the item label.
   Widget buildItemLabel() {
-    final _labelText =
+    final text =
         capitalizeLabelText ? toBeginningOfSentenceCase(labelText)! : labelText;
 
-    return FastBody(textColor: selectionLabelColor, text: _labelText);
+    return FastBody(textColor: selectionLabelColor, text: text);
   }
 
   /// Builds the item description.

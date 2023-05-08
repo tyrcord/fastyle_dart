@@ -8,19 +8,13 @@ class FastDialog extends AlertDialog {
   final Color? titleColor;
   final String titleText;
 
-  @override
-  final List<Widget>? actions;
-
-  @override
-  final Color? backgroundColor;
-
   const FastDialog({
     Key? key,
     required this.titleText,
     required this.children,
-    this.backgroundColor,
+    super.backgroundColor,
     this.titleColor,
-    this.actions,
+    super.actions,
   }) : super(key: key);
 
   @override
