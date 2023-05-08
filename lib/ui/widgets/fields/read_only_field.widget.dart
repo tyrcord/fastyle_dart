@@ -47,14 +47,9 @@ class FastReadOnlyTextField extends StatelessWidget {
   }
 
   Widget _buildControl(BuildContext context) {
-    final palette = ThemeHelper.getPaletteColors(context);
-
     return Container(
       height: 37.0,
-      decoration: ThemeHelper.createBorderSide(
-        context,
-        color: palette.gray.ultraLight,
-      ),
+      decoration: ThemeHelper.createBorderSide(context),
       child: Align(
         alignment: Alignment.centerLeft,
         child: child ?? buildText(),
