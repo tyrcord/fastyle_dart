@@ -1,6 +1,5 @@
 import 'package:fastyle_dart/fastyle_dart.dart';
 import 'package:flutter/material.dart';
-import 'package:fuzzy/data/result.dart';
 import 'package:fuzzy/fuzzy.dart';
 
 class FastSearchBar<T extends FastItem> extends StatefulWidget {
@@ -162,12 +161,14 @@ class FastSearchBarState<T extends FastItem> extends State<FastSearchBar<T>> {
 
     // TODO: workaround https://github.com/comigor/fuzzy/issues/8
     final rawResults = fuse.search(queryText);
-    rawResults.forEach((r) => r.score = r.matches[0].score);
+    for (var r in rawResults) {
+      r.score = r.matches[0].score;
+    }
     rawResults.sort((a, b) => a.score.compareTo(b.score));
 
-    rawResults.forEach((Result<dynamic> result) {
+    for (var result in rawResults) {
       results.add(result.item as T);
-    });
+    }
 
     return results;
   }
