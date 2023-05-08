@@ -41,7 +41,7 @@ class FastThemeFactory {
   }) {
     final textTheme = baseTheme.textTheme;
     final secondaryColor0 = secondaryColor ?? baseTheme.colorScheme.secondary;
-    final tertiaryColor0 = tertiaryColor ?? textTheme.overline!.color;
+    final tertiaryColor0 = tertiaryColor ?? textTheme.labelSmall!.color;
 
     return baseTheme.copyWith(
       inputDecorationTheme: _buildInputDecorationTheme(baseTheme, primaryColor),
@@ -52,8 +52,8 @@ class FastThemeFactory {
         backgroundColor: primaryColor,
       ),
       textTheme: textTheme.copyWith(
-        caption: textTheme.caption!.copyWith(color: secondaryColor0),
-        overline: textTheme.overline!.copyWith(color: tertiaryColor0),
+        bodySmall: textTheme.bodySmall!.copyWith(color: secondaryColor0),
+        labelSmall: textTheme.labelSmall!.copyWith(color: tertiaryColor0),
       ),
       colorScheme: ColorScheme.fromSwatch().copyWith(
         secondary: secondaryColor0,

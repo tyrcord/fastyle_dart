@@ -14,41 +14,40 @@ final _defaultUnderlineInputBorder = UnderlineInputBorder(
 
 final kLightFastTheme = kBaseFastTheme.copyWith(
   scaffoldBackgroundColor: kFastLightPrimaryBackgroundColor,
-  backgroundColor: kFastLightSecondaryBackgroundColor,
   dialogBackgroundColor: kFastLightSecondaryBackgroundColor,
   hintColor: kFastLightHintLabelColor,
   textTheme: _baseTextTheme.copyWith(
-    headline4: _baseTextTheme.headline4!.copyWith(
+    headlineMedium: _baseTextTheme.headlineMedium!.copyWith(
       color: kFastLightLabelColor,
     ),
-    headline5: _baseTextTheme.headline5!.copyWith(
+    headlineSmall: _baseTextTheme.headlineSmall!.copyWith(
       color: kFastLightLabelColor,
     ),
-    headline3: _baseTextTheme.subtitle1!.copyWith(
+    displaySmall: _baseTextTheme.titleMedium!.copyWith(
       color: kFastLightSecondaryLabelColor,
     ),
-    headline6: _baseTextTheme.headline6!.copyWith(
+    titleLarge: _baseTextTheme.titleLarge!.copyWith(
       color: kFastLightLabelColor,
     ),
-    subtitle1: _baseTextTheme.subtitle1!.copyWith(
+    titleMedium: _baseTextTheme.titleMedium!.copyWith(
       color: kFastLightSecondaryLabelColor,
     ),
-    subtitle2: _baseTextTheme.subtitle2!.copyWith(
+    titleSmall: _baseTextTheme.titleSmall!.copyWith(
       color: kFastLightTertiaryLabelColor,
     ),
-    bodyText1: _baseTextTheme.bodyText1!.copyWith(
+    bodyLarge: _baseTextTheme.bodyLarge!.copyWith(
       color: kFastLightSecondaryLabelColor,
     ),
-    bodyText2: _baseTextTheme.bodyText2!.copyWith(
+    bodyMedium: _baseTextTheme.bodyMedium!.copyWith(
       color: kFastLightTertiaryLabelColor,
     ),
-    button: _baseTextTheme.button!.copyWith(
+    labelLarge: _baseTextTheme.labelLarge!.copyWith(
       color: kFastLightLabelColor,
     ),
-    caption: _baseTextTheme.caption!.copyWith(
+    bodySmall: _baseTextTheme.bodySmall!.copyWith(
       color: kFastLightSecondaryLabelColor,
     ),
-    overline: _baseTextTheme.overline!.copyWith(
+    labelSmall: _baseTextTheme.labelSmall!.copyWith(
       color: kFastLightSecondaryLabelColor,
     ),
   ),

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 final kFastTabBarTheme = TabBarTheme(
   indicatorSize: TabBarIndicatorSize.label,
-  labelStyle: kFastTextTheme.bodyText1,
-  unselectedLabelStyle: kFastTextTheme.bodyText1!.copyWith(
+  labelStyle: kFastTextTheme.bodyLarge,
+  unselectedLabelStyle: kFastTextTheme.bodyLarge!.copyWith(
     fontWeight: kFastFontWeightLight,
   ),
 );

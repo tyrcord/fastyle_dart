@@ -33,7 +33,7 @@ class ThemeColorHelper {
   }
 
   Color getTertiaryColor(BuildContext context) {
-    return Theme.of(context).textTheme.overline!.color!;
+    return Theme.of(context).textTheme.labelSmall!.color!;
   }
 
   Color getHintColor(BuildContext context) {
@@ -45,7 +45,11 @@ class ThemeColorHelper {
   }
 
   Color getSecondaryBackgroundColor(BuildContext context) {
-    return Theme.of(context).backgroundColor;
+    final themeBloc = BlocProvider.of<FastThemeBloc>(context);
+
+    return themeBloc.currentState.brightness == Brightness.light
+        ? kFastLightSecondaryBackgroundColor
+        : kFastDarkSecondaryBackgroundColor;
   }
 
   Color getTertiaryBackgroundColor(BuildContext context) {

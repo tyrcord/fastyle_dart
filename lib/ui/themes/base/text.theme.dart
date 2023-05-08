@@ -25,47 +25,47 @@ const _kFontFamilyFallback = <String>[
 ];
 
 final kFastTextTheme = TextTheme(
-  headline4: GoogleFonts.barlowSemiCondensed(
+  headlineMedium: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightRegular,
     fontSize: kFastFontSize48,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
-  headline5: GoogleFonts.barlowSemiCondensed(
+  headlineSmall: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightMedium,
     fontSize: kFastFontSize34,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
-  headline3: GoogleFonts.barlowSemiCondensed(
+  displaySmall: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightSemiBold,
     fontSize: kFastFontSize18,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
-  headline6: GoogleFonts.barlowSemiCondensed(
+  titleLarge: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightRegular,
     fontSize: kFastFontSize24,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
-  subtitle1: GoogleFonts.barlowSemiCondensed(
+  titleMedium: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightSemiBold,
     fontSize: kFastFontSize16,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
-  subtitle2: GoogleFonts.barlowSemiCondensed(
+  titleSmall: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightMedium,
     fontSize: kFastFontSize14,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
-  bodyText1: GoogleFonts.barlowSemiCondensed(
+  bodyLarge: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightRegular,
     fontSize: kFastFontSize18,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
-  bodyText2: GoogleFonts.barlowSemiCondensed(
+  bodyMedium: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightRegular,
     fontSize: kFastFontSize16,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
-  button: GoogleFonts.barlowSemiCondensed(
+  labelLarge: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightMedium,
     fontSize: kFastFontSize16,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
-  caption: GoogleFonts.barlowSemiCondensed(
+  bodySmall: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightRegular,
     fontSize: kFastFontSize16,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),
-  overline: GoogleFonts.barlowSemiCondensed(
+  labelSmall: GoogleFonts.barlowSemiCondensed(
     fontWeight: kFastFontWeightRegular,
     fontSize: kFastFontSize14,
   ).copyWith(fontFamilyFallback: _kFontFamilyFallback),

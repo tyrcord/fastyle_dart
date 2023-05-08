@@ -14,41 +14,40 @@ final _defaultUnderlineInputBorder = UnderlineInputBorder(
 
 final kDarkFastTheme = kBaseFastTheme.copyWith(
   scaffoldBackgroundColor: kFastDarkPrimaryBackgroundColor,
-  backgroundColor: kFastDarkSecondaryBackgroundColor,
   dialogBackgroundColor: kFastDarkTertiaryBackgroundColor,
   hintColor: kFastDarkHintLabelColor,
   textTheme: _baseTextTheme.copyWith(
-    headline4: _baseTextTheme.headline4!.copyWith(
+    headlineMedium: _baseTextTheme.headlineMedium!.copyWith(
       color: kFastDarkLabelColor,
     ),
-    headline5: _baseTextTheme.headline5!.copyWith(
+    headlineSmall: _baseTextTheme.headlineSmall!.copyWith(
       color: kFastDarkLabelColor,
     ),
-    headline3: _baseTextTheme.subtitle1!.copyWith(
+    displaySmall: _baseTextTheme.titleMedium!.copyWith(
       color: kFastDarkSecondaryLabelColor,
     ),
-    headline6: _baseTextTheme.headline6!.copyWith(
+    titleLarge: _baseTextTheme.titleLarge!.copyWith(
       color: kFastDarkLabelColor,
     ),
-    subtitle1: _baseTextTheme.subtitle1!.copyWith(
+    titleMedium: _baseTextTheme.titleMedium!.copyWith(
       color: kFastDarkSecondaryLabelColor,
     ),
-    subtitle2: _baseTextTheme.subtitle1!.copyWith(
+    titleSmall: _baseTextTheme.titleMedium!.copyWith(
       color: kFastDarkTertiaryLabelColor,
     ),
-    bodyText1: _baseTextTheme.bodyText1!.copyWith(
+    bodyLarge: _baseTextTheme.bodyLarge!.copyWith(
       color: kFastDarkLabelColor,
     ),
-    bodyText2: _baseTextTheme.bodyText2!.copyWith(
+    bodyMedium: _baseTextTheme.bodyMedium!.copyWith(
       color: kFastDarkSecondaryLabelColor,
     ),
-    button: _baseTextTheme.button!.copyWith(
+    labelLarge: _baseTextTheme.labelLarge!.copyWith(
       color: kFastDarkLabelColor,
     ),
-    caption: _baseTextTheme.caption!.copyWith(
+    bodySmall: _baseTextTheme.bodySmall!.copyWith(
       color: kFastDarkSecondaryLabelColor,
     ),
-    overline: _baseTextTheme.overline!.copyWith(
+    labelSmall: _baseTextTheme.labelSmall!.copyWith(
       color: kFastDarkSecondaryLabelColor,
     ),
   ),
