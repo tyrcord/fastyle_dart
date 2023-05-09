@@ -14,14 +14,18 @@ class _IndicatorsPageState extends State<IndicatorsPage> {
     super.initState();
 
     Future.delayed(Duration(seconds: 1), () {
-      setState(() {
-        _progress = 0.75;
-      });
+      if (mounted) {
+        setState(() {
+          _progress = 0.75;
+        });
+      }
 
       Future.delayed(Duration(seconds: 1), () {
-        setState(() {
-          _progress = 0.25;
-        });
+        if (mounted) {
+          setState(() {
+            _progress = 0.25;
+          });
+        }
       });
     });
   }
