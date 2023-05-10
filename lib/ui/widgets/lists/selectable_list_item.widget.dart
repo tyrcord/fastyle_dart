@@ -43,8 +43,9 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color? selectionLabelColor0;
-    Color? selectionColor0;
+    final descriptor = item?.descriptor;
+    Color? selectionLabelColor0 = descriptor?.selectionLabelColor;
+    Color? selectionColor0 = descriptor?.selectionColor;
     Widget? trailing0;
 
     if (isSelected) {
@@ -52,30 +53,30 @@ class FastSelectableListItem<T extends FastItem> extends StatelessWidget {
       final colors = ThemeHelper.colors;
 
       if (selectionColor != null) {
-        selectionColor0 = selectionColor ?? colors.getPrimaryColor(context);
-        selectionLabelColor0 = selectionLabelColor ?? palette.whiteColor;
+        selectionColor0 ??= selectionColor ?? colors.getPrimaryColor(context);
+        selectionLabelColor0 ??= selectionLabelColor ?? palette.whiteColor;
         trailing0 = null;
       } else {
-        trailing0 = _getTrailingIcon(context);
+        trailing0 = _buildTrailingIcon(context);
       }
     }
 
     return FastListItemLayout(
+      contentPadding: descriptor?.padding ?? contentPadding,
       descriptionText: item?.descriptionText ?? descriptionText,
-      leading: item?.descriptor?.leading ?? leading,
-      isDense: item?.descriptor?.isDense ?? isDense,
+      leading: descriptor?.leading ?? leading,
+      isDense: descriptor?.isDense ?? isDense,
       selectionLabelColor: selectionLabelColor0,
       labelText: item?.labelText ?? labelText!,
       capitalizeLabelText: capitalizeLabelText,
       isEnabled: item?.isEnabled ?? isEnabled,
       selectionColor: selectionColor0,
-      contentPadding: contentPadding,
       trailing: trailing0,
       onTap: onTap,
     );
   }
 
-  Widget _getTrailingIcon(BuildContext context) {
+  Widget _buildTrailingIcon(BuildContext context) {
     var icon = item?.descriptor?.trailing ?? trailing ?? kFastDoneIcon;
 
     if (icon is Icon) {
