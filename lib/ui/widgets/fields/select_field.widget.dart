@@ -7,7 +7,7 @@ class FastSelectField<T> extends StatefulWidget {
   final List<FastListItemCategory<FastItem<T>>> Function()? extraTabBuilder;
 
   /// The delegate object that can modify the behavior of the widget.
-  final FastListViewLayoutDelegate<FastItem<T>>? delegate;
+  final FastListViewLayoutDelegate<FastItem<T>>? searchPageDelegate;
 
   final ValueChanged<FastItem<T>?> onSelectionChanged;
   final List<FastCategory>? categories;
@@ -34,6 +34,8 @@ class FastSelectField<T> extends StatefulWidget {
   final bool sortItems;
   final Widget? listViewEmptyContent;
   final String? listViewEmptyText;
+  final VoidCallback? onSearchPageClose;
+  final FastFastSelectFieldDelegate<FastItem<T>>? delegate;
 
   const FastSelectField({
     Key? key,
@@ -60,10 +62,12 @@ class FastSelectField<T> extends StatefulWidget {
     this.captionText,
     this.helperText,
     this.categories,
-    this.delegate,
+    this.searchPageDelegate,
     this.selection,
     this.listViewEmptyContent,
     this.listViewEmptyText,
+    this.onSearchPageClose,
+    this.delegate,
   }) : super(key: key);
 
   @override
@@ -169,28 +173,37 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
       FocusManager.instance.primaryFocus!.unfocus();
       _focusNode.requestFocus();
 
+      int categoryIndex = widget.intialCategoryIndex;
+
+      if (widget.delegate != null) {
+        categoryIndex = widget.delegate!.willUseCategoryIndex(
+          widget,
+          categoryIndex,
+        );
+      }
+
       final response = await Navigator.push(
         context,
         CupertinoPageRoute(
           builder: (BuildContext context) => FastSearchPage<FastItem<T>>(
             searchPlaceholderText: widget.searchPlaceholderText,
-            intialCategoryIndex: widget.intialCategoryIndex,
+            listViewEmptyContent: widget.listViewEmptyContent,
             clearSelectionText: widget.clearSelectionText,
             canClearSelection: widget.canClearSelection,
+            listViewEmptyText: widget.listViewEmptyText,
             allCategoryText: widget.allCategoryText,
             clearSearchIcon: widget.clearSearchIcon,
             groupByCategory: widget.groupByCategory,
             extraTabBuilder: widget.extraTabBuilder,
             useFuzzySearch: widget.useFuzzySearch,
+            delegate: widget.searchPageDelegate,
+            intialCategoryIndex: categoryIndex,
             titleText: widget.searchTitleText,
-            listViewEmptyContent: widget.listViewEmptyContent,
-            listViewEmptyText: widget.listViewEmptyText,
             categories: widget.categories,
             sortItems: widget.sortItems,
             selection: widget.selection,
             closeIcon: widget.closeIcon,
             backIcon: widget.backIcon,
-            delegate: widget.delegate,
             items: widget.items,
           ),
           fullscreenDialog: true,
@@ -201,6 +214,8 @@ class _FastSelectFieldState<T> extends State<FastSelectField<T>> {
         _selection = response;
         widget.onSelectionChanged(_selection);
       });
+
+      widget.onSearchPageClose?.call();
     }
   }
 
