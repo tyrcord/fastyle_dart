@@ -26,9 +26,9 @@ dependencies:
 
   #internal
 
-  t_helpers: ">=0.0.7 <2.0.0"
+  t_helpers: ">=0.0.8 <2.0.0"
   tbloc: ">=0.20.4"
-  tmodel: ">=0.5.1 <1.0.0"
+  tmodel: ">=0.5.3 <1.0.0"
 
 dev_dependencies:
   flutter_test:
