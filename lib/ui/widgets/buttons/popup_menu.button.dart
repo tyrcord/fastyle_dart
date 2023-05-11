@@ -5,13 +5,15 @@ class FastPopupMenuButton<T> extends StatelessWidget {
   /// Called when the button is pressed to create the items to show in the menu.
   final PopupMenuItemBuilder<T> itemBuilder;
 
-  /// The value of the menu item, if any, that should be highlighted when the menu opens.
+  /// The value of the menu item, if any, that should be highlighted when
+  /// the menu opens.
   final T? initialValue;
 
   /// Called when the popup menu is shown.
   final VoidCallback? onOpened;
 
-  /// Called when the user selects a value from the popup menu created by this button.
+  /// Called when the user selects a value from the popup menu created by this
+  /// button.
   ///
   /// If the popup menu is dismissed without selecting a value, [onCanceled] is
   /// called instead.
@@ -41,9 +43,9 @@ class FastPopupMenuButton<T> extends StatelessWidget {
   /// (default black) is used.
   final Color? shadowColor;
 
-  /// Matches IconButton's 8 dps padding by default. In some cases, notably where
-  /// this button appears as the trailing element of a list item, it's useful to be able
-  /// to set the padding to zero.
+  /// Matches IconButton's 8 dps padding by default. In some cases, notably
+  /// where this button appears as the trailing element of a list item,
+  /// it's useful to be able to set the padding to zero.
   final EdgeInsetsGeometry padding;
 
   /// The splash radius.
@@ -200,22 +202,4 @@ class FastPopupMenuButton<T> extends StatelessWidget {
       child: child,
     );
   }
-}
-
-class _EffectiveMouseCursor extends MaterialStateMouseCursor {
-  const _EffectiveMouseCursor(this.widgetCursor, this.themeCursor);
-
-  final MouseCursor? widgetCursor;
-  final MaterialStateProperty<MouseCursor?>? themeCursor;
-
-  @override
-  MouseCursor resolve(Set<MaterialState> states) {
-    return MaterialStateProperty.resolveAs<MouseCursor?>(
-            widgetCursor, states) ??
-        themeCursor?.resolve(states) ??
-        MaterialStateMouseCursor.clickable.resolve(states);
-  }
-
-  @override
-  String get debugDescription => 'MaterialStateMouseCursor(PopupMenuItemState)';
 }
