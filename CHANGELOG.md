@@ -6,6 +6,10 @@
 
 - Updated dependencies.
 
+### Features
+
+- support flutter 3.10 & dart 3
+
 ## [1.1.4](https://github.com/tyrcord/fastyle_dart/releases/tag/1.1.4) (2023-05-10)
 
 ### Enhancements
