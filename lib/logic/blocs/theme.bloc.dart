@@ -9,7 +9,7 @@ class FastThemeBloc
   })  : assert((initialState != null && initialState.brightness != null) ||
             initialState == null),
         super(initialState: initialState ?? const FastThemeBlocState()) {
-    WidgetsBinding.instance.window.onPlatformBrightnessChanged =
+    WidgetsBinding.instance.platformDispatcher.onPlatformBrightnessChanged =
         onPlatformBrightnessChanged;
   }
 
@@ -27,7 +27,8 @@ class FastThemeBloc
       );
     } else {
       yield FastThemeBlocState(
-        brightness: WidgetsBinding.instance.window.platformBrightness,
+        brightness:
+            WidgetsBinding.instance.platformDispatcher.platformBrightness,
         themeMode: ThemeMode.system,
       );
     }
@@ -35,7 +36,8 @@ class FastThemeBloc
 
   @protected
   void onPlatformBrightnessChanged() {
-    final newBrightness = WidgetsBinding.instance.window.platformBrightness;
+    final newBrightness =
+        WidgetsBinding.instance.platformDispatcher.platformBrightness;
     final brightness = currentState.brightness;
     final themeMode = currentState.themeMode;
 

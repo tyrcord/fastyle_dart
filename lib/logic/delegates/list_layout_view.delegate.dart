@@ -2,8 +2,8 @@
 import 'package:fastyle_dart/fastyle_dart.dart'; // UI utilities for Fastyle Dart
 import 'package:flutter/material.dart'; // Flutter widgets framework
 
-/// An abstract class that defines a delegate object for the [FastListViewLayout]
-/// widget.
+/// An abstract class that defines a delegate object for
+/// the [FastListViewLayout] widget.
 ///
 /// The purpose of this delegate object is to provide a way to customize the
 /// appearance and behavior of the [FastListViewLayout] widget.

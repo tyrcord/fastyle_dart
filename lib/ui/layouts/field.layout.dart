@@ -91,11 +91,10 @@ class FastFieldLayout extends StatelessWidget {
   }
 
   Widget _buildSuffixIcon() {
-    return Positioned.fill(
-      child: Align(
-        alignment: Alignment.centerRight,
-        child: suffixIcon!,
-      ),
+    return Positioned(
+      top: 0,
+      right: 0,
+      child: suffixIcon!,
     );
   }
 

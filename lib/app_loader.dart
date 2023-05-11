@@ -156,7 +156,8 @@ class FastAppLoaderState extends State<FastAppLoader> {
         return Localizations(
           delegates: _localizationsDelegates.toList(),
           locale: appLocale,
-          child: MediaQuery.fromWindow(
+          child: MediaQuery.fromView(
+            view: View.of(context),
             child: AnimatedTheme(
               data: theme,
               child: Builder(

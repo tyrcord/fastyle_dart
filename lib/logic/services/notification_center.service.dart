@@ -151,7 +151,7 @@ class FastNotificationCenter {
           size: options.iconSize ?? kFastIconSizeMedium,
           color: options.iconColor,
         ),
-        child: options.leadingIcon!,
+        child: Center(child: options.leadingIcon!),
       );
     }
 

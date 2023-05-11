@@ -59,10 +59,16 @@ class FieldsPage extends StatelessWidget {
             labelText: 'Number with a suffix icon',
             placeholderText: '0',
             suffixIcon: Container(
-              child: PopupMenuButton(
-                itemBuilder: (context) => <PopupMenuItem>[
-                  PopupMenuItem(value: 1, child: Text('Option 1')),
-                  PopupMenuItem(value: 2, child: Text('Option 2')),
+              child: FastPopupMenuButton(
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    value: 1,
+                    child: Text('Option 1'),
+                  ),
+                  PopupMenuItem(
+                    value: 2,
+                    child: Text('Option 2'),
+                  ),
                 ],
                 padding: EdgeInsets.zero,
                 icon: Align(
