@@ -94,7 +94,12 @@ class FastFieldLayout extends StatelessWidget {
     return Positioned(
       top: 0,
       right: 0,
-      child: suffixIcon!,
+      bottom: 0,
+      width: kFastIconSizeXl,
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: suffixIcon,
+      ),
     );
   }
 

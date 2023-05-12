@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fastyle_dart/fastyle_dart.dart';
 
-class FastPopupMenuButton<T> extends StatelessWidget {
+class FastPopupMenuButton<T> extends StatefulWidget {
   /// Called when the button is pressed to create the items to show in the menu.
   final PopupMenuItemBuilder<T> itemBuilder;
 
@@ -48,18 +48,13 @@ class FastPopupMenuButton<T> extends StatelessWidget {
   /// it's useful to be able to set the padding to zero.
   final EdgeInsetsGeometry padding;
 
-  /// The splash radius.
-  ///
-  /// If null, default splash radius of [InkWell] or [IconButton] is used.
-  final double? splashRadius;
-
   /// If provided, [child] is the widget used for this button
   /// and the button will utilize an [InkWell] for taps.
   final Widget? child;
 
   /// If provided, the [icon] is used for this button
   /// and the button will behave like an [IconButton].
-  final Widget? icon;
+  final Widget icon;
 
   /// The offset is applied relative to the initial position
   /// set by the [position].
@@ -96,22 +91,12 @@ class FastPopupMenuButton<T> extends StatelessWidget {
   /// Theme.of(context).cardColor is used.
   final Color? color;
 
-  /// Whether detected gestures should provide acoustic and/or haptic feedback.
-  ///
-  /// For example, on Android a tap will produce a clicking sound and a
-  /// long-press will produce a short vibration, when feedback is enabled.
-  ///
-  /// See also:
-  ///
-  ///  * [Feedback] for providing platform-specific feedback to certain actions.
-  final bool? enableFeedback;
-
   /// If provided, the size of the [Icon].
   ///
   /// If this property is null, then [IconThemeData.size] is used.
   /// If [IconThemeData.size] is also null, then
   /// default size is 24.0 pixels.
-  final double? iconSize;
+  final double iconSize;
 
   /// Optional size constraints for the menu.
   ///
@@ -147,9 +132,12 @@ class FastPopupMenuButton<T> extends StatelessWidget {
   /// Defaults to [Clip.none], and must not be null.
   final Clip clipBehavior;
 
+  final Alignment iconAlignment;
+
   const FastPopupMenuButton({
     super.key,
     required this.itemBuilder,
+    required this.icon,
     this.initialValue,
     this.onOpened,
     this.onSelected,
@@ -157,49 +145,99 @@ class FastPopupMenuButton<T> extends StatelessWidget {
     this.tooltip,
     this.elevation,
     this.shadowColor,
-    this.padding = const EdgeInsets.all(8.0),
-    this.child,
-    this.splashRadius,
-    this.icon,
-    this.iconSize,
     this.offset = Offset.zero,
     this.enabled = true,
     this.shape,
     this.color,
-    this.enableFeedback,
     this.constraints,
     this.position,
+    this.child,
     this.clipBehavior = Clip.none,
-  });
+    EdgeInsetsGeometry? padding,
+    double? iconSize,
+    Alignment? iconAlignment,
+  })  : iconAlignment = iconAlignment ?? Alignment.center,
+        iconSize = iconSize ?? kFastIconSizeSmall,
+        padding = padding ?? kFastEdgeInsets8;
 
   @override
+  State<FastPopupMenuButton<T>> createState() => _FastPopupMenuButtonState<T>();
+}
+
+class _FastPopupMenuButtonState<T> extends State<FastPopupMenuButton<T>> {
+  @override
   Widget build(BuildContext context) {
+    return FastIconButton(
+      onTap: () => showButtonMenu(context),
+      iconAlignment: widget.iconAlignment,
+      iconSize: widget.iconSize,
+      isEnabled: widget.enabled,
+      padding: widget.padding,
+      tooltip: widget.tooltip,
+      icon: widget.icon,
+    );
+  }
+
+  void showButtonMenu(BuildContext context) {
+    final PopupMenuThemeData popupMenuTheme = PopupMenuTheme.of(context);
+    final RenderBox button = context.findRenderObject()! as RenderBox;
+    final RenderBox overlay =
+        Navigator.of(context).overlay!.context.findRenderObject()! as RenderBox;
+    final PopupMenuPosition popupMenuPosition =
+        widget.position ?? popupMenuTheme.position ?? PopupMenuPosition.over;
+    final Offset offset;
+
+    switch (popupMenuPosition) {
+      case PopupMenuPosition.over:
+        offset = widget.offset;
+      case PopupMenuPosition.under:
+        offset =
+            Offset(0.0, button.size.height - (widget.padding.vertical / 2)) +
+                widget.offset;
+    }
+
+    final RelativeRect position = RelativeRect.fromRect(
+      Rect.fromPoints(
+        button.localToGlobal(offset, ancestor: overlay),
+        button.localToGlobal(button.size.bottomRight(Offset.zero) + offset,
+            ancestor: overlay),
+      ),
+      Offset.zero & overlay.size,
+    );
+
+    final List<PopupMenuEntry<T>> items = widget.itemBuilder(context);
+    // Only show the menu if there is something to show
+
     final defaultColor =
         ThemeHelper.colors.getSecondaryBackgroundColor(context);
 
-    return PopupMenuButton<T>(
-      key: key,
-      surfaceTintColor: color ?? defaultColor,
-      itemBuilder: itemBuilder,
-      initialValue: initialValue,
-      onSelected: onSelected,
-      onCanceled: onCanceled,
-      onOpened: onOpened,
-      tooltip: tooltip,
-      elevation: elevation,
-      shadowColor: shadowColor,
-      padding: padding,
-      splashRadius: splashRadius,
-      icon: icon,
-      iconSize: iconSize,
-      offset: offset,
-      enabled: enabled,
-      shape: shape,
-      enableFeedback: enableFeedback,
-      constraints: constraints,
-      position: position,
-      clipBehavior: clipBehavior,
-      child: child,
-    );
+    if (items.isNotEmpty) {
+      widget.onOpened?.call();
+
+      showMenu<T?>(
+        shadowColor: widget.shadowColor ?? popupMenuTheme.shadowColor,
+        elevation: widget.elevation ?? popupMenuTheme.elevation,
+        surfaceTintColor: widget.color ?? defaultColor,
+        shape: widget.shape ?? popupMenuTheme.shape,
+        clipBehavior: widget.clipBehavior,
+        initialValue: widget.initialValue,
+        constraints: widget.constraints,
+        context: context,
+        position: position,
+        items: items,
+      ).then<void>((T? newValue) {
+        if (!mounted) {
+          return null;
+        }
+
+        if (newValue == null) {
+          widget.onCanceled?.call();
+
+          return null;
+        }
+
+        widget.onSelected?.call(newValue);
+      });
+    }
   }
 }
