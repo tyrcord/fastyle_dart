@@ -177,9 +177,9 @@ class _FastNavigationSplitViewState extends State<FastNavigationSplitView> {
           closeButton: widget.closeButton,
           backButton: widget.backButton,
           child: Builder(
-            builder: ((context) {
+            builder: (context) {
               return widget.detailsBuilder(context, _selection!);
-            }),
+            },
           ),
         );
     }
