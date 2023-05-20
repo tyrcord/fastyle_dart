@@ -103,12 +103,37 @@ class FastNavigationSplitView extends StatefulWidget {
 class _FastNavigationSplitViewState extends State<FastNavigationSplitView> {
   late final FastNavigationSplitViewBloc _bloc;
   final _navigatorKey = GlobalKey<NavigatorState>();
+  late ValueNotifier<Locale> _userLocaleNotifier;
+  bool _isInitialized = false;
+  late Locale _userLocale;
   FastItem? _selection;
 
   @override
   void initState() {
-    _bloc = FastNavigationSplitViewBloc();
     super.initState();
+    _bloc = FastNavigationSplitViewBloc();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (!_isInitialized) {
+      _userLocale = Localizations.localeOf(context);
+      _userLocaleNotifier = ValueNotifier(_userLocale);
+      _isInitialized = true;
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant FastNavigationSplitView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final locale = Localizations.localeOf(context);
+
+    if (_userLocale != locale) {
+      _userLocale = locale;
+      _userLocaleNotifier.value = locale;
+    }
   }
 
   @override
@@ -147,45 +172,50 @@ class _FastNavigationSplitViewState extends State<FastNavigationSplitView> {
     RouteSettings settings,
     FastMediaType mediaType,
   ) {
-    late Widget page;
-
-    switch (settings.name) {
-      case '/':
-        page = FastSectionPage(
-          isTitlePositionBelowAppBar: widget.isTitlePositionBelowAppBar,
-          appBarBackgroundColor: widget.appBarBackgroundColor,
-          floatingActionButton: widget.floatingActionButton,
-          appBarHeightSize: widget.appBarHeightSize,
-          closeButton: widget.closeButton,
-          showAppBar: widget.showAppBar,
-          backButton: widget.backButton,
-          titleColor: widget.titleColor,
-          titleText: widget.titleText,
-          actions: widget.actions,
-          leading: widget.leading,
-          contentPadding: EdgeInsets.zero,
-          child: Builder(
-            builder: (context) => buildListView(context, mediaType),
-          ),
-        );
-
-        break;
-      case '/details':
-        // TODO check for _selection
-        page = FastSectionPage(
-          contentPadding: EdgeInsets.zero,
-          closeButton: widget.closeButton,
-          backButton: widget.backButton,
-          child: Builder(
-            builder: (context) {
-              return widget.detailsBuilder(context, _selection!);
-            },
-          ),
-        );
-    }
-
     return MaterialPageRoute<dynamic>(
-      builder: (context) => page,
+      builder: (_) {
+        return ValueListenableBuilder(
+          valueListenable: _userLocaleNotifier,
+          builder: (context, locale, _) {
+            late Widget page;
+
+            switch (settings.name) {
+              case '/':
+                page = FastSectionPage(
+                  isTitlePositionBelowAppBar: widget.isTitlePositionBelowAppBar,
+                  appBarBackgroundColor: widget.appBarBackgroundColor,
+                  floatingActionButton: widget.floatingActionButton,
+                  appBarHeightSize: widget.appBarHeightSize,
+                  closeButton: widget.closeButton,
+                  showAppBar: widget.showAppBar,
+                  backButton: widget.backButton,
+                  titleColor: widget.titleColor,
+                  titleText: widget.titleText,
+                  actions: widget.actions,
+                  leading: widget.leading,
+                  contentPadding: EdgeInsets.zero,
+                  child: Builder(
+                    builder: (context) => buildListView(context, mediaType),
+                  ),
+                );
+              case '/details':
+                // TODO check for _selection
+                page = FastSectionPage(
+                  contentPadding: EdgeInsets.zero,
+                  closeButton: widget.closeButton,
+                  backButton: widget.backButton,
+                  child: Builder(
+                    builder: (context) {
+                      return widget.detailsBuilder(context, _selection!);
+                    },
+                  ),
+                );
+            }
+
+            return page;
+          },
+        );
+      },
       settings: settings,
     );
   }
