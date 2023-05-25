@@ -82,10 +82,10 @@ final AppRoutes = [
         return Text('An error occured');
       },
       loadingFuture: Future.delayed(
-        const Duration(milliseconds: 2500),
+        const Duration(milliseconds: 10000),
         () => true,
       ),
-      loadingTimeout: Duration(milliseconds: 300),
+      loadingTimeout: Duration(milliseconds: 5000),
       child: Container(
         child: Text('done'),
       ),
