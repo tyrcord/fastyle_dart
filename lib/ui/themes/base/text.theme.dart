@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+const kFastFontSize64 = 64.0;
 const kFastFontSize48 = 48.0;
 const kFastFontSize34 = 34.0;
 const kFastFontSize24 = 24.0;
