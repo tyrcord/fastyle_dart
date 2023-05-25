@@ -5,10 +5,10 @@ class FastAppErrorReporter extends InheritedWidget {
   final IFastErrorReporter? reporter;
 
   const FastAppErrorReporter({
-    Key? key,
-    required Widget child,
+    super.key,
+    required super.child,
     this.reporter,
-  }) : super(key: key, child: child);
+  });
 
   static FastAppErrorReporter? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<FastAppErrorReporter>();

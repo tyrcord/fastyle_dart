@@ -50,7 +50,7 @@ class FastFieldLayout extends StatelessWidget {
   final Widget control;
 
   const FastFieldLayout({
-    Key? key,
+    super.key,
     required this.control,
     this.margin = const EdgeInsets.only(bottom: 8.0),
     this.showHelperBoundaries = true,
@@ -60,7 +60,7 @@ class FastFieldLayout extends StatelessWidget {
     this.helperText,
     this.suffixIcon,
     this.labelText,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

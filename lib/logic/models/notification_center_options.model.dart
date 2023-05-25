@@ -38,13 +38,7 @@ class FastNotificationCenterOptions extends TModel {
   }
 
   @override
-  FastNotificationCenterOptions clone() {
-    return FastNotificationCenterOptions(
-      leadingIcon: leadingIcon,
-      iconColor: iconColor,
-      iconSize: iconSize,
-    );
-  }
+  FastNotificationCenterOptions clone() => copyWith();
 
   @override
   FastNotificationCenterOptions merge(

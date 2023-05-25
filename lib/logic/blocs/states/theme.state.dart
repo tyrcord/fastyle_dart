@@ -20,12 +20,7 @@ class FastThemeBlocState extends BlocState {
   }
 
   @override
-  FastThemeBlocState clone() {
-    return FastThemeBlocState(
-      brightness: brightness,
-      themeMode: themeMode,
-    );
-  }
+  FastThemeBlocState clone() => copyWith();
 
   @override
   FastThemeBlocState merge(covariant FastThemeBlocState model) {

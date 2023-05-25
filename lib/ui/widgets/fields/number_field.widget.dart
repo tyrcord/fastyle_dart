@@ -37,7 +37,7 @@ class FastNumberField extends StatefulWidget implements IFastInput {
   final bool isEnabled;
 
   const FastNumberField({
-    Key? key,
+    super.key,
     required this.labelText,
     this.maxLength = NumberInputFormatter.safeIntegerMaxLength,
     this.debounceTimeDuration = kFastDebounceTimeDuration,
@@ -50,7 +50,7 @@ class FastNumberField extends StatefulWidget implements IFastInput {
     this.acceptDecimal = true,
     this.isReadOnly = false,
     this.isEnabled = true,
-    this.valueText = '',
+    String? valueText,
     this.textEditingController,
     this.suffixIconConstraints,
     this.onEditingCompleted,
@@ -60,7 +60,7 @@ class FastNumberField extends StatefulWidget implements IFastInput {
     this.helperText,
     this.suffixIcon,
     this.locale,
-  }) : super(key: key);
+  }) : valueText = valueText ?? '';
 
   @override
   FastNumberFieldState createState() => FastNumberFieldState();

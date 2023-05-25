@@ -9,23 +9,23 @@ class FastSplitLayout extends StatelessWidget {
   final WidgetBuilder primaryBuilder;
 
   const FastSplitLayout({
-    Key? key,
+    super.key,
     required this.secondaryBuilder,
     required this.primaryBuilder,
     this.supplementaryBehavior = FastSplitSupplementaryBehavior.sideBar,
     this.supplementaryBuilder,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return FastMediaLayoutBuilder(
-      builder: ((BuildContext context, FastMediaType mediaType) {
+      builder: (BuildContext context, FastMediaType mediaType) {
         if (mediaType < FastMediaType.tablet) {
           return buildPrimary(context, mediaType);
         }
 
         return buildSplitLayout(context, mediaType);
-      }),
+      },
     );
   }
 
@@ -76,7 +76,7 @@ class FastSplitLayout extends StatelessWidget {
       );
     }
 
-    return Container();
+    return const SizedBox.shrink();
   }
 
   BoxDecoration _getColumnBoxDecoration(

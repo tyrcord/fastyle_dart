@@ -306,7 +306,7 @@ class _FastNavigationSplitViewState extends State<FastNavigationSplitView> {
           return widget.detailsBuilder(context, state.item!);
         }
 
-        return Container();
+        return const SizedBox.shrink();
       },
     );
   }

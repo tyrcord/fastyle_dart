@@ -57,7 +57,7 @@ class FastExpansionPanelState extends State<FastExpansionPanel>
           _buildInteractiveHeader(context),
           AnimatedCrossFade(
             duration: widget.animationDuration,
-            firstChild: Container(),
+            firstChild: const SizedBox.shrink(),
             secondChild: Container(
               padding: const EdgeInsets.only(top: 16),
               child: Builder(builder: widget.bodyBuilder),

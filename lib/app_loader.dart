@@ -29,7 +29,7 @@ class FastAppLoader extends StatefulWidget {
   final Locale? locale;
 
   const FastAppLoader({
-    Key? key,
+    super.key,
     required this.appBuilder,
     this.delayBeforeShowingLoader = const Duration(seconds: 1),
     this.supportedLocales = kFastSupportedLocales,
@@ -42,7 +42,7 @@ class FastAppLoader extends StatefulWidget {
     this.lightTheme,
     this.darkTheme,
     this.locale,
-  }) : super(key: key);
+  });
 
   @override
   FastAppLoaderState createState() => FastAppLoaderState();

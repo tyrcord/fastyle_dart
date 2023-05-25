@@ -13,13 +13,7 @@ class FastNavigationSplitViewState extends BlocState {
   }) : super();
 
   @override
-  FastNavigationSplitViewState clone() {
-    return FastNavigationSplitViewState(
-      isLoading: isLoading,
-      isLoaded: isLoaded,
-      item: item,
-    );
-  }
+  FastNavigationSplitViewState clone() => copyWith();
 
   @override
   FastNavigationSplitViewState copyWith({

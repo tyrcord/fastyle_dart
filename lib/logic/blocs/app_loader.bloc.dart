@@ -48,7 +48,6 @@ class FastAppLoaderBloc
     } else if (eventType == FastAppLoaderBlocEventType.initialized &&
         !isInitialized &&
         isInitializing) {
-      isInitializing = false;
       isInitialized = true;
 
       yield currentState.copyWith(

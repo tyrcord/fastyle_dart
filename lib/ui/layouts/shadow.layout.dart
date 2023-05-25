@@ -30,14 +30,14 @@ class FastShadowLayout extends StatelessWidget {
   final EdgeInsets? padding;
 
   const FastShadowLayout({
-    Key? key,
+    super.key,
     required this.child,
     this.borderRadius = kFastBorderRadius,
     this.blurRadius = kFastBlurRadius,
     this.backgroundColor,
     this.shadowColor,
     this.padding,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

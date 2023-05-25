@@ -39,7 +39,7 @@ class FastAppBarLayout extends StatefulWidget {
   final ScrollController scrollController;
 
   const FastAppBarLayout({
-    Key? key,
+    super.key,
     required this.scrollController,
     this.expandedHeight = kFastExpandedHeight,
     this.subtitleText,
@@ -49,7 +49,7 @@ class FastAppBarLayout extends StatefulWidget {
     this.decoration,
     this.backgroundColor,
     this.backgroundLinearGradient,
-  }) : super(key: key);
+  });
 
   @override
   FastAppBarLayoutState createState() => FastAppBarLayoutState();

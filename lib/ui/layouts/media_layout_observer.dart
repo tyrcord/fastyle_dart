@@ -6,10 +6,7 @@ import 'package:tbloc/tbloc.dart';
 class FastMediaLayoutObserver extends StatefulWidget {
   final Widget child;
 
-  const FastMediaLayoutObserver({
-    Key? key,
-    required this.child,
-  }) : super(key: key);
+  const FastMediaLayoutObserver({super.key, required this.child});
 
   @override
   State<StatefulWidget> createState() => _FastMediaLayoutObserverState();

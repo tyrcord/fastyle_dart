@@ -11,13 +11,13 @@ class FastSectionPageController extends StatefulWidget {
   final Duration? loadingTimeout;
 
   const FastSectionPageController({
-    Key? key,
+    super.key,
     required this.loadedBuilder,
     this.loadingBuilder,
     this.loadingTimeout,
     this.loadingFuture,
     this.errorBuilder,
-  }) : super(key: key);
+  });
 
   @override
   State<StatefulWidget> createState() => _FastSectionPageControllerState();
@@ -77,7 +77,8 @@ class _FastSectionPageControllerState extends State<FastSectionPageController> {
   }
 
   WidgetBuilder _buildErrorWidget() {
-    return widget.errorBuilder ?? ((BuildContext context) => Container());
+    return widget.errorBuilder ??
+        ((BuildContext context) => const SizedBox.shrink());
   }
 
   void _listenToLoadingFutureIfNeeded() {

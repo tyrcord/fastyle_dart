@@ -13,14 +13,7 @@ class FastAppLoaderBlocState extends BlocState {
   }) : super(error: error);
 
   @override
-  FastAppLoaderBlocState clone() {
-    return FastAppLoaderBlocState(
-      isLoading: isLoading,
-      isLoaded: isLoaded,
-      progress: progress,
-      error: error,
-    );
-  }
+  FastAppLoaderBlocState clone() => copyWith();
 
   @override
   FastAppLoaderBlocState copyWith({

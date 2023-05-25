@@ -10,20 +10,29 @@ typedef FastMediaLayoutWidgetBuilder = Widget Function(
 class FastMediaLayoutBuilder extends StatelessWidget {
   final FastMediaLayoutWidgetBuilder builder;
 
-  const FastMediaLayoutBuilder({
-    Key? key,
-    required this.builder,
-  }) : super(key: key);
+  const FastMediaLayoutBuilder({super.key, required this.builder});
 
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<FastMediaLayoutBloc>(context);
 
     return BlocBuilderWidget(
+      forceBuildWhenInializating: false,
+      forceBuildWhenBusy: false,
+      buildWhen: buildWhen,
+      builder: buildChild,
       bloc: bloc,
-      builder: ((BuildContext context, FastMediaLayoutBlocState state) {
-        return builder(context, state.mediaType);
-      }),
     );
+  }
+
+  bool buildWhen(
+    FastMediaLayoutBlocState previous,
+    FastMediaLayoutBlocState next,
+  ) {
+    return previous.mediaType != next.mediaType;
+  }
+
+  Widget buildChild(BuildContext context, FastMediaLayoutBlocState state) {
+    return builder(context, state.mediaType);
   }
 }

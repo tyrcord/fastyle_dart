@@ -28,7 +28,7 @@ class FastListItemDescriptor extends FastDescriptor {
     this.padding,
     this.selectionLabelColor,
     this.selectionColor,
-  }) : super();
+  });
 
   /// Creates a new instance of [FastListItemDescriptor] that is a copy of the
   /// current instance.

@@ -203,7 +203,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
       );
     }
 
-    return Container();
+    return const SizedBox.shrink();
   }
 
   Widget _buildListView(BuildContext context) {

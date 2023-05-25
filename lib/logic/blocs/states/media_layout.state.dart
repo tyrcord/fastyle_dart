@@ -13,13 +13,7 @@ class FastMediaLayoutBlocState extends BlocState {
   }) : super();
 
   @override
-  FastMediaLayoutBlocState clone() {
-    return FastMediaLayoutBlocState(
-      isLoading: isLoading,
-      isLoaded: isLoaded,
-      mediaType: mediaType,
-    );
-  }
+  FastMediaLayoutBlocState clone() => copyWith();
 
   @override
   FastMediaLayoutBlocState copyWith({

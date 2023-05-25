@@ -86,7 +86,7 @@ class _FastNavigationBarViewState extends State<FastNavigationBarView> {
           indicatorColor: indicatorColor,
         ),
         const VerticalDivider(thickness: 1, width: 1),
-        Expanded(child: selectedPage ?? Container()),
+        Expanded(child: selectedPage ?? const SizedBox.shrink()),
       ],
     );
   }

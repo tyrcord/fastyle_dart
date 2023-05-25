@@ -38,13 +38,7 @@ class FastCategory extends TModel {
   }
 
   @override
-  FastCategory clone() {
-    return FastCategory(
-      labelText: labelText,
-      valueText: valueText,
-      weight: weight,
-    );
-  }
+  FastCategory clone() => copyWith();
 
   @override
   FastCategory merge(covariant FastCategory model) {
@@ -92,11 +86,5 @@ class FastInternalCategory extends FastCategory {
   }
 
   @override
-  FastInternalCategory clone() {
-    return FastInternalCategory(
-      labelText: labelText,
-      valueText: valueText,
-      weight: weight,
-    );
-  }
+  FastInternalCategory clone() => copyWith();
 }

@@ -43,7 +43,7 @@ class FastListItemLayout extends StatelessWidget {
   final double minLeadingWidth;
 
   const FastListItemLayout({
-    Key? key,
+    super.key,
     required this.labelText,
     this.capitalizeLabelText = true,
     this.minLeadingWidth = 16.0,
@@ -57,7 +57,7 @@ class FastListItemLayout extends StatelessWidget {
     this.trailing,
     this.leading,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
