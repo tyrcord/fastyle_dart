@@ -40,7 +40,7 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        await tester.tap(find.text('NEXT'));
+        await tester.tap(find.text('next'));
         await tester.pumpAndSettle();
         final child = find.byWidget(slide2);
 
@@ -58,7 +58,7 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        expect(find.text('SKIP'), findsNothing);
+        expect(find.text('skip'), findsNothing);
       });
 
       testWidgets('should allow to skip the onboarding view when set to true',
@@ -71,7 +71,7 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        expect(find.text('SKIP'), findsOneWidget);
+        expect(find.text('skip'), findsOneWidget);
       });
 
       testWidgets(
@@ -85,7 +85,7 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        expect(find.text('SKIP'), findsNothing);
+        expect(find.text('skip'), findsNothing);
       });
     });
 
@@ -148,7 +148,7 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        await tester.tap(find.text('DONE'));
+        await tester.tap(find.text('done'));
         await tester.pumpAndSettle();
 
         expect(done, isTrue);
@@ -169,7 +169,7 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        await tester.tap(find.text('SKIP'));
+        await tester.tap(find.text('skip'));
         await tester.pumpAndSettle();
 
         expect(skipped, isTrue);

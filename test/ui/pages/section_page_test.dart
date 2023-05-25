@@ -151,7 +151,7 @@ void main() {
           _buildApp(FastSectionPage(
             loadingBuilder: (_) => Text('loading'),
             loadingFuture: Future.delayed(
-              const Duration(milliseconds: 300),
+              const Duration(milliseconds: 600),
               () => true,
             ),
             child: child1,
@@ -163,63 +163,38 @@ void main() {
         final text = find.text('loading');
         expect(text, findsOneWidget);
 
-        await tester.pumpAndSettle(const Duration(milliseconds: 300));
+        await tester.pumpAndSettle(const Duration(milliseconds: 600));
 
         final child1Widget = find.byWidget(child1);
         expect(child1Widget, findsOneWidget);
       });
     });
 
-    // FIXME: https://github.com/flutter/flutter/issues/34499
-    // group('#loadingTimeout', () {
-    //   testWidgets(
-    //       'should use errorBuilder '
-    //       'when the page is taking too much time to load',
-    //       (WidgetTester tester) async {
-    //     await tester.pumpWidget(
-    //       _buildApp(FastSectionPage(
-    //         loadingBuilder: (_) => Text('loading'),
-    //         errorBuilder: (_) => Text('error'),
-    //         loadingFuture: Future.delayed(
-    //           const Duration(milliseconds: 80),
-    //           () => true,
-    //         ),
-    //         loadingTimeout: Duration(milliseconds: 60),
-    //         child: child1,
-    //       )),
-    //     );
+    group('#loadingTimeout', () {
+      testWidgets(
+          'should use errorBuilder '
+          'when the page is taking too much time to load',
+          (WidgetTester tester) async {
+        await tester.pumpWidget(
+          _buildApp(FastSectionPage(
+            loadingBuilder: (_) => Text('loading'),
+            errorBuilder: (_) => Text('error'),
+            loadingFuture: Future.delayed(
+              const Duration(milliseconds: 2500),
+              () => true,
+            ),
+            loadingTimeout: Duration(milliseconds: 300),
+            child: child1,
+          )),
+        );
 
-    //     await tester.pump(Duration(milliseconds: 80));
+        await tester.pumpAndSettle(Duration(milliseconds: 600));
 
-    //     final text = find.text('error');
-    //     expect(text, findsOneWidget);
+        final text = find.text('error');
+        expect(text, findsOneWidget);
 
-    //     await tester.pumpAndSettle();
-    //   });
-    // });
-
-    // group('#errorBuilder', () {
-    //   testWidgets('should be used when an error occured when loading the page',
-    //       (WidgetTester tester) async {
-    //     await tester.pumpWidget(
-    //       _buildApp(FastSectionPage(
-    //         loadingBuilder: (_) => Text('loading'),
-    //         errorBuilder: (_) => Text('error'),
-    //         loadingFuture: Future.delayed(
-    //           const Duration(milliseconds: 80),
-    //           () => throw 'error',
-    //         ),
-    //         child: child1,
-    //       )),
-    //     );
-
-    //     await tester.pump(Duration(milliseconds: 100));
-
-    //     final text = find.text('error');
-    //     expect(text, findsOneWidget);
-
-    //     await tester.pumpAndSettle();
-    //   });
-    // });
+        await tester.pumpAndSettle(const Duration(milliseconds: 2500));
+      });
+    });
   });
 }

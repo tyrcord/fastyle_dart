@@ -82,7 +82,7 @@ void main() {
         await tester.pumpAndSettle();
 
         final dialog = find.byType(FastAlertDialog);
-        final cancelText = find.text(kFastCancelText.toUpperCase());
+        final cancelText = find.text(kFastCancelText);
 
         await tester.tap(cancelText);
         await tester.pump();
@@ -110,7 +110,7 @@ void main() {
         await tester.pumpAndSettle();
 
         final dialog = find.byType(FastAlertDialog);
-        final validText = find.text(kFastValidText.toUpperCase());
+        final validText = find.text(kFastValidText);
 
         await tester.tap(validText);
         await tester.pump();
@@ -139,7 +139,7 @@ void main() {
         await tester.pumpAndSettle();
 
         final dialog = find.byType(FastAlertDialog);
-        final validText = find.text('OK');
+        final validText = find.text('ok');
 
         await tester.tap(validText);
         await tester.pump();
@@ -168,7 +168,7 @@ void main() {
         await tester.pumpAndSettle();
 
         final dialog = find.byType(FastAlertDialog);
-        final cancelText = find.text('NOPE');
+        final cancelText = find.text('nope');
 
         await tester.tap(cancelText);
         await tester.pump();
