@@ -18,6 +18,7 @@ class FastPendingReadOnlyTextField extends StatelessWidget {
   final String? valueText;
   final String labelText;
   final bool isPending;
+  final double? fontSize;
 
   const FastPendingReadOnlyTextField({
     Key? key,
@@ -36,6 +37,7 @@ class FastPendingReadOnlyTextField extends StatelessWidget {
     this.suffixIcon,
     this.helperText,
     this.valueText,
+    this.fontSize,
   }) : super(key: key);
 
   @override
@@ -52,6 +54,7 @@ class FastPendingReadOnlyTextField extends StatelessWidget {
       labelText: labelText,
       valueText: valueText,
       textAlign: textAlign,
+      fontSize: fontSize,
       child: _buildPendingChildIfNeeded(context),
     );
   }

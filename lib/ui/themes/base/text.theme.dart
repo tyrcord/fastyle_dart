@@ -5,6 +5,7 @@ const kFastFontSize64 = 64.0;
 const kFastFontSize48 = 48.0;
 const kFastFontSize34 = 34.0;
 const kFastFontSize24 = 24.0;
+const kFastFontSize20 = 20.0;
 const kFastFontSize18 = 18.0;
 const kFastFontSize16 = 16.0;
 const kFastFontSize14 = 14.0;

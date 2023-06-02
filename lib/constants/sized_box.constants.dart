@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 const kFastSizedBox4 = SizedBox(height: 4.0);
 const kFastSizedBox8 = SizedBox(height: 8.0);
+const kFastSizedBox12 = SizedBox(height: 12.0);
 const kFastSizedBox16 = SizedBox(height: 16.0);
 const kFastSizedBox24 = SizedBox(height: 24.0);
 const kFastSizedBox32 = SizedBox(height: 32.0);

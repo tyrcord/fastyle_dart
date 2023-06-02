@@ -15,6 +15,7 @@ class FastReadOnlyTextField extends StatelessWidget {
   final String? valueText;
   final String labelText;
   final Widget? child;
+  final double? fontSize;
 
   const FastReadOnlyTextField({
     Key? key,
@@ -30,6 +31,7 @@ class FastReadOnlyTextField extends StatelessWidget {
     this.suffixIcon,
     this.helperText,
     this.valueText,
+    this.fontSize,
     this.child,
   }) : super(key: key);
 
@@ -64,6 +66,7 @@ class FastReadOnlyTextField extends StatelessWidget {
         textColor: valueTextColor,
         fontWeight: fontWeight,
         textAlign: textAlign,
+        fontSize: fontSize,
         text: valueText!,
       );
     }
@@ -72,6 +75,7 @@ class FastReadOnlyTextField extends StatelessWidget {
       enableInteractiveSelection: enableInteractiveSelection,
       text: placeholderText,
       textAlign: textAlign,
+      fontSize: fontSize,
     );
   }
 }
