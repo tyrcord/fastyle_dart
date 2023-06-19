@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class FastReadOnlyTextField extends StatelessWidget {
   final bool enableInteractiveSelection;
   final bool showHelperBoundaries;
+  final bool showBorder;
   final Color? helperTextColor;
   final String placeholderText;
   final FontWeight fontWeight;
@@ -24,6 +25,7 @@ class FastReadOnlyTextField extends StatelessWidget {
     this.enableInteractiveSelection = true,
     this.fontWeight = kFastFontWeightBold,
     this.showHelperBoundaries = true,
+    this.showBorder = false,
     this.textAlign = TextAlign.left,
     this.helperTextColor,
     this.valueTextColor,
@@ -51,7 +53,7 @@ class FastReadOnlyTextField extends StatelessWidget {
   Widget _buildControl(BuildContext context) {
     return Container(
       height: 37.0,
-      decoration: ThemeHelper.createBorderSide(context),
+      decoration: showBorder ? ThemeHelper.createBorderSide(context) : null,
       child: Align(
         alignment: Alignment.centerLeft,
         child: child ?? buildText(),

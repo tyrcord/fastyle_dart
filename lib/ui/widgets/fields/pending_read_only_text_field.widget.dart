@@ -5,6 +5,7 @@ import 'package:shimmer/shimmer.dart';
 class FastPendingReadOnlyTextField extends StatelessWidget {
   final bool enableInteractiveSelection;
   final bool showHelperBoundaries;
+  final bool showBorder;
   final String placeholderText;
   final Color? helperTextColor;
   final Color? valueTextColor;
@@ -27,6 +28,7 @@ class FastPendingReadOnlyTextField extends StatelessWidget {
     this.enableInteractiveSelection = true,
     this.fontWeight = kFastFontWeightBold,
     this.showHelperBoundaries = true,
+    this.showBorder = false,
     this.textAlign = TextAlign.left,
     this.isPending = false,
     this.helperTextColor,
@@ -55,6 +57,7 @@ class FastPendingReadOnlyTextField extends StatelessWidget {
       valueText: valueText,
       textAlign: textAlign,
       fontSize: fontSize,
+      showBorder: showBorder,
       child: _buildPendingChildIfNeeded(context),
     );
   }
