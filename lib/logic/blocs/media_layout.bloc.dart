@@ -5,7 +5,7 @@ class FastMediaLayoutBloc extends BidirectionalBloc<FastMediaLayoutBlocEvent,
     FastMediaLayoutBlocState> {
   FastMediaLayoutBloc({
     FastMediaLayoutBlocState? initialState,
-  }) : super(initialState: initialState ?? const FastMediaLayoutBlocState());
+  }) : super(initialState: initialState ?? FastMediaLayoutBlocState());
 
   @override
   Stream<FastMediaLayoutBlocState> mapEventToState(

@@ -27,11 +27,11 @@ dependencies:
   #internal
 
   t_helpers: ">=0.0.9+1 <2.0.0"
-  tbloc: ">=0.20.5 <1.0.0"
+  tbloc: ">=0.21.0 <1.0.0"
   tmodel: ">=0.5.3 <1.0.0"
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.1
-  dart_code_metrics: ^5.7.4
+  flutter_lints: ^2.0.2
+  dart_code_metrics: ^5.7.5

@@ -6,7 +6,7 @@ class FastNavigationSplitViewBloc extends BidirectionalBloc<
   FastNavigationSplitViewBloc({
     FastNavigationSplitViewState? initialState,
   }) : super(
-          initialState: initialState ?? const FastNavigationSplitViewState(),
+          initialState: initialState ?? FastNavigationSplitViewState(),
         );
 
   @override

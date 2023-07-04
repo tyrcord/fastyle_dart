@@ -18,7 +18,7 @@ class FastAppLoaderBloc
 
   FastAppLoaderBloc._(
     FastAppLoaderBlocState? initialState,
-  ) : super(initialState: initialState ?? const FastAppLoaderBlocState());
+  ) : super(initialState: initialState ?? FastAppLoaderBlocState());
 
   @override
   Stream<FastAppLoaderBlocState> mapEventToState(

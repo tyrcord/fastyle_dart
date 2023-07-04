@@ -8,7 +8,7 @@ class FastThemeBloc
     FastThemeBlocState? initialState,
   })  : assert((initialState != null && initialState.brightness != null) ||
             initialState == null),
-        super(initialState: initialState ?? const FastThemeBlocState()) {
+        super(initialState: initialState ?? FastThemeBlocState()) {
     WidgetsBinding.instance.platformDispatcher.onPlatformBrightnessChanged =
         onPlatformBrightnessChanged;
   }
@@ -16,12 +16,12 @@ class FastThemeBloc
   @override
   Stream<FastThemeBlocState> mapEventToState(FastThemeBlocEvent event) async* {
     if (event.type == FastThemeBlocEventType.light) {
-      yield const FastThemeBlocState(
+      yield FastThemeBlocState(
         brightness: Brightness.light,
         themeMode: ThemeMode.light,
       );
     } else if (event.type == FastThemeBlocEventType.dark) {
-      yield const FastThemeBlocState(
+      yield FastThemeBlocState(
         brightness: Brightness.dark,
         themeMode: ThemeMode.dark,
       );

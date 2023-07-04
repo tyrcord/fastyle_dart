@@ -6,11 +6,11 @@ class FastMediaLayoutBlocState extends BlocState {
   final bool isLoading;
   final bool isLoaded;
 
-  const FastMediaLayoutBlocState({
+  FastMediaLayoutBlocState({
     this.mediaType = FastMediaType.handset,
     this.isLoading = false,
     this.isLoaded = false,
-  }) : super();
+  });
 
   @override
   FastMediaLayoutBlocState clone() => copyWith();

@@ -5,7 +5,7 @@ class FastAppLoaderBlocState extends BlocState {
   final bool isLoading;
   final bool isLoaded;
 
-  const FastAppLoaderBlocState({
+  FastAppLoaderBlocState({
     this.isLoading = false,
     this.isLoaded = false,
     this.progress = 0,
