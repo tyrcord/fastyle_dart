@@ -167,12 +167,12 @@ class FastPageLayout extends StatelessWidget {
 
   Widget _buildFooter(BuildContext context) {
     final spacing = ThemeHelper.spacing.getSpacing(context);
-    final mediaQueryData = MediaQuery.of(context);
-    final padding = _getContentPadding(context);
+    final padding = MediaQuery.paddingOf(context);
+    final contentPadding = _getContentPadding(context);
 
     return Padding(
-      padding: padding.copyWith(
-        bottom: mediaQueryData.padding.bottom + spacing,
+      padding: contentPadding.copyWith(
+        bottom: padding.bottom + spacing,
         top: spacing,
       ),
       child: footerBuilder != null ? Builder(builder: footerBuilder!) : footer,
@@ -182,9 +182,9 @@ class FastPageLayout extends StatelessWidget {
   double _getBottomPadding(BuildContext context) {
     if (isViewScrollable) {
       final spacing = ThemeHelper.spacing.getSpacing(context);
-      final mediaQueryData = MediaQuery.of(context);
+      final padding = MediaQuery.paddingOf(context);
 
-      return mediaQueryData.padding.bottom + spacing;
+      return padding.bottom + spacing;
     }
 
     return 0.0;

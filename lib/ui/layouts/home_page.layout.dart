@@ -130,13 +130,13 @@ class FastHomePageLayoutState extends State<FastHomePageLayout> {
   }
 
   EdgeInsetsGeometry _getContentPadding(BuildContext context) {
-    final mediaQueryData = MediaQuery.of(context);
+    final size = MediaQuery.sizeOf(context);
 
     if (widget.contentPadding != null) {
       return widget.contentPadding!;
     }
 
-    if (mediaQueryData.size.width >= FastMediaBreakpoints.tablet) {
+    if (size.width >= FastMediaBreakpoints.tablet) {
       return _kContentPadding32;
     }
 

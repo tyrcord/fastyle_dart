@@ -28,9 +28,8 @@ class ResponsivePage extends StatelessWidget {
   }
 
   Widget buildGridView(BuildContext context, FastMediaType mediaType) {
-    var spacing = ThemeHelper.spacing.getSpacing(context);
-    var size = MediaQuery.of(context).size;
-
+    final spacing = ThemeHelper.spacing.getSpacing(context);
+    final size = MediaQuery.sizeOf(context);
     final columnCount = mediaType.index;
     final double itemHeight = (size.height - kToolbarHeight) / columnCount;
     final double itemWidth = size.width / columnCount;

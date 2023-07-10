@@ -144,6 +144,8 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
   }
 
   Widget _buildHeader(BuildContext context) {
+    print('build header');
+
     return Container(
       color: ThemeHelper.colors.getSecondaryBackgroundColor(context),
       child: SafeArea(
@@ -153,7 +155,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
           children: [
             _buildLeadingIcon(context),
             Container(
-              width: MediaQuery.of(context).size.width,
+              width: MediaQuery.sizeOf(context).width,
               padding: const EdgeInsets.only(
                 left: 16.0,
                 right: 16.0,
@@ -210,7 +212,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
     final shadowColor = ThemeHelper.colors.getShadowColor(context);
     final decoration = Container(
       height: 1.5,
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery.sizeOf(context).width,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(color: shadowColor, blurRadius: kFastBlurRadius),
@@ -252,7 +254,7 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
   }
 
   Widget _buildFooter(BuildContext context) {
-    final bottomPadding = MediaQuery.of(context).padding.bottom;
+    final bottomPadding = MediaQuery.paddingOf(context).bottom;
     final palette = ThemeHelper.getPaletteColors(context);
 
     return Container(
