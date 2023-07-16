@@ -1,5 +1,8 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 /// Class that describes some visual aspects of an item.
 class FastListItemDescriptor extends FastDescriptor {

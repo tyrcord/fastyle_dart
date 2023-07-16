@@ -1,5 +1,8 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastToggleListItem<T extends FastItem> extends StatefulWidget {
   final ValueChanged<bool> onValueChanged;

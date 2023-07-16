@@ -1,5 +1,8 @@
-import 'package:fastyle_dart/constants/edge_insets.constants.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:fastyle_dart/constants/edge_insets.constants.dart';
 
 class FastNavigationDestination {
   final Widget? selectedIcon;

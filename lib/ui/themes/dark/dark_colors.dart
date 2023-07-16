@@ -1,6 +1,9 @@
-import 'package:fastyle_dart/ui/ui.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:fastyle_dart/ui/ui.dart';
 
 // Colors
 const kFastDarkWhiteColor = Color(0xFFfcfcfc);

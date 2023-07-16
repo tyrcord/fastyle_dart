@@ -1,7 +1,12 @@
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:fastyle_dart/fastyle_dart.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fuzzy/fuzzy.dart';
+
+// Project imports:
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 export './edge_insets.constants.dart';
 export './sized_box.constants.dart';

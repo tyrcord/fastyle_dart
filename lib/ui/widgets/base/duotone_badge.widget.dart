@@ -1,5 +1,8 @@
-import 'package:fastyle_dart/ui/ui.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:fastyle_dart/ui/ui.dart';
 
 /// A duotone badge widget that can be used to display a small amount of
 /// information.

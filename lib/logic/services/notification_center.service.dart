@@ -1,8 +1,15 @@
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:another_flushbar/flushbar.dart';
-import 'package:fastyle_dart/fastyle_dart.dart';
-import 'package:flutter/material.dart';
+// Dart imports:
 import 'dart:collection';
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:another_flushbar/flushbar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+// Project imports:
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 const _kDefaultErrorOptions = FastNotificationCenterOptions(
   leadingIcon: FaIcon(FontAwesomeIcons.circleXmark),

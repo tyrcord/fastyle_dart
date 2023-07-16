@@ -1,5 +1,8 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 /// A stateless widget that displays an empty container with the primary
 /// background color of the current theme.

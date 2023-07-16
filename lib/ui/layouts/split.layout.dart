@@ -1,6 +1,11 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:tbloc/tbloc.dart';
+
+// Project imports:
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastSplitLayout extends StatelessWidget {
   final FastSplitSupplementaryBehavior supplementaryBehavior;

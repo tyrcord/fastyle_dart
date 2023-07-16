@@ -1,5 +1,7 @@
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
 
+// Project imports:
 import 'package:fastyle_dart/fastyle_dart.dart';
 
 FastApp _buildApp(FastSearchPage child) {

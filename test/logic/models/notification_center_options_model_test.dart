@@ -1,8 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fastyle_dart/fastyle_dart.dart';
+// Package imports:
+import 'package:flutter_test/flutter_test.dart';
 import 'package:tmodel/tmodel.dart';
+
+// Project imports:
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 void main() {
   group('FastNotificationCenterOptions', () {

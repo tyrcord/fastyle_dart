@@ -1,6 +1,11 @@
-import 'package:fastyle_dart/logic/logic.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:tbloc/tbloc.dart';
+
+// Project imports:
+import 'package:fastyle_dart/logic/logic.dart';
 
 enum FastAppLoaderBlocEventType {
   init,

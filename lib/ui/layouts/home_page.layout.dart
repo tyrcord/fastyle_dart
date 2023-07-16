@@ -1,5 +1,8 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 const _kHeaderPadding = 16.0;
 const _kContentPadding32 = EdgeInsets.symmetric(vertical: 32);

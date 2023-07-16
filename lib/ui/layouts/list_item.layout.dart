@@ -1,6 +1,11 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:intl/intl.dart';
+
+// Project imports:
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastListItemLayout extends StatelessWidget {
   /// Describes some additional visual aspects of an item.

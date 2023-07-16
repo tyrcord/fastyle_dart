@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:fastyle_dart/ui/ui.dart';
 
 final kDarkPaletteColors = FastPaletteColors(

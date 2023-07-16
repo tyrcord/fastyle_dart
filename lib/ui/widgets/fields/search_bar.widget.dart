@@ -1,6 +1,11 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:fuzzy/fuzzy.dart';
+
+// Project imports:
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastSearchBar<T extends FastItem> extends StatefulWidget {
   final void Function(List<T>? suggestions, String? query)? onSuggestions;

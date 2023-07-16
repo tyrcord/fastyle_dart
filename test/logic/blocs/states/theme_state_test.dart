@@ -1,7 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:tbloc/tbloc.dart';
-import 'package:flutter_test/flutter_test.dart';
 
+// Package imports:
+import 'package:flutter_test/flutter_test.dart';
+import 'package:tbloc/tbloc.dart';
+
+// Project imports:
 import 'package:fastyle_dart/fastyle_dart.dart';
 
 void main() {

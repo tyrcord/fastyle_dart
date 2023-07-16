@@ -1,8 +1,14 @@
+// Dart imports:
 import 'dart:async';
 
-import 'package:fastyle_dart/fastyle_dart.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:rxdart/rxdart.dart';
+
+// Project imports:
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 mixin FastThrottleButtonMixin<T extends FastButton> on State<T> {
   @protected

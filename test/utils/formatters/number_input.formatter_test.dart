@@ -1,7 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
 
+// Project imports:
 import 'package:fastyle_dart/fastyle_dart.dart';
 
 void main() {

@@ -1,6 +1,9 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastSelectField<T> extends StatefulWidget {
   /// A function that creates additional tab views.

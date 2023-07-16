@@ -1,6 +1,8 @@
-import 'package:tbloc/tbloc.dart';
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
+import 'package:tbloc/tbloc.dart';
 
+// Project imports:
 import 'package:fastyle_dart/fastyle_dart.dart';
 
 void main() {

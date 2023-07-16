@@ -1,6 +1,9 @@
-import 'package:fastyle_dart/fastyle_dart.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:fastyle_dart/fastyle_dart.dart';
 
 class FastSegmentField<T> extends StatefulWidget {
   final ValueChanged<FastItem<T>>? onValueChanged;
