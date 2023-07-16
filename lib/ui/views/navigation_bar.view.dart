@@ -92,8 +92,7 @@ class _FastNavigationBarViewState extends State<FastNavigationBarView> {
   }
 
   int _findSelectedIndex(BuildContext context) {
-    final route = GoRouter.of(context);
-    final location = route.location;
+    final location = GoRouterState.of(context).location;
     final index = widget.destinations.toList().indexWhere((element) {
       return location.startsWith(element.path);
     });
