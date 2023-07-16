@@ -149,8 +149,6 @@ class FastSearchPageState<T extends FastItem> extends State<FastSearchPage<T>> {
   }
 
   Widget _buildHeader(BuildContext context) {
-    print('build header');
-
     return Container(
       color: ThemeHelper.colors.getSecondaryBackgroundColor(context),
       child: SafeArea(
