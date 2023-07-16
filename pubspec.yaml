@@ -1,6 +1,6 @@
 name: fastyle_dart
 description: Set of graphical Widgets.
-version: 1.4.0
+version: 1.4.1
 homepage: https://github.com/tyrcord/fastyle_dart
 
 environment:
@@ -13,7 +13,7 @@ dependencies:
 
   async: ^2.11.0
   google_fonts: ^4.0.4
-  intl: ^0.18.1
+  intl: ^0.18.0
   diacritic: ^0.1.4
   flutter_spinkit: ^5.2.0
   fuzzy: ^0.4.0-nullsafety.0
