@@ -19,7 +19,7 @@ abstract class FastJob {
   @protected
   final Duration timeLimit;
 
-  FastJob({
+  const FastJob({
     this.timeLimit = const Duration(seconds: 15),
     this.requestUserInteraction = false,
     this.debugLabel,
