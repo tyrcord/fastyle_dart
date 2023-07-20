@@ -57,8 +57,6 @@ class FastAppLoader extends StatefulWidget {
 class FastAppLoaderState extends State<FastAppLoader> {
   final _bloc = FastAppLoaderBloc();
   late final Timer _delayTimer;
-  bool _isInitializing = false;
-  bool _isInitialized = false;
   bool _canShowLoader = false;
 
   Iterable<LocalizationsDelegate<dynamic>> get _localizationsDelegates {
@@ -70,11 +68,10 @@ class FastAppLoaderState extends State<FastAppLoader> {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  initState() {
+    super.initState();
 
-    if (!_isInitialized && !_isInitializing) {
-      _isInitializing = true;
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _bloc.addEvent(FastAppLoaderBlocEvent.init(
         context,
         errorReporter: widget.errorReporter,
@@ -86,10 +83,7 @@ class FastAppLoaderState extends State<FastAppLoader> {
           setState(() => _canShowLoader = true);
         }
       });
-
-      _isInitializing = false;
-      _isInitialized = true;
-    }
+    });
   }
 
   @override
